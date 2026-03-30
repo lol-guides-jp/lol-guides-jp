@@ -3,18 +3,20 @@
 # 毎日4時: TODO.mdの先頭チャンピオンのガイドを1体生成してpush
 #
 # cron登録:
-#   0 4 * * * /mnt/c/Users/ojita/lol-guides-jp/scripts/daily-guide.sh >> /mnt/c/Users/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0 4 * * 1-6 /mnt/c/Users/ojita/lol-guides-jp/scripts/daily-guide.sh >> /mnt/c/Users/ojita/lol-guides-jp/scripts/cron.log 2>&1
+
+set -euo pipefail
 
 export NVM_DIR="/home/ojita/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-GUIDE_DIR="/mnt/c/Users/ojita/lol-guides-jp"
+PROJECT_DIR="/mnt/c/Users/ojita/lol-guides-jp"
 DATE=$(date +%Y-%m-%d)
 LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
 
-source "${GUIDE_DIR}/scripts/lib.sh"
+source "${PROJECT_DIR}/scripts/lib.sh"
 
-cd "$GUIDE_DIR" || { echo "${LOG_PREFIX} ERROR: ディレクトリが見つかりません"; exit 1; }
+cd "$PROJECT_DIR" || { echo "${LOG_PREFIX} ERROR: ディレクトリが見つかりません"; exit 1; }
 
 # 未完了チャンピオンが残っているか確認
 PENDING=$(grep -c '^\- \[ \]' TODO.md 2>/dev/null || echo 0)
@@ -25,8 +27,7 @@ fi
 
 echo "${LOG_PREFIX} ===== LoL ガイド生成開始（残り${PENDING}体）====="
 
-run_cmd "write-guide"
-if [ $? -ne 0 ]; then
+if ! run_cmd "write-guide"; then
     echo "${LOG_PREFIX} ERROR: ガイド生成失敗"
     exit 1
 fi

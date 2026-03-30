@@ -1,11 +1,24 @@
 #!/bin/bash
-# lib.sh - 共通関数（content-pipelineと同パターン）
+# lib.sh - 共通関数（ローカル優先・グローバルフォールバック）
 
 # run_cmd <コマンド名> [引数]
 run_cmd() {
     local cmd_name="$1"
     local args="${2:-}"
-    local cmd_file="${GUIDE_DIR}/.claude/commands/${cmd_name}.md"
+
+    # ローカル優先、なければグローバルを参照
+    local local_file="${PROJECT_DIR}/.claude/commands/${cmd_name}.md"
+    local global_file="${HOME}/.claude/commands/${cmd_name}.md"
+    local cmd_file
+
+    if [ -f "$local_file" ]; then
+        cmd_file="$local_file"
+    elif [ -f "$global_file" ]; then
+        cmd_file="$global_file"
+    else
+        echo "${LOG_PREFIX:-} ERROR: コマンド ${cmd_name} が見つかりません" >&2
+        return 1
+    fi
 
     local model
     model=$(sed -n '1{/^---$/!q}; 2,/^---$/{/^model:/s/^model:[[:space:]]*//p}' "$cmd_file")
