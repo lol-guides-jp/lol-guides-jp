@@ -11,4 +11,4 @@
 ## 技術スタック
 - コンテンツ: Markdown / champions/ ディレクトリに1体1ファイル
 - 自動化: daily-guide.sh（毎日4時・cron）→ write-guide コマンド実行
-- Git: git.exe 経由で push（WSL制約）
+- Git: WSL側の git で push（HTTPS）

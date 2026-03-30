@@ -33,11 +33,9 @@ if ! run_cmd "write-guide"; then
 fi
 
 # git push
-git.exe -C 'C:\Users\ojita\lol-guides-jp' add . 2>&1
-git.exe -C 'C:\Users\ojita\lol-guides-jp' \
-    -c user.name="ojita" \
-    -c user.email="ojita@users.noreply.github.com" \
+git add . 2>&1
+git -c user.name="ojita" -c user.email="ojita@users.noreply.github.com" \
     commit -m "[自動] ${DATE} ガイド追加" 2>&1
-git.exe -C 'C:\Users\ojita\lol-guides-jp' push origin main 2>&1
+git push origin main 2>&1
 
 echo "${LOG_PREFIX} ===== 完了 ====="
