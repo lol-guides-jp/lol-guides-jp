@@ -25,7 +25,7 @@ if [ "$PENDING" -eq 0 ]; then
     exit 0
 fi
 
-echo "${LOG_PREFIX} ===== LoL ガイド生成開始（残り${PENDING}体）====="
+echo "${LOG_PREFIX} ===== LoL ガイド生成開始（残り${PENDING}体） ====="
 
 if ! run_cmd "write-guide"; then
     echo "${LOG_PREFIX} ERROR: ガイド生成失敗"
