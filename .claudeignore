@@ -1,0 +1,23 @@
+# .claudeignore — Claude Code 解析除外ファイル
+
+# Git
+.git/
+
+# 依存パッケージ
+node_modules/
+
+# ログ・一時ファイル
+*.log
+logs/
+tmp/
+.tmp/
+*.tmp
+.DS_Store
+
+# ビルド成果物
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/settings.json
