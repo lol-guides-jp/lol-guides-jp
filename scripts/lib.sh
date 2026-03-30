@@ -8,7 +8,7 @@ COST_LOG="${HOME}/.claude/cost.log"
 # .claude/commands/<コマンド名>.md の内容を claude --print に渡す。
 # ローカル優先・グローバルフォールバック。
 # frontmatter に model: が指定されていれば --model フラグを自動付与する。
-# 実行結果のコスト情報を ~/.claude/cost.log に記録する。
+# 実行結果の使用量を ~/.claude/cost.log に記録する。
 run_cmd() {
     local cmd_name="$1"
     local args="${2:-}"
@@ -41,9 +41,9 @@ run_cmd() {
     json_output=$(claude --print --output-format json --permission-mode acceptEdits ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
     local exit_code=$?
 
-    # コスト情報をログに記録
-    local cost duration_ms input_tokens output_tokens
-    cost=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));console.log(d.total_cost_usd||0)}catch{console.log(0)}" 2>/dev/null)
+    # 使用量をログに記録
+    local usage_usd duration_ms input_tokens output_tokens
+    usage_usd=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));console.log(d.total_cost_usd||0)}catch{console.log(0)}" 2>/dev/null)
     duration_ms=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));console.log(d.duration_ms||0)}catch{console.log(0)}" 2>/dev/null)
     input_tokens=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));const u=d.usage||{};console.log((u.input_tokens||0)+(u.cache_creation_input_tokens||0)+(u.cache_read_input_tokens||0))}catch{console.log(0)}" 2>/dev/null)
     output_tokens=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));console.log((d.usage||{}).output_tokens||0)}catch{console.log(0)}" 2>/dev/null)
@@ -52,7 +52,7 @@ run_cmd() {
     repo_name=$(basename "${PROJECT_DIR}")
     printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
         "$(date +%Y-%m-%d)" "$(date +%H:%M:%S)" "$repo_name" "$cmd_name" \
-        "$cost" "$duration_ms" "$input_tokens" "$output_tokens" "$exit_code" >> "$COST_LOG"
+        "$usage_usd" "$duration_ms" "$input_tokens" "$output_tokens" "$exit_code" >> "$COST_LOG"
 
     # 本文を標準出力に返す（JSONからresultフィールドを抽出）
     local result_text
