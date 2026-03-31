@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoL Guides JP</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #141a24;
+    --surface2: #1c2533;
+    --border: #2a3545;
+    --text: #e0e6ed;
+    --text-dim: #8895a7;
+    --accent: #c89b3c;
+    --green: #2ecc71;
+    --red: #e74c3c;
+    --blue: #3498db;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header h1 {
+    font-size: 20px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  header .patch {
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  .layout {
+    display: flex;
+    height: calc(100vh - 57px);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .search-box {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-box input {
+    width: 100%;
+    padding: 8px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+  }
+  .search-box input:focus { border-color: var(--accent); }
+  .role-filters {
+    display: flex;
+    gap: 4px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .role-btn {
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .role-btn:hover { border-color: var(--accent); color: var(--text); }
+  .role-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .champion-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+  }
+  .champion-item {
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.1s;
+    font-size: 14px;
+  }
+  .champion-item:hover { background: var(--surface2); }
+  .champion-item.active { background: var(--surface2); border-left: 3px solid var(--accent); }
+  .champion-item .name-ja { color: var(--text); }
+  .champion-item .name-en { color: var(--text-dim); font-size: 12px; }
+  .champion-item .role-tag {
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  /* Main */
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 32px;
+  }
+  .placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-dim);
+    font-size: 16px;
+  }
+  .guide-header {
+    margin-bottom: 24px;
+  }
+  .guide-header h2 {
+    font-size: 28px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .guide-header .subtitle {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .section {
+    margin-bottom: 24px;
+  }
+  .section h3 {
+    font-size: 16px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-content {
+    font-size: 14px;
+    color: var(--text);
+    white-space: pre-line;
+  }
+  .section-content strong { color: var(--accent); }
+
+  /* Matchups */
+  .matchups-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .matchup-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .matchup-panel h3 {
+    padding: 10px 16px;
+    font-size: 14px;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .matchup-panel.favorable h3 {
+    color: var(--green);
+    border-bottom: none;
+    background: rgba(46, 204, 113, 0.08);
+  }
+  .matchup-panel.unfavorable h3 {
+    color: var(--red);
+    border-bottom: none;
+    background: rgba(231, 76, 60, 0.08);
+  }
+  .matchup-item {
+    padding: 10px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .matchup-item .matchup-name {
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .favorable .matchup-name { color: var(--green); }
+  .unfavorable .matchup-name { color: var(--red); }
+  .matchup-item .matchup-desc {
+    color: var(--text-dim);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; height: auto; }
+    .sidebar { width: 100%; min-width: 100%; max-height: 50vh; }
+    .matchups-grid { grid-template-columns: 1fr; }
+    .main { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>LoL Guides JP</h1>
+  <span class="patch">Patch 26.6</span>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="search-box">
+      <input type="text" id="search" placeholder="チャンピオン検索...">
+    </div>
+    <div class="role-filters" id="roleFilters">
+      <button class="role-btn active" data-role="all">全て</button>
+      <button class="role-btn" data-role="トップレーン">TOP</button>
+      <button class="role-btn" data-role="ジャングル">JG</button>
+      <button class="role-btn" data-role="ミッドレーン">MID</button>
+      <button class="role-btn" data-role="ADC">ADC</button>
+      <button class="role-btn" data-role="サポート">SUP</button>
+    </div>
+    <div class="champion-list" id="championList"></div>
+  </aside>
+  <main class="main" id="main">
+    <div class="placeholder">チャンピオンを選択してください</div>
+  </main>
+</div>
+
+<script>
+let champions = [];
+let selectedRole = "all";
+let selectedId = null;
+
+async function init() {
+  const res = await fetch("data.json");
+  champions = await res.json();
+  renderList();
+  document.getElementById("search").addEventListener("input", renderList);
+  document.getElementById("roleFilters").addEventListener("click", (e) => {
+    if (!e.target.classList.contains("role-btn")) return;
+    selectedRole = e.target.dataset.role;
+    document.querySelectorAll(".role-btn").forEach((b) => b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderList();
+  });
+}
+
+function renderList() {
+  const query = document.getElementById("search").value.toLowerCase();
+  const list = document.getElementById("championList");
+  const filtered = champions.filter((c) => {
+    const matchRole = selectedRole === "all" || c.role === selectedRole;
+    const matchQuery = !query || c.ja.toLowerCase().includes(query) || c.en.toLowerCase().includes(query);
+    return matchRole && matchQuery;
+  });
+  list.innerHTML = filtered
+    .map(
+      (c) => `<div class="champion-item ${c.id === selectedId ? "active" : ""}" data-id="${c.id}">
+      <div>
+        <div class="name-ja">${c.ja}</div>
+        <div class="name-en">${c.en}</div>
+      </div>
+      <span class="role-tag">${c.role}</span>
+    </div>`
+    )
+    .join("");
+  list.querySelectorAll(".champion-item").forEach((el) => {
+    el.addEventListener("click", () => {
+      selectedId = el.dataset.id;
+      renderList();
+      renderGuide(champions.find((c) => c.id === selectedId));
+    });
+  });
+}
+
+function md(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\n/g, "<br>");
+}
+
+function renderGuide(c) {
+  const main = document.getElementById("main");
+  main.innerHTML = `
+    <div class="guide-header">
+      <h2>${c.ja}</h2>
+      <div class="subtitle">${c.en} / ${c.role} / Patch ${c.patch}</div>
+    </div>
+    <div class="summary-box">${c.summary}</div>
+
+    <div class="matchups-grid">
+      <div class="matchup-panel favorable">
+        <h3>得意マッチアップ</h3>
+        ${c.favorableMatchups.map((m) => `
+          <div class="matchup-item">
+            <div class="matchup-name">${m.name}</div>
+            <div class="matchup-desc">${m.description}</div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="matchup-panel unfavorable">
+        <h3>苦手マッチアップ</h3>
+        ${c.unfavorableMatchups.map((m) => `
+          <div class="matchup-item">
+            <div class="matchup-name">${m.name}</div>
+            <div class="matchup-desc">${m.description}</div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>スキルオーダー</h3>
+      <div class="section-content">${md(c.skillOrder)}</div>
+    </div>
+    <div class="section">
+      <h3>主要パワースパイク</h3>
+      <div class="section-content">${md(c.powerSpikes)}</div>
+    </div>
+    <div class="section">
+      <h3>ゲームプラン</h3>
+      <div class="section-content">${md(c.gamePlan)}</div>
+    </div>
+    <div class="section">
+      <h3>対策</h3>
+      <div class="section-content">${md(c.counters)}</div>
+    </div>
+  `;
+  main.scrollTop = 0;
+}
+
+init();
+</script>
+</body>
+</html>
