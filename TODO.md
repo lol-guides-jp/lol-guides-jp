@@ -2,148 +2,21 @@
 
 対応パッチ: **26.6**（2026年3月17日）
 
-## 優先順（JPサーバー人気・ピック率順）
+## ステータス
 
-### サポート
-- [x] Nami（ナミ）— S tier, ピック率16.0%
-- [x] Thresh（スレッシュ）— S tier, ピック率14.1%
+**全170体のチャンピオンガイドが完了。**
 
-### ADC（ボットレーン）
-- [x] Jinx（ジンクス）— S tier, ピック率16.0%, 勝率53.5%
-- [x] Ashe（アッシュ）— S tier, ピック率11.4%
-- [x] Xayah（ザヤ）— S tier, ピック率5.3%
+次のアクション:
+- [ ] 次パッチ（26.7）リリース時に既存ガイドの更新（POLICY.md参照）
+- [ ] メタ落ちチャンプへの注釈追加
 
-### ジャングル
-- [x] Graves（グレイブス）— S tier, ピック率14.9%
-- [x] Nocturne（ノクターン）— A tier, ピック率6.9%
-- [x] Briar（ブライア）— S tier, 勝率53.2%
+## 完了済み（パッチ26.6 / 全170体）
 
-### ミッドレーン
-- [x] Ahri（アーリ）— S tier, ピック率12.7%, 勝率52.5%
-- [x] Yone（ヨネ）— A tier, ピック率5.6%
-- [x] Syndra（シンドラ）— A tier, ピック率4.8%
+### バッチ1（16体 — メタ上位・JPサーバー人気順）
+Nami, Thresh, Jinx, Ashe, Xayah, Graves, Nocturne, Briar, Ahri, Yone, Syndra, Garen, Ornn, Kayle, Darius, Tryndamere
 
-### トップレーン
-- [x] Garen（ガレン）— S tier, ピック率8.9%
-- [x] Ornn（オーン）— S tier, ピック率5.7%
-- [x] Kayle（ケイル）— S tier, 勝率54.5%
-- [x] Darius（ダリウス）— 序盤最強クラス
-- [x] Tryndamere（トリンダメア）— スプリットプッシャー代表
+### バッチ2（15体 — BAN/PICK率上位）
+Sett, Shen, Mordekaiser, Lee Sin, Dr. Mundo, Amumu, Katarina, Veigar, Anivia, Miss Fortune, Kog'Maw, Aphelios, Nautilus, Karma, Sona
 
-## バッチ2（パッチ26.6 メタ上位・BAN/PICK率順）
-
-### トップレーン
-- [x] Sett（セト）— S tier, 勝率53.6%
-- [x] Shen（シェン）— S+ tier, 勝率53.4%
-- [x] Mordekaiser（モルデカイザー）— A tier, 高ピック率
-
-### ジャングル
-- [x] Lee Sin（リー・シン）— S tier, ピック率最上位, BAN率13.2%
-- [x] Dr. Mundo（ドクター・ムンド）— S tier, BAN率12.7%
-- [x] Amumu（アムム）— S tier, 勝率52.7%
-
-### ミッドレーン
-- [x] Katarina（カタリナ）— S tier, BAN率10.3%
-- [x] Veigar（ベイガー）— S tier, 勝率52.9%
-- [x] Anivia（アニビア）— S+ tier, 勝率53.3%
-
-### ADC
-- [x] Miss Fortune（ミス・フォーチュン）— A tier, ピック率7.7%
-- [x] Kog'Maw（コグ＝マウ）— S tier, 勝率53.0%
-- [x] Aphelios（アフェリオス）— S tier, 勝率51.6%
-
-### サポート
-- [x] Nautilus（ノーチラス）— S tier, BAN率14.3%
-- [x] Karma（カルマ）— S+ tier, BAN率10.3%
-- [x] Sona（ソナ）— S tier, 勝率53.1%
-
-## バッチ3（パッチ26.6 追加）
-
-### ADC
-- [x] Draven（ドレイヴン）— 序盤最強ADC
-- [x] Ezreal（エズリアル）— スキル型ADC、高ピック率
-
-### ミッドレーン
-- [x] Annie（アニー）— A tier, 勝率51.8%
-- [x] Aurelion Sol（オレリオン・ソル）— A tier, 勝率51.6%
-- [x] Aurora（オーロラ）— A tier, 勝率49.1%
-- [x] Azir（アジール）— C tier, 勝率46.0%（26.6でバフ）
-
-### サポート
-- [x] Bard（バード）— A tier, 勝率50.7%
-
-### ジャングル
-- [x] Ekko（エコー）— A tier, APアサシン
-- [x] Elise（エリス）— A tier, 序盤ガンク特化
-- [x] Evelynn（イブリン）— A tier, カモフラージュアサシン
-
-## バッチ4（パッチ26.6 追加）
-
-### ミッドレーン
-- [x] Hwei（フウェイ）— A tier, ピック率3.5%
-
-### トップレーン
-- [x] Illaoi（イラオイ）— A tier, 勝率50.9%
-- [x] Irelia（イレリア）— S tier, 勝率50.2%
-
-### ジャングル
-- [x] Ivern（アイバーン）— A tier, 勝率51.7%
-
-### サポート
-- [x] Janna（ジャンナ）— S tier, 勝率51.6%
-
-## 完了済み
-
-### バッチ1（パッチ26.6）
-- Nami（ナミ）— サポート / パッチ26.6
-- Thresh（スレッシュ）— サポート / パッチ26.6
-- Jinx（ジンクス）— ADC / パッチ26.6
-- Ashe（アッシュ）— ADC / パッチ26.6
-- Graves（グレイブス）— ジャングル / パッチ26.6
-- Xayah（ザヤ）— ADC / パッチ26.6
-- Nocturne（ノクターン）— ジャングル / パッチ26.6
-- Briar（ブライア）— ジャングル / パッチ26.6
-- Ahri（アーリ）— ミッドレーン / パッチ26.6
-- Yone（ヨネ）— ミッドレーン / パッチ26.6
-- Syndra（シンドラ）— ミッドレーン / パッチ26.6
-- Garen（ガレン）— トップレーン / パッチ26.6
-- Ornn（オーン）— トップレーン / パッチ26.6
-- Kayle（ケイル）— トップレーン / パッチ26.6
-- Darius（ダリウス）— トップレーン / パッチ26.6
-- Tryndamere（トリンダメア）— トップレーン / パッチ26.6
-
-### バッチ2（パッチ26.6）
-- Sett（セト）— トップレーン / パッチ26.6
-- Shen（シェン）— トップレーン / パッチ26.6
-- Mordekaiser（モルデカイザー）— トップレーン / パッチ26.6
-- Lee Sin（リー・シン）— ジャングル / パッチ26.6
-- Dr. Mundo（ドクター・ムンド）— ジャングル / パッチ26.6
-- Amumu（アムム）— ジャングル / パッチ26.6
-- Katarina（カタリナ）— ミッドレーン / パッチ26.6
-- Veigar（ベイガー）— ミッドレーン / パッチ26.6
-- Anivia（アニビア）— ミッドレーン / パッチ26.6
-- Miss Fortune（ミス・フォーチュン）— ADC / パッチ26.6
-- Kog'Maw（コグ＝マウ）— ADC / パッチ26.6
-- Aphelios（アフェリオス）— ADC / パッチ26.6
-- Nautilus（ノーチラス）— サポート / パッチ26.6
-- Karma（カルマ）— サポート / パッチ26.6
-- Sona（ソナ）— サポート / パッチ26.6
-
-### バッチ3（パッチ26.6）
-- Draven（ドレイヴン）— ADC / パッチ26.6
-- Ezreal（エズリアル）— ADC / パッチ26.6
-- Ekko（エコー）— ジャングル / パッチ26.6
-- Elise（エリス）— ジャングル / パッチ26.6
-- Evelynn（イブリン）— ジャングル / パッチ26.6
-- Annie（アニー）— ミッドレーン / パッチ26.6
-- Aurelion Sol（オレリオン・ソル）— ミッドレーン / パッチ26.6
-- Aurora（オーロラ）— ミッドレーン / パッチ26.6
-- Azir（アジール）— ミッドレーン / パッチ26.6
-- Bard（バード）— サポート / パッチ26.6
-
-### バッチ4（パッチ26.6）
-- Hwei（フウェイ）— ミッドレーン / パッチ26.6
-- Illaoi（イラオイ）— トップレーン / パッチ26.6
-- Irelia（イレリア）— トップレーン / パッチ26.6
-- Ivern（アイバーン）— ジャングル / パッチ26.6
-- Janna（ジャンナ）— サポート / パッチ26.6
+### バッチ3（139体 — 全チャンプ網羅）
+Aatrox, Akali, Akshan, Alistar, Ambessa, Annie, Aurelion Sol, Aurora, Azir, Bard, Bel'Veth, Blitzcrank, Brand, Braum, Caitlyn, Camille, Cassiopeia, Cho'Gath, Corki, Diana, Draven, Ekko, Elise, Evelynn, Ezreal, Fiddlesticks, Fiora, Fizz, Galio, Gangplank, Gnar, Gragas, Gwen, Hecarim, Heimerdinger, Hwei, Illaoi, Irelia, Ivern, Janna, Jarvan IV, Jax, Jayce, Jhin, K'Sante, Kai'Sa, Kalista, Karthus, Kassadin, Kayn, Kennen, Kha'Zix, Kindred, Kled, LeBlanc, Leona, Lillia, Lissandra, Lucian, Lulu, Lux, Malphite, Malzahar, Maokai, Master Yi, Mel, Milio, Morgana, Naafiri, Nasus, Neeko, Nidalee, Nilah, Nunu & Willump, Olaf, Orianna, Pantheon, Poppy, Pyke, Qiyana, Quinn, Rakan, Rammus, Rek'Sai, Rell, Renata Glasc, Renekton, Rengar, Riven, Rumble, Ryze, Samira, Sejuani, Senna, Seraphine, Shaco, Shyvana, Singed, Sion, Sivir, Skarner, Smolder, Soraka, Swain, Sylas, Tahm Kench, Taliyah, Talon, Taric, Teemo, Tristana, Trundle, Twisted Fate, Twitch, Udyr, Urgot, Varus, Vayne, Vel'Koz, Vex, Vi, Viego, Viktor, Vladimir, Volibear, Warwick, Wukong, Xerath, Xin Zhao, Yasuo, Yorick, Yuumi, Zac, Zed, Zeri, Ziggs, Zilean, Zoe, Zyra
