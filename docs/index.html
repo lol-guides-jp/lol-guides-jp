@@ -463,6 +463,16 @@ header .patch {
 @media (max-width: 480px) {
   .champ-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
 }
+.disclaimer {
+  background: rgba(241, 196, 15, 0.1);
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--yellow);
+  line-height: 1.5;
+}
 </style>
 </head>
 <body>
@@ -554,6 +564,7 @@ function renderHome() {
   document.getElementById("navBack").innerHTML = "";
   const app = document.getElementById("app");
   app.innerHTML = `
+    <div class="disclaimer">本サイトは試験運用中です。マッチアップ情報や勝率は推定値であり、誤った情報を含む可能性があります。</div>
     <div class="search-area">
       <input class="search-input" id="search" type="text"
         placeholder="チャンピオン検索（ひらがな・カタカナ・英語）" value="${state.query}">
