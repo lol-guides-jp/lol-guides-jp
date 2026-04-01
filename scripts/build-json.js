@@ -6,6 +6,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const https = require("https");
 
 const CHAMPIONS_DIR = path.join(__dirname, "..", "champions");
 const OUTPUT_FILE = path.join(__dirname, "..", "docs", "data.json");
@@ -137,6 +138,51 @@ function buildNameToIdMap(champions) {
   return map;
 }
 
+// Data Dragon からチャンピオン詳細JSONを取得
+function fetchJSON(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = "";
+      res.on("data", (chunk) => (data += chunk));
+      res.on("end", () => {
+        try { resolve(JSON.parse(data)); }
+        catch (e) { reject(new Error(`JSON parse error: ${url}`)); }
+      });
+    }).on("error", reject);
+  });
+}
+
+async function fetchSpells(ddragonKey) {
+  const url = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}/data/ja_JP/champion/${ddragonKey}.json`;
+  try {
+    const json = await fetchJSON(url);
+    const champData = Object.values(json.data)[0];
+    const passive = {
+      key: "P",
+      name: champData.passive.name,
+      description: champData.passive.description.replace(/<[^>]+>/g, ""),
+      image: champData.passive.image.full,
+    };
+    const keys = ["Q", "W", "E", "R"];
+    const spells = champData.spells.map((s, i) => ({
+      key: keys[i],
+      name: s.name,
+      description: s.description.replace(/<[^>]+>/g, ""),
+      image: s.image.full,
+      cooldown: s.cooldownBurn || "",
+      cost: s.costBurn || "",
+      range: s.rangeBurn || "",
+      leveltip: (s.leveltip?.label || []).map((l) =>
+        l.replace(/@AbilityResourceName@/g, "マナ")
+      ),
+    }));
+    return [passive, ...spells];
+  } catch (e) {
+    console.error(`WARN: ${ddragonKey} のスペル取得失敗: ${e.message}`);
+    return null;
+  }
+}
+
 // --- メイン処理 ---
 const champions = [];
 const dirs = fs.readdirSync(CHAMPIONS_DIR).filter((d) => d !== "_template");
@@ -184,18 +230,40 @@ for (const champ of champions) {
 
 champions.sort((a, b) => a.ja.localeCompare(b.ja, "ja"));
 
-const output = {
-  meta: {
-    ddragonVersion: DDRAGON_VERSION,
-    buildDate: new Date().toISOString().split("T")[0],
-    championCount: champions.length,
-    matchupCount: champions.filter((c) => c.matchups.length > 0).length,
-  },
-  champions,
-};
+// Phase 3: Data Dragon からスペルデータを並列フェッチ
+async function main() {
+  console.log(`${champions.length}体のスペルデータを取得中...`);
+  const BATCH_SIZE = 20;
+  for (let i = 0; i < champions.length; i += BATCH_SIZE) {
+    const batch = champions.slice(i, i + BATCH_SIZE);
+    const results = await Promise.all(
+      batch.map((c) => fetchSpells(c.ddragonKey))
+    );
+    for (let j = 0; j < batch.length; j++) {
+      batch[j].skills = results[j] || [];
+    }
+  }
+  const skillCount = champions.filter((c) => c.skills.length > 0).length;
+  console.log(`スペル取得完了: ${skillCount}/${champions.length}体`);
 
-fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
-fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2), "utf-8");
-console.log(
-  `${output.meta.championCount}体のデータ（matchups: ${output.meta.matchupCount}体）を ${OUTPUT_FILE} に出力しました`
-);
+  const output = {
+    meta: {
+      ddragonVersion: DDRAGON_VERSION,
+      buildDate: new Date().toISOString().split("T")[0],
+      championCount: champions.length,
+      matchupCount: champions.filter((c) => c.matchups.length > 0).length,
+    },
+    champions,
+  };
+
+  fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2), "utf-8");
+  console.log(
+    `${output.meta.championCount}体のデータ（matchups: ${output.meta.matchupCount}体）を ${OUTPUT_FILE} に出力しました`
+  );
+}
+
+main().catch((e) => {
+  console.error("ERROR:", e);
+  process.exit(1);
+});

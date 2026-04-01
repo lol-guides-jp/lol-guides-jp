@@ -282,6 +282,71 @@ header .patch {
 }
 .opp-card .name { font-size: 10px; color: var(--text-dim); }
 
+/* Skills */
+.skills-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+.skill-icon {
+  flex-shrink: 0;
+  width: 52px;
+  text-align: center;
+  cursor: pointer;
+  padding: 6px 0;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+.skill-icon:hover { border-color: var(--border); }
+.skill-icon.active { border-color: var(--accent); background: var(--surface); }
+.skill-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto 4px;
+  background: var(--surface2);
+}
+.skill-icon .key {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+.skill-icon.active .key { color: var(--accent); }
+.skill-detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+.skill-detail .skill-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.skill-detail .skill-desc {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.skill-detail .skill-stats {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--blue);
+  font-weight: 600;
+}
+.skill-detail .skill-leveltip {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
 /* Guide sections */
 .section {
   margin-bottom: 20px;
@@ -419,6 +484,10 @@ const DDRAGON_BASE = () =>
 
 function champImg(ddragonKey) {
   return `${DDRAGON_BASE()}/champion/${ddragonKey}.png`;
+}
+function skillImg(skill) {
+  const type = skill.key === "P" ? "passive" : "spell";
+  return `${DDRAGON_BASE()}/${type}/${skill.image}`;
 }
 
 function kataToHira(str) {
@@ -613,12 +682,64 @@ function renderChampion(id) {
       <div class="all-opponents" id="oppGrid"></div>
     </div>
 
+    ${c.skills && c.skills.length > 0 ? `
+    <div class="section">
+      <h3>スキル詳細</h3>
+      <div class="skills-bar" id="skillsBar">
+        ${c.skills.map((s, i) => `
+          <div class="skill-icon ${i === 0 ? "active" : ""}" data-idx="${i}">
+            <img src="${skillImg(s)}" alt="${s.key}">
+            <span class="key">${s.key}</span>
+          </div>
+        `).join("")}
+      </div>
+      <div class="skill-detail" id="skillDetail">
+        <div class="skill-name">[${c.skills[0].key}] ${c.skills[0].name}</div>
+        <div class="skill-desc">${c.skills[0].description}</div>
+        ${c.skills[0].key !== "P" ? `<div class="skill-stats">
+          ${c.skills[0].cooldown ? `<span>CD: ${c.skills[0].cooldown}秒</span>` : ""}
+          ${c.skills[0].cost && c.skills[0].cost !== "0" ? `<span>コスト: ${c.skills[0].cost}</span>` : ""}
+          ${c.skills[0].range && c.skills[0].range !== "self" ? `<span>射程: ${c.skills[0].range}</span>` : ""}
+        </div>` : ""}
+        ${c.skills[0].leveltip && c.skills[0].leveltip.length > 0 ? `<div class="skill-leveltip">Lvアップ: ${c.skills[0].leveltip.join(" / ")}</div>` : ""}
+      </div>
+    </div>
+    ` : ""}
     <div class="section"><h3>スキルオーダー</h3><div class="section-content">${md(c.skillOrder)}</div></div>
     <div class="section"><h3>主要パワースパイク</h3><div class="section-content">${md(c.powerSpikes)}</div></div>
     <div class="section"><h3>ゲームプラン</h3><div class="section-content">${md(c.gamePlan)}</div></div>
     ${c.teamfight ? `<div class="section"><h3>集団戦の立ち回り</h3><div class="section-content">${md(c.teamfight)}</div></div>` : ""}
     <div class="section"><h3>対策</h3><div class="section-content">${md(c.counters)}</div></div>
   `;
+
+  // スキルアイコンのクリックイベント
+  if (c.skills && c.skills.length > 0) {
+    function updateSkillDetail(idx) {
+      const s = c.skills[idx];
+      const detail = document.getElementById("skillDetail");
+      let html = `<div class="skill-name">[${s.key}] ${s.name}</div>`;
+      html += `<div class="skill-desc">${s.description}</div>`;
+      if (s.key !== "P") {
+        const stats = [];
+        if (s.cooldown) stats.push(`<span>CD: ${s.cooldown}秒</span>`);
+        if (s.cost && s.cost !== "0") stats.push(`<span>コスト: ${s.cost}</span>`);
+        if (s.range && s.range !== "self") stats.push(`<span>射程: ${s.range}</span>`);
+        if (stats.length) html += `<div class="skill-stats">${stats.join("")}</div>`;
+      }
+      if (s.leveltip && s.leveltip.length > 0) {
+        html += `<div class="skill-leveltip">Lvアップ: ${s.leveltip.join(" / ")}</div>`;
+      }
+      detail.innerHTML = html;
+    }
+    document.getElementById("skillsBar").addEventListener("click", (e) => {
+      const icon = e.target.closest(".skill-icon");
+      if (!icon) return;
+      const idx = parseInt(icon.dataset.idx);
+      document.querySelectorAll(".skill-icon").forEach((el) => el.classList.remove("active"));
+      icon.classList.add("active");
+      updateSkillDetail(idx);
+    });
+  }
 
   // matchupチップのクリックイベント
   app.querySelectorAll(".matchup-chip").forEach((el) => {
