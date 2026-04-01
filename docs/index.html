@@ -259,28 +259,28 @@ header .patch {
 .opponent-search:focus { border-color: var(--accent); }
 .all-opponents {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
 }
 .opp-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 6px;
+  border-radius: 8px;
+  padding: 8px;
   cursor: pointer;
   text-align: center;
   transition: all 0.15s;
 }
 .opp-card:hover { border-color: var(--accent); }
 .opp-card img {
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: block;
-  margin: 0 auto 4px;
+  margin: 0 auto 6px;
   background: var(--surface2);
 }
-.opp-card .name { font-size: 10px; color: var(--text-dim); }
+.opp-card .name { font-size: 11px; color: var(--text); }
 
 /* Skills */
 .skills-bar {
@@ -458,10 +458,12 @@ header .patch {
   .vs-header { flex-direction: row; gap: 16px; padding: 16px; }
   .vs-champ img { width: 56px; height: 56px; }
   .vs-label { font-size: 22px; }
-  .all-opponents { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+  .all-opponents { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
+  .opp-card img { width: 44px; height: 44px; }
 }
 @media (max-width: 480px) {
   .champ-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+  .all-opponents { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
 }
 .disclaimer {
   background: rgba(241, 196, 15, 0.1);
