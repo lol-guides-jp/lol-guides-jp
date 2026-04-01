@@ -16,6 +16,16 @@ LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
+# --- 予算サーキットブレーカー（月額$50超過でcron停止） ---
+BUDGET_LIMIT=50.00
+COST_SCRIPT="${HOME}/.claude/scripts/cost-report.py"
+if [ -f "$COST_SCRIPT" ]; then
+    if ! python3 "$COST_SCRIPT" --budget-check "$BUDGET_LIMIT" > /dev/null 2>&1; then
+        echo "${LOG_PREFIX} ERROR: 月額予算超過（\$${BUDGET_LIMIT}）。ガイド生成停止"
+        exit 1
+    fi
+fi
+
 cd "$PROJECT_DIR" || { echo "${LOG_PREFIX} ERROR: ディレクトリが見つかりません"; exit 1; }
 
 # 未完了チャンピオンが残っているか確認
