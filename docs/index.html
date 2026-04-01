@@ -611,7 +611,6 @@ function renderGrid() {
     .map(
       (c) => `<div class="champ-card" data-id="${c.id}">
       ${c.beginnerRating >= 4 ? '<span class="star">&#9733;</span>' : ""}
-      ${c.matchups.length > 0 ? '<span class="matchup-badge">詳細</span>' : ""}
       <img src="${champImg(c.ddragonKey)}" alt="${c.ja}" loading="lazy">
       <div class="name">${c.ja}</div>
     </div>`
@@ -634,9 +633,6 @@ function renderChampion(id) {
 
   const app = document.getElementById("app");
 
-  // matchups.mdの詳細がある対戦相手IDセット
-  const detailIds = new Set(c.matchups.map((m) => m.opponentId));
-
   // 得意・苦手のチップ生成
   const makeChips = (list, cls) =>
     list
@@ -644,17 +640,15 @@ function renderChampion(id) {
         const opp = findChampByName(m.name);
         const oppId = opp ? opp.id : "";
         const oppKey = opp ? opp.ddragonKey : "";
-        const hasDetail = detailIds.has(oppId);
         return `<div class="matchup-chip ${cls}" data-self="${id}" data-opp="${oppId}">
         ${oppKey ? `<img src="${champImg(oppKey)}" alt="${m.name}" loading="lazy">` : ""}
         ${m.name}
-        ${hasDetail ? '<span class="detail-badge">詳細</span>' : ""}
       </div>`;
       })
       .join("");
 
-  // 同ロールの全対戦相手グリッド
-  const sameRole = DATA.champions.filter((o) => o.id !== id);
+  // 同ロールの対戦相手グリッド
+  const sameRole = DATA.champions.filter((o) => o.id !== id && o.role === c.role);
 
   app.innerHTML = `
     <div class="champ-header">
@@ -682,14 +676,6 @@ function renderChampion(id) {
 
       <input class="opponent-search" id="oppSearch" type="text"
         placeholder="相手チャンピオンを検索..." value="${state.oppQuery}">
-      <div class="filters" id="oppRoleFilters" style="margin-bottom:10px">
-        <button class="filter-btn active" data-role="all">全て</button>
-        <button class="filter-btn" data-role="トップレーン">TOP</button>
-        <button class="filter-btn" data-role="ジャングル">JG</button>
-        <button class="filter-btn" data-role="ミッドレーン">MID</button>
-        <button class="filter-btn" data-role="ADC">ADC</button>
-        <button class="filter-btn" data-role="サポート">SUP</button>
-      </div>
       <div class="all-opponents" id="oppGrid"></div>
     </div>
 
@@ -761,13 +747,9 @@ function renderChampion(id) {
   });
 
   // 対戦相手グリッド
-  let oppRole = "all";
   function renderOppGrid() {
     const q = state.oppQuery;
-    const filtered = sameRole.filter((o) => {
-      if (oppRole !== "all" && o.role !== oppRole) return false;
-      return matchQuery(o, q);
-    });
+    const filtered = sameRole.filter((o) => matchQuery(o, q));
     const grid = document.getElementById("oppGrid");
     grid.innerHTML = filtered
       .map(
@@ -786,13 +768,6 @@ function renderChampion(id) {
   renderOppGrid();
   document.getElementById("oppSearch").addEventListener("input", (e) => {
     state.oppQuery = e.target.value;
-    renderOppGrid();
-  });
-  document.getElementById("oppRoleFilters").addEventListener("click", (e) => {
-    if (!e.target.classList.contains("filter-btn")) return;
-    oppRole = e.target.dataset.role;
-    document.querySelectorAll("#oppRoleFilters .filter-btn").forEach((b) => b.classList.remove("active"));
-    e.target.classList.add("active");
     renderOppGrid();
   });
 }
