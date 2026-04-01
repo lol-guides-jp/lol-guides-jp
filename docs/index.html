@@ -3,358 +3,745 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoL Guides JP</title>
+<title>LoL マッチアップガイド JP</title>
 <style>
-  :root {
-    --bg: #0a0e14;
-    --surface: #141a24;
-    --surface2: #1c2533;
-    --border: #2a3545;
-    --text: #e0e6ed;
-    --text-dim: #8895a7;
-    --accent: #c89b3c;
-    --green: #2ecc71;
-    --red: #e74c3c;
-    --blue: #3498db;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  header h1 {
-    font-size: 20px;
-    color: var(--accent);
-    font-weight: 700;
-  }
-  header .patch {
-    font-size: 13px;
-    color: var(--text-dim);
-    background: var(--surface2);
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
+:root {
+  --bg: #0a0e14;
+  --surface: #141a24;
+  --surface2: #1c2533;
+  --border: #2a3545;
+  --text: #e0e6ed;
+  --text-dim: #8895a7;
+  --accent: #c89b3c;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --blue: #3498db;
+  --yellow: #f1c40f;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-  .layout {
-    display: flex;
-    height: calc(100vh - 57px);
-  }
+/* Header */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header h1 {
+  font-size: 18px;
+  color: var(--accent);
+  cursor: pointer;
+}
+header .patch {
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--surface2);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.back-btn:hover { border-color: var(--accent); color: var(--text); }
 
-  /* Sidebar */
-  .sidebar {
-    width: 280px;
-    min-width: 280px;
-    background: var(--surface);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  .search-box {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-  .search-box input {
-    width: 100%;
-    padding: 8px 12px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-size: 14px;
-    outline: none;
-  }
-  .search-box input:focus { border-color: var(--accent); }
-  .role-filters {
-    display: flex;
-    gap: 4px;
-    padding: 8px 12px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .role-btn {
-    padding: 4px 10px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--text-dim);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .role-btn:hover { border-color: var(--accent); color: var(--text); }
-  .role-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
-  .champion-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 4px 0;
-  }
-  .champion-item {
-    padding: 8px 16px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.1s;
-    font-size: 14px;
-  }
-  .champion-item:hover { background: var(--surface2); }
-  .champion-item.active { background: var(--surface2); border-left: 3px solid var(--accent); }
-  .champion-item .name-ja { color: var(--text); }
-  .champion-item .name-en { color: var(--text-dim); font-size: 12px; }
-  .champion-item .role-tag {
-    font-size: 11px;
-    color: var(--text-dim);
-    background: var(--bg);
-    padding: 2px 6px;
-    border-radius: 3px;
-  }
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+}
 
-  /* Main */
-  .main {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px 32px;
-  }
-  .placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    color: var(--text-dim);
-    font-size: 16px;
-  }
-  .guide-header {
-    margin-bottom: 24px;
-  }
-  .guide-header h2 {
-    font-size: 28px;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  .guide-header .subtitle {
-    color: var(--text-dim);
-    font-size: 14px;
-  }
-  .summary-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    font-size: 15px;
-  }
+/* Search & Filters */
+.search-area {
+  margin-bottom: 20px;
+}
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+}
+.search-input:focus { border-color: var(--accent); }
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+.filter-btn.beginner { border-color: var(--yellow); color: var(--yellow); }
+.filter-btn.beginner.active { background: var(--yellow); color: #000; }
 
-  .section {
-    margin-bottom: 24px;
-  }
-  .section h3 {
-    font-size: 16px;
-    color: var(--accent);
-    margin-bottom: 10px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
-  }
-  .section-content {
-    font-size: 14px;
-    color: var(--text);
-    white-space: pre-line;
-  }
-  .section-content strong { color: var(--accent); }
+/* Champion Grid */
+.champ-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+}
+.champ-card {
+  background: var(--surface);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  position: relative;
+}
+.champ-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.champ-card img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 6px;
+  background: var(--surface2);
+}
+.champ-card .name {
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.champ-card .star {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 10px;
+  color: var(--yellow);
+}
+.champ-card .matchup-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 9px;
+  background: var(--accent);
+  color: #000;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
 
-  /* Matchups */
-  .matchups-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .matchup-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .matchup-panel h3 {
-    padding: 10px 16px;
-    font-size: 14px;
-    margin: 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .matchup-panel.favorable h3 {
-    color: var(--green);
-    border-bottom: none;
-    background: rgba(46, 204, 113, 0.08);
-  }
-  .matchup-panel.unfavorable h3 {
-    color: var(--red);
-    border-bottom: none;
-    background: rgba(231, 76, 60, 0.08);
-  }
-  .matchup-item {
-    padding: 10px 16px;
-    border-top: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .matchup-item .matchup-name {
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-  .favorable .matchup-name { color: var(--green); }
-  .unfavorable .matchup-name { color: var(--red); }
-  .matchup-item .matchup-desc {
-    color: var(--text-dim);
-    font-size: 12px;
-    line-height: 1.5;
-  }
+/* Champion Detail */
+.champ-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.champ-header img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  background: var(--surface2);
+}
+.champ-header .info h2 {
+  font-size: 26px;
+  color: var(--accent);
+}
+.champ-header .info .subtitle {
+  color: var(--text-dim);
+  font-size: 14px;
+}
+.summary-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 15px;
+}
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .layout { flex-direction: column; height: auto; }
-    .sidebar { width: 100%; min-width: 100%; max-height: 50vh; }
-    .matchups-grid { grid-template-columns: 1fr; }
-    .main { padding: 16px; }
-  }
+/* Matchup Selector */
+.matchup-section { margin-bottom: 28px; }
+.matchup-section h3 {
+  font-size: 16px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.matchup-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.matchup-row .label {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding: 4px 0;
+  min-width: 40px;
+}
+.matchup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text);
+  transition: all 0.15s;
+}
+.matchup-chip:hover { border-color: var(--accent); }
+.matchup-chip img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--surface2);
+}
+.matchup-chip.favorable { border-color: rgba(46, 204, 113, 0.4); }
+.matchup-chip.favorable:hover { border-color: var(--green); }
+.matchup-chip.unfavorable { border-color: rgba(231, 76, 60, 0.4); }
+.matchup-chip.unfavorable:hover { border-color: var(--red); }
+.matchup-chip .detail-badge {
+  font-size: 9px;
+  background: var(--accent);
+  color: #000;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* Opponent search */
+.opponent-search {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 12px;
+}
+.opponent-search:focus { border-color: var(--accent); }
+.all-opponents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 6px;
+}
+.opp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+.opp-card:hover { border-color: var(--accent); }
+.opp-card img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 4px;
+  background: var(--surface2);
+}
+.opp-card .name { font-size: 10px; color: var(--text-dim); }
+
+/* Guide sections */
+.section {
+  margin-bottom: 20px;
+}
+.section h3 {
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.section-content {
+  font-size: 14px;
+  color: var(--text);
+  white-space: pre-line;
+}
+.section-content strong { color: var(--accent); }
+
+/* VS Screen */
+.vs-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.vs-champ {
+  text-align: center;
+}
+.vs-champ img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  background: var(--surface2);
+}
+.vs-champ.self img { border-color: var(--blue); }
+.vs-champ.enemy img { border-color: var(--red); }
+.vs-champ .name {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.vs-label {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text-dim);
+}
+.difficulty-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+.diff-有利 { background: rgba(46, 204, 113, 0.15); color: var(--green); }
+.diff-やや有利 { background: rgba(46, 204, 113, 0.1); color: var(--green); }
+.diff-五分 { background: rgba(52, 152, 219, 0.15); color: var(--blue); }
+.diff-不利 { background: rgba(231, 76, 60, 0.15); color: var(--red); }
+.diff-やや不利 { background: rgba(231, 76, 60, 0.1); color: var(--red); }
+
+.bullet-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+.bullet-card .bullet-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.bullet-card .bullet-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.no-detail {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+}
+.no-detail .matchup-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  text-align: left;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 12px 14px; }
+  .champ-grid { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 6px; }
+  .champ-card img { width: 44px; height: 44px; }
+  .champ-header { gap: 12px; }
+  .champ-header img { width: 60px; height: 60px; }
+  .champ-header .info h2 { font-size: 20px; }
+  .vs-header { flex-direction: row; gap: 16px; padding: 16px; }
+  .vs-champ img { width: 56px; height: 56px; }
+  .vs-label { font-size: 22px; }
+  .all-opponents { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
+}
+@media (max-width: 480px) {
+  .champ-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); }
+}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>LoL Guides JP</h1>
-  <span class="patch">Patch 26.6</span>
+  <h1 id="homeLink">LoL マッチアップガイド JP</h1>
+  <span class="patch" id="patchBadge"></span>
+  <span id="navBack"></span>
 </header>
 
-<div class="layout">
-  <aside class="sidebar">
-    <div class="search-box">
-      <input type="text" id="search" placeholder="チャンピオン検索...">
-    </div>
-    <div class="role-filters" id="roleFilters">
-      <button class="role-btn active" data-role="all">全て</button>
-      <button class="role-btn" data-role="トップレーン">TOP</button>
-      <button class="role-btn" data-role="ジャングル">JG</button>
-      <button class="role-btn" data-role="ミッドレーン">MID</button>
-      <button class="role-btn" data-role="ADC">ADC</button>
-      <button class="role-btn" data-role="サポート">SUP</button>
-    </div>
-    <div class="champion-list" id="championList"></div>
-  </aside>
-  <main class="main" id="main">
-    <div class="placeholder">チャンピオンを選択してください</div>
-  </main>
-</div>
+<div class="container" id="app"></div>
 
 <script>
-let champions = [];
-let selectedRole = "all";
-let selectedId = null;
+let DATA = { meta: {}, champions: [] };
+let state = { query: "", role: "all", beginner: false, oppQuery: "" };
 
-async function init() {
-  const res = await fetch("data.json");
-  champions = await res.json();
-  renderList();
-  document.getElementById("search").addEventListener("input", renderList);
-  document.getElementById("roleFilters").addEventListener("click", (e) => {
-    if (!e.target.classList.contains("role-btn")) return;
-    selectedRole = e.target.dataset.role;
-    document.querySelectorAll(".role-btn").forEach((b) => b.classList.remove("active"));
-    e.target.classList.add("active");
-    renderList();
-  });
+const DDRAGON_BASE = () =>
+  `https://ddragon.leagueoflegends.com/cdn/${DATA.meta.ddragonVersion}/img`;
+
+function champImg(ddragonKey) {
+  return `${DDRAGON_BASE()}/champion/${ddragonKey}.png`;
 }
 
-function renderList() {
-  const query = document.getElementById("search").value.toLowerCase();
-  const list = document.getElementById("championList");
-  const filtered = champions.filter((c) => {
-    const matchRole = selectedRole === "all" || c.role === selectedRole;
-    const matchQuery = !query || c.ja.toLowerCase().includes(query) || c.en.toLowerCase().includes(query);
-    return matchRole && matchQuery;
+function kataToHira(str) {
+  return str.replace(/[\u30A1-\u30F6]/g, (ch) =>
+    String.fromCharCode(ch.charCodeAt(0) - 0x60)
+  );
+}
+
+function matchQuery(c, q) {
+  if (!q) return true;
+  const ql = q.toLowerCase();
+  const qh = kataToHira(ql);
+  const jaH = kataToHira(c.ja.toLowerCase());
+  // 日本語（ひらがな/カタカナ）は先頭マッチ、英語はincludes
+  return c.en.toLowerCase().includes(ql) || c.ja.startsWith(q) || jaH.startsWith(qh);
+}
+
+function md(text) {
+  if (!text) return "";
+  return text.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
+}
+
+function findChamp(id) {
+  return DATA.champions.find((c) => c.id === id);
+}
+
+function findChampByName(name) {
+  return DATA.champions.find(
+    (c) => c.ja === name || c.en === name || c.en.toLowerCase() === name.toLowerCase()
+  );
+}
+
+// Routing
+function route() {
+  const hash = location.hash.slice(1) || "home";
+  if (hash === "home") return renderHome();
+  if (hash.includes("-vs-")) {
+    const parts = hash.split("-vs-");
+    return renderMatchupDetail(parts[0], parts[1]);
+  }
+  renderChampion(hash);
+}
+
+async function init() {
+  try {
+    const res = await fetch("data.json");
+    DATA = await res.json();
+  } catch (e) {
+    document.getElementById("app").innerHTML =
+      '<p style="padding:40px;color:var(--red)">data.json の読み込みに失敗しました。ローカルで開く場合は <code>npx serve docs</code> 等でHTTPサーバーを使ってください。</p>';
+    console.error(e);
+    return;
+  }
+  document.getElementById("patchBadge").textContent = `Patch ${DATA.champions[0]?.patch || ""}`;
+  document.getElementById("homeLink").addEventListener("click", () => {
+    location.hash = "#home";
   });
-  list.innerHTML = filtered
-    .map(
-      (c) => `<div class="champion-item ${c.id === selectedId ? "active" : ""}" data-id="${c.id}">
-      <div>
-        <div class="name-ja">${c.ja}</div>
-        <div class="name-en">${c.en}</div>
+  window.addEventListener("hashchange", route);
+  route();
+}
+
+// --- Home ---
+function renderHome() {
+  document.getElementById("navBack").innerHTML = "";
+  const app = document.getElementById("app");
+  app.innerHTML = `
+    <div class="search-area">
+      <input class="search-input" id="search" type="text"
+        placeholder="チャンピオン検索（ひらがな・カタカナ・英語）" value="${state.query}">
+      <div class="filters" id="filters">
+        <button class="filter-btn ${state.role === "all" ? "active" : ""}" data-role="all">全て</button>
+        <button class="filter-btn ${state.role === "トップレーン" ? "active" : ""}" data-role="トップレーン">TOP</button>
+        <button class="filter-btn ${state.role === "ジャングル" ? "active" : ""}" data-role="ジャングル">JG</button>
+        <button class="filter-btn ${state.role === "ミッドレーン" ? "active" : ""}" data-role="ミッドレーン">MID</button>
+        <button class="filter-btn ${state.role === "ADC" ? "active" : ""}" data-role="ADC">ADC</button>
+        <button class="filter-btn ${state.role === "サポート" ? "active" : ""}" data-role="サポート">SUP</button>
+        <button class="filter-btn beginner ${state.beginner ? "active" : ""}" id="beginnerBtn">初心者向け</button>
       </div>
-      <span class="role-tag">${c.role}</span>
+    </div>
+    <div class="champ-grid" id="grid"></div>
+  `;
+  renderGrid();
+  document.getElementById("search").addEventListener("input", (e) => {
+    state.query = e.target.value;
+    renderGrid();
+  });
+  document.getElementById("filters").addEventListener("click", (e) => {
+    if (!e.target.classList.contains("filter-btn") || e.target.id === "beginnerBtn") return;
+    state.role = e.target.dataset.role;
+    document.querySelectorAll(".filter-btn:not(.beginner)").forEach((b) => b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderGrid();
+  });
+  document.getElementById("beginnerBtn").addEventListener("click", (e) => {
+    state.beginner = !state.beginner;
+    e.target.classList.toggle("active", state.beginner);
+    renderGrid();
+  });
+  document.getElementById("search").focus();
+}
+
+function renderGrid() {
+  const filtered = DATA.champions.filter((c) => {
+    if (state.role !== "all" && c.role !== state.role) return false;
+    if (state.beginner && c.beginnerRating < 4) return false;
+    return matchQuery(c, state.query);
+  });
+  const grid = document.getElementById("grid");
+  grid.innerHTML = filtered
+    .map(
+      (c) => `<div class="champ-card" data-id="${c.id}">
+      ${c.beginnerRating >= 4 ? '<span class="star">&#9733;</span>' : ""}
+      ${c.matchups.length > 0 ? '<span class="matchup-badge">詳細</span>' : ""}
+      <img src="${champImg(c.ddragonKey)}" alt="${c.ja}" loading="lazy">
+      <div class="name">${c.ja}</div>
     </div>`
     )
     .join("");
-  list.querySelectorAll(".champion-item").forEach((el) => {
+  grid.querySelectorAll(".champ-card").forEach((el) => {
     el.addEventListener("click", () => {
-      selectedId = el.dataset.id;
-      renderList();
-      renderGuide(champions.find((c) => c.id === selectedId));
+      location.hash = `#${el.dataset.id}`;
     });
   });
 }
 
-function md(text) {
-  return text
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\n/g, "<br>");
-}
+// --- Champion Detail ---
+function renderChampion(id) {
+  const c = findChamp(id);
+  if (!c) return renderHome();
 
-function renderGuide(c) {
-  const main = document.getElementById("main");
-  main.innerHTML = `
-    <div class="guide-header">
-      <h2>${c.ja}</h2>
-      <div class="subtitle">${c.en} / ${c.role} / Patch ${c.patch}</div>
+  document.getElementById("navBack").innerHTML =
+    '<button class="back-btn" onclick="location.hash=\'#home\'">&#8592; 一覧に戻る</button>';
+
+  const app = document.getElementById("app");
+
+  // matchups.mdの詳細がある対戦相手IDセット
+  const detailIds = new Set(c.matchups.map((m) => m.opponentId));
+
+  // 得意・苦手のチップ生成
+  const makeChips = (list, cls) =>
+    list
+      .map((m) => {
+        const opp = findChampByName(m.name);
+        const oppId = opp ? opp.id : "";
+        const oppKey = opp ? opp.ddragonKey : "";
+        const hasDetail = detailIds.has(oppId);
+        return `<div class="matchup-chip ${cls}" data-self="${id}" data-opp="${oppId}">
+        ${oppKey ? `<img src="${champImg(oppKey)}" alt="${m.name}" loading="lazy">` : ""}
+        ${m.name}
+        ${hasDetail ? '<span class="detail-badge">詳細</span>' : ""}
+      </div>`;
+      })
+      .join("");
+
+  // 同ロールの全対戦相手グリッド
+  const sameRole = DATA.champions.filter((o) => o.id !== id);
+
+  app.innerHTML = `
+    <div class="champ-header">
+      <img src="${champImg(c.ddragonKey)}" alt="${c.ja}">
+      <div class="info">
+        <h2>${c.ja}</h2>
+        <div class="subtitle">${c.en} / ${c.role} / Patch ${c.patch}
+          ${c.beginnerRating >= 4 ? ` <span style="color:var(--yellow)">&#9733; 初心者おすすめ</span>` : ""}</div>
+      </div>
     </div>
     <div class="summary-box">${c.summary}</div>
 
-    <div class="matchups-grid">
-      <div class="matchup-panel favorable">
-        <h3>得意マッチアップ</h3>
-        ${c.favorableMatchups.map((m) => `
-          <div class="matchup-item">
-            <div class="matchup-name">${m.name}</div>
-            <div class="matchup-desc">${m.description}</div>
-          </div>
-        `).join("")}
+    <div class="matchup-section">
+      <h3>対面を選んでマッチアップガイドを見る</h3>
+      ${c.favorableMatchups.length > 0 ? `
+        <div class="matchup-row">
+          <span class="label" style="color:var(--green)">得意</span>
+          ${makeChips(c.favorableMatchups, "favorable")}
+        </div>` : ""}
+      ${c.unfavorableMatchups.length > 0 ? `
+        <div class="matchup-row">
+          <span class="label" style="color:var(--red)">苦手</span>
+          ${makeChips(c.unfavorableMatchups, "unfavorable")}
+        </div>` : ""}
+
+      <input class="opponent-search" id="oppSearch" type="text"
+        placeholder="相手チャンピオンを検索..." value="${state.oppQuery}">
+      <div class="filters" id="oppRoleFilters" style="margin-bottom:10px">
+        <button class="filter-btn active" data-role="all">全て</button>
+        <button class="filter-btn" data-role="トップレーン">TOP</button>
+        <button class="filter-btn" data-role="ジャングル">JG</button>
+        <button class="filter-btn" data-role="ミッドレーン">MID</button>
+        <button class="filter-btn" data-role="ADC">ADC</button>
+        <button class="filter-btn" data-role="サポート">SUP</button>
       </div>
-      <div class="matchup-panel unfavorable">
-        <h3>苦手マッチアップ</h3>
-        ${c.unfavorableMatchups.map((m) => `
-          <div class="matchup-item">
-            <div class="matchup-name">${m.name}</div>
-            <div class="matchup-desc">${m.description}</div>
-          </div>
-        `).join("")}
-      </div>
+      <div class="all-opponents" id="oppGrid"></div>
     </div>
 
-    <div class="section">
-      <h3>スキルオーダー</h3>
-      <div class="section-content">${md(c.skillOrder)}</div>
-    </div>
-    <div class="section">
-      <h3>主要パワースパイク</h3>
-      <div class="section-content">${md(c.powerSpikes)}</div>
-    </div>
-    <div class="section">
-      <h3>ゲームプラン</h3>
-      <div class="section-content">${md(c.gamePlan)}</div>
-    </div>
-    <div class="section">
-      <h3>対策</h3>
-      <div class="section-content">${md(c.counters)}</div>
-    </div>
+    <div class="section"><h3>スキルオーダー</h3><div class="section-content">${md(c.skillOrder)}</div></div>
+    <div class="section"><h3>主要パワースパイク</h3><div class="section-content">${md(c.powerSpikes)}</div></div>
+    <div class="section"><h3>ゲームプラン</h3><div class="section-content">${md(c.gamePlan)}</div></div>
+    ${c.teamfight ? `<div class="section"><h3>集団戦の立ち回り</h3><div class="section-content">${md(c.teamfight)}</div></div>` : ""}
+    <div class="section"><h3>対策</h3><div class="section-content">${md(c.counters)}</div></div>
   `;
-  main.scrollTop = 0;
+
+  // matchupチップのクリックイベント
+  app.querySelectorAll(".matchup-chip").forEach((el) => {
+    el.addEventListener("click", () => {
+      const oppId = el.dataset.opp;
+      if (oppId) location.hash = `#${el.dataset.self}-vs-${oppId}`;
+    });
+  });
+
+  // 対戦相手グリッド
+  let oppRole = "all";
+  function renderOppGrid() {
+    const q = state.oppQuery;
+    const filtered = sameRole.filter((o) => {
+      if (oppRole !== "all" && o.role !== oppRole) return false;
+      return matchQuery(o, q);
+    });
+    const grid = document.getElementById("oppGrid");
+    grid.innerHTML = filtered
+      .map(
+        (o) => `<div class="opp-card" data-opp="${o.id}">
+        <img src="${champImg(o.ddragonKey)}" alt="${o.ja}" loading="lazy">
+        <div class="name">${o.ja}</div>
+      </div>`
+      )
+      .join("");
+    grid.querySelectorAll(".opp-card").forEach((el) => {
+      el.addEventListener("click", () => {
+        location.hash = `#${id}-vs-${el.dataset.opp}`;
+      });
+    });
+  }
+  renderOppGrid();
+  document.getElementById("oppSearch").addEventListener("input", (e) => {
+    state.oppQuery = e.target.value;
+    renderOppGrid();
+  });
+  document.getElementById("oppRoleFilters").addEventListener("click", (e) => {
+    if (!e.target.classList.contains("filter-btn")) return;
+    oppRole = e.target.dataset.role;
+    document.querySelectorAll("#oppRoleFilters .filter-btn").forEach((b) => b.classList.remove("active"));
+    e.target.classList.add("active");
+    renderOppGrid();
+  });
+}
+
+// --- Matchup Detail ---
+function renderMatchupDetail(selfId, oppId) {
+  const self = findChamp(selfId);
+  const opp = findChamp(oppId);
+  if (!self || !opp) return renderHome();
+
+  document.getElementById("navBack").innerHTML =
+    `<button class="back-btn" onclick="location.hash='#${selfId}'">&#8592; ${self.ja}に戻る</button>`;
+
+  const app = document.getElementById("app");
+
+  // matchups.mdの詳細データを検索
+  const detail = self.matchups.find((m) => m.opponentId === oppId);
+
+  // guide.mdの得意/苦手からサマリーを検索
+  const favEntry = self.favorableMatchups.find((m) => {
+    const c = findChampByName(m.name);
+    return c && c.id === oppId;
+  });
+  const unfavEntry = self.unfavorableMatchups.find((m) => {
+    const c = findChampByName(m.name);
+    return c && c.id === oppId;
+  });
+  const summaryEntry = favEntry || unfavEntry;
+  const summaryType = favEntry ? "得意" : unfavEntry ? "苦手" : "";
+
+  if (detail) {
+    // 詳細データあり
+    const diffClass = detail.difficulty.replace(/[（(].+$/, "");
+    app.innerHTML = `
+      <div class="vs-header">
+        <div class="vs-champ self">
+          <img src="${champImg(self.ddragonKey)}" alt="${self.ja}">
+          <div class="name">${self.ja}</div>
+        </div>
+        <div style="text-align:center">
+          <div class="vs-label">VS</div>
+          <div class="difficulty-tag diff-${diffClass}">${detail.difficulty}${detail.winrate ? ` (${detail.winrate}%)` : ""}</div>
+        </div>
+        <div class="vs-champ enemy">
+          <img src="${champImg(opp.ddragonKey)}" alt="${opp.ja}">
+          <div class="name">${opp.ja}</div>
+        </div>
+      </div>
+      ${detail.bullets.map((b) => `
+        <div class="bullet-card">
+          <div class="bullet-label">${b.label}</div>
+          <div class="bullet-text">${b.text}</div>
+        </div>
+      `).join("")}
+    `;
+  } else {
+    // 詳細データなし
+    app.innerHTML = `
+      <div class="vs-header">
+        <div class="vs-champ self">
+          <img src="${champImg(self.ddragonKey)}" alt="${self.ja}">
+          <div class="name">${self.ja}</div>
+        </div>
+        <div class="vs-label">VS</div>
+        <div class="vs-champ enemy">
+          <img src="${champImg(opp.ddragonKey)}" alt="${opp.ja}">
+          <div class="name">${opp.ja}</div>
+        </div>
+      </div>
+      <div class="no-detail">
+        ${summaryEntry ? `
+          <div class="matchup-summary">
+            <strong style="color:${favEntry ? "var(--green)" : "var(--red)"}">${summaryType}マッチアップ</strong><br>
+            <strong>${summaryEntry.name}</strong>: ${summaryEntry.description}
+          </div>
+        ` : ""}
+        <p style="margin-top:20px;color:var(--text-dim)">詳細なレーン戦ガイドは準備中です</p>
+      </div>
+    `;
+  }
+  window.scrollTo(0, 0);
 }
 
 init();
