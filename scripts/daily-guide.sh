@@ -3,14 +3,14 @@
 # 毎日4時: TODO.mdの先頭チャンピオンのガイドを1体生成してpush
 #
 # cron登録:
-#   0 4 * * 1-6 /mnt/c/Users/ojita/lol-guides-jp/scripts/daily-guide.sh >> /mnt/c/Users/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0 4 * * 1-6 /home/ojita/lol-guides-jp/scripts/daily-guide.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
 
 set -euo pipefail
 
 export NVM_DIR="/home/ojita/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-PROJECT_DIR="/mnt/c/Users/ojita/lol-guides-jp"
+PROJECT_DIR="/home/ojita/lol-guides-jp"
 DATE=$(date +%Y-%m-%d)
 LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
 
