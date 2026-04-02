@@ -1,8 +1,8 @@
-# Kalista（カリスタ）ADC パッチ26.6
+# Kalista（カリスタ）ADC パッチ26.7
 
 ## 一言まとめ
 
-サポートとの連携が最も重要なADC。パッシブのホップによる高い機動力とE（レンド）のスタック爆発が持ち味で、オブジェクト管理にも優れる。
+サポートとの連携が最も重要なADC。パッシブのホップによる高い機動力とE（レンド）のスタック爆発が持ち味で、オブジェクト管理にも優れる。26.7でEのADスケーリングが強化（特にランク3以降）され、中盤からのスタック火力が大幅に向上した。
 
 ## スキルオーダー
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kalista/guide)*
+*パッチ26.7 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kalista/guide)*
