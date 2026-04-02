@@ -47,6 +47,5 @@ git add . 2>&1
 git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.github.com" \
     commit -m "[自動] ${DATE} ガイド追加" 2>&1
 git push origin main 2>&1
-git push org main 2>&1
 
 echo "${LOG_PREFIX} ===== 完了 ====="
