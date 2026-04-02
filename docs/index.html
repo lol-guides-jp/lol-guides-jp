@@ -566,7 +566,12 @@ function renderHome() {
   document.getElementById("navBack").innerHTML = "";
   const app = document.getElementById("app");
   app.innerHTML = `
-    <div class="disclaimer">本サイトはシルバー帯プレイヤーが個人で作成した非公式ガイドです。勝率は推定値であり、パッチ更新にリアルタイム対応していません。対面データは順次追加中で、内容に誤りが含まれる場合があります。参考程度にご利用ください。<br>誤りの指摘は <a href="https://x.com/kuroko_noko_san" target="_blank" rel="noopener">@kuroko_noko_san</a> まで</div>
+    <div class="disclaimer">
+      本サイトはシルバー帯プレイヤーが個人で作成した非公式ガイドです。<br>
+      勝率は推定値であり、パッチ更新にリアルタイム対応していません。<br>
+      対面データは順次追加中で、内容に誤りが含まれる場合があります。<br>
+      誤りの指摘は <a href="https://x.com/kuroko_noko_san" target="_blank" rel="noopener">@kuroko_noko_san</a> まで
+    </div>
     <div class="search-area">
       <input class="search-input" id="search" type="text"
         placeholder="チャンピオン検索（ひらがな・カタカナ・英語）" value="${state.query}">
