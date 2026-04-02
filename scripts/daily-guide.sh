@@ -37,8 +37,16 @@ fi
 
 echo "${LOG_PREFIX} ===== LoL ガイド生成開始（残り${PENDING}体） ====="
 
+BEFORE_COUNT=$(find "${PROJECT_DIR}/champions" -name "guide.md" | wc -l)
+
 if ! run_cmd "write-guide"; then
     echo "${LOG_PREFIX} ERROR: ガイド生成失敗"
+    exit 1
+fi
+
+AFTER_COUNT=$(find "${PROJECT_DIR}/champions" -name "guide.md" | wc -l)
+if [ "${BEFORE_COUNT}" = "${AFTER_COUNT}" ]; then
+    echo "${LOG_PREFIX} ERROR: write-guideはexit 0だがガイドが増えていない"
     exit 1
 fi
 
