@@ -199,49 +199,37 @@ header .patch {
   padding-bottom: 6px;
   border-bottom: 1px solid var(--border);
 }
-.matchup-row {
+.matchup-filters {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
   margin-bottom: 12px;
 }
-.matchup-row .label {
-  font-size: 13px;
-  color: var(--text-dim);
-  padding: 4px 0;
-  min-width: 40px;
-}
-.matchup-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border-radius: 6px;
+.matchup-filter-btn {
+  padding: 5px 12px;
+  border-radius: 4px;
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 13px;
   cursor: pointer;
-  font-size: 12px;
-  color: var(--text);
   transition: all 0.15s;
 }
-.matchup-chip:hover { border-color: var(--accent); }
-.matchup-chip img {
-  width: 24px;
-  height: 24px;
+.matchup-filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.matchup-filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+.matchup-filter-btn.fav { border-color: rgba(46, 204, 113, 0.4); color: var(--green); }
+.matchup-filter-btn.fav.active { background: var(--green); color: #000; border-color: var(--green); }
+.matchup-filter-btn.unfav { border-color: rgba(231, 76, 60, 0.4); color: var(--red); }
+.matchup-filter-btn.unfav.active { background: var(--red); color: #000; border-color: var(--red); }
+.opp-card .matchup-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--surface2);
+  position: absolute;
+  top: 4px;
+  right: 4px;
 }
-.matchup-chip.favorable { border-color: rgba(46, 204, 113, 0.4); }
-.matchup-chip.favorable:hover { border-color: var(--green); }
-.matchup-chip.unfavorable { border-color: rgba(231, 76, 60, 0.4); }
-.matchup-chip.unfavorable:hover { border-color: var(--red); }
-.matchup-chip .detail-badge {
-  font-size: 9px;
-  background: var(--accent);
-  color: #000;
-  padding: 1px 4px;
-  border-radius: 3px;
-}
+.opp-card .matchup-dot.fav { background: var(--green); }
+.opp-card .matchup-dot.unfav { background: var(--red); }
 
 /* Opponent search */
 .opponent-search {
@@ -263,6 +251,7 @@ header .patch {
   gap: 10px;
 }
 .opp-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -635,23 +624,18 @@ function renderChampion(id) {
 
   const app = document.getElementById("app");
 
-  // 得意・苦手のチップ生成
-  const makeChips = (list, cls) =>
-    list
-      .map((m) => {
-        const opp = findChampByName(m.name);
-        const oppId = opp ? opp.id : "";
-        const oppKey = opp ? opp.ddragonKey : "";
-        return `<div class="matchup-chip ${cls}" data-self="${id}" data-opp="${oppId}">
-        ${oppKey ? `<img src="${champImg(oppKey)}" alt="${m.name}" loading="lazy">` : ""}
-        ${m.name}
-      </div>`;
-      })
-      .join("");
+  // 得意・苦手のID集合を作成
+  const favIds = new Set();
+  const unfavIds = new Set();
+  c.favorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) favIds.add(o.id); });
+  c.unfavorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) unfavIds.add(o.id); });
 
   // matchupsにデータがある対戦相手のみ表示
   const matchupIds = new Set(c.matchups.map((m) => m.opponentId));
   const sameRole = DATA.champions.filter((o) => o.id !== id && matchupIds.has(o.id));
+
+  // マッチアップフィルター状態
+  let matchupFilter = "all";
 
   app.innerHTML = `
     <div class="champ-header">
@@ -666,17 +650,11 @@ function renderChampion(id) {
 
     <div class="matchup-section">
       <h3>対面を選んでマッチアップガイドを見る</h3>
-      ${c.favorableMatchups.length > 0 ? `
-        <div class="matchup-row">
-          <span class="label" style="color:var(--green)">得意</span>
-          ${makeChips(c.favorableMatchups, "favorable")}
-        </div>` : ""}
-      ${c.unfavorableMatchups.length > 0 ? `
-        <div class="matchup-row">
-          <span class="label" style="color:var(--red)">苦手</span>
-          ${makeChips(c.unfavorableMatchups, "unfavorable")}
-        </div>` : ""}
-
+      <div class="matchup-filters" id="matchupFilters">
+        <button class="matchup-filter-btn active" data-mf="all">全て</button>
+        <button class="matchup-filter-btn fav" data-mf="fav">有利</button>
+        <button class="matchup-filter-btn unfav" data-mf="unfav">不利</button>
+      </div>
       <input class="opponent-search" id="oppSearch" type="text"
         placeholder="相手チャンピオンを検索..." value="${state.oppQuery}">
       <div class="all-opponents" id="oppGrid"></div>
@@ -741,25 +719,34 @@ function renderChampion(id) {
     });
   }
 
-  // matchupチップのクリックイベント
-  app.querySelectorAll(".matchup-chip").forEach((el) => {
-    el.addEventListener("click", () => {
-      const oppId = el.dataset.opp;
-      if (oppId) location.hash = `#${el.dataset.self}-vs-${oppId}`;
-    });
+  // マッチアップフィルターのクリックイベント
+  document.getElementById("matchupFilters").addEventListener("click", (e) => {
+    const btn = e.target.closest(".matchup-filter-btn");
+    if (!btn) return;
+    matchupFilter = btn.dataset.mf;
+    document.querySelectorAll(".matchup-filter-btn").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderOppGrid();
   });
 
   // 対戦相手グリッド
   function renderOppGrid() {
     const q = state.oppQuery;
-    const filtered = sameRole.filter((o) => matchQuery(o, q));
+    let filtered = sameRole.filter((o) => matchQuery(o, q));
+    if (matchupFilter === "fav") filtered = filtered.filter((o) => favIds.has(o.id));
+    else if (matchupFilter === "unfav") filtered = filtered.filter((o) => unfavIds.has(o.id));
     const grid = document.getElementById("oppGrid");
     grid.innerHTML = filtered
       .map(
-        (o) => `<div class="opp-card" data-opp="${o.id}">
+        (o) => {
+          const dot = favIds.has(o.id) ? '<span class="matchup-dot fav"></span>'
+            : unfavIds.has(o.id) ? '<span class="matchup-dot unfav"></span>' : '';
+          return `<div class="opp-card" data-opp="${o.id}">
+        ${dot}
         <img src="${champImg(o.ddragonKey)}" alt="${o.ja}" loading="lazy">
         <div class="name">${o.ja}</div>
-      </div>`
+      </div>`;
+        }
       )
       .join("");
     grid.querySelectorAll(".opp-card").forEach((el) => {
