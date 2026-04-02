@@ -11,8 +11,8 @@ import re
 import glob
 import sys
 
-DATA_PATH = "/mnt/c/Users/ojita/lol-guides-jp/docs/data.json"
-MATCHUP_GLOB = "/mnt/c/Users/ojita/lol-guides-jp/champions/*/matchups.md"
+DATA_PATH = "/home/ojita/lol-guides-jp/docs/data.json"
+MATCHUP_GLOB = "/home/ojita/lol-guides-jp/champions/*/matchups.md"
 
 with open(DATA_PATH, encoding="utf-8") as f:
     data = json.load(f)

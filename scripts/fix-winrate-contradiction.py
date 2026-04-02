@@ -8,7 +8,7 @@
 import re
 import glob
 
-MATCHUP_DIR = "/mnt/c/Users/ojita/lol-guides-jp/champions/*/matchups.md"
+MATCHUP_DIR = "/home/ojita/lol-guides-jp/champions/*/matchups.md"
 
 def flip_winrate(wr):
     """50%を中心に勝率を反転"""
