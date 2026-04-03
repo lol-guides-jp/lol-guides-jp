@@ -1,5 +1,9 @@
 *.log
 node_modules/
+
+# 生成物（再生成可能）
+scripts/missing-matchups.json
+scripts/missing-*.txt
 .env
 .env.*
 .DS_Store
