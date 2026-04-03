@@ -68,3 +68,61 @@ run_cmd() {
 
     return $exit_code
 }
+
+# dispatch_ops <json> [base_dir]
+# JSON ops配列を受け取り、ファイル操作を実行する（L1）。
+# ops: write / append / copy / move / delete
+# パスはbase_dir相対 or 絶対パスどちらも可。
+# base_dir省略時は PROJECT_DIR を使う。
+dispatch_ops() {
+    local json="$1"
+    local base_dir="${2:-${PROJECT_DIR}}"
+
+    # DRY_RUN モード
+    if [ "${DRY_RUN:-0}" = "1" ]; then
+        echo "$json" | node -e "
+const ops = JSON.parse(require('fs').readFileSync(0, 'utf8'));
+ops.forEach(op => console.log('[DRY-RUN]', JSON.stringify(op)));
+" 2>/dev/null
+        return 0
+    fi
+
+    echo "$json" | DISPATCH_BASE="$base_dir" node -e "
+const fs = require('fs');
+const path = require('path');
+const base = process.env.DISPATCH_BASE;
+const resolve = p => path.isAbsolute(p) ? p : path.join(base, p);
+const raw = require('fs').readFileSync(0, 'utf8').trim();
+const cleaned = raw.replace(/^\`\`\`(?:json)?\n?/, '').replace(/\n?\`\`\`$/, '').trim();
+const ops = JSON.parse(cleaned);
+ops.forEach(op => {
+    try {
+        if (op.op === 'write') {
+            fs.mkdirSync(path.dirname(resolve(op.path)), {recursive: true});
+            fs.writeFileSync(resolve(op.path), op.content, 'utf8');
+            console.log('write:', op.path);
+        } else if (op.op === 'append') {
+            fs.mkdirSync(path.dirname(resolve(op.path)), {recursive: true});
+            fs.appendFileSync(resolve(op.path), op.content, 'utf8');
+            console.log('append:', op.path);
+        } else if (op.op === 'copy') {
+            fs.mkdirSync(path.dirname(resolve(op.dest)), {recursive: true});
+            fs.copyFileSync(resolve(op.src), resolve(op.dest));
+            console.log('copy:', op.src, '->', op.dest);
+        } else if (op.op === 'move') {
+            fs.mkdirSync(path.dirname(resolve(op.dest)), {recursive: true});
+            fs.renameSync(resolve(op.src), resolve(op.dest));
+            console.log('move:', op.src, '->', op.dest);
+        } else if (op.op === 'delete') {
+            fs.unlinkSync(resolve(op.path));
+            console.log('delete:', op.path);
+        } else {
+            console.error('WARN: unknown op:', op.op);
+        }
+    } catch (e) {
+        console.error('ERROR:', op.op, JSON.stringify(op), e.message);
+        process.exit(1);
+    }
+});
+"
+}
