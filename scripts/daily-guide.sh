@@ -16,6 +16,11 @@ LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
+# --- ドライランフラグ ---
+DRY_RUN=0
+for _arg in "$@"; do [ "$_arg" = "--dry-run" ] && DRY_RUN=1; done
+export DRY_RUN
+
 # --- 予算サーキットブレーカー（月額$50超過でcron停止） ---
 BUDGET_LIMIT=50.00
 COST_SCRIPT="${HOME}/.claude/scripts/cost-report.py"
@@ -39,21 +44,26 @@ echo "${LOG_PREFIX} ===== LoL ガイド生成開始（残り${PENDING}体） ===
 
 BEFORE_COUNT=$(find "${PROJECT_DIR}/champions" -name "guide.md" | wc -l)
 
-if ! run_cmd "write-guide"; then
+if ! run_cmd "write-guide" > /dev/null; then
     echo "${LOG_PREFIX} ERROR: ガイド生成失敗"
     exit 1
 fi
 
-AFTER_COUNT=$(find "${PROJECT_DIR}/champions" -name "guide.md" | wc -l)
-if [ "${BEFORE_COUNT}" = "${AFTER_COUNT}" ]; then
-    echo "${LOG_PREFIX} ERROR: write-guideはexit 0だがガイドが増えていない"
-    exit 1
+if [ "${DRY_RUN:-0}" = "0" ]; then
+    AFTER_COUNT=$(find "${PROJECT_DIR}/champions" -name "guide.md" | wc -l)
+    if [ "${BEFORE_COUNT}" = "${AFTER_COUNT}" ]; then
+        echo "${LOG_PREFIX} ERROR: write-guideはexit 0だがガイドが増えていない"
+        exit 1
+    fi
 fi
 
-# git push
-git add . 2>&1
-git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.github.com" \
-    commit -m "[自動] ${DATE} ガイド追加" 2>&1
-git push origin main 2>&1
+if [ "${DRY_RUN:-0}" = "1" ]; then
+    echo "${LOG_PREFIX} DRY-RUN: git操作をスキップ（ガイド生成も実行されていません）"
+else
+    git add . 2>&1
+    git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.github.com" \
+        commit -m "[自動] ${DATE} ガイド追加" 2>&1
+    git push origin main 2>&1
+fi
 
 echo "${LOG_PREFIX} ===== 完了 ====="
