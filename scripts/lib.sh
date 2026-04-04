@@ -45,7 +45,7 @@ run_cmd() {
 
     # JSON出力で実行し、コスト情報を抽出
     local json_output
-    json_output=$(claude --print --output-format json --allowed-tools "Read,Glob,Grep" ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
+    json_output=$(claude --print --output-format json --allowed-tools "Read,Glob,Grep,WebSearch" ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
     local exit_code=$?
 
     # 使用量をログに記録
@@ -93,8 +93,17 @@ const path = require('path');
 const base = process.env.DISPATCH_BASE;
 const resolve = p => path.isAbsolute(p) ? p : path.join(base, p);
 const raw = require('fs').readFileSync(0, 'utf8').trim();
-const cleaned = raw.replace(/^\`\`\`(?:json)?\n?/, '').replace(/\n?\`\`\`$/, '').trim();
-const ops = JSON.parse(cleaned);
+// コードフェンス除去 → JSONパース試行 → 失敗時は最初の [ から最後の ] を抽出
+let cleaned = raw.replace(/^\`\`\`(?:json)?\n?/, '').replace(/\n?\`\`\`$/, '').trim();
+let ops;
+try {
+    ops = JSON.parse(cleaned);
+} catch(e) {
+    const start = cleaned.indexOf('[');
+    const end = cleaned.lastIndexOf(']');
+    if (start === -1 || end === -1) { console.error('ERROR: JSON配列が見つかりません'); process.exit(1); }
+    ops = JSON.parse(cleaned.slice(start, end + 1));
+}
 ops.forEach(op => {
     try {
         if (op.op === 'write') {
