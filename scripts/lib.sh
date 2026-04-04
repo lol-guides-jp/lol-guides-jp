@@ -34,7 +34,7 @@ run_cmd() {
     # frontmatter を除いたプロンプトを生成
     local prompt
     prompt=$(awk 'NR==1 && /^---$/{skip=1;next} skip && /^---$/{skip=0;next} !skip' "$cmd_file" \
-             | sed "s/\\\$ARGUMENTS/${args}/")
+             | sed "s|\\\$ARGUMENTS|${args}|")
 
     # DRY_RUN モード
     if [ "${DRY_RUN:-0}" = "1" ]; then
@@ -45,7 +45,7 @@ run_cmd() {
 
     # JSON出力で実行し、コスト情報を抽出
     local json_output
-    json_output=$(claude --print --output-format json --permission-mode acceptEdits ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
+    json_output=$(claude --print --output-format json --allowed-tools "Read,Glob,Grep" ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
     local exit_code=$?
 
     # 使用量をログに記録
