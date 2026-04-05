@@ -189,13 +189,7 @@ for c in DATA["champions"]:
 section_re = re.compile(r'^## vs (.+?)（(.+?)）')
 skill_ref_re = re.compile(r'([PQWER])（([^）]+)）')
 
-def is_valid_with_extra(name, valid_set):
-    return any(
-        name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
-        for off in valid_set
-    )
-
-cnt_valid = cnt_extra = cnt_invalid = 0
+cnt_valid = cnt_invalid = 0
 invalid_by_champ = {}
 extra_count = 0
 
@@ -240,8 +234,6 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
             if name in all_valid:
                 cnt_valid += 1
-            elif is_valid_with_extra(name, all_valid):
-                cnt_extra += 1
             else:
                 cnt_invalid += 1
                 # 修正候補: メインチャンプ / 対戦相手 の公式名
@@ -257,7 +249,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     if champ_issues:
         invalid_by_champ[champ_dir] = champ_issues
 
-print(f"有効: {cnt_valid}件 / フォーマット違反（有効名+追記）: {cnt_extra}件 / 不明スキル名: {cnt_invalid}件")
+print(f"有効: {cnt_valid}件 / 不明スキル名: {cnt_invalid}件")
 print()
 total_files = len(invalid_by_champ)
 print(f"不明スキル名 チャンプ別上位20件（全{total_files}ファイル）:")

@@ -311,13 +311,49 @@ for c in DATA["champions"]:
 
 _sec_re = re.compile(r'^## vs (.+?)（(.+?)）')
 _skill_re = re.compile(r'([PQWER])（([^）]+)）')
+_skill_extra_re = re.compile(r'([PQWER])（([^）、,，（(]+)[、,，（(][^）]*）')
 skill_fix_total = 0
 
-def _is_extra(name, valid_set):
-    return any(
-        name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
-        for off in valid_set
-    )
+# Pass 0: 有効名+追記を剥ぎ取る（例: Q（コラプトシェル、CD10秒）→ Q（コラプトシェル））
+extra_fix_total = 0
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template" or champ_dir not in _champ_sm:
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+
+    main_sm = _champ_sm[champ_dir]
+    opp_sm_cur = {}
+
+    with open(filepath, "r") as f:
+        lines = f.readlines()
+
+    new_lines = []
+    changed = False
+    for line in lines:
+        m = _sec_re.match(line.strip())
+        if m:
+            ja_p, en_p = m.group(1), m.group(2)
+            opp_id = _ja_to_id.get(ja_p) or _en_to_id.get(ja_p) or _ja_to_id.get(en_p) or _en_to_id.get(en_p)
+            opp_sm_cur = _champ_sm.get(opp_id, {})
+        new_line = line
+        for m2 in _skill_extra_re.finditer(line):
+            key, base = m2.group(1), m2.group(2)
+            all_valid = main_sm.get(key, {}).get("valid", set()) | opp_sm_cur.get(key, {}).get("valid", set())
+            if base in all_valid:
+                new_line = new_line.replace(m2.group(0), f"{key}（{base}）", 1)
+        if new_line != line:
+            changed = True
+        new_lines.append(new_line)
+
+    if changed:
+        with open(filepath, "w") as f:
+            f.writelines(new_lines)
+        extra_fix_total += 1
+        print(f"  修正: {champ_dir}/matchups.md")
+
+print(f"スキル名+追記修正: {extra_fix_total}件\n")
 
 for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     if champ_dir == "_template" or champ_dir not in _champ_sm:
@@ -363,7 +399,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
             main_valid = main_sm.get(key, {}).get("valid", set())
             opp_valid  = opp_sm.get(key, {}).get("valid", set())
             all_valid  = main_valid | opp_valid
-            if name in all_valid or _is_extra(name, all_valid):
+            if name in all_valid:
                 continue
             pair_secs.setdefault((key, name), set()).add(current_sec)
 
