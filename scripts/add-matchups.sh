@@ -148,6 +148,10 @@ lines = open('${source_file}').read().splitlines()
 lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' not in l]
 open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
 "
+
+        # --- 相手側エントリとの整合性チェック ---
+        bash "${PROJECT_DIR}/scripts/fix-cross-check.sh" \
+            "$champ_id" "$champ_ja" "$opp_id" "$opp_ja" "$opp_en" || true
     fi
 
     echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} 追加完了"
