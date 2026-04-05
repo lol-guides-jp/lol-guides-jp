@@ -45,7 +45,12 @@ run_cmd() {
 
     # JSON出力で実行し、コスト情報を抽出
     local json_output
-    json_output=$(claude --print --output-format json --allowed-tools "Read,Glob,Grep,WebSearch" ${model:+--model "$model"} "$prompt" < /dev/null 2>&1)
+    # allowed-tools でホワイトリスト指定 + disallowed-tools でWrite/Edit/Bashを明示禁止
+    # （settings.jsonのグローバル許可を上書きするため）
+    json_output=$(claude --print --output-format json \
+        --allowed-tools "Read,Glob,Grep,WebSearch" \
+        --disallowed-tools "Write,Edit,Bash,mcp__*" \
+        ${model:+--model "$model"} -- "$prompt" < /dev/null 2>&1)
     local exit_code=$?
 
     # 使用量をログに記録
