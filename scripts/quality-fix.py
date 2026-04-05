@@ -284,93 +284,146 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
 print(f"勝率正規化: {winrate_fixes}件")
 
-# --- 6. チャンプ自身のスキル名正規化（ヒューリスティック） ---
-# 各champions/X/matchups.md で、同一キー（Q/W/E/R）の不明スキル名が
-# 3セクション以上に出現 → そのキーのメインチャンプ公式名で一括置換
-print("\n=== チャンプ自身スキル名正規化 ===")
+# --- 6. スキル名正規化（統合版）---
+# invalid判定をセクション文脈（メインチャンプ+対戦相手）ベースで行う
+# - 3+セクション出現 → メインチャンプのスキル名ミス → メイン公式名で置換
+# - 1-2セクション出現 → 対戦相手のスキル名ミス → 対戦相手公式名で置換（セクション単位）
+print("\n=== スキル名正規化（統合） ===")
 
-# 公式スキル名セット構築
-valid_skill_names_fix = {'P': set(), 'Q': set(), 'W': set(), 'E': set(), 'R': set()}
-champ_skills_fix = {}  # champ_id -> {key: official_name}
+_ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
+_en_to_id = {c["en"]: c["id"] for c in DATA["champions"]}
+
+# 全チャンプスキルマップ: {id: {key: {"official": str, "valid": set}}}
+_champ_sm = {}
 for c in DATA["champions"]:
-    skills = {}
+    sm = {}
     for skill in c.get("skills", []):
         key = skill["key"]
-        if key not in valid_skill_names_fix:
+        if key not in "PQWER":
             continue
         full_name = skill["name"]
-        valid_skill_names_fix[key].add(full_name)
+        official = full_name.split("/")[0].strip()
+        valid = {full_name, official}
         for part in full_name.split("/"):
-            valid_skill_names_fix[key].add(part.strip())
-        skills[key] = full_name  # 最初のパート（/区切り前）を正規名とする
-    champ_skills_fix[c["id"]] = skills
+            valid.add(part.strip())
+        sm[key] = {"official": official, "valid": valid}
+    _champ_sm[c["id"]] = sm
 
-skill_ref_pattern_fix = re.compile(r'([PQWER])（([^）]+)）')
-section_pattern = re.compile(r'^## vs ')
-skill_norm_fixes = 0
+_sec_re = re.compile(r'^## vs (.+?)（(.+?)）')
+_skill_re = re.compile(r'([PQWER])（([^）]+)）')
+skill_fix_total = 0
+
+def _is_extra(name, valid_set):
+    return any(
+        name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
+        for off in valid_set
+    )
 
 for champ_dir in sorted(os.listdir(CHAMP_DIR)):
-    if champ_dir == "_template":
-        continue
-    if champ_dir not in champ_skills_fix:
+    if champ_dir == "_template" or champ_dir not in _champ_sm:
         continue
     filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
     if not os.path.isfile(filepath):
         continue
 
-    official_skills = champ_skills_fix[champ_dir]  # {key: official_name}
+    main_sm = _champ_sm[champ_dir]
 
     with open(filepath, "r") as f:
         content = f.read()
+    lines = content.splitlines(keepends=True)
 
-    # セクション別に不明スキル名の出現数をカウント
-    current_section = None
-    sections_with_wrong = {}  # (key, wrong_name) -> set of sections
+    # Pass 1: 全セクションの対戦相手IDを解決
+    sec_opp = {}  # section_str -> opp_id or None
+    for line in lines:
+        m = _sec_re.match(line.strip())
+        if m:
+            ja_p, en_p = m.group(1), m.group(2)
+            sec_opp[line.strip()] = (
+                _ja_to_id.get(ja_p) or _en_to_id.get(ja_p) or
+                _ja_to_id.get(en_p) or _en_to_id.get(en_p)
+            )
 
-    for line in content.splitlines():
-        if line.startswith("## vs"):
-            current_section = line.strip()
+    # Pass 2: (key, wrong) → 出現セクション集合を集計（セクション文脈で invalid 判定）
+    pair_secs = {}   # (key, wrong) -> set of section_str
+    current_sec = None
+    for line in lines:
+        m = _sec_re.match(line.strip())
+        if m:
+            current_sec = line.strip()
+            continue
         if line.startswith("#") or line.startswith(">") or line.startswith("---"):
             continue
         stripped = line.strip()
         if not stripped.startswith("-"):
             continue
-        # 括弧内を一時マスク（ネスト対策）
-        masked = re.sub(r'（[^）]*）', lambda m: '（' + 'X' * (len(m.group(0)) - 2) + '）', stripped)
-        for m in skill_ref_pattern_fix.finditer(stripped):
-            key = m.group(1)
-            name = m.group(2)
-            valid_set = valid_skill_names_fix.get(key, set())
-            if name in valid_set:
+        opp_id  = sec_opp.get(current_sec)
+        opp_sm  = _champ_sm.get(opp_id, {})
+        for m in _skill_re.finditer(stripped):
+            key, name = m.group(1), m.group(2)
+            main_valid = main_sm.get(key, {}).get("valid", set())
+            opp_valid  = opp_sm.get(key, {}).get("valid", set())
+            all_valid  = main_valid | opp_valid
+            if name in all_valid or _is_extra(name, all_valid):
                 continue
-            is_extra = any(
-                name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
-                for off in valid_set
-            )
-            if not is_extra:
-                pair = (key, name)
-                if pair not in sections_with_wrong:
-                    sections_with_wrong[pair] = set()
-                if current_section:
-                    sections_with_wrong[pair].add(current_section)
+            pair_secs.setdefault((key, name), set()).add(current_sec)
 
-    # 3セクション以上に出現 + そのキーに公式名がある → 置換
-    new_content = content
-    for (key, wrong_name), sections in sorted(sections_with_wrong.items()):
-        if len(sections) < 3:
-            continue
-        official = official_skills.get(key)
-        if not official:
-            continue
-        old_str = f"{key}（{wrong_name}）"
-        new_str = f"{key}（{official}）"
-        if old_str in new_content:
-            new_content = new_content.replace(old_str, new_str)
-            print(f"  {champ_dir}: {old_str} → {new_str} ({len(sections)}セクション)")
-            skill_norm_fixes += 1
+    if not pair_secs:
+        continue
 
+    # Pass 3: 置換を決定
+    # 3+セクション → メインチャンプのキー公式名（ファイル全体置換）
+    # 1-2セクション → 各セクションの対戦相手キー公式名（セクション単位置換）
+    global_replacements = {}     # old_str -> new_str
+    section_replacements = {}    # (old_str, sec) -> new_str
+
+    for (key, wrong), secs in pair_secs.items():
+        old_str = f"{key}（{wrong}）"
+        if len(secs) >= 3:
+            main_official = main_sm.get(key, {}).get("official")
+            if main_official:
+                new_str = f"{key}（{main_official}）"
+                if old_str != new_str:
+                    global_replacements[old_str] = new_str
+        else:
+            for sec in secs:
+                opp_id = sec_opp.get(sec)
+                opp_official = _champ_sm.get(opp_id, {}).get(key, {}).get("official")
+                if opp_official:
+                    new_str = f"{key}（{opp_official}）"
+                    if old_str != new_str:
+                        section_replacements[(old_str, sec)] = new_str
+
+    if not global_replacements and not section_replacements:
+        continue
+
+    # Pass 4: 置換適用
+    new_lines = []
+    current_sec = None
+    for line in lines:
+        m = _sec_re.match(line.strip())
+        if m:
+            current_sec = line.strip()
+        new_line = line
+        # グローバル置換（全セクション共通）
+        for old, new in global_replacements.items():
+            if old in new_line:
+                new_line = new_line.replace(old, new)
+        # セクション単位置換
+        for (old, sec), new in section_replacements.items():
+            if current_sec == sec and old in new_line:
+                new_line = new_line.replace(old, new)
+        new_lines.append(new_line)
+
+    new_content = "".join(new_lines)
     if new_content != content:
         with open(filepath, "w") as f:
             f.write(new_content)
+        n = len(global_replacements) + len(section_replacements)
+        skill_fix_total += n
+        if global_replacements:
+            for old, new in global_replacements.items():
+                print(f"  {champ_dir}: {old} → {new} (全体)")
+        if section_replacements:
+            print(f"  {champ_dir}: 対戦相手スキル {len(section_replacements)}件")
 
-print(f"スキル名正規化: {skill_norm_fixes}パターン")
+print(f"スキル名正規化: {skill_fix_total}パターン")

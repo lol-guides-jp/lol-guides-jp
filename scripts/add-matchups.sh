@@ -89,6 +89,24 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
         continue
     fi
 
+    # --- スキル名を data.json から抽出して引数に付加 ---
+    read -r champ_skills opp_skills < <(python3 - << PYEOF
+import json
+data = json.load(open("${PROJECT_DIR}/docs/data.json"))
+cmap = {c["id"]: c for c in data["champions"]}
+def skills_str(cid):
+    c = cmap.get(cid, {})
+    parts = []
+    for s in c.get("skills", []):
+        if s["key"] in "PQWER":
+            name = s["name"].split("/")[0].strip()
+            parts.append(f"{s['key']}:{name}")
+    return ",".join(parts)
+print(skills_str("${champ_id}"), skills_str("${opp_id}"))
+PYEOF
+)
+    args="${champ_id}|${champ_ja}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}|${champ_skills}|${opp_skills}"
+
     # --- L3-research: WebSearch で対面情報収集 ---
     research_json=$(run_cmd "research-matchup" "$args") || {
         echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"

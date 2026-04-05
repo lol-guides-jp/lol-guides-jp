@@ -168,80 +168,105 @@ print(f"{len(mix_issues)}件の候補")
 for issue in mix_issues:
     print(f"  {issue}")
 
-# --- 4. スキル名バリデーション（data.json公式名との照合） ---
+# --- 4. スキル名バリデーション（セクション文脈で両チャンプの公式名を参照） ---
 print("\n=== スキル名バリデーション ===")
 
-# data.json から公式スキル名セットを構築（/ 区切り複合名は分割して両方登録）
-valid_skill_names = {'P': set(), 'Q': set(), 'W': set(), 'E': set(), 'R': set()}
+# 全チャンプのスキルマップ: {champ_id: {key: {"official": str, "valid": set}}}
+champ_skill_map = {}
 for c in DATA["champions"]:
+    skill_map = {}
     for skill in c.get("skills", []):
         key = skill["key"]
-        if key not in valid_skill_names:
+        if key not in {'P', 'Q', 'W', 'E', 'R'}:
             continue
         full_name = skill["name"]
-        valid_skill_names[key].add(full_name)
+        valid = {full_name}
         for part in full_name.split("/"):
-            valid_skill_names[key].add(part.strip())
+            valid.add(part.strip())
+        skill_map[key] = {"official": full_name.split("/")[0].strip(), "valid": valid}
+    champ_skill_map[c["id"]] = skill_map
 
-skill_ref_pattern = re.compile(r'([PQWER])（([^）]+)）')
+section_re = re.compile(r'^## vs (.+?)（(.+?)）')
+skill_ref_re = re.compile(r'([PQWER])（([^）]+)）')
 
-def classify_skill_ref(key, name, valid_set):
-    """'valid' / 'valid_with_extra'（有効名+追記） / 'invalid' を返す"""
-    if name in valid_set:
-        return "valid"
-    for official in valid_set:
-        if name.startswith(official) and len(name) > len(official) and name[len(official)] in "、，,（(":
-            return "valid_with_extra"
-    return "invalid"
+def is_valid_with_extra(name, valid_set):
+    return any(
+        name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
+        for off in valid_set
+    )
 
-invalid_issues = []   # 完全に不明なスキル名
-extra_issues = []     # 有効名だが追記あり（フォーマット違反）
-total_valid = 0
+cnt_valid = cnt_extra = cnt_invalid = 0
+invalid_by_champ = {}
+extra_count = 0
 
 for champ_dir in sorted(os.listdir(CHAMP_DIR)):
-    if champ_dir == "_template":
+    if champ_dir == "_template" or champ_dir not in champ_skill_map:
         continue
     filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
     if not os.path.isfile(filepath):
         continue
+
+    main_sm = champ_skill_map[champ_dir]
+    opp_sm = {}
+    opp_ja_name = ""
+
     with open(filepath, "r") as f:
         lines = f.readlines()
 
+    champ_issues = []
+
     for lineno, line in enumerate(lines, 1):
+        # セクションヘッダ: 対戦相手の特定
+        m_sec = section_re.match(line.strip())
+        if m_sec:
+            ja_part, en_part = m_sec.group(1), m_sec.group(2)
+            opp_id = ja_to_id.get(ja_part) or en_to_id.get(ja_part) or \
+                     ja_to_id.get(en_part) or en_to_id.get(en_part)
+            opp_sm = champ_skill_map.get(opp_id, {})
+            opp_ja_name = id_to_ja.get(opp_id, ja_part) if opp_id else ja_part
+            continue
+
         if line.startswith("#") or line.startswith(">") or line.startswith("---"):
             continue
         stripped = line.strip()
         if not stripped.startswith("-"):
             continue
-        for m in skill_ref_pattern.finditer(stripped):
-            key = m.group(1)
-            name = m.group(2)
-            kind = classify_skill_ref(key, name, valid_skill_names.get(key, set()))
-            if kind == "valid":
-                total_valid += 1
-            elif kind == "valid_with_extra":
-                extra_issues.append(f"{champ_dir}/matchups.md:{lineno}: {key}（{name}）")
+
+        for m in skill_ref_re.finditer(stripped):
+            key, name = m.group(1), m.group(2)
+            main_valid = main_sm.get(key, {}).get("valid", set())
+            opp_valid  = opp_sm.get(key, {}).get("valid", set())
+            all_valid  = main_valid | opp_valid
+
+            if name in all_valid:
+                cnt_valid += 1
+            elif is_valid_with_extra(name, all_valid):
+                cnt_extra += 1
             else:
-                invalid_issues.append(f"{champ_dir}/matchups.md:{lineno}: {key}（{name}）")
+                cnt_invalid += 1
+                # 修正候補: メインチャンプ / 対戦相手 の公式名
+                cands = []
+                mo = main_sm.get(key, {}).get("official")
+                oo = opp_sm.get(key, {}).get("official")
+                if mo:
+                    cands.append(f"{key}（{mo}）[自]")
+                if oo and oo != mo:
+                    cands.append(f"{key}（{oo}）[{opp_ja_name}]")
+                champ_issues.append((lineno, key, name, " / ".join(cands)))
 
-print(f"有効: {total_valid}件 / フォーマット違反（有効名+追記）: {len(extra_issues)}件 / 不明スキル名: {len(invalid_issues)}件")
+    if champ_issues:
+        invalid_by_champ[champ_dir] = champ_issues
+
+print(f"有効: {cnt_valid}件 / フォーマット違反（有効名+追記）: {cnt_extra}件 / 不明スキル名: {cnt_invalid}件")
 print()
-
-# 不明スキル名をチャンプ別に集計
-from collections import defaultdict, Counter
-invalid_by_champ = defaultdict(list)
-for issue in invalid_issues:
-    champ = issue.split("/")[0]
-    invalid_by_champ[champ].append(issue)
-
-print("不明スキル名 チャンプ別上位20件:")
+total_files = len(invalid_by_champ)
+print(f"不明スキル名 チャンプ別上位20件（全{total_files}ファイル）:")
 for champ, issues in sorted(invalid_by_champ.items(), key=lambda x: -len(x[1]))[:20]:
     print(f"  {champ:<20} {len(issues)}件")
 
 if "--verbose" in __import__("sys").argv:
-    print("\n--- 不明スキル名（全件） ---")
-    for issue in invalid_issues:
-        print(f"  {issue}")
-    print("\n--- フォーマット違反（有効名+追記）---")
-    for issue in extra_issues:
-        print(f"  {issue}")
+    import sys
+    print("\n--- 不明スキル名（全件・修正候補付き） ---")
+    for champ, issues in sorted(invalid_by_champ.items(), key=lambda x: -len(x[1])):
+        for lineno, key, name, cands in issues:
+            print(f"  {champ}/matchups.md:{lineno}: {key}（{name}） → {cands}")
