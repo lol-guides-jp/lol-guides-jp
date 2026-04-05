@@ -141,6 +141,8 @@ BODY_REPLACEMENTS = [
     (r"(?<![a-zA-Z])[Uu][Ll][Tt](?![a-zA-Z（(])", "R"),  # Ult単体 → R
     # 英語スタンドアロン語
     (r"スロー[Pp]ush", "スロープッシュ"),
+    (r"Sterak['']s Gage", "スタラックのゲージ"),
+    (r"Sterak['']s", "スタラックの"),
     (r"[Gg]ank(?![a-zA-Z])", "ガンク"),
     (r"(?<![a-zA-Z])[Jj]ungle(?![a-zA-Z])", "ジャングル"),
     (r"(\d+)wave(\d+)", r"\1ウェーブ\2"),  # 1wave6体 → 1ウェーブ6体
