@@ -138,9 +138,29 @@ done
 
 echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
 
-# git commit
+# git commit → quality-fix → build-json → push
 if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
     git -C "$PROJECT_DIR" add champions/*/matchups.md
     git -C "$PROJECT_DIR" commit -m "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
     echo "${LOG_PREFIX} INFO: git commit 完了"
+
+    # 表記揺れ・日英混在を修正
+    echo "${LOG_PREFIX} INFO: quality-fix 実行中..."
+    python3 "${PROJECT_DIR}/scripts/quality-fix.py" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
+    git -C "$PROJECT_DIR" add champions/*/matchups.md
+    # 変更があればコミット
+    git -C "$PROJECT_DIR" diff --cached --quiet || \
+        git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド 表記揺れ・日英混在修正 (自動)"
+
+    # data.json 再ビルド
+    echo "${LOG_PREFIX} INFO: data.json 再ビルド中..."
+    node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
+    git -C "$PROJECT_DIR" add docs/data.json
+    git -C "$PROJECT_DIR" diff --cached --quiet || \
+        git -C "$PROJECT_DIR" commit -m "chore: data.json 再ビルド (対面ガイド追加後)"
+
+    # push
+    echo "${LOG_PREFIX} INFO: push 中..."
+    git -C "$PROJECT_DIR" push
+    echo "${LOG_PREFIX} INFO: push 完了"
 fi
