@@ -80,6 +80,8 @@ KNOWN_ISSUES = [
     (r"カイサ(?!＝)", "カイ＝サ"),
     (r"ジャーヴァン4世", "ジャーヴァンIV"),
     (r"ヴァイン", "ヴェイン"),
+    (r"の窓(?!口|側|辺)", "のチャンス/隙（「窓」はゲームジャーゴン）"),
+    (r"パブリックエクセキューション", "公開処刑（アンベッサRのカタカナ音写）"),
 ]
 
 notation_issues = []
@@ -197,32 +199,26 @@ cnt_valid = cnt_invalid = 0
 invalid_by_champ = {}
 extra_count = 0
 
-for champ_dir in sorted(os.listdir(CHAMP_DIR)):
-    if champ_dir == "_template" or champ_dir not in champ_skill_map:
-        continue
-    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
-    if not os.path.isfile(filepath):
-        continue
-
-    main_sm = champ_skill_map[champ_dir]
+def check_skill_names_in_file(filepath, main_sm, is_matchups=True):
+    """スキル名バリデーション。matchups.md は対戦相手セクション切り替えあり、guide.md はなし。"""
+    issues = []
+    valid = invalid = 0
     opp_sm = {}
     opp_ja_name = ""
 
     with open(filepath, "r") as f:
         lines = f.readlines()
 
-    champ_issues = []
-
     for lineno, line in enumerate(lines, 1):
-        # セクションヘッダ: 対戦相手の特定
-        m_sec = section_re.match(line.strip())
-        if m_sec:
-            ja_part, en_part = m_sec.group(1), m_sec.group(2)
-            opp_id = ja_to_id.get(ja_part) or en_to_id.get(ja_part) or \
-                     ja_to_id.get(en_part) or en_to_id.get(en_part)
-            opp_sm = champ_skill_map.get(opp_id, {})
-            opp_ja_name = id_to_ja.get(opp_id, ja_part) if opp_id else ja_part
-            continue
+        if is_matchups:
+            m_sec = section_re.match(line.strip())
+            if m_sec:
+                ja_part, en_part = m_sec.group(1), m_sec.group(2)
+                opp_id = ja_to_id.get(ja_part) or en_to_id.get(ja_part) or \
+                         ja_to_id.get(en_part) or en_to_id.get(en_part)
+                opp_sm = champ_skill_map.get(opp_id, {})
+                opp_ja_name = id_to_ja.get(opp_id, ja_part) if opp_id else ja_part
+                continue
 
         if line.startswith("#") or line.startswith(">") or line.startswith("---"):
             continue
@@ -237,10 +233,9 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
             all_valid  = main_valid | opp_valid
 
             if name in all_valid:
-                cnt_valid += 1
+                valid += 1
             else:
-                cnt_invalid += 1
-                # 修正候補: メインチャンプ / 対戦相手 の公式名
+                invalid += 1
                 cands = []
                 mo = main_sm.get(key, {}).get("official")
                 oo = opp_sm.get(key, {}).get("official")
@@ -248,7 +243,25 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
                     cands.append(f"{key}（{mo}）[自]")
                 if oo and oo != mo:
                     cands.append(f"{key}（{oo}）[{opp_ja_name}]")
-                champ_issues.append((lineno, key, name, " / ".join(cands)))
+                issues.append((lineno, key, name, " / ".join(cands)))
+
+    return valid, invalid, issues
+
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template" or champ_dir not in champ_skill_map:
+        continue
+    main_sm = champ_skill_map[champ_dir]
+    champ_issues = []
+
+    for filename, is_matchups in [("matchups.md", True), ("guide.md", False)]:
+        filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
+        if not os.path.isfile(filepath):
+            continue
+        v, inv, issues = check_skill_names_in_file(filepath, main_sm, is_matchups)
+        cnt_valid += v
+        cnt_invalid += inv
+        for lineno, key, name, cands in issues:
+            champ_issues.append((lineno, key, name, cands, filename))
 
     if champ_issues:
         invalid_by_champ[champ_dir] = champ_issues
@@ -264,8 +277,8 @@ if "--verbose" in __import__("sys").argv:
     import sys
     print("\n--- 不明スキル名（全件・修正候補付き） ---")
     for champ, issues in sorted(invalid_by_champ.items(), key=lambda x: -len(x[1])):
-        for lineno, key, name, cands in issues:
-            print(f"  {champ}/matchups.md:{lineno}: {key}（{name}） → {cands}")
+        for lineno, key, name, cands, fname in issues:
+            print(f"  {champ}/{fname}:{lineno}: {key}（{name}） → {cands}")
 
 # --- Section 5: 文字化けチェック ---
 print()
