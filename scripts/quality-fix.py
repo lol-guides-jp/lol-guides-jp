@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """matchups.md / guide.md 品質修正スクリプト"""
 
-import os, re, json
+import os, re, json, subprocess
 
 CHAMP_DIR = os.path.join(os.path.dirname(__file__), "..", "champions")
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "data.json")
@@ -526,3 +526,16 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
             print(f"  {champ_dir}: 対戦相手スキル {len(section_replacements)}件")
 
 print(f"スキル名正規化: {skill_fix_total}パターン")
+
+# ==========================================================
+# 最終: data.json 再ビルド（手動修正後の乖離解消）
+# ==========================================================
+BUILD_JS = os.path.join(os.path.dirname(__file__), "build-json.js")
+if os.path.isfile(BUILD_JS):
+    print("\n=== data.json 再ビルド ===")
+    result = subprocess.run(["node", BUILD_JS], capture_output=True, text=True,
+                            cwd=os.path.join(os.path.dirname(__file__), ".."))
+    if result.returncode == 0:
+        print("data.json 再ビルド完了")
+    else:
+        print(f"WARNING: build-json.js 失敗: {result.stderr[:300]}")

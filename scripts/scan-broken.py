@@ -111,6 +111,53 @@ def rule_q2_wrong_mechanic(entry):
                 issues.append(f"固有メカニクス混入: 「{mechanic}」({'/'.join(owners)}の固有)")
     return issues
 
+# --- [quality] Rule Q4: guide.md の得意/苦手とmatchups.md のverdictが矛盾 ---
+FAVORABLE_VERDICTS  = {"有利", "やや有利"}
+UNFAVORABLE_VERDICTS = {"不利", "やや不利"}
+VERDICT_PAT = re.compile(r'^- \*\*(.+?)（勝率約')
+
+def _parse_guide_matchups(champ_id):
+    """guide.md から 得意/苦手マッチアップのチャンプ名セットを返す"""
+    path = os.path.join(CHAMP_DIR, champ_id, "guide.md")
+    if not os.path.isfile(path):
+        return set(), set()
+    with open(path) as f:
+        content = f.read()
+    favorable, unfavorable = set(), set()
+    cur = None
+    for line in content.splitlines():
+        if re.search(r'^## 得意マッチアップ', line):
+            cur = "fav"
+        elif re.search(r'^## 苦手マッチアップ', line):
+            cur = "unfav"
+        elif line.startswith("## "):
+            cur = None
+        elif cur and line.startswith("- **"):
+            m = re.match(r'- \*\*(.+?)\*\*', line)
+            if m:
+                (favorable if cur == "fav" else unfavorable).add(m.group(1))
+    return favorable, unfavorable
+
+_guide_cache = {}
+
+def rule_q4_guide_verdict(entry):
+    champ_id = entry["champ_id"]
+    if champ_id not in _guide_cache:
+        _guide_cache[champ_id] = _parse_guide_matchups(champ_id)
+    favorable, unfavorable = _guide_cache[champ_id]
+
+    opp_ja = entry["opp_ja"]
+    verdict_m = re.search(r'^- \*\*(.+?)（勝率約', entry["body"], re.MULTILINE)
+    if not verdict_m:
+        return None
+    verdict = verdict_m.group(1)
+
+    if opp_ja in favorable and verdict in UNFAVORABLE_VERDICTS:
+        return f"guide.md「得意」なのにmatchups.md verdict=「{verdict}」({opp_ja})"
+    if opp_ja in unfavorable and verdict in FAVORABLE_VERDICTS:
+        return f"guide.md「苦手」なのにmatchups.md verdict=「{verdict}」({opp_ja})"
+    return None
+
 # --- [quality] Rule Q3: 概要行にCS/分の数値統計 ---
 CS_STAT = re.compile(r'\d+\.\d+/分')
 
@@ -150,7 +197,9 @@ def rule_m3_execute(entry):
     issues = []
     if re.search(r'デスグラインダー[^。]{0,30}HP30%', entry["body"]):
         issues.append("デスグラインダー処刑ラインHP30%→HP25%")
-    if entry.get("opp_id") == "ambessa" and re.search(r'公開処刑[^。]{0,30}HP\d+%以下で処刑', entry["body"]):
+    # アンベッサR（公開処刑）は処刑効果なし: 対面視点・主チャンプ視点の両方を検出
+    if (entry.get("opp_id") == "ambessa" or entry["champ_id"] == "ambessa") \
+            and re.search(r'公開処刑[^。]{0,30}HP\d+%以下で処刑', entry["body"]):
         issues.append("アンベッサR（公開処刑）に処刑ライン記述（処刑効果なし）")
     return issues
 
@@ -173,6 +222,9 @@ def classify(entry, champ_skills, opp_skills):
     quality_issues += rule_q1_format(entry, champ_skills, opp_skills)
     quality_issues += rule_q2_wrong_mechanic(entry)
     r = rule_q3_cs_stat(entry)
+    if r:
+        quality_issues.append(r)
+    r = rule_q4_guide_verdict(entry)
     if r:
         quality_issues.append(r)
     if quality_issues:
