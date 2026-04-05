@@ -14,19 +14,28 @@ model: claude-haiku-4-5-20251001
 
 $ARGUMENTS
 
-形式: `champ_id|champ_ja|champ_en|opp_id|opp_ja|opp_en|type|summary`
+形式: `champ_id|champ_ja|opp_id|opp_ja|opp_en|type|summary|champ_skills|opp_skills`
 
-- `champ_ja` / `champ_en`: **ガイドを読むプレイヤーが使うチャンピオン（主人公）**
+- `champ_ja`: **ガイドを読むプレイヤーが使うチャンピオン（主人公）**
 - `opp_ja` / `opp_en`: 対面の相手チャンピオン
 - `type`: 得意 / 苦手（guide.mdの評価）
 - `summary`: guide.mdに記載されているサマリーヒント
+- `champ_skills`: メインチャンプの公式スキル名（例: `P:エコーフレイム,Q:コラプトシェル,W:パージ,E:ディスデイン,R:デスグラインダー`）
+- `opp_skills`: 対戦相手の公式スキル名（例: `P:アイオニアの熱情,Q:瞬刃,W:不屈の舞,E:無欠の連舞,R:先陣の刃`）
 
 **重要**: 全ての立ち回り説明は `champ_ja` を使うプレイヤー視点で書く。「どう動けばよいか」を `champ_ja` 側の行動として記述する。`opp_ja` 視点にならないこと。
 
+## スキル名ルール（必須）
+
+**`champ_skills` と `opp_skills` に記載された公式名のみを使う。**
+- メインチャンプのスキル: `Q（コラプトシェル）` のように `champ_skills` の値を使う
+- 対戦相手のスキル: `Q（瞬刃）` のように `opp_skills` の値を使う
+- `data.json` を読む必要はない（スキル名は引数に含まれている）
+- 英語名・通称・推測した名前は**絶対に使わない**
+
 ## 調査内容
 
-0. **最初に `docs/data.json` を Read し、`champ_id` と `opp_id` の `skills` 配列から公式日本語スキル名を取得する。**
-   スキルを言及する際は必ずこの公式名を使う（例: Q（コラプトシェル）、W（パージ））。推測・英語名・通称は使わない。
+0. ~~`docs/data.json` を Read する~~ — スキル名は引数 `champ_skills`/`opp_skills` に含まれているため不要。
 
 1. `{champ_en} vs {opp_en} top/mid/jungle/adc/support matchup patch 26.7` でWebSearch
 2. 勝率（U.GG / Lolalytics / op.gg などから取得）
@@ -42,9 +51,11 @@ $ARGUMENTS
 {
   "champ_id": "aatrox",
   "champ_ja": "エイトロックス",
+  "champ_skills": "P:死兆の構え,Q:ダーキンブレード,W:炎獄の鎖,E:影進撃,R:ワールドエンダー",
   "opp_id": "garen",
   "opp_ja": "ガレン",
   "opp_en": "Garen",
+  "opp_skills": "P:タフガイ,Q:断固たる一撃,W:勇気の護り,E:ジャッジメント,R:デマーシアの正義",
   "winrate": "47〜49%",
   "verdict": "不利",
   "verdict_reason": "ガレンのサイレンス+スピンがQコンボを潰す",
