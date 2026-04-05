@@ -140,7 +140,7 @@ echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
 
 # git commit
 if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
-    git -C "$PROJECT_DIR" add champions/*/matchups.md scripts/missing-*.txt
+    git -C "$PROJECT_DIR" add champions/*/matchups.md
     git -C "$PROJECT_DIR" commit -m "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
     echo "${LOG_PREFIX} INFO: git commit 完了"
 fi
