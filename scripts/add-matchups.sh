@@ -119,6 +119,11 @@ PYEOF
         continue
     fi
 
+    # research がリスト形式 [{...}] で返ってきた場合はunwrap
+    if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
+        research_json=$(echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
+    fi
+
     # --- L3-write: matchups.md フォーマットに整形 ---
     ops_json=$(run_cmd "write-matchup" "$research_json") || {
         echo "${LOG_PREFIX} ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
