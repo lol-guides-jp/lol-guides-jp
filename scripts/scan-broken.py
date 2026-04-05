@@ -75,6 +75,16 @@ def rule_b1_perspective(entry, champ_skills, opp_skills):
             return f"視点逆転: {key}（{name}）は対面スキルだが主チャンプの行動として記述"
     return None
 
+# --- [broken] Rule B3: verdict行（勝率約N%）が存在しない ---
+FULL_VERDICT_PAT = re.compile(r'^- \*\*(?:有利|やや有利|五分|やや不利|不利)（勝率約', re.MULTILINE)
+
+def rule_b3_no_verdict(entry):
+    if len(entry["body"]) < 200:
+        return None
+    if not FULL_VERDICT_PAT.search(entry["body"]):
+        return "verdict行（勝率約N%）が存在しない"
+    return None
+
 # --- [broken] Rule B2: 主チャンプのスキルが一つも出てこない ---
 def rule_b2_no_champ_skills(entry, champ_skills, opp_skills):
     if not champ_skills:
@@ -215,6 +225,9 @@ def classify(entry, champ_skills, opp_skills):
     """(tier, [reasons]) を返す。tier: broken/quality/minor/ok"""
     # broken チェック（構造的に壊れてる）
     r = rule_b1_perspective(entry, champ_skills, opp_skills)
+    if r:
+        return "broken", [r]
+    r = rule_b3_no_verdict(entry)
     if r:
         return "broken", [r]
 
