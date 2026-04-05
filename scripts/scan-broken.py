@@ -193,14 +193,18 @@ def rule_m2_artifact(entry):
     return [f"翻訳アーティファクト: 「{p}」" for p in ARTIFACTS if p in entry["body"]]
 
 # --- [minor] Rule M3: 処刑ライン誤記 ---
+AMBESSA_R_BAD = re.compile(
+    r'公開処刑.{0,50}(?:HP\d+%以下で(?:処刑|刑執行|確定)|HP\d+%処刑ライン|処刑ラインは\d+%|即処刑|確定処刑|刑執行可能)'
+)
+
 def rule_m3_execute(entry):
     issues = []
     if re.search(r'デスグラインダー[^。]{0,30}HP30%', entry["body"]):
         issues.append("デスグラインダー処刑ラインHP30%→HP25%")
     # アンベッサR（公開処刑）は処刑効果なし: 対面視点・主チャンプ視点の両方を検出
     if (entry.get("opp_id") == "ambessa" or entry["champ_id"] == "ambessa") \
-            and re.search(r'公開処刑[^。]{0,30}HP\d+%以下で処刑', entry["body"]):
-        issues.append("アンベッサR（公開処刑）に処刑ライン記述（処刑効果なし）")
+            and AMBESSA_R_BAD.search(entry["body"]):
+        issues.append("アンベッサR（公開処刑）に処刑ライン/HP%記述（処刑効果なし）")
     return issues
 
 # ============================================================
