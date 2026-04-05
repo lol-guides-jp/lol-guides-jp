@@ -266,3 +266,26 @@ if "--verbose" in __import__("sys").argv:
     for champ, issues in sorted(invalid_by_champ.items(), key=lambda x: -len(x[1])):
         for lineno, key, name, cands in issues:
             print(f"  {champ}/matchups.md:{lineno}: {key}（{name}） → {cands}")
+
+# --- Section 5: 文字化けチェック ---
+print()
+print("=== 文字化けチェック ===")
+GARBLED_CHARS = ['\ufffd', '▪', '▫']  # U+FFFD(置換文字), ▪, ▫
+garbled_found = []
+for c in DATA["champions"]:
+    path = os.path.join(CHAMP_DIR, c["id"], "matchups.md")
+    if not os.path.isfile(path):
+        continue
+    with open(path, "r", encoding="utf-8") as f:
+        for lineno, line in enumerate(f, 1):
+            for ch in GARBLED_CHARS:
+                if ch in line:
+                    garbled_found.append((c["id"], lineno, line.strip()[:80]))
+                    break
+
+if garbled_found:
+    print(f"文字化け検出: {len(garbled_found)}件")
+    for champ_id, lineno, preview in garbled_found[:20]:
+        print(f"  {champ_id}/matchups.md:{lineno}: {preview}")
+else:
+    print("文字化け: 0件")
