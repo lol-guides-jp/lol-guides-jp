@@ -101,6 +101,8 @@ const raw = require('fs').readFileSync(0, 'utf8').trim();
 let ops;
 try {
     ops = JSON.parse(raw);
+    // オブジェクト単体が来た場合は配列に包む
+    if (!Array.isArray(ops)) ops = [ops];
 } catch(e1) {
     const start = raw.indexOf('[');
     if (start === -1) { console.error('ERROR: JSON配列が見つかりません'); process.exit(1); }
