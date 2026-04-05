@@ -97,3 +97,71 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 print(f"{len(notation_issues)}件")
 for issue in sorted(notation_issues):
     print(f"  {issue}")
+
+# --- 3. 日英混在・要変換候補チェック ---
+print("\n=== 日英混在・要変換候補 ===")
+
+# 英語→日本語変換候補（LoLコミュニティで定着しているものは除外: CS, CD, HP, AD, AP, AA）
+# \b は Python3 で日本語文字を word char 扱いするため ASCII 境界パターンを使う
+TRANSLATE_CANDIDATES = [
+    (r"(?<![a-zA-Z])[Uu][Ll][Tt](?![a-zA-Z])", "R（スキル名）"),
+    (r"(?<![a-zA-Z])push(?![a-zA-Z])",          "プッシュ"),
+    (r"(?<![a-zA-Z])poke(?![a-zA-Z])",          "ポーク"),
+    (r"(?<![a-zA-Z])gank(?![a-zA-Z])",          "ガンク"),
+    (r"(?<![a-zA-Z])wave(?![a-zA-Z])",          "ウェーブ"),
+    (r"(?<![a-zA-Z])freeze(?![a-zA-Z])",        "フリーズ"),
+    (r"(?<![a-zA-Z])trade(?![a-zA-Z])",         "トレード"),
+    (r"all-in",                                  "オールイン"),
+    (r"(?<![a-zA-Z])farm(?![a-zA-Z])",          "ファーム"),
+    (r"(?<![a-zA-Z])jungle(?![a-zA-Z])",        "ジャングル"),
+    (r"(?<![a-zA-Z])lane(?![a-zA-Z])",          "レーン"),
+    (r"(?<![a-zA-Z])skill(?![a-zA-Z])",         "スキル"),
+    (r"(?<![a-zA-Z])combo(?![a-zA-Z])",         "コンボ"),
+]
+
+# 英語チャンプ名リスト（ヘッダ行・括弧内は除外して本文行のみチェック）
+en_names = sorted(en_to_id.keys(), key=len, reverse=True)
+en_name_pattern = r'\b(' + '|'.join(re.escape(n) for n in en_names) + r')\b'
+
+mix_issues = []
+
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+    with open(filepath, "r") as f:
+        lines = f.readlines()
+
+    for lineno, line in enumerate(lines, 1):
+        # ヘッダ行（## vs）とファイル先頭行はスキップ
+        if line.startswith("#") or line.startswith(">"):
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("-"):
+            continue
+
+        # 変換候補チェック
+        for pattern, suggestion in TRANSLATE_CANDIDATES:
+            if re.search(pattern, stripped, re.IGNORECASE):
+                found = re.search(pattern, stripped, re.IGNORECASE).group()
+                mix_issues.append(
+                    f"{champ_dir}/matchups.md:{lineno}: 「{found}」→「{suggestion}」候補\n"
+                    f"    {stripped[:80]}"
+                )
+
+        # 英語チャンプ名の本文混入チェック（括弧内は許容）
+        # 括弧内を除いた文字列で検索
+        stripped_no_paren = re.sub(r'（[^）]*）|\([^)]*\)', '', stripped)
+        for m in re.finditer(en_name_pattern, stripped_no_paren):
+            en_name = m.group()
+            ja_name = id_to_ja.get(en_to_id.get(en_name, ""), en_name)
+            mix_issues.append(
+                f"{champ_dir}/matchups.md:{lineno}: 英語チャンプ名「{en_name}」→「{ja_name}」候補\n"
+                f"    {stripped[:80]}"
+            )
+
+print(f"{len(mix_issues)}件の候補")
+for issue in mix_issues:
+    print(f"  {issue}")
