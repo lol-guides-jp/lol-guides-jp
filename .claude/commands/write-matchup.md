@@ -1,5 +1,5 @@
 ---
-model: claude-haiku-4-5-20251001
+model: claude-sonnet-4-6
 ---
 
 **実行環境**: `claude --print` で呼び出されている。標準出力がそのまま呼び出し元スクリプトの戻り値になる。
