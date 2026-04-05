@@ -87,6 +87,7 @@ print("=== 表記揺れ修正 ===")
 REPLACEMENTS = [
     ("ウォーウィック", "ワーウィック"),
     ("ウォリック", "ワーウィック"),
+    ("ウルゴット", "アーゴット"),
     ("BotRK", "ブレード・オブ・ザ・ルインドキング"),
     ("BOTRK", "ブレード・オブ・ザ・ルインドキング"),
     ("BoRK", "ブレード・オブ・ザ・ルインドキング"),
@@ -194,3 +195,35 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         print(f"  修正: {champ_dir}/matchups.md")
 
 print(f"日英混在修正: {mix_fixes}件")
+
+# --- 4. 勝率表記の正規化（範囲→中央値の整数、小数点除去） ---
+print("\n=== 勝率表記の正規化 ===")
+
+import math
+
+def normalize_winrate(m):
+    inner = m.group(1)  # 例: 47〜49、46.4〜49.4、52.3
+    if '〜' in inner:
+        parts = inner.split('〜')
+        avg = (float(parts[0]) + float(parts[1])) / 2
+        return f"勝率約{round(avg)}%"
+    else:
+        return f"勝率約{round(float(inner))}%"
+
+winrate_fixes = 0
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+    with open(filepath, "r") as f:
+        content = f.read()
+    new_content = re.sub(r'勝率約([\d.]+(?:〜[\d.]+)?)%', normalize_winrate, content)
+    if new_content != content:
+        with open(filepath, "w") as f:
+            f.write(new_content)
+        winrate_fixes += 1
+        print(f"  修正: {champ_dir}/matchups.md")
+
+print(f"勝率正規化: {winrate_fixes}件")
