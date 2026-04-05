@@ -114,4 +114,8 @@ git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.gith
     commit -m "[自動] パッチ${LATEST} ガイド更新"
 git push origin main
 
+# CLAUDE.local.md に成功通知
+grep -v "lol-guides-jp check-patch" "${CLAUDE_LOCAL}" > "${CLAUDE_LOCAL}.tmp" && mv "${CLAUDE_LOCAL}.tmp" "${CLAUDE_LOCAL}" || true
+echo "- ${DATE} lol-guides-jp: パッチ${LATEST} ガイド更新完了 → lol-guides-jp/champions/ を確認" >> "${CLAUDE_LOCAL}"
+
 echo "${LOG_PREFIX} ===== パッチチェック完了 ====="
