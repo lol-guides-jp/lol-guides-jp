@@ -98,16 +98,28 @@ const path = require('path');
 const base = process.env.DISPATCH_BASE;
 const resolve = p => path.isAbsolute(p) ? p : path.join(base, p);
 const raw = require('fs').readFileSync(0, 'utf8').trim();
-// コードフェンス除去 → JSONパース試行 → 失敗時は最初の [ から最後の ] を抽出
-let cleaned = raw.replace(/^\`\`\`(?:json)?\n?/, '').replace(/\n?\`\`\`$/, '').trim();
+// JSONパース試行 → 失敗時は括弧カウントで [ から対応する ] を正確に抽出
+// （前置きテキスト・コードフェンス・コンテンツ内の ] に誤マッチしない）
 let ops;
 try {
-    ops = JSON.parse(cleaned);
-} catch(e) {
-    const start = cleaned.indexOf('[');
-    const end = cleaned.lastIndexOf(']');
-    if (start === -1 || end === -1) { console.error('ERROR: JSON配列が見つかりません'); process.exit(1); }
-    ops = JSON.parse(cleaned.slice(start, end + 1));
+    ops = JSON.parse(raw);
+} catch(e1) {
+    const start = raw.indexOf('[');
+    if (start === -1) { console.error('ERROR: JSON配列が見つかりません'); process.exit(1); }
+    let depth = 0, inStr = false, esc = false, end = -1;
+    for (let i = start; i < raw.length; i++) {
+        const c = raw[i];
+        if (esc) { esc = false; continue; }
+        if (c.charCodeAt(0) === 92 && inStr) { esc = true; continue; }
+        if (c.charCodeAt(0) === 34) { inStr = !inStr; continue; }
+        if (!inStr) {
+            if (c === '[') depth++;
+            else if (c === ']') { if (--depth === 0) { end = i; break; } }
+        }
+    }
+    if (end === -1) { console.error('ERROR: JSON配列の終端が見つかりません'); process.exit(1); }
+    try { ops = JSON.parse(raw.slice(start, end + 1)); }
+    catch(e2) { console.error('ERROR: JSON parse失敗:', e2.message); process.exit(1); }
 }
 ops.forEach(op => {
     try {
