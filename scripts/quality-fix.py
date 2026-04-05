@@ -199,6 +199,51 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
 print(f"日英混在修正: {mix_fixes}件")
 
+# --- 5. アイテム名の日本語化（ddragon 公式名） ---
+print("\n=== アイテム名の日本語化 ===")
+
+ITEMS_FILE = os.path.join(os.path.dirname(__file__), "items-ja.json")
+item_fixes = 0
+
+if os.path.isfile(ITEMS_FILE):
+    items_map = json.load(open(ITEMS_FILE, encoding="utf-8"))
+    # 長い名前優先でソート（部分マッチ防止）
+    items_sorted = sorted(items_map.items(), key=lambda x: len(x[0]), reverse=True)
+
+    for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+        if champ_dir == "_template":
+            continue
+        filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+        if not os.path.isfile(filepath):
+            continue
+        with open(filepath, "r") as f:
+            lines = f.readlines()
+
+        new_lines = []
+        changed = False
+        for line in lines:
+            if line.startswith("#") or line.startswith(">") or line.startswith("---"):
+                new_lines.append(line)
+                continue
+            new_line = line
+            for en_name, ja_name in items_sorted:
+                # 単語境界（ASCII）でマッチ
+                pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?![a-zA-Z])'
+                new_line = re.sub(pattern, ja_name, new_line)
+            if new_line != line:
+                changed = True
+            new_lines.append(new_line)
+
+        if changed:
+            with open(filepath, "w") as f:
+                f.writelines(new_lines)
+            item_fixes += 1
+            print(f"  修正: {champ_dir}/matchups.md")
+else:
+    print("  items-ja.json が見つかりません。scripts/fetch-items.py を実行してください")
+
+print(f"アイテム名修正: {item_fixes}件")
+
 # --- 4. 勝率表記の正規化（範囲→中央値の整数、小数点除去） ---
 print("\n=== 勝率表記の正規化 ===")
 
