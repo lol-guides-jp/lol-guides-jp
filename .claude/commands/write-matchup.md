@@ -62,6 +62,8 @@ matchups.mdの1エントリは以下の形式：
 
 Write/Edit ツールは使用しない。以下のJSONのみを標準出力に返す。
 
+**必ず `[` で始まるJSON配列で返すこと。`{` で始まるオブジェクトは不可。**
+
 ```json
 [
   {"op": "append", "path": "champions/{champ_id}/matchups.md", "content": "\n## vs {opp_ja}（{opp_en}）\n..."}
