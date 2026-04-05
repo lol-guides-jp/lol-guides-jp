@@ -1,7 +1,7 @@
 {
   "_comment": "チャンピオン固有のリソース・メカニクル名とそのオーナー一覧。scan-broken.pyが参照する。オーナーに含まれるチャンプが主チャンプor対面の場合は正常な記述として扱う。",
 
-  "フューリー": ["tryndamere", "renekton", "shyvana"],
+  "フューリーゲージ": ["tryndamere", "renekton", "shyvana", "gnar"],
   "出血スタック": ["darius"],
   "グリット": ["sett"],
   "ヒートゲージ": ["rumble"],
