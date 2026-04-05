@@ -93,9 +93,9 @@ fi
 
 # --- ガイド更新（L3: Claude） ---
 echo "${LOG_PREFIX} INFO: ガイド更新中..."
-json=$(run_cmd "update-guides")
-if [ $? -ne 0 ] || [ -z "$json" ]; then
-    notify_failure "update-guides 失敗"
+json=$(run_cmd "update-guides") || { notify_failure "update-guides 失敗"; exit 1; }
+if [ -z "$json" ]; then
+    notify_failure "update-guides 結果が空"
     exit 1
 fi
 
