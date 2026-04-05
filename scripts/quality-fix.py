@@ -146,6 +146,12 @@ BODY_REPLACEMENTS = [
     (r"スタラックのゲージ", "ステラックの篭手"),
     (r"[Gg]ank(?![a-zA-Z])", "ガンク"),
     (r"(?<![a-zA-Z])[Jj]ungle(?![a-zA-Z])", "ジャングル"),
+    (r"(?<![a-zA-Z])early game(?![a-zA-Z])", "序盤"),
+    (r"(?<![a-zA-Z])mid game(?![a-zA-Z])", "中盤"),
+    (r"(?<![a-zA-Z])late game(?![a-zA-Z])", "終盤"),
+    (r"(?<![a-zA-Z])early(?![a-zA-Z])", "序盤"),
+    (r"execution(?![a-zA-Z])", "処刑"),
+    (r"CS/min", "CS/分"),
     (r"(\d+)wave(\d+)", r"\1ウェーブ\2"),  # 1wave6体 → 1ウェーブ6体
 ]
 
