@@ -1,0 +1,16 @@
+{
+  "_comment": "チャンピオン固有のリソース・メカニクル名とそのオーナー一覧。scan-broken.pyが参照する。オーナーに含まれるチャンプが主チャンプor対面の場合は正常な記述として扱う。",
+
+  "フューリー": ["tryndamere", "renekton", "shyvana"],
+  "出血スタック": ["darius"],
+  "グリット": ["sett"],
+  "ヒートゲージ": ["rumble"],
+  "フロウ": ["yasuo", "yone"],
+  "エッセンスチャージ": ["ezreal"],
+  "魂のスタック": ["nasus", "veigar", "kindred", "thresh"],
+  "マナなし": ["garen", "katarina", "riven", "yasuo", "yone", "aatrox", "tryndamere", "shyvana"],
+  "圧倒スタック": ["mel"],
+  "グリモワール": ["seraphine"],
+  "スタック": [],
+  "フォームチェンジ": ["jayce", "nidalee", "elise", "gnar", "kayle", "nasus"]
+}

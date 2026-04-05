@@ -152,6 +152,44 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
 print(f"表記揺れ修正: {notation_fixes}件")
 
+# --- 2b. スキル名フォーマット逆転修正: スキル名（キー）→ キー（スキル名） ---
+print("\n=== スキル名フォーマット逆転修正 ===")
+
+# 全チャンプのスキル名を収集（形態変化は両名とも登録）
+all_skill_names = set()
+for c in DATA["champions"]:
+    for s in c.get("skills", []):
+        for name in s["name"].split("/"):
+            name = name.strip()
+            if name and len(name) >= 2:
+                all_skill_names.add(name)
+
+# スキル名（キー）→ キー（スキル名）の置換パターンを生成
+# 長い名前優先でマッチ（部分マッチ防止）
+skill_names_sorted = sorted(all_skill_names, key=len, reverse=True)
+FORMAT_FIX_PATTERN = re.compile(
+    r'(' + '|'.join(re.escape(n) for n in skill_names_sorted) + r')（([PQWER])）'
+)
+
+format_fixes = 0
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    for filename in ["matchups.md", "guide.md"]:
+        filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
+        if not os.path.isfile(filepath):
+            continue
+        with open(filepath, "r") as f:
+            content = f.read()
+        new_content = FORMAT_FIX_PATTERN.sub(lambda m: f"{m.group(2)}（{m.group(1)}）", content)
+        if new_content != content:
+            with open(filepath, "w") as f:
+                f.write(new_content)
+            format_fixes += 1
+            print(f"  修正: {champ_dir}/{filename}")
+
+print(f"フォーマット逆転修正: {format_fixes}件")
+
 # --- 3. 日英混在修正（matchups.md 本文行のみ） ---
 print("\n=== 日英混在修正 ===")
 
