@@ -106,6 +106,7 @@ REPLACEMENTS = [
 
 # 正規表現置換（単語境界必要なもの）
 REGEX_REPLACEMENTS = [
+    (r"\bLH\b", "CS"),
     (r"\bIE\b", "インフィニティ・エッジ"),
     (r"\bGA\b", "ガーディアンエンジェル"),
     (r"\bQSS\b", "クイックシルバーサッシュ"),
