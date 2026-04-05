@@ -125,3 +125,72 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
             print(f"  修正: {champ_dir}/{filename}")
 
 print(f"表記揺れ修正: {notation_fixes}件")
+
+# --- 3. 日英混在修正（matchups.md 本文行のみ） ---
+print("\n=== 日英混在修正 ===")
+
+en_to_ja = {c["en"]: c["ja"] for c in DATA["champions"]}
+en_names_sorted = sorted(en_to_ja.keys(), key=len, reverse=True)
+
+# 本文行に適用する一括置換（ヘッダ・括弧内は除外）
+# 置換順序は長いパターン優先（部分マッチ防止）
+BODY_REPLACEMENTS = [
+    # Ult → R（括弧内のスキル名は保持）
+    (r"(?<![a-zA-Z])[Uu][Ll][Tt](?=[（(])", "R"),   # ULT（スキル名） → R（スキル名）
+    (r"(?<![a-zA-Z])[Uu][Ll][Tt](?![a-zA-Z（(])", "R"),  # Ult単体 → R
+    # 英語スタンドアロン語
+    (r"スロー[Pp]ush", "スロープッシュ"),
+    (r"[Gg]ank(?![a-zA-Z])", "ガンク"),
+    (r"(?<![a-zA-Z])[Jj]ungle(?![a-zA-Z])", "ジャングル"),
+    (r"(\d+)wave(\d+)", r"\1ウェーブ\2"),  # 1wave6体 → 1ウェーブ6体
+]
+
+mix_fixes = 0
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+    with open(filepath, "r") as f:
+        lines = f.readlines()
+
+    new_lines = []
+    changed = False
+    for line in lines:
+        new_line = line
+        # ヘッダ行・メタ行は変更しない
+        if new_line.startswith("#") or new_line.startswith(">") or new_line.startswith("---"):
+            new_lines.append(new_line)
+            continue
+
+        # 一括置換
+        for pattern, replacement in BODY_REPLACEMENTS:
+            new_line = re.sub(pattern, replacement, new_line)
+
+        # 英語チャンプ名を日本語に置換（括弧内は除外）
+        # 括弧内を一時的にマスクしてから置換
+        placeholders = {}
+        def mask_parens(m):
+            key = f"__PAREN{len(placeholders)}__"
+            placeholders[key] = m.group(0)
+            return key
+        masked = re.sub(r'（[^）]*）|\([^)]*\)', mask_parens, new_line)
+        for en_name in en_names_sorted:
+            pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?![a-zA-Z])'
+            masked = re.sub(pattern, en_to_ja[en_name], masked)
+        for key, val in placeholders.items():
+            masked = masked.replace(key, val)
+        new_line = masked
+
+        if new_line != line:
+            changed = True
+        new_lines.append(new_line)
+
+    if changed:
+        with open(filepath, "w") as f:
+            f.writelines(new_lines)
+        mix_fixes += 1
+        print(f"  修正: {champ_dir}/matchups.md")
+
+print(f"日英混在修正: {mix_fixes}件")
