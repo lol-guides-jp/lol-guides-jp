@@ -106,6 +106,7 @@ print("\n=== 日英混在・要変換候補 ===")
 # \b は Python3 で日本語文字を word char 扱いするため ASCII 境界パターンを使う
 TRANSLATE_CANDIDATES = [
     (r"(?<![a-zA-Z])[Uu][Ll][Tt](?![a-zA-Z])", "R（スキル名）"),
+    (r"ウルト(?!ラ)", "R（スキル名）"),
     (r"(?<![a-zA-Z])push(?![a-zA-Z])",          "プッシュ"),
     (r"(?<![a-zA-Z])poke(?![a-zA-Z])",          "ポーク"),
     (r"(?<![a-zA-Z])gank(?![a-zA-Z])",          "ガンク"),
@@ -166,3 +167,81 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 print(f"{len(mix_issues)}件の候補")
 for issue in mix_issues:
     print(f"  {issue}")
+
+# --- 4. スキル名バリデーション（data.json公式名との照合） ---
+print("\n=== スキル名バリデーション ===")
+
+# data.json から公式スキル名セットを構築（/ 区切り複合名は分割して両方登録）
+valid_skill_names = {'P': set(), 'Q': set(), 'W': set(), 'E': set(), 'R': set()}
+for c in DATA["champions"]:
+    for skill in c.get("skills", []):
+        key = skill["key"]
+        if key not in valid_skill_names:
+            continue
+        full_name = skill["name"]
+        valid_skill_names[key].add(full_name)
+        for part in full_name.split("/"):
+            valid_skill_names[key].add(part.strip())
+
+skill_ref_pattern = re.compile(r'([PQWER])（([^）]+)）')
+
+def classify_skill_ref(key, name, valid_set):
+    """'valid' / 'valid_with_extra'（有効名+追記） / 'invalid' を返す"""
+    if name in valid_set:
+        return "valid"
+    for official in valid_set:
+        if name.startswith(official) and len(name) > len(official) and name[len(official)] in "、，,（(":
+            return "valid_with_extra"
+    return "invalid"
+
+invalid_issues = []   # 完全に不明なスキル名
+extra_issues = []     # 有効名だが追記あり（フォーマット違反）
+total_valid = 0
+
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+    with open(filepath, "r") as f:
+        lines = f.readlines()
+
+    for lineno, line in enumerate(lines, 1):
+        if line.startswith("#") or line.startswith(">") or line.startswith("---"):
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("-"):
+            continue
+        for m in skill_ref_pattern.finditer(stripped):
+            key = m.group(1)
+            name = m.group(2)
+            kind = classify_skill_ref(key, name, valid_skill_names.get(key, set()))
+            if kind == "valid":
+                total_valid += 1
+            elif kind == "valid_with_extra":
+                extra_issues.append(f"{champ_dir}/matchups.md:{lineno}: {key}（{name}）")
+            else:
+                invalid_issues.append(f"{champ_dir}/matchups.md:{lineno}: {key}（{name}）")
+
+print(f"有効: {total_valid}件 / フォーマット違反（有効名+追記）: {len(extra_issues)}件 / 不明スキル名: {len(invalid_issues)}件")
+print()
+
+# 不明スキル名をチャンプ別に集計
+from collections import defaultdict, Counter
+invalid_by_champ = defaultdict(list)
+for issue in invalid_issues:
+    champ = issue.split("/")[0]
+    invalid_by_champ[champ].append(issue)
+
+print("不明スキル名 チャンプ別上位20件:")
+for champ, issues in sorted(invalid_by_champ.items(), key=lambda x: -len(x[1]))[:20]:
+    print(f"  {champ:<20} {len(issues)}件")
+
+if "--verbose" in __import__("sys").argv:
+    print("\n--- 不明スキル名（全件） ---")
+    for issue in invalid_issues:
+        print(f"  {issue}")
+    print("\n--- フォーマット違反（有効名+追記）---")
+    for issue in extra_issues:
+        print(f"  {issue}")

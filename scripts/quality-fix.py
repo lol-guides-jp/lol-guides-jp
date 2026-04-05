@@ -136,9 +136,11 @@ en_names_sorted = sorted(en_to_ja.keys(), key=len, reverse=True)
 # 本文行に適用する一括置換（ヘッダ・括弧内は除外）
 # 置換順序は長いパターン優先（部分マッチ防止）
 BODY_REPLACEMENTS = [
-    # Ult → R（括弧内のスキル名は保持）
+    # Ult/ウルト → R（括弧内のスキル名は保持）
     (r"(?<![a-zA-Z])[Uu][Ll][Tt](?=[（(])", "R"),   # ULT（スキル名） → R（スキル名）
     (r"(?<![a-zA-Z])[Uu][Ll][Tt](?![a-zA-Z（(])", "R"),  # Ult単体 → R
+    (r"ウルト(?!ラ)(?=[（(])", "R"),   # ウルト（スキル名） → R（スキル名）
+    (r"ウルト(?!ラ)(?![（(])", "R"),   # ウルト単体 → R
     # 英語スタンドアロン語
     (r"スロー[Pp]ush", "スロープッシュ"),
     (r"Sterak['']s Gage", "ステラックの篭手"),
@@ -281,3 +283,94 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         print(f"  修正: {champ_dir}/matchups.md")
 
 print(f"勝率正規化: {winrate_fixes}件")
+
+# --- 6. チャンプ自身のスキル名正規化（ヒューリスティック） ---
+# 各champions/X/matchups.md で、同一キー（Q/W/E/R）の不明スキル名が
+# 3セクション以上に出現 → そのキーのメインチャンプ公式名で一括置換
+print("\n=== チャンプ自身スキル名正規化 ===")
+
+# 公式スキル名セット構築
+valid_skill_names_fix = {'P': set(), 'Q': set(), 'W': set(), 'E': set(), 'R': set()}
+champ_skills_fix = {}  # champ_id -> {key: official_name}
+for c in DATA["champions"]:
+    skills = {}
+    for skill in c.get("skills", []):
+        key = skill["key"]
+        if key not in valid_skill_names_fix:
+            continue
+        full_name = skill["name"]
+        valid_skill_names_fix[key].add(full_name)
+        for part in full_name.split("/"):
+            valid_skill_names_fix[key].add(part.strip())
+        skills[key] = full_name  # 最初のパート（/区切り前）を正規名とする
+    champ_skills_fix[c["id"]] = skills
+
+skill_ref_pattern_fix = re.compile(r'([PQWER])（([^）]+)）')
+section_pattern = re.compile(r'^## vs ')
+skill_norm_fixes = 0
+
+for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+    if champ_dir == "_template":
+        continue
+    if champ_dir not in champ_skills_fix:
+        continue
+    filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
+    if not os.path.isfile(filepath):
+        continue
+
+    official_skills = champ_skills_fix[champ_dir]  # {key: official_name}
+
+    with open(filepath, "r") as f:
+        content = f.read()
+
+    # セクション別に不明スキル名の出現数をカウント
+    current_section = None
+    sections_with_wrong = {}  # (key, wrong_name) -> set of sections
+
+    for line in content.splitlines():
+        if line.startswith("## vs"):
+            current_section = line.strip()
+        if line.startswith("#") or line.startswith(">") or line.startswith("---"):
+            continue
+        stripped = line.strip()
+        if not stripped.startswith("-"):
+            continue
+        # 括弧内を一時マスク（ネスト対策）
+        masked = re.sub(r'（[^）]*）', lambda m: '（' + 'X' * (len(m.group(0)) - 2) + '）', stripped)
+        for m in skill_ref_pattern_fix.finditer(stripped):
+            key = m.group(1)
+            name = m.group(2)
+            valid_set = valid_skill_names_fix.get(key, set())
+            if name in valid_set:
+                continue
+            is_extra = any(
+                name.startswith(off) and len(name) > len(off) and name[len(off)] in '、，,（('
+                for off in valid_set
+            )
+            if not is_extra:
+                pair = (key, name)
+                if pair not in sections_with_wrong:
+                    sections_with_wrong[pair] = set()
+                if current_section:
+                    sections_with_wrong[pair].add(current_section)
+
+    # 3セクション以上に出現 + そのキーに公式名がある → 置換
+    new_content = content
+    for (key, wrong_name), sections in sorted(sections_with_wrong.items()):
+        if len(sections) < 3:
+            continue
+        official = official_skills.get(key)
+        if not official:
+            continue
+        old_str = f"{key}（{wrong_name}）"
+        new_str = f"{key}（{official}）"
+        if old_str in new_content:
+            new_content = new_content.replace(old_str, new_str)
+            print(f"  {champ_dir}: {old_str} → {new_str} ({len(sections)}セクション)")
+            skill_norm_fixes += 1
+
+    if new_content != content:
+        with open(filepath, "w") as f:
+            f.write(new_content)
+
+print(f"スキル名正規化: {skill_norm_fixes}パターン")
