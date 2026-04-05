@@ -174,6 +174,10 @@ if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
     # 表記揺れ・日英混在を修正
     echo "${LOG_PREFIX} INFO: quality-fix 実行中..."
     python3 "${PROJECT_DIR}/scripts/quality-fix.py" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
+
+    # guide.md 得意/苦手を matchups.md verdict に同期
+    echo "${LOG_PREFIX} INFO: guide.md 得意/苦手 同期中..."
+    python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
     git -C "$PROJECT_DIR" add champions/*/matchups.md
     # 変更があればコミット
     git -C "$PROJECT_DIR" diff --cached --quiet || \
