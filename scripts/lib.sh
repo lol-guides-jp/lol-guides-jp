@@ -34,7 +34,7 @@ run_cmd() {
     # frontmatter を除いたプロンプトを生成
     local prompt
     prompt=$(awk 'NR==1 && /^---$/{skip=1;next} skip && /^---$/{skip=0;next} !skip' "$cmd_file" \
-             | sed "s|\\\$ARGUMENTS|${args}|")
+             | ARGS="${args}" python3 -c "import sys,os; sys.stdout.write(sys.stdin.read().replace('\$ARGUMENTS', os.environ['ARGS']))")
 
     # DRY_RUN モード
     if [ "${DRY_RUN:-0}" = "1" ]; then
@@ -45,11 +45,9 @@ run_cmd() {
 
     # JSON出力で実行し、コスト情報を抽出
     local json_output
-    # allowed-tools でホワイトリスト指定 + disallowed-tools でWrite/Edit/Bashを明示禁止
-    # （settings.jsonのグローバル許可を上書きするため）
-    json_output=$(claude --print --output-format json \
+    # CLAUDE_SUBPROCESS=1 でサブプロセスであることを hook に通知し Write を拒否させる
+    json_output=$(CLAUDE_SUBPROCESS=1 claude --print --output-format json \
         --allowed-tools "Read,Glob,Grep,WebSearch" \
-        --disallowed-tools "Write,Edit,Bash,mcp__*" \
         ${model:+--model "$model"} -- "$prompt" < /dev/null 2>&1)
     local exit_code=$?
 
