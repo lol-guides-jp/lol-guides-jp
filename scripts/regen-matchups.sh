@@ -26,11 +26,13 @@ source "${PROJECT_DIR}/scripts/lib.sh"
 TIER="all"    # broken | quality | all
 BATCH=3
 DRY_RUN=0
+SLEEP=0       # ジョブ間のsleep秒数
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --tier)   TIER="$2";  shift 2 ;;
         --batch)  BATCH="$2"; shift 2 ;;
+        --sleep)  SLEEP="$2"; shift 2 ;;
         --dry-run) DRY_RUN=1; shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
@@ -192,6 +194,11 @@ else: print('五分')
 
     echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} [${tier}] 完了"
     PROCESSED=$((PROCESSED + 1))
+
+    if [ "$SLEEP" -gt 0 ] && [ "$PROCESSED" -lt "${#JOBS[@]}" ]; then
+        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
+        sleep "$SLEEP"
+    fi
 done
 
 echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
