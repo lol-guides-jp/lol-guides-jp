@@ -101,7 +101,11 @@ def generate_findings_md(all_findings, output_path):
 
 
 def notify(count, findings_path):
-    line = f"- {LOG_PREFIX} lol-guides-jp: 品質スキャン {count}件の要確認 → {findings_path}\n"
+    line = (
+        f"- {LOG_PREFIX} lol-guides-jp: 品質スキャン {count}件の要確認\n"
+        f"  1. {findings_path} を開いて各項目の「判定: 」欄に ok または ng を記入\n"
+        f"  2. `python3 scripts/learn.py {findings_path}` を実行\n"
+    )
     try:
         with open(CLAUDE_LOCAL, "a", encoding="utf-8") as f:
             f.write(line)
