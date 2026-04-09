@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "patterns": [
+    {
+      "id": "mojibake",
+      "category": "文字化け",
+      "description": "UTF-8デコードエラー由来の置換文字（U+FFFD）",
+      "regex": "\ufffd",
+      "confirmed_ng": 0,
+      "confirmed_ok": 0
+    },
+    {
+      "id": "ad-carry",
+      "category": "AD carry表現",
+      "description": "ADCポジションと役割の混同（ダメージディーラー等に置き換える）",
+      "regex": "AD\\s*[Cc]arry|ADCとして|ADCキャリー",
+      "confirmed_ng": 0,
+      "confirmed_ok": 0
+    },
+    {
+      "id": "shikei-misuse",
+      "category": "処刑の誤用",
+      "description": "処刑スキル以外での「処刑」使用（瞬殺・倒す等に置き換える）",
+      "regex": "処刑(する|できる|しよう|した)",
+      "confirmed_ng": 0,
+      "confirmed_ok": 0
+    },
+    {
+      "id": "cc-zone-detail",
+      "category": "CC複合仕様",
+      "description": "内側/外側等のCC仕様詳細（ハルシネーションリスク）",
+      "regex": "(内側|外側).{0,20}(スタン|スロー|ノックバック|ノックアップ)",
+      "confirmed_ng": 0,
+      "confirmed_ok": 0
+    }
+  ],
+  "learned_replacements": []
+}

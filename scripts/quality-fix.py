@@ -84,6 +84,13 @@ print(f"対称修正: {sym_fixes}件\n")
 # --- 2. 表記揺れ修正（guide.md + matchups.md） ---
 print("=== 表記揺れ修正 ===")
 
+# learn.py が蓄積した学習済み修正を自動ロード
+_EXPR_RULES_FILE = os.path.join(os.path.dirname(__file__), "expression-rules.json")
+_learned = []
+if os.path.isfile(_EXPR_RULES_FILE):
+    _rules = json.load(open(_EXPR_RULES_FILE, encoding="utf-8"))
+    _learned = [(r["literal"], r["replacement"]) for r in _rules.get("learned_replacements", [])]
+
 REPLACEMENTS = [
     # アイテム名の誤り
     ("オラクルのエリクサー", "オラクルレンズ"),
@@ -133,6 +140,11 @@ REGEX_REPLACEMENTS = [
     (r"\bBT\b", "ブラッドサースター"),
     (r"\bPD\b", "ファントムダンサー"),
     (r"\bRFC\b", "ラピッドファイアキャノン"),
+    # スキルCD秒数の除去（パッチ・レベル依存のため）
+    # サモナースペルの固定CD（300/240/360秒）は除外
+    (r"(CD|クールダウン)約(?!300|240|360)(\d+)秒", r"\1"),
+    # スキル持続時間の秒数除去
+    (r"持続約\d+秒", "持続"),
 ]
 
 notation_fixes = 0
@@ -146,7 +158,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         with open(filepath, "r") as f:
             content = f.read()
         new_content = content
-        for old, new in REPLACEMENTS:
+        for old, new in REPLACEMENTS + _learned:
             new_content = new_content.replace(old, new)
         for pattern, replacement in REGEX_REPLACEMENTS:
             new_content = re.sub(pattern, replacement, new_content)
