@@ -23,11 +23,14 @@ ROLE=""
 BATCH=3
 DRY_RUN=0
 
+SLEEP=0  # ジョブ間のsleep秒数
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --role) ROLE="$2"; shift 2 ;;
-        --batch) BATCH="$2"; shift 2 ;;
-        --dry-run) DRY_RUN=1; shift ;;
+        --role)    ROLE="$2";    shift 2 ;;
+        --batch)   BATCH="$2";   shift 2 ;;
+        --sleep)   SLEEP="$2";   shift 2 ;;
+        --dry-run) DRY_RUN=1;    shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -36,7 +39,7 @@ export DRY_RUN
 
 cd "$PROJECT_DIR"
 
-echo "${LOG_PREFIX} ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}) ====="
+echo "${LOG_PREFIX} ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s) ====="
 
 # --- 対象ファイルを決定 ---
 if [ -n "$ROLE" ]; then
@@ -65,8 +68,15 @@ echo "${LOG_PREFIX} INFO: ${#JOBS[@]} 件処理します"
 # --- 各ジョブを処理 ---
 PROCESSED=0
 FAILED=0
+_ITER=0
 
 for job in "${JOBS[@]}"; do
+    if [ "$_ITER" -gt 0 ] && [ "$SLEEP" -gt 0 ]; then
+        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
+        sleep "$SLEEP"
+    fi
+    _ITER=$((_ITER + 1))
+
     # フィールド分解: champ_id|champ_ja|opp_id|opp_ja|opp_en|type|summary|source_file
     IFS='|' read -r champ_id champ_ja opp_id opp_ja opp_en type summary source_file <<< "$job"
     args="${champ_id}|${champ_ja}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}"
@@ -153,6 +163,29 @@ lines = open('${source_file}').read().splitlines()
 lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' not in l]
 open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
 "
+
+        # --- 品質チェック: 生成直後に scan-broken で検証 ---
+        scan_result=$(python3 "${PROJECT_DIR}/scripts/scan-broken.py" --tsv --champ "$champ_id" 2>/dev/null \
+            | awk -F'\t' -v opp="$opp_id" '$2 == opp {print $4}')
+
+        if [ -n "$scan_result" ]; then
+            echo "${LOG_PREFIX} WARN: 品質不足 [${scan_result}] → フル再生成でリトライ (${champ_ja} vs ${opp_ja})"
+
+            retry_json=$(run_cmd "research-matchup" "$args") || {
+                echo "${LOG_PREFIX} ERROR: リトライ research 失敗 (${champ_ja} vs ${opp_ja})"
+            }
+            if [ -n "$retry_json" ]; then
+                if echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
+                    retry_json=$(echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
+                fi
+                retry_ops=$(run_cmd "write-matchup" "$retry_json") || true
+                if [ -n "$retry_ops" ]; then
+                    echo "$retry_ops" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
+                        "$champ_id" "$opp_ja" "$opp_en" || true
+                    echo "${LOG_PREFIX} INFO: リトライ完了 (${champ_ja} vs ${opp_ja})"
+                fi
+            fi
+        fi
 
         # --- 相手側エントリとの整合性チェック ---
         bash "${PROJECT_DIR}/scripts/fix-cross-check.sh" \

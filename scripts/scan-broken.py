@@ -271,6 +271,12 @@ def classify(entry, champ_skills, opp_skills):
 tsv_mode = "--tsv" in sys.argv
 all_mode = "--all" in sys.argv
 
+# --champ <id> で単一チャンプのみスキャン（add-matchups.sh の品質チェック用）
+champ_filter = None
+if "--champ" in sys.argv:
+    idx = sys.argv.index("--champ")
+    champ_filter = sys.argv[idx + 1]
+
 if tsv_mode:
     print("champ_id\topp_id\topp_ja\ttier\treasons")
 
@@ -279,6 +285,8 @@ results = []
 
 for c in sorted(DATA["champions"], key=lambda x: x["id"]):
     champ_id = c["id"]
+    if champ_filter and champ_id != champ_filter:
+        continue
     champ_skills = get_skills(champ_id)
     for entry in parse_entries(champ_id):
         opp_id = entry.get("opp_id", "") or ""
