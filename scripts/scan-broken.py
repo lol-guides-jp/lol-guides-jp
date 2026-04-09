@@ -27,6 +27,8 @@ cmap = {c["id"]: c for c in DATA["champions"]}
 ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
 en_to_id = {c["en"]: c["id"] for c in DATA["champions"]}
 
+APHELIOS_WEAPON_NAMES = {"カリバルム", "セヴェラム", "インフェルナム", "クレッシェンダム", "タルサ"}
+
 def get_skills(champ_id):
     """チャンプのスキル名→キーマップを返す（形態変化は両名を登録）"""
     c = cmap.get(champ_id, {})
@@ -34,9 +36,14 @@ def get_skills(champ_id):
     for s in c.get("skills", []):
         key = s["key"]
         for name in s["name"].split("/"):
-            name = name.strip()
+            # ｢｣（隅付き括弧）を除去してマッチ精度を上げる（例: jhin）
+            name = name.strip().replace("｢", "").replace("｣", "")
             if name:
                 result[name] = key
+    # aphelios は武器名で書くのが正しい表記 → 武器名をスキル名として扱う
+    if champ_id == "aphelios":
+        for w in APHELIOS_WEAPON_NAMES:
+            result[w] = "Q"
     return result
 
 def parse_entries(champ_id):
