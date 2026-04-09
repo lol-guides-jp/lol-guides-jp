@@ -8,6 +8,8 @@ model: claude-sonnet-4-6
 
 ---
 
+まず `.claude/writing-rules.md` を Read して共通ライティングルールを把握してから作業を開始する。
+
 updaterエージェントとして、最新パッチに基づきチャンピオンガイドを更新してください。
 
 ## 手順
