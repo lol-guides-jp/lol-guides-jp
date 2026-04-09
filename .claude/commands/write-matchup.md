@@ -29,7 +29,7 @@ $ARGUMENTS
 |---|---|
 | 出力先パス | `champions/{opp_id}/matchups.md` |
 | ヘッダー | `## vs {champ_ja}（{champ_en}）` |
-| 勝率 | `100 - winrate`（整数。例: 48% → 52%） |
+| 勝率 | 入力JSONの `winrate` 数値から **必ず `100 - winrate` で計算する**。例: 入力が `"42%"` なら出力は `58%`。Lolalytics等を参照したり記憶から別の値を使ったりしてはならない |
 | verdict | 反転: 不利↔有利、やや不利↔やや有利、五分→五分 |
 | verdict_reason | `opp_ja` 視点で書く（例: 「champ_ja のQが強い」→「champ_ja のQに注意」） |
 | lv1_2 / lv3_5 / lv6plus / wave / caution | **全て `opp_ja` を主語として書き直す** |
