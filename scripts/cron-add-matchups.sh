@@ -26,7 +26,7 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 cd "$PROJECT_DIR"
 
 echo "${LOG_PREFIX} ===== cron-add-matchups 起動 ====="
-"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 8 2>&1 | tee /tmp/add-matchups-last.log
+"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 16 2>&1 | tee /tmp/add-matchups-last.log
 echo "${LOG_PREFIX} ===== cron-add-matchups 終了 ====="
 
 # 実行結果をCLAUDE.local.mdに記録
