@@ -105,6 +105,23 @@ def add_learned_replacement(literal, replacement, dry_run):
     print(f"  学習: '{literal}' → '{replacement}'")
 
 
+def save_ok_history(pattern_id, line_text, dry_run):
+    """OK確定した (pattern_id, line) を ok_history に保存して再出しを防ぐ"""
+    if not line_text:
+        return
+    rules = json.loads(RULES_FILE.read_text(encoding="utf-8"))
+    history = rules.setdefault("ok_history", [])
+    key = {"pattern_id": pattern_id, "line": line_text}
+    if any(h["pattern_id"] == pattern_id and h["line"] == line_text for h in history):
+        return
+    if dry_run:
+        print(f"  [DRY-RUN] ok_history に追加: [{pattern_id}] {line_text[:60]}")
+        return
+    history.append({**key, "added": date.today().isoformat()})
+    RULES_FILE.write_text(json.dumps(rules, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"  ok_history: [{pattern_id}] {line_text[:60]}")
+
+
 def update_pattern_counts(pattern_id, verdict, dry_run):
     rules = json.loads(RULES_FILE.read_text(encoding="utf-8"))
     for p in rules["patterns"]:
@@ -219,9 +236,10 @@ def main():
                 add_learned_replacement(f["original_line"], f["fix"], args.dry_run)
         processed_ids.add(f["id"])
 
-    # OK処理（カウント更新のみ）
+    # OK処理（カウント更新 + ok_history 保存）
     for f in ok:
         update_pattern_counts(f["pattern_id"], "ok", args.dry_run)
+        save_ok_history(f["pattern_id"], f["original_line"], args.dry_run)
         processed_ids.add(f["id"])
 
     # writing-rules-candidates.md への提案

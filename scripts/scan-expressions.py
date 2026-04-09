@@ -7,7 +7,7 @@
 #   python3 scripts/scan-expressions.py --dry-run
 #
 # cron登録:
-#   0 3 * * 0 cd /home/ojita/lol-guides-jp && python3 scripts/scan-expressions.py >> scripts/scan.log 2>&1
+#   0 2 * * 0 cd /home/ojita/lol-guides-jp && python3 scripts/scan-expressions.py >> scripts/scan.log 2>&1
 
 import argparse
 import json
@@ -23,8 +23,11 @@ CLAUDE_LOCAL = Path("/home/ojita/CLAUDE.local.md")
 LOG_PREFIX = f"[{date.today()}]"
 
 
-def load_patterns():
-    rules = json.loads(RULES_FILE.read_text(encoding="utf-8"))
+def load_rules():
+    return json.loads(RULES_FILE.read_text(encoding="utf-8"))
+
+
+def load_patterns(rules):
     patterns = []
     for p in rules["patterns"]:
         patterns.append({
@@ -32,11 +35,31 @@ def load_patterns():
             "category": p["category"],
             "description": p["description"],
             "regex": re.compile(p["regex"]),
+            "auto_ok_files": set(p.get("auto_ok_files", [])),
+            "auto_ok_regex": [re.compile(r) for r in p.get("auto_ok_regex", [])],
         })
     return patterns
 
 
-def scan_file(filepath, patterns):
+def load_ok_history(rules):
+    """ok_history: set of (pattern_id, line_text) — 一度OKとなった項目を再出しない"""
+    return {
+        (h["pattern_id"], h["line"])
+        for h in rules.get("ok_history", [])
+    }
+
+
+def is_auto_ok(line, pattern, champ_name):
+    """auto_ok_files / auto_ok_regex に該当する場合はスキップ"""
+    if champ_name in pattern["auto_ok_files"]:
+        return True
+    return any(r.search(line) for r in pattern["auto_ok_regex"])
+
+
+def scan_file(filepath, patterns, champ_name, ok_history, seen_lines):
+    """
+    seen_lines: set of (pattern_id, line_text) — このスキャン実行内での重複除去用
+    """
     findings = []
     try:
         lines = filepath.read_text(encoding="utf-8").splitlines()
@@ -51,19 +74,35 @@ def scan_file(filepath, patterns):
         return findings
 
     for i, line in enumerate(lines, 1):
-        # ヘッダ行・メタ行はスキップ
         stripped = line.strip()
         if stripped.startswith("#") or stripped.startswith(">") or stripped.startswith("---") or stripped.startswith("*パッチ"):
             continue
         for p in patterns:
-            if p["regex"].search(stripped):
-                findings.append({
-                    "line_no": i,
-                    "line": stripped,
-                    "pattern_id": p["id"],
-                    "category": p["category"],
-                    "description": p["description"],
-                })
+            if not p["regex"].search(stripped):
+                continue
+
+            # auto_ok_files / auto_ok_regex チェック
+            if is_auto_ok(stripped, p, champ_name):
+                continue
+
+            key = (p["id"], stripped)
+
+            # ok_history チェック（過去にOK確定済み）
+            if key in ok_history:
+                continue
+
+            # このスキャン内の重複除去
+            if key in seen_lines:
+                continue
+            seen_lines.add(key)
+
+            findings.append({
+                "line_no": i,
+                "line": stripped,
+                "pattern_id": p["id"],
+                "category": p["category"],
+                "description": p["description"],
+            })
     return findings
 
 
@@ -119,19 +158,23 @@ def main():
     args = parser.parse_args()
 
     REVIEW_DIR.mkdir(exist_ok=True)
-    patterns = load_patterns()
-    print(f"{LOG_PREFIX} INFO: {len(patterns)}パターンでスキャン開始")
+    rules = load_rules()
+    patterns = load_patterns(rules)
+    ok_history = load_ok_history(rules)
+    print(f"{LOG_PREFIX} INFO: {len(patterns)}パターン / ok_history={len(ok_history)}件 でスキャン開始")
 
+    seen_lines = set()
     all_findings = []
     for champ_dir in sorted(CHAMP_DIR.iterdir()):
         if champ_dir.name == "_template" or not champ_dir.is_dir():
             continue
+        champ_name = champ_dir.name  # e.g. "urgot", "pyke"
         for filename in ["guide.md", "matchups.md"]:
             filepath = champ_dir / filename
             if not filepath.exists():
                 continue
             rel_path = f"champions/{champ_dir.name}/{filename}"
-            findings = scan_file(filepath, patterns)
+            findings = scan_file(filepath, patterns, champ_name, ok_history, seen_lines)
             if findings:
                 all_findings.append((rel_path, findings))
 
