@@ -1,6 +1,6 @@
 #!/bin/bash
 # add-matchups.sh
-# missing-*.txt から未対面を取り出し、research → write → append のパイプラインで追加する
+# missing-*.txt から未対面を取り出し、research(A+B) → write(A+B) → 整合チェック のパイプラインで追加する
 #
 # 使い方:
 #   ./scripts/add-matchups.sh [--role トップ|ミッド|ジャング|ADC|サポート] [--batch N] [--sleep N] [--dry-run]
@@ -15,6 +15,7 @@ export NVM_DIR="/home/ojita/.nvm"
 PROJECT_DIR="/home/ojita/lol-guides-jp"
 DATE=$(date +%Y-%m-%d)
 LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
+CACHE_DIR="${PROJECT_DIR}/scripts/research-cache"
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
@@ -81,7 +82,6 @@ for job in "${JOBS[@]}"; do
 
     # フィールド分解: champ_id|champ_ja|opp_id|opp_ja|opp_en|type|summary|source_file
     IFS='|' read -r champ_id champ_ja opp_id opp_ja opp_en type summary source_file <<< "$job"
-    args="${champ_id}|${champ_ja}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}"
 
     echo "${LOG_PREFIX} INFO: ${champ_ja} vs ${opp_ja} (${type}) ..."
 
@@ -129,9 +129,20 @@ def skills_str(cid):
 print(skills_str("${champ_id}"), skills_str("${opp_id}"))
 PYEOF
 )
+
+    # A側引数
     args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}|${champ_skills}|${opp_skills}"
 
-    # --- L3-research: WebSearch で対面情報収集 ---
+    # B側引数（champ/opp入れ替え、type反転）
+    opp_type=""
+    case "$type" in
+        "得意") opp_type="苦手" ;;
+        "苦手") opp_type="得意" ;;
+    esac
+    args_b="${opp_id}|${opp_ja}|${opp_en}|${champ_id}|${champ_ja}|${champ_en}|${opp_type}||${opp_skills}|${champ_skills}"
+
+    # --- L3-research A側: champ視点 ---
+    mkdir -p "${CACHE_DIR}"
     research_json=$(run_cmd "research-matchup" "$args") || {
         echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
@@ -142,13 +153,35 @@ PYEOF
         FAILED=$((FAILED + 1))
         continue
     fi
-
-    # research がリスト形式 [{...}] で返ってきた場合はunwrap
     if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
         research_json=$(echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
     fi
+    echo "$research_json" > "${CACHE_DIR}/${champ_id}_vs_${opp_id}.json"
 
-    # --- L3-write: matchups.md フォーマットに整形 ---
+    # --- L3-research B側: opp視点 ---
+    research_json_b=""
+    if [ "$DRY_RUN" = "0" ]; then
+        research_json_b=$(run_cmd "research-matchup" "$args_b") || {
+            echo "${LOG_PREFIX} WARN: B側 research-matchup 失敗 (${opp_ja} vs ${champ_ja}) → B側スキップ"
+            research_json_b=""
+        }
+        if [ -n "$research_json_b" ]; then
+            if echo "$research_json_b" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
+                research_json_b=$(echo "$research_json_b" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
+            fi
+            echo "$research_json_b" > "${CACHE_DIR}/${opp_id}_vs_${champ_id}.json"
+        fi
+    fi
+
+    # --- 整合チェック ---
+    if [ -n "$research_json_b" ]; then
+        python3 "${PROJECT_DIR}/scripts/check-research-symmetry.py" \
+            "${CACHE_DIR}/${champ_id}_vs_${opp_id}.json" \
+            "${CACHE_DIR}/${opp_id}_vs_${champ_id}.json" 2>&1 | \
+            while IFS= read -r line; do echo "${LOG_PREFIX} ${line}"; done || true
+    fi
+
+    # --- L3-write A側 ---
     ops_json=$(run_cmd "write-matchup" "$research_json") || {
         echo "${LOG_PREFIX} ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
@@ -162,7 +195,7 @@ PYEOF
 
     # --- L1: dispatch_ops でファイルに追記 ---
     if [ "$DRY_RUN" = "1" ]; then
-        echo "${LOG_PREFIX} [DRY-RUN] dispatch_ops をスキップ (champ_a + reverse)"
+        echo "${LOG_PREFIX} [DRY-RUN] dispatch_ops をスキップ (A側 + B側)"
         echo "$ops_json"
     else
         if [ "$FORCE" = "1" ] && [ "$ENTRY_EXISTS" = "1" ]; then
@@ -233,56 +266,44 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
             else
                 echo "${LOG_PREFIX} INFO: リトライ後に品質確認 OK (${champ_ja} vs ${opp_ja})"
                 research_json="$retry_json"
+                # キャッシュも更新
+                echo "$research_json" > "${CACHE_DIR}/${champ_id}_vs_${opp_id}.json"
             fi
         fi
 
-        # --- 対面側エントリ（reverse）を同一データで生成 ---
-        # winrate・verdict はモデルに計算させず Python で事前計算して注入する
-        reverse_json=$(echo "$research_json" | python3 -c "
-import sys, json
-d = json.load(sys.stdin)
-wr_str = d.get('winrate', '50%').replace('%', '').strip()
-try:
-    wr = int(wr_str)
-except ValueError:
-    wr = 50
-rev_wr = 100 - wr
-flip = {'不利':'有利','やや不利':'やや有利','五分':'五分','やや有利':'やや不利','有利':'不利'}
-d['reverse'] = True
-d['reverse_winrate'] = str(rev_wr) + '%'
-d['reverse_verdict'] = flip.get(d.get('verdict', '五分'), '五分')
-print(json.dumps(d, ensure_ascii=False))
-")
-        reverse_ops=$(run_cmd "write-matchup" "$reverse_json") || {
-            echo "${LOG_PREFIX} WARN: reverse write-matchup 失敗 (${opp_ja} vs ${champ_ja}) → スキップ"
-            reverse_ops=""
-        }
-        if [ -n "$reverse_ops" ]; then
-            matchup_b="${PROJECT_DIR}/champions/${opp_id}/matchups.md"
-            if [ -f "$matchup_b" ]; then
-                echo "$reverse_ops" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
-                    "$opp_id" "$champ_ja" "$champ_en" || \
-                    echo "${LOG_PREFIX} WARN: reverse replace-section 失敗 (${opp_ja} vs ${champ_ja})"
-            else
-                dispatch_ops "$reverse_ops" || \
-                    echo "${LOG_PREFIX} WARN: reverse dispatch_ops 失敗 (${opp_ja} vs ${champ_ja})"
-            fi
-            echo "${LOG_PREFIX} OK: ${opp_ja} vs ${champ_ja} (reverse) 生成完了"
+        # --- B側エントリを research_json_b で生成 ---
+        if [ -n "$research_json_b" ]; then
+            ops_json_b=$(run_cmd "write-matchup" "$research_json_b") || {
+                echo "${LOG_PREFIX} WARN: B側 write-matchup 失敗 (${opp_ja} vs ${champ_ja}) → スキップ"
+                ops_json_b=""
+            }
+            if [ -n "$ops_json_b" ]; then
+                matchup_b="${PROJECT_DIR}/champions/${opp_id}/matchups.md"
+                if [ -f "$matchup_b" ]; then
+                    echo "$ops_json_b" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
+                        "$opp_id" "$champ_ja" "$champ_en" || \
+                        echo "${LOG_PREFIX} WARN: B側 replace-section 失敗 (${opp_ja} vs ${champ_ja})"
+                else
+                    dispatch_ops "$ops_json_b" || \
+                        echo "${LOG_PREFIX} WARN: B側 dispatch_ops 失敗 (${opp_ja} vs ${champ_ja})"
+                fi
+                echo "${LOG_PREFIX} OK: ${opp_ja} vs ${champ_ja} (B側) 生成完了"
 
-            # opp の missing ファイルから処理済み行を削除
-            for mf in "${PROJECT_DIR}/scripts/missing-トップ.txt" \
-                       "${PROJECT_DIR}/scripts/missing-ミッド.txt" \
-                       "${PROJECT_DIR}/scripts/missing-ジャング.txt" \
-                       "${PROJECT_DIR}/scripts/missing-ADC.txt" \
-                       "${PROJECT_DIR}/scripts/missing-サポート.txt"; do
-                [ -f "$mf" ] || continue
-                python3 -c "
+                # opp の missing ファイルから処理済み行を削除
+                for mf in "${PROJECT_DIR}/scripts/missing-トップ.txt" \
+                           "${PROJECT_DIR}/scripts/missing-ミッド.txt" \
+                           "${PROJECT_DIR}/scripts/missing-ジャング.txt" \
+                           "${PROJECT_DIR}/scripts/missing-ADC.txt" \
+                           "${PROJECT_DIR}/scripts/missing-サポート.txt"; do
+                    [ -f "$mf" ] || continue
+                    python3 -c "
 lines = open('${mf}').read().splitlines()
 new = [l for l in lines if not (l.startswith('${opp_id}|') and '|${champ_id}|' in l)]
 if len(new) < len(lines):
     open('${mf}', 'w').write('\n'.join(new) + ('\n' if new else ''))
 "
-            done
+                done
+            fi
         fi
     fi
 

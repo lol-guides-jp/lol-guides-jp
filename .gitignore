@@ -4,6 +4,7 @@ node_modules/
 # 生成物（再生成可能）
 scripts/missing-matchups.json
 scripts/missing-*.txt
+scripts/research-cache/
 .env
 .env.*
 .DS_Store
