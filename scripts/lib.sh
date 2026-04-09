@@ -65,8 +65,10 @@ run_cmd() {
         "$usage_usd" "$duration_ms" "$input_tokens" "$output_tokens" "$exit_code" >> "$COST_LOG"
 
     # 本文を標準出力に返す（JSONからresultフィールドを抽出）
+    # コードフェンス（```json ... ```）を除去（known-failures.md 参照）
     local result_text
     result_text=$(echo "$json_output" | node -e "try{const d=JSON.parse(require('fs').readFileSync(0,'utf8'));process.stdout.write(d.result||'')}catch{}" 2>/dev/null)
+    result_text=$(echo "$result_text" | sed 's/^```[a-z]*[[:space:]]*//' | sed 's/[[:space:]]*```$//')
     echo "$result_text"
 
     return $exit_code

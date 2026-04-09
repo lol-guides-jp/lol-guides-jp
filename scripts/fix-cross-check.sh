@@ -139,23 +139,27 @@ if [ "$status" = "fixed" ]; then
         target_header="## vs ${champ_ja}"
     fi
 
-    # セクション置換
+    # セクション置換（fix_entry を環境変数経由で渡してクォート問題を回避）
+    FIX_ENTRY="$fix_entry" TARGET_FILE="$target_file" TARGET_HEADER="$target_header" \
     python3 -c "
-import sys
-content = open('${target_file}').read()
+import os
+fix_entry = os.environ['FIX_ENTRY']
+target_file = os.environ['TARGET_FILE']
+target_header = os.environ['TARGET_HEADER']
+content = open(target_file).read()
 lines = content.splitlines(keepends=True)
 result = []
 skip = False
 for line in lines:
-    if line.rstrip() == '${target_header}' or line.startswith('${target_header}（'):
+    if line.rstrip() == target_header or line.startswith(target_header + '（'):
         skip = True
-        result.append('${fix_entry}\n')
+        result.append(fix_entry + '\n')
         continue
     if skip and line.startswith('## vs '):
         skip = False
     if not skip:
         result.append(line)
-open('${target_file}', 'w').write(''.join(result))
+open(target_file, 'w').write(''.join(result))
 "
     echo "${LOG_PREFIX} FIXED: ${champ_ja} vs ${opp_ja} (fix_side=${fix_side}) — ${issue}"
 
