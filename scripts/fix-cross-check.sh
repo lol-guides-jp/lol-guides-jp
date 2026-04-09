@@ -101,7 +101,19 @@ if [ -z "$result" ]; then
     exit 1
 fi
 
-status=$(echo "$result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('status','error'))")
+status=$(echo "$result" | python3 -c "
+import sys, json
+try:
+    d = json.load(sys.stdin)
+    print(d.get('status', 'error'))
+except json.JSONDecodeError:
+    print('error')
+") || { echo "${LOG_PREFIX} ERROR: cross-check JSON解析失敗 (${champ_ja} vs ${opp_ja})"; exit 1; }
+
+if [ "$status" = "error" ]; then
+    echo "${LOG_PREFIX} ERROR: cross-check 無効なJSON (${champ_ja} vs ${opp_ja})"
+    exit 1
+fi
 
 if [ "$status" = "ok" ]; then
     echo "${LOG_PREFIX} OK: 整合性問題なし (${champ_ja} vs ${opp_ja})"
