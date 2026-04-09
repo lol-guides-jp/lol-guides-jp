@@ -14,9 +14,9 @@ model: claude-sonnet-4-6
 
 $ARGUMENTS
 
-形式: `champ_id|champ_ja|opp_id|opp_ja|opp_en|type|summary|champ_skills|opp_skills`
+形式: `champ_id|champ_ja|champ_en|opp_id|opp_ja|opp_en|type|summary|champ_skills|opp_skills`
 
-- `champ_ja`: **ガイドを読むプレイヤーが使うチャンピオン（主人公）**
+- `champ_ja` / `champ_en`: **ガイドを読むプレイヤーが使うチャンピオン（主人公）**
 - `opp_ja` / `opp_en`: 対面の相手チャンピオン
 - `type`: 得意 / 苦手（guide.mdの評価）
 - `summary`: guide.mdに記載されているサマリーヒント
@@ -55,8 +55,11 @@ $ARGUMENTS
 
 0. ~~`docs/data.json` を Read する~~ — スキル名は引数 `champ_skills`/`opp_skills` に含まれているため不要。
 
-1. `{champ_en} vs {opp_en} top/mid/jungle/adc/support matchup patch 26.7` でWebSearch
-2. 勝率（U.GG / Lolalytics / op.gg などから取得）
+1. **勝率取得（必須・最優先）**: 以下の URL を WebSearch で検索し、**All ranks** の勝率を取得する。  
+   `https://lolalytics.com/lol/{champ_en_lowercase}/vs/{opp_en_lowercase}/?tier=all`  
+   （`champ_en`・`opp_en` をすべて小文字・スペース除去した文字列。例: "Miss Fortune" → "missfortune"）  
+   Lolalytics 以外のソースは使わない。
+2. `{champ_en} vs {opp_en} top/mid/jungle/adc/support matchup patch 26.7` でWebSearch し、レーン固有の立ち回りポイントを収集する
 3. レベル帯ごとの立ち回りポイント（Lv1-2 / Lv3-5 / Lv6以降）
 4. ウェーブ管理の方針
 5. 注意すべきスキル・コンボ・タイミング
@@ -71,6 +74,7 @@ $ARGUMENTS
 {
   "champ_id": "aatrox",
   "champ_ja": "エイトロックス",
+  "champ_en": "Aatrox",
   "champ_skills": "P:死兆の構え,Q:ダーキンブレード,W:炎獄の鎖,E:影進撃,R:ワールドエンダー",
   "opp_id": "garen",
   "opp_ja": "ガレン",
@@ -88,5 +92,5 @@ $ARGUMENTS
 ```
 
 `verdict`は「有利」「やや有利」「五分」「やや不利」「不利」のいずれか。
-`winrate`は整数の単一値（例: `48%`、`52%`）。複数ソースで値が異なる場合はLolalytics優先。範囲・小数点は使わない。
+`winrate`は整数の単一値（例: `48%`、`52%`）。Lolalyticsの All ranks データを使う。範囲・小数点は使わない。
 情報が見つからない場合もsummaryヒントを元に推定して埋める。

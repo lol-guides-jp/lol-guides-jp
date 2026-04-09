@@ -27,12 +27,14 @@ TIER="all"    # broken | quality | all
 BATCH=3
 DRY_RUN=0
 SLEEP=0       # ジョブ間のsleep秒数
+FORCE_TIER="" # 指定すると scan-broken.py の tier を上書き（例: broken）
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --tier)   TIER="$2";  shift 2 ;;
-        --batch)  BATCH="$2"; shift 2 ;;
-        --sleep)  SLEEP="$2"; shift 2 ;;
+        --tier)        TIER="$2";       shift 2 ;;
+        --batch)       BATCH="$2";      shift 2 ;;
+        --sleep)       SLEEP="$2";      shift 2 ;;
+        --force-tier)  FORCE_TIER="$2"; shift 2 ;;
         --dry-run) DRY_RUN=1; shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
@@ -88,12 +90,21 @@ print(','.join(parts))
 # --- メイン処理 ---
 PROCESSED=0
 FAILED=0
+_ITER=0
 
 for job in "${JOBS[@]}"; do
-    IFS=$'\t' read -r champ_id opp_id opp_ja tier reasons <<< "$job"
+    # sleep はループ先頭で実施（失敗時の continue でも必ずかかる）
+    if [ "$_ITER" -gt 0 ] && [ "$SLEEP" -gt 0 ]; then
+        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
+        sleep "$SLEEP"
+    fi
+    _ITER=$((_ITER + 1))
 
-    # champ_ja / opp_en を data.json から補完
-    read -r champ_ja _  < <(get_champ_info "$champ_id")
+    IFS=$'\t' read -r champ_id opp_id opp_ja tier reasons <<< "$job"
+    [ -n "$FORCE_TIER" ] && tier="$FORCE_TIER"
+
+    # champ_ja / champ_en / opp_en を data.json から補完
+    read -r champ_ja champ_en < <(get_champ_info "$champ_id")
     read -r _  opp_en   < <(get_champ_info "$opp_id")
 
     # opp_en が取れない場合（opp_id 不明）はスキップ
@@ -134,7 +145,7 @@ elif '${opp_ja}' in unfav: print('苦手')
 else: print('五分')
 " 2>/dev/null || echo "五分")
 
-        args="${champ_id}|${champ_ja}|${opp_id}|${opp_ja}|${opp_en}|${type_hint}||${champ_skills}|${opp_skills}"
+        args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type_hint}||${champ_skills}|${opp_skills}"
 
         research_json=$(run_cmd "research-matchup" "$args") || {
             echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
@@ -194,11 +205,6 @@ else: print('五分')
 
     echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} [${tier}] 完了"
     PROCESSED=$((PROCESSED + 1))
-
-    if [ "$SLEEP" -gt 0 ] && [ "$PROCESSED" -lt "${#JOBS[@]}" ]; then
-        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
-        sleep "$SLEEP"
-    fi
 done
 
 echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="

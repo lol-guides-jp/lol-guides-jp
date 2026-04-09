@@ -99,7 +99,14 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
         continue
     fi
 
-    # --- スキル名を data.json から抽出して引数に付加 ---
+    # --- スキル名・英語名を data.json から抽出して引数に付加 ---
+    champ_en=$(python3 -c "
+import json
+data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+cmap = {c['id']:c for c in data['champions']}
+print(cmap.get('${champ_id}', {}).get('en', '${champ_id}'))
+" 2>/dev/null || echo "$champ_id")
+
     read -r champ_skills opp_skills < <(python3 - << PYEOF
 import json
 data = json.load(open("${PROJECT_DIR}/docs/data.json"))
@@ -115,7 +122,7 @@ def skills_str(cid):
 print(skills_str("${champ_id}"), skills_str("${opp_id}"))
 PYEOF
 )
-    args="${champ_id}|${champ_ja}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}|${champ_skills}|${opp_skills}"
+    args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type}|${summary}|${champ_skills}|${opp_skills}"
 
     # --- L3-research: WebSearch で対面情報収集 ---
     research_json=$(run_cmd "research-matchup" "$args") || {
@@ -130,7 +137,7 @@ PYEOF
     fi
 
     # research がリスト形式 [{...}] で返ってきた場合はunwrap
-    if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
+    if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
         research_json=$(echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
     fi
 
@@ -148,7 +155,7 @@ PYEOF
 
     # --- L1: dispatch_ops でファイルに追記 ---
     if [ "$DRY_RUN" = "1" ]; then
-        echo "${LOG_PREFIX} [DRY-RUN] dispatch_ops をスキップ"
+        echo "${LOG_PREFIX} [DRY-RUN] dispatch_ops をスキップ (champ_a + reverse)"
         echo "$ops_json"
     else
         dispatch_ops "$ops_json" || {
@@ -157,7 +164,7 @@ PYEOF
             continue
         }
 
-        # missing から処理済み行を削除
+        # champ_a の missing から処理済み行を削除
         python3 -c "
 lines = open('${source_file}').read().splitlines()
 lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' not in l]
@@ -181,7 +188,7 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
                 FAILED=$((FAILED + 1))
                 continue
             fi
-            if echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
+            if echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
                 retry_json=$(echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
             fi
             retry_ops=$(run_cmd "write-matchup" "$retry_json") || {
@@ -200,22 +207,57 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
                 FAILED=$((FAILED + 1))
                 continue
             }
-
             # リトライ後の品質再確認
             scan_result2=$(python3 "${PROJECT_DIR}/scripts/scan-broken.py" --tsv --champ "$champ_id" 2>/dev/null \
                 | awk -F'\t' -v opp="$opp_id" '$2 == opp {print $4}')
             if [ -n "$scan_result2" ]; then
                 echo "${LOG_PREFIX} WARN: リトライ後も品質不足 [${scan_result2}] (${champ_ja} vs ${opp_ja}) → 手動確認が必要"
                 echo "[$(date +%Y-%m-%d)] RETRY_FAILED: ${champ_ja} vs ${opp_ja} [${scan_result2}]" \
-                    >> "${PROJECT_DIR}/scripts/cross-check-review.log"
+                    >> "${PROJECT_DIR}/scripts/add-matchups-review.log"
             else
                 echo "${LOG_PREFIX} INFO: リトライ後に品質確認 OK (${champ_ja} vs ${opp_ja})"
+                research_json="$retry_json"
             fi
         fi
 
-        # --- 相手側エントリとの整合性チェック ---
-        bash "${PROJECT_DIR}/scripts/fix-cross-check.sh" \
-            "$champ_id" "$champ_ja" "$opp_id" "$opp_ja" "$opp_en" || true
+        # --- 対面側エントリ（reverse）を同一データで生成 ---
+        reverse_json=$(echo "$research_json" | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+d['reverse'] = True
+print(json.dumps(d, ensure_ascii=False))
+")
+        reverse_ops=$(run_cmd "write-matchup" "$reverse_json") || {
+            echo "${LOG_PREFIX} WARN: reverse write-matchup 失敗 (${opp_ja} vs ${champ_ja}) → スキップ"
+            reverse_ops=""
+        }
+        if [ -n "$reverse_ops" ]; then
+            matchup_b="${PROJECT_DIR}/champions/${opp_id}/matchups.md"
+            if [ -f "$matchup_b" ]; then
+                echo "$reverse_ops" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
+                    "$opp_id" "$champ_ja" "$champ_en" || \
+                    echo "${LOG_PREFIX} WARN: reverse replace-section 失敗 (${opp_ja} vs ${champ_ja})"
+            else
+                dispatch_ops "$reverse_ops" || \
+                    echo "${LOG_PREFIX} WARN: reverse dispatch_ops 失敗 (${opp_ja} vs ${champ_ja})"
+            fi
+            echo "${LOG_PREFIX} OK: ${opp_ja} vs ${champ_ja} (reverse) 生成完了"
+
+            # opp の missing ファイルから処理済み行を削除
+            for mf in "${PROJECT_DIR}/scripts/missing-トップ.txt" \
+                       "${PROJECT_DIR}/scripts/missing-ミッド.txt" \
+                       "${PROJECT_DIR}/scripts/missing-ジャング.txt" \
+                       "${PROJECT_DIR}/scripts/missing-ADC.txt" \
+                       "${PROJECT_DIR}/scripts/missing-サポート.txt"; do
+                [ -f "$mf" ] || continue
+                python3 -c "
+lines = open('${mf}').read().splitlines()
+new = [l for l in lines if not (l.startswith('${opp_id}|') and '|${champ_id}|' in l)]
+if len(new) < len(lines):
+    open('${mf}', 'w').write('\n'.join(new) + ('\n' if new else ''))
+"
+            done
+        fi
     fi
 
     echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} 追加完了"
