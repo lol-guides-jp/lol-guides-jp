@@ -22,6 +22,7 @@ source "${PROJECT_DIR}/scripts/lib.sh"
 ROLE=""
 BATCH=3
 DRY_RUN=0
+FORCE=0  # 1 = 既存エントリでもスキップせず再生成（両方向再生成用）
 
 SLEEP=0  # ジョブ間のsleep秒数
 
@@ -30,6 +31,7 @@ while [[ $# -gt 0 ]]; do
         --role)    ROLE="$2";    shift 2 ;;
         --batch)   BATCH="$2";   shift 2 ;;
         --sleep)   SLEEP="$2";   shift 2 ;;
+        --force)   FORCE=1;      shift ;;
         --dry-run) DRY_RUN=1;    shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
@@ -85,7 +87,11 @@ for job in "${JOBS[@]}"; do
 
     # --- 重複チェック ---
     matchup_file="${PROJECT_DIR}/champions/${champ_id}/matchups.md"
+    ENTRY_EXISTS=0
     if [ -f "$matchup_file" ] && grep -q "^## vs ${opp_ja}" "$matchup_file"; then
+        ENTRY_EXISTS=1
+    fi
+    if [ "$ENTRY_EXISTS" = "1" ] && [ "$FORCE" = "0" ]; then
         echo "${LOG_PREFIX} SKIP: ${champ_ja} vs ${opp_ja} は既に存在"
         # missing から削除
         if [ "$DRY_RUN" = "0" ]; then
@@ -98,6 +104,7 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
         fi
         continue
     fi
+    [ "$ENTRY_EXISTS" = "1" ] && echo "${LOG_PREFIX} INFO: ${champ_ja} vs ${opp_ja} を強制再生成 (--force)"
 
     # --- スキル名・英語名を data.json から抽出して引数に付加 ---
     champ_en=$(python3 -c "
@@ -158,11 +165,20 @@ PYEOF
         echo "${LOG_PREFIX} [DRY-RUN] dispatch_ops をスキップ (champ_a + reverse)"
         echo "$ops_json"
     else
-        dispatch_ops "$ops_json" || {
-            echo "${LOG_PREFIX} ERROR: dispatch_ops 失敗 (${champ_ja} vs ${opp_ja})"
-            FAILED=$((FAILED + 1))
-            continue
-        }
+        if [ "$FORCE" = "1" ] && [ "$ENTRY_EXISTS" = "1" ]; then
+            echo "$ops_json" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
+                "$champ_id" "$opp_ja" "$opp_en" || {
+                echo "${LOG_PREFIX} ERROR: force replace-section 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            }
+        else
+            dispatch_ops "$ops_json" || {
+                echo "${LOG_PREFIX} ERROR: dispatch_ops 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            }
+        fi
 
         # champ_a の missing から処理済み行を削除
         python3 -c "
