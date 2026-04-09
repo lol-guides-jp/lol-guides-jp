@@ -237,10 +237,10 @@ if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
     # guide.md 得意/苦手を matchups.md verdict に同期
     echo "${LOG_PREFIX} INFO: guide.md 得意/苦手 同期中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    git -C "$PROJECT_DIR" add champions/*/matchups.md
+    git -C "$PROJECT_DIR" add champions/*/matchups.md champions/*/guide.md
     # 変更があればコミット
     git -C "$PROJECT_DIR" diff --cached --quiet || \
-        git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド 表記揺れ・日英混在修正 (自動)"
+        git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
 
     # data.json 再ビルド
     echo "${LOG_PREFIX} INFO: data.json 再ビルド中..."
