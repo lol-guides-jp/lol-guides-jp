@@ -237,10 +237,20 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
         fi
 
         # --- 対面側エントリ（reverse）を同一データで生成 ---
+        # winrate・verdict はモデルに計算させず Python で事前計算して注入する
         reverse_json=$(echo "$research_json" | python3 -c "
 import sys, json
 d = json.load(sys.stdin)
+wr_str = d.get('winrate', '50%').replace('%', '').strip()
+try:
+    wr = int(wr_str)
+except ValueError:
+    wr = 50
+rev_wr = 100 - wr
+flip = {'不利':'有利','やや不利':'やや有利','五分':'五分','やや有利':'やや不利','有利':'不利'}
 d['reverse'] = True
+d['reverse_winrate'] = str(rev_wr) + '%'
+d['reverse_verdict'] = flip.get(d.get('verdict', '五分'), '五分')
 print(json.dumps(d, ensure_ascii=False))
 ")
         reverse_ops=$(run_cmd "write-matchup" "$reverse_json") || {
