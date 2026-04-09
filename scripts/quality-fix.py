@@ -111,6 +111,8 @@ REPLACEMENTS = [
     # ジェイスの形態名
     ("砲形態", "キャノンモード"),
     ("槌形態", "ハンマーモード"),
+    # ゲーム用語の表記統一（カタカナ優先）
+    ("真ダメージ", "トゥルーダメージ"),
     # ミニオン関連
     ("ミニオン波", "ミニオンウェーブ"),
     # タワープレート表記
@@ -325,6 +327,57 @@ else:
     print("  items-ja.json が見つかりません。scripts/fetch-items.py を実行してください")
 
 print(f"アイテム名修正: {item_fixes}件")
+
+# --- 5b. ルーン名の日本語化（ddragon 公式名、guide.md + matchups.md） ---
+print("\n=== ルーン名の日本語化 ===")
+
+RUNES_FILE = os.path.join(os.path.dirname(__file__), "runes-ja.json")
+rune_fixes = 0
+
+if os.path.isfile(RUNES_FILE):
+    runes_map = json.load(open(RUNES_FILE, encoding="utf-8"))
+    # 長い名前優先でソート（部分マッチ防止）
+    runes_sorted = sorted(runes_map.items(), key=lambda x: len(x[0]), reverse=True)
+    # アイテム名と衝突するルーン名: 後続に大文字語が続く場合（複合語）はスキップ
+    RUNE_COMPOUND_EXCLUSIONS = {"Guardian"}  # Guardian Angel と衝突
+
+    for champ_dir in sorted(os.listdir(CHAMP_DIR)):
+        if champ_dir == "_template":
+            continue
+        for filename in ["matchups.md", "guide.md"]:
+            filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
+            if not os.path.isfile(filepath):
+                continue
+            with open(filepath, "r") as f:
+                lines = f.readlines()
+
+            new_lines = []
+            changed = False
+            for line in lines:
+                if line.startswith("#") or line.startswith(">") or line.startswith("---"):
+                    new_lines.append(line)
+                    continue
+                new_line = line
+                for en_name, ja_name in runes_sorted:
+                    if en_name in RUNE_COMPOUND_EXCLUSIONS:
+                        # スペース+大文字が続く場合（複合語の一部）は除外
+                        pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?! [A-Z])(?![a-zA-Z])'
+                    else:
+                        pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?![a-zA-Z])'
+                    new_line = re.sub(pattern, ja_name, new_line)
+                if new_line != line:
+                    changed = True
+                new_lines.append(new_line)
+
+            if changed:
+                with open(filepath, "w") as f:
+                    f.writelines(new_lines)
+                rune_fixes += 1
+                print(f"  修正: {champ_dir}/{filename}")
+else:
+    print("  runes-ja.json が見つかりません。scripts/fetch-runes.py を実行してください")
+
+print(f"ルーン名修正: {rune_fixes}件")
 
 # --- 4. 勝率表記の正規化（範囲→中央値の整数、小数点除去） ---
 print("\n=== 勝率表記の正規化 ===")
