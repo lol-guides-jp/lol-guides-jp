@@ -3,9 +3,9 @@
 # missing-*.txt から未対面を取り出し、research → write → append のパイプラインで追加する
 #
 # 使い方:
-#   ./scripts/add-matchups.sh [--role トップ|ミッド|ジャング|ADC|サポート] [--batch N] [--dry-run]
+#   ./scripts/add-matchups.sh [--role トップ|ミッド|ジャング|ADC|サポート] [--batch N] [--sleep N] [--dry-run]
 #
-# デフォルト: 全ロールから最大3件処理
+# デフォルト: 全ロールから最大3件処理、sleepなし
 
 set -euo pipefail
 
@@ -173,17 +173,43 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
 
             retry_json=$(run_cmd "research-matchup" "$args") || {
                 echo "${LOG_PREFIX} ERROR: リトライ research 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
             }
-            if [ -n "$retry_json" ]; then
-                if echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
-                    retry_json=$(echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
-                fi
-                retry_ops=$(run_cmd "write-matchup" "$retry_json") || true
-                if [ -n "$retry_ops" ]; then
-                    echo "$retry_ops" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
-                        "$champ_id" "$opp_ja" "$opp_en" || true
-                    echo "${LOG_PREFIX} INFO: リトライ完了 (${champ_ja} vs ${opp_ja})"
-                fi
+            if [ -z "$retry_json" ]; then
+                echo "${LOG_PREFIX} ERROR: リトライ research 結果が空 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            fi
+            if echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) else 1)" 2>/dev/null; then
+                retry_json=$(echo "$retry_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
+            fi
+            retry_ops=$(run_cmd "write-matchup" "$retry_json") || {
+                echo "${LOG_PREFIX} ERROR: リトライ write 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            }
+            if [ -z "$retry_ops" ]; then
+                echo "${LOG_PREFIX} ERROR: リトライ write 結果が空 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            fi
+            echo "$retry_ops" | python3 "${PROJECT_DIR}/scripts/replace-section.py" \
+                "$champ_id" "$opp_ja" "$opp_en" || {
+                echo "${LOG_PREFIX} ERROR: リトライ replace-section 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            }
+
+            # リトライ後の品質再確認
+            scan_result2=$(python3 "${PROJECT_DIR}/scripts/scan-broken.py" --tsv --champ "$champ_id" 2>/dev/null \
+                | awk -F'\t' -v opp="$opp_id" '$2 == opp {print $4}')
+            if [ -n "$scan_result2" ]; then
+                echo "${LOG_PREFIX} WARN: リトライ後も品質不足 [${scan_result2}] (${champ_ja} vs ${opp_ja}) → 手動確認が必要"
+                echo "[$(date +%Y-%m-%d)] RETRY_FAILED: ${champ_ja} vs ${opp_ja} [${scan_result2}]" \
+                    >> "${PROJECT_DIR}/scripts/cross-check-review.log"
+            else
+                echo "${LOG_PREFIX} INFO: リトライ後に品質確認 OK (${champ_ja} vs ${opp_ja})"
             fi
         fi
 
