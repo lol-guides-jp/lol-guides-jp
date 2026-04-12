@@ -1,0 +1,49 @@
+{
+  "_comment": "lint-matchup.py が参照するルール定義。learn-lint.py で自動追加される。",
+
+  "banned_words": [
+    {"pattern": "メカ形態", "replacement": "メガナー", "reason": "ナーの正式な形態名はメガナー"},
+    {"pattern": "メガス形態", "replacement": "メガナー", "reason": "存在しない形態名"},
+    {"pattern": "虎形態", "replacement": "クーガー形態", "reason": "ニダリーの変身先はクーガー形態"},
+    {"pattern": "スパイダー形態", "replacement": "クモ形態", "reason": "エリスの正式名はクモ形態"},
+    {"pattern": "蜘蛛フォーム", "replacement": "クモ形態", "reason": "エリスの正式名はクモ形態"},
+    {"pattern": "レンジフォーム", "replacement": "キャノンモード", "reason": "ジェイスの正式名はキャノンモード"},
+    {"pattern": "クーガーフォーム", "replacement": "クーガー形態", "reason": "ニダリーの正式名はクーガー形態"},
+    {"pattern": "ミニオン波", "replacement": "ミニオンウェーブ", "reason": "表記統一"},
+    {"pattern": "フルキット", "replacement": "", "reason": "禁止表現。「Lv6以降」「スキルがそろった後」に書き換え"},
+    {"pattern": "AD carry", "replacement": "ダメージディーラー", "reason": "AD carry は禁止表現"},
+    {"pattern": "ADキャリー", "replacement": "ダメージディーラー", "reason": "AD carry は禁止表現"},
+    {"pattern": "セカンドウィンド", "replacement": "息継ぎ", "reason": "ルーン名は公式日本語名を使う"},
+    {"pattern": "コンカー", "replacement": "征服者", "reason": "ルーン名は公式日本語名を使う"},
+    {"pattern": "オートアタック", "replacement": "AA", "reason": "通常攻撃は AA に統一"}
+  ],
+
+  "polite_endings": [
+    {"pattern": "しましょう", "reason": "「〜する」体に統一"},
+    {"pattern": "ください", "reason": "「〜する」体に統一"},
+    {"pattern": "です。", "reason": "「〜する」体に統一"},
+    {"pattern": "ます。", "reason": "「〜する」体に統一"},
+    {"pattern": "でしょう", "reason": "「〜する」体に統一"}
+  ],
+
+  "form_skill_map": {
+    "jayce": {
+      "キャノンモード": {"Q": "ショックブラスト", "W": "ハイパーチャージ", "E": "アクセルゲート"},
+      "ハンマーモード": {"Q": "スカイバスター", "W": "ライトニング", "E": "サンダーブロー"}
+    },
+    "nidalee": {
+      "人間形態": {"Q": "槍投げ", "W": "虎挟み", "E": "高揚"},
+      "クーガー形態": {"Q": "テイクダウン", "W": "ジャンプ", "E": "クロウ"}
+    },
+    "elise": {
+      "人間形態": {"Q": "神経毒", "W": "子蜘蛛爆弾", "E": "繭化"},
+      "クモ形態": {"Q": "毒牙", "W": "猛食", "E": "蜘蛛の糸"}
+    },
+    "gnar": {
+      "ミニナー": {"Q": "ブーメラン", "W": "ごきげん", "E": "ぴょんぴょん"},
+      "メガナー": {"Q": "ぽいっ", "W": "こてんぱん", "E": "ドーン！"}
+    }
+  },
+
+  "max_sentences_per_section": 2
+}
