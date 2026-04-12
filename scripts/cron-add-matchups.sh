@@ -1,9 +1,9 @@
 #!/bin/bash
 # cron-add-matchups.sh
-# 5時間ごとに対面ガイドを自動追加する
+# 毎日0時に対面ガイドを自動追加する（Gemini 3.1 Flash Lite + Sonnet レビュー）
 #
 # cron登録:
-#   0 */5 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0 0 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
 
 set -euo pipefail
 
@@ -26,7 +26,7 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 cd "$PROJECT_DIR"
 
 echo "${LOG_PREFIX} ===== cron-add-matchups 起動 ====="
-"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 16 2>&1 | tee /tmp/add-matchups-last.log
+"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 200 --sleep 4 2>&1 | tee /tmp/add-matchups-last.log
 echo "${LOG_PREFIX} ===== cron-add-matchups 終了 ====="
 
 # 実行結果をCLAUDE.local.mdに記録

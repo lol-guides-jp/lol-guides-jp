@@ -19,7 +19,8 @@
   ],
 
   "polite_endings": [
-    {"pattern": "しましょう", "reason": "「〜する」体に統一"},
+    {"pattern": "しましょう", "replacement": "する", "reason": "「〜する」体に統一"},
+    {"pattern": "してください", "replacement": "すること", "reason": "「〜する」体に統一"},
     {"pattern": "ください", "reason": "「〜する」体に統一"},
     {"pattern": "です。", "reason": "「〜する」体に統一"},
     {"pattern": "ます。", "reason": "「〜する」体に統一"},

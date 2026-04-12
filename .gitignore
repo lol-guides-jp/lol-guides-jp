@@ -10,3 +10,4 @@ scripts/research-cache/
 .DS_Store
 CLAUDE.local.md
 .venv/
+__pycache__/

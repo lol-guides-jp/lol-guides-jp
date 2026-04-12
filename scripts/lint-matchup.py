@@ -44,18 +44,20 @@ def check_banned_words(text: str, rules: dict) -> list[dict]:
 
 
 def check_polite_endings(text: str, rules: dict) -> list[dict]:
-    """敬語・丁寧体を検出。自動修正は不可（文脈依存のため）。"""
+    """敬語・丁寧体を検出。replacement があるものは自動修正可能。"""
     issues = []
     for rule in rules.get("polite_endings", []):
         pattern = rule["pattern"]
         if pattern in text:
             count = text.count(pattern)
+            has_replacement = bool(rule.get("replacement"))
             issues.append({
                 "type": "polite_ending",
                 "pattern": pattern,
+                "replacement": rule.get("replacement", ""),
                 "count": count,
                 "reason": rule["reason"],
-                "auto_fix": False,
+                "auto_fix": has_replacement,
             })
     return issues
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""call-gemini.py — Gemini 2.5 Flash Lite で対面ガイドエントリを生成する
+"""call-gemini.py — Gemini 3.1 Flash Lite で対面ガイドエントリを生成する
 
 使い方:
   python3 scripts/call-gemini.py 'champ_id|champ_ja|...|opp_skills'
@@ -144,6 +144,10 @@ def build_prompt(data: dict, feedback: str = "") -> str:
 - ウディア: スタンス（形態変化ではない）
 - カ＝ジックス: 進化（形態変化ではない）
 
+### 文体（最重要）
+- 「する」体（常体）で書く。「です」「ます」「しましょう」「ください」は使わない
+- 体言止めまたは動詞終止形で文を終える（例: 「距離を取る」「ポークが主力」）
+
 ### 表記統一
 - HP割合は%表記（HP5割 → HP50%）
 - 通常攻撃は AA
@@ -182,7 +186,7 @@ def generate(data: dict, feedback: str = "") -> str:
     prompt = build_prompt(data, feedback)
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite",
+        model="gemini-3.1-flash-lite-preview",
         contents=prompt,
     )
 

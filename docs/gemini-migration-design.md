@@ -1,7 +1,7 @@
 # パイプライン移行設計書
 
-> 最終更新: 2026-04-12
-> ステータス: 設計完了・実装待ち
+> 最終更新: 2026-04-13
+> ステータス: 実装中・モデル移行済み
 
 ## 背景
 
@@ -16,8 +16,10 @@
 ```
 Python: Lolalytics スクレイプ（勝率取得、$0）
   ↓
-generate-matchup (Gemini 2.5 Flash Lite × 2)
+generate-matchup (Gemini 3.1 Flash Lite × 2)
   A側・B側を各1回。勝率 + モデル知識で執筆
+  ↓
+lint-matchup.py --fix（L1 品質チェック + 自動修正）
   ↓
 review-matchup (Sonnet × 1)
   A側 + B側を同時に読み、1回でチェック + 修正
@@ -38,25 +40,32 @@ Python 後処理
 
 ## Gemini モデル選定
 
-### 確認済み事実（2026-04-12）
+### 確認済み事実（2026-04-13）
 
-| モデル | 無料枠RPD | 有料価格 | 備考 |
-|---|---|---|---|
-| gemini-2.0-flash-lite | **0**（終了） | — | 使用不可 |
-| gemini-2.0-flash | **0**（終了） | — | 使用不可 |
-| gemini-2.5-flash-lite | **20** | $0.10/$0.40 MTok | 接続テスト通過済み |
-| gemini-2.5-flash | **20** | $0.075/$0.30 MTok | 未テスト |
-| gemini-3.1-flash-lite | **500** | 未確認 | preview |
+| モデル | 無料枠RPD | RPM | TPM | 備考 |
+|---|---|---|---|---|
+| gemini-2.0-flash-lite | **0**（終了） | 0 | 0 | 使用不可 |
+| gemini-2.0-flash | **0**（終了） | 0 | 0 | 使用不可 |
+| gemini-2.5-flash-lite | **20** | 10 | 250K | 旧モデル。テスト通過済み |
+| gemini-2.5-flash | **20** | 5 | 250K | RPD 同じ |
+| gemini-3 flash | **20** | 5 | 250K | preview |
+| gemini-3.1-flash-lite | **500** | 15 | 250K | **preview・採用** |
+| Gemma 3 27B | 14,400 | 30 | **15K** | TPM が低すぎて不適 |
+| Gemma 4 31B | 1,500 | 15 | 無制限 | 品質未検証 |
 
-### 選定: gemini-2.5-flash-lite
+### 選定: gemini-3.1-flash-lite-preview（2026-04-13 変更）
 
-- 接続テスト済みで動作確認できている
-- 2.5 Flash（非Lite）の方が単価は安いが、Lite の方が軽量・低レイテンシでバッチ向き
-- 3.1 Flash Lite は 500 RPD だが preview で安定性が未知
+旧選定 gemini-2.5-flash-lite（RPD 20）から移行。
+
+- **RPD 500**: 旧モデルの 25 倍。batch=250 ペア/日が可能
+- **品質**: 2.5 Flash Lite 以上。形態変化スキルの mismatch が 3→1 に改善（テスト実績）
+- **速度**: 2.5 Flash 比で 2.5 倍高速
+- **文体の「です/ます」混入**: プロンプトに「する体」指示を追加 + lint-matchup.py の polite_ending auto_fix で対応
+- **preview リスク**: 制限変更・API 挙動変更の可能性あり。lint で検出できる範囲。個人プロジェクトでは許容
 
 ### 運用モード
 
-**無料枠運用（推奨）**: batch=10（A+B で 20コール/日）。RPD 20 に収まる。完了ペースは落ちるが $0。
+**無料枠運用（推奨）**: batch=250（A+B で 500コール/日）。RPD 500 に収まり $0。全 3,417 件を約 7 日で完了可能。
 
 **有料運用（将来オプション）**: Google Cloud billing を有効にすれば RPD 制限が緩和。月 $30 程度。
 
@@ -93,10 +102,12 @@ Python 後処理
 
 | ファイル | 役割 | 新規/改修 |
 |---|---|---|
-| `scripts/scrape-winrate.py` | Lolalytics から勝率を curl + 正規表現で取得 | 新規 |
-| `scripts/call-gemini.py` | Gemini API 呼び出し（勝率は引数で受け取る） | 新規 |
-| `.claude/commands/review-matchup.md` | Sonnet レビュープロンプト | 新規 |
-| `scripts/add-matchups.sh` | パイプライン本体の配線変更 | 改修 |
+| `scripts/scrape-winrate.py` | Lolalytics から勝率を curl + 正規表現で取得 | 新規 ✅ |
+| `scripts/call-gemini.py` | Gemini 3.1 Flash Lite API 呼び出し | 新規 ✅ |
+| `scripts/lint-matchup.py` | L1 品質チェック + 自動修正（文体・禁止語・形態名） | 新規 ✅ |
+| `scripts/lint-rules.json` | lint ルール定義（learn-lint.py で蓄積） | 新規 ✅ |
+| `.claude/commands/review-matchup.md` | Sonnet レビュープロンプト | 新規 ✅ |
+| `scripts/add-matchups.sh` | パイプライン本体の配線変更 | 改修（未着手） |
 | `scripts/lib.sh` | 変更なし（Gemini は run_cmd を通さない） | — |
 
 ### scrape-winrate.py の仕様
@@ -124,21 +135,25 @@ Python 後処理
 
 | リスク | 対策 |
 |---|---|
-| Gemini 2.5 Flash Lite の日本語品質が低い | Sonnet レビューで補正。事前に10件テストで判断 |
+| 3.1 Flash Lite の文体が「です/ます」混入 | プロンプトに「する体」指示追加 + lint polite_ending auto_fix + Sonnet レビュー |
+| 3.1 Flash Lite が preview で API 変更 | lint-matchup.py で出力フォーマット検証。壊れたらモデル名を戻すだけ |
 | Lolalytics の HTML 構造変更 | scrape-winrate.py が空を返す → スキップ + ログ。正規表現を更新 |
 | reject 無限ループ | リトライ上限2回。超えたらスキップしてログ記録 |
-| 無料枠 RPD のさらなる削減 | 有料に切り替え（月 $30）。設計上は切り替えるだけ |
+| 無料枠 RPD のさらなる削減 | 有料に切り替え（月 $30）。設計上はモデル名変更だけ |
 | リワーク済みチャンプの古い情報 | パッチトラッキング（後述）で検知。該当チャンプは Sonnet レビューで reject |
 
 ## 移行手順
 
 1. ~~`google-genai` インストール + API キー取得~~ ✅ 完了
-2. `scrape-winrate.py` 実装
-3. `call-gemini.py` 実装（プロンプトは現行 research-matchup + write-matchup を統合）
-4. `review-matchup.md` 実装
-5. 10件テスト: Gemini 出力品質 + Sonnet レビュー精度を確認
-6. OK なら `add-matchups.sh` を新パイプラインに配線変更
-7. cron 再開
+2. ~~`scrape-winrate.py` 実装~~ ✅ 完了
+3. ~~`call-gemini.py` 実装~~ ✅ 完了
+4. ~~`lint-matchup.py` + `lint-rules.json` 実装~~ ✅ 完了
+5. ~~`review-matchup.md` 実装~~ ✅ 完了（未テスト）
+6. ~~モデルを gemini-3.1-flash-lite-preview に移行~~ ✅ 2026-04-13
+7. review-matchup.md を Sonnet でテスト
+8. `add-matchups.sh` を新パイプラインに配線変更
+9. 10件テスト: パイプライン全体を通して品質確認
+10. OK なら cron 再開
 
 ## 廃止対象
 
