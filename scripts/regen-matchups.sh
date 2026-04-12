@@ -3,8 +3,7 @@
 # scan-broken.py の broken / quality エントリを再生成する
 #
 # 処理方式:
-#   broken  — research-matchup → write-matchup → replace-section（フル再生成）
-#   quality — build-rewrite-input.py → rewrite-matchup → replace-section（スキル名追加のみ）
+#   broken / quality 共通 — research-matchup → write-matchup → replace-section（フル再生成）
 #
 # 使い方:
 #   ./scripts/regen-matchups.sh [--tier broken|quality|all] [--batch N] [--dry-run]
@@ -119,11 +118,10 @@ for job in "${JOBS[@]}"; do
     champ_skills=$(get_skills_str "$champ_id")
     opp_skills=$(get_skills_str "$opp_id")
 
-    if [ "$tier" = "broken" ]; then
-        # --- フル再生成: research → write → replace ---
+    # --- フル再生成: research → write → replace ---
 
-        # 既存エントリの type/summary を guide.md から取得（なければ空）
-        type_hint=$(python3 -c "
+    # 既存エントリの type/summary を guide.md から取得（なければ空）
+    type_hint=$(python3 -c "
 import re, os
 path = '${PROJECT_DIR}/champions/${champ_id}/guide.md'
 if not os.path.isfile(path):
@@ -145,46 +143,28 @@ elif '${opp_ja}' in unfav: print('苦手')
 else: print('五分')
 " 2>/dev/null || echo "五分")
 
-        args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type_hint}||${champ_skills}|${opp_skills}"
+    args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type_hint}||${champ_skills}|${opp_skills}"
 
-        research_json=$(run_cmd "research-matchup" "$args") || {
-            echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
-            FAILED=$((FAILED + 1))
-            continue
-        }
-        if [ -z "$research_json" ]; then
-            echo "${LOG_PREFIX} ERROR: research 結果が空 (${champ_ja} vs ${opp_ja})"
-            FAILED=$((FAILED + 1))
-            continue
-        fi
-        # リスト形式で返ってきた場合はunwrap（空リストはスキップ）
-        if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
-            research_json=$(echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
-        fi
-
-        ops_json=$(run_cmd "write-matchup" "$research_json") || {
-            echo "${LOG_PREFIX} ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
-            FAILED=$((FAILED + 1))
-            continue
-        }
-
-    else
-        # --- リライト: 既存body + スキル名注入 → replace ---
-
-        rewrite_input=$(python3 scripts/build-rewrite-input.py \
-            "$champ_id" "$champ_ja" "$opp_id" "$opp_ja" "$opp_en" \
-            "$champ_skills" "$opp_skills" 2>&1) || {
-            echo "${LOG_PREFIX} ERROR: build-rewrite-input 失敗 (${champ_ja} vs ${opp_ja}): ${rewrite_input}"
-            FAILED=$((FAILED + 1))
-            continue
-        }
-
-        ops_json=$(run_cmd "rewrite-matchup" "$rewrite_input") || {
-            echo "${LOG_PREFIX} ERROR: rewrite-matchup 失敗 (${champ_ja} vs ${opp_ja})"
-            FAILED=$((FAILED + 1))
-            continue
-        }
+    research_json=$(run_cmd "research-matchup" "$args") || {
+        echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        FAILED=$((FAILED + 1))
+        continue
+    }
+    if [ -z "$research_json" ]; then
+        echo "${LOG_PREFIX} ERROR: research 結果が空 (${champ_ja} vs ${opp_ja})"
+        FAILED=$((FAILED + 1))
+        continue
     fi
+    # リスト形式で返ってきた場合はunwrap（空リストはスキップ）
+    if echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); exit(0 if isinstance(d,list) and len(d)>0 else 1)" 2>/dev/null; then
+        research_json=$(echo "$research_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(json.dumps(d[0]))")
+    fi
+
+    ops_json=$(run_cmd "write-matchup" "$research_json") || {
+        echo "${LOG_PREFIX} ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        FAILED=$((FAILED + 1))
+        continue
+    }
 
     if [ -z "$ops_json" ]; then
         echo "${LOG_PREFIX} ERROR: ops_json が空 (${champ_ja} vs ${opp_ja})"
