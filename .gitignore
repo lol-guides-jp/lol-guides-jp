@@ -9,3 +9,4 @@ scripts/research-cache/
 .env.*
 .DS_Store
 CLAUDE.local.md
+.venv/
