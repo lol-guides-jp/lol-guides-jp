@@ -10,5 +10,5 @@
 
 ## 技術スタック
 - コンテンツ: Markdown / champions/ ディレクトリに1体1ファイル
-- 自動化: daily-guide.sh（毎日4時・cron）→ write-guide コマンド実行
+- 自動化: cron-add-matchups.sh → add-matchups.sh（Gemini 移行中、詳細は architecture.md 参照）
 - Git: WSL側の git で push（HTTPS）
