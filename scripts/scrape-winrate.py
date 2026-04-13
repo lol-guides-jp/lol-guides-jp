@@ -2,13 +2,18 @@
 """scrape-winrate.py — Lolalytics から対面勝率を取得する
 
 使い方:
-  python3 scripts/scrape-winrate.py <champ_en> <opp_en>
+  python3 scripts/scrape-winrate.py <champ_slug> <opp_slug>
+
+引数:
+  champ_slug, opp_slug: Lolalytics URL スラグ（ddragonKey.lower() ベース）
+  ※ スペース・記号を含む en 名をそのまま渡さないこと
 
 出力:
   勝率の数値のみ（例: 46.9）を stdout に出力。取得失敗時は exit 1。
 
 例:
   python3 scripts/scrape-winrate.py aatrox garen
+  python3 scripts/scrape-winrate.py tahmkench garen
   # => 46.9
 """
 

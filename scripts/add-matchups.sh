@@ -120,6 +120,27 @@ cmap = {c['id']:c for c in data['champions']}
 print(cmap.get('${opp_id}', {}).get('en', '${opp_en}'))
 " 2>/dev/null || echo "$opp_en")
 
+    # Lolalytics URL スラグ: ddragonKey.lower() を使う（en は空白・記号を含む場合があるため）
+    # 例外: Wukong の ddragonKey は "MonkeyKing" だが Lolalytics URL は "wukong"。
+    #       理由不明（Riot 内部の歴史的経緯と推測）。全 170 体を実測して確認済み（2026-04-14）。
+    champ_slug=$(python3 -c "
+import json
+_OVERRIDE = {'monkeyking': 'wukong'}  # Wukong: ddragonKey=MonkeyKing だが Lolalytics は wukong
+data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+cmap = {c['id']:c for c in data['champions']}
+slug = cmap.get('${champ_id}', {}).get('ddragonKey', '${champ_id}').lower()
+print(_OVERRIDE.get(slug, slug))
+" 2>/dev/null || echo "$champ_id")
+
+    opp_slug=$(python3 -c "
+import json
+_OVERRIDE = {'monkeyking': 'wukong'}  # Wukong: ddragonKey=MonkeyKing だが Lolalytics は wukong
+data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+cmap = {c['id']:c for c in data['champions']}
+slug = cmap.get('${opp_id}', {}).get('ddragonKey', '${opp_id}').lower()
+print(_OVERRIDE.get(slug, slug))
+" 2>/dev/null || echo "$opp_id")
+
     read -r champ_skills opp_skills < <(python3 - << PYEOF
 import json
 data = json.load(open("${PROJECT_DIR}/docs/data.json"))
@@ -136,7 +157,7 @@ PYEOF
 )
 
     # --- 勝率取得 ---
-    winrate=$(python3 "${PROJECT_DIR}/scripts/scrape-winrate.py" "$champ_en" "$opp_en_from_data") || {
+    winrate=$(python3 "${PROJECT_DIR}/scripts/scrape-winrate.py" "$champ_slug" "$opp_slug") || {
         echo "${LOG_PREFIX} WARN: winrate 取得失敗 → 50 で代替 (${champ_ja} vs ${opp_ja})"
         winrate="50"
     }
