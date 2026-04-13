@@ -185,10 +185,18 @@ def generate(data: dict, feedback: str = "") -> str:
 
     prompt = build_prompt(data, feedback)
 
-    response = client.models.generate_content(
-        model="gemini-3.1-flash-lite-preview",
-        contents=prompt,
-    )
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.1-flash-lite-preview",
+            contents=prompt,
+        )
+    except Exception as e:
+        if "RESOURCE_EXHAUSTED" in str(e):
+            # exit 2 = RPD上限。呼び出し元はバッチ全体を中断すること
+            print("ERROR: Gemini RPD上限に達した (RESOURCE_EXHAUSTED)", file=sys.stderr)
+            sys.exit(2)
+        print(f"ERROR: Gemini API error: {e}", file=sys.stderr)
+        sys.exit(1)
 
     text = response.text.strip()
     if not text:

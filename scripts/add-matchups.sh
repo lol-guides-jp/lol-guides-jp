@@ -171,6 +171,11 @@ PYEOF
     args_a="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en_from_data}||${winrate}|${champ_skills}|${opp_skills}"
 
     entry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_a") || {
+        ec=$?
+        if [ $ec -eq 2 ]; then
+            echo "${LOG_PREFIX} ERROR: Gemini RPD上限に達した。バッチを中断 (${champ_ja} vs ${opp_ja})"
+            exit 1
+        fi
         echo "${LOG_PREFIX} ERROR: Gemini A 側失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
@@ -187,6 +192,11 @@ PYEOF
     args_b="${opp_id}|${opp_ja}|${opp_en_from_data}|${champ_id}|${champ_ja}|${champ_en}||${winrate_b}|${opp_skills}|${champ_skills}"
 
     entry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_b") || {
+        ec=$?
+        if [ $ec -eq 2 ]; then
+            echo "${LOG_PREFIX} ERROR: Gemini RPD上限に達した。バッチを中断 (${opp_ja} vs ${champ_ja})"
+            exit 1
+        fi
         echo "${LOG_PREFIX} ERROR: Gemini B 側失敗 (${opp_ja} vs ${champ_ja})"
         FAILED=$((FAILED + 1))
         continue
