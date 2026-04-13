@@ -15,12 +15,18 @@ LOCK_FILE="/tmp/lol-guides-add-matchups.lock"
 DATE=$(date +%Y-%m-%d)
 LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
 
-# 重複実行防止
+# 重複実行防止（PIDベース: 異常終了でロックが残った場合は自動回復）
 if [ -f "$LOCK_FILE" ]; then
-    echo "${LOG_PREFIX} INFO: 前回の実行が残っているためスキップ"
-    exit 0
+    pid=$(cat "$LOCK_FILE")
+    if kill -0 "$pid" 2>/dev/null; then
+        echo "${LOG_PREFIX} INFO: 前回の実行が残っているためスキップ (PID=${pid})"
+        exit 0
+    else
+        echo "${LOG_PREFIX} WARN: ロックファイルが残っていたが PID=${pid} は存在しない。削除して続行"
+        rm -f "$LOCK_FILE"
+    fi
 fi
-touch "$LOCK_FILE"
+echo $$ > "$LOCK_FILE"
 trap "rm -f '${LOCK_FILE}'" EXIT
 
 cd "$PROJECT_DIR"
