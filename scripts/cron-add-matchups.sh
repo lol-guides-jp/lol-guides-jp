@@ -16,6 +16,10 @@ PROJECT_DIR="/home/ojita/lol-guides-jp"
 LOCK_FILE="/tmp/lol-guides-add-matchups.lock"
 log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 
+# --- ドライランフラグ ---
+DRY_RUN=0
+for _arg in "$@"; do [ "$_arg" = "--dry-run" ] && DRY_RUN=1; done
+
 # 重複実行防止（PIDベース: 異常終了でロックが残った場合は自動回復）
 if [ -f "$LOCK_FILE" ]; then
     pid=$(cat "$LOCK_FILE")
@@ -31,6 +35,13 @@ echo $$ > "$LOCK_FILE"
 trap "rm -f '${LOCK_FILE}'" EXIT
 
 cd "$PROJECT_DIR"
+
+if [ "${DRY_RUN}" = "1" ]; then
+    echo "$(log_prefix) DRY-RUN: add-matchups.sh --batch 12 --sleep 10 --dry-run を実行します"
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 --dry-run 2>&1
+    echo "$(log_prefix) DRY-RUN: 完了（本番への書き込みなし）"
+    exit 0
+fi
 
 echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
 "${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
