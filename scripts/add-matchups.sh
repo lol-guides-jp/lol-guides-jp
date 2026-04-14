@@ -70,6 +70,7 @@ echo "$(log_prefix) INFO: ${#JOBS[@]} 件処理します"
 PROCESSED=0
 FAILED=0
 _ITER=0
+SONNET_FAIL_STREAK=0
 
 for job in "${JOBS[@]}"; do
     if [ "$_ITER" -gt 0 ] && [ "$SLEEP" -gt 0 ]; then
@@ -247,13 +248,23 @@ print(json.dumps({
 ")
 
     review_result=$(run_cmd "review-matchup" "$review_input") || {
-        echo "$(log_prefix) ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
+        echo "$(log_prefix) ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
         FAILED=$((FAILED + 1))
+        if [ "$SONNET_FAIL_STREAK" -ge 2 ]; then
+            echo "$(log_prefix) INFO: Sonnet review 2件連続失敗 → spending limit と判断してバッチ終了"
+            exit 0
+        fi
         continue
     }
     if [ -z "$review_result" ]; then
-        echo "$(log_prefix) ERROR: review 結果が空 (${champ_ja} vs ${opp_ja})"
+        SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
+        echo "$(log_prefix) ERROR: review 結果が空 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
         FAILED=$((FAILED + 1))
+        if [ "$SONNET_FAIL_STREAK" -ge 2 ]; then
+            echo "$(log_prefix) INFO: Sonnet review 2件連続失敗 → spending limit と判断してバッチ終了"
+            exit 0
+        fi
         continue
     fi
 
@@ -343,6 +354,8 @@ print(json.dumps({
         FAILED=$((FAILED + 1))
         continue
     fi
+
+    SONNET_FAIL_STREAK=0
 
     # --- ファイル書き込み ---
     # A 側
