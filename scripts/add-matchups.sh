@@ -13,8 +13,7 @@ export NVM_DIR="/home/ojita/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 PROJECT_DIR="/home/ojita/lol-guides-jp"
-DATE=$(date +%Y-%m-%d)
-LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
+log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
@@ -41,7 +40,7 @@ export DRY_RUN
 
 cd "$PROJECT_DIR"
 
-echo "${LOG_PREFIX} ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s) ====="
+echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s) ====="
 
 # --- 対象ファイルを決定 ---
 if [ -n "$ROLE" ]; then
@@ -61,11 +60,11 @@ for f in "${MISSING_FILES[@]}"; do
 done
 
 if [ ${#JOBS[@]} -eq 0 ]; then
-    echo "${LOG_PREFIX} INFO: 未対面なし。終了"
+    echo "$(log_prefix) INFO: 未対面なし。終了"
     exit 0
 fi
 
-echo "${LOG_PREFIX} INFO: ${#JOBS[@]} 件処理します"
+echo "$(log_prefix) INFO: ${#JOBS[@]} 件処理します"
 
 # --- 各ジョブを処理 ---
 PROCESSED=0
@@ -74,7 +73,7 @@ _ITER=0
 
 for job in "${JOBS[@]}"; do
     if [ "$_ITER" -gt 0 ] && [ "$SLEEP" -gt 0 ]; then
-        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
+        echo "$(log_prefix) INFO: ${SLEEP}秒 sleep..."
         sleep "$SLEEP"
     fi
     _ITER=$((_ITER + 1))
@@ -82,7 +81,7 @@ for job in "${JOBS[@]}"; do
     # フィールド分解: champ_id|champ_ja|opp_id|opp_ja|opp_en|type|summary|source_file
     IFS='|' read -r champ_id champ_ja opp_id opp_ja opp_en type summary source_file <<< "$job"
 
-    echo "${LOG_PREFIX} INFO: ${champ_ja} vs ${opp_ja} ..."
+    echo "$(log_prefix) INFO: ${champ_ja} vs ${opp_ja} ..."
 
     # --- 重複チェック ---
     matchup_file="${PROJECT_DIR}/champions/${champ_id}/matchups.md"
@@ -91,7 +90,7 @@ for job in "${JOBS[@]}"; do
         ENTRY_EXISTS=1
     fi
     if [ "$ENTRY_EXISTS" = "1" ] && [ "$FORCE" = "0" ]; then
-        echo "${LOG_PREFIX} SKIP: ${champ_ja} vs ${opp_ja} は既に存在"
+        echo "$(log_prefix) SKIP: ${champ_ja} vs ${opp_ja} は既に存在"
         # missing から削除
         if [ "$DRY_RUN" = "0" ]; then
             python3 -c "
@@ -103,7 +102,7 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
         fi
         continue
     fi
-    [ "$ENTRY_EXISTS" = "1" ] && echo "${LOG_PREFIX} INFO: ${champ_ja} vs ${opp_ja} を強制再生成 (--force)"
+    [ "$ENTRY_EXISTS" = "1" ] && echo "$(log_prefix) INFO: ${champ_ja} vs ${opp_ja} を強制再生成 (--force)"
 
     # --- スキル名・英語名を data.json から抽出 ---
     champ_en=$(python3 -c "
@@ -158,11 +157,11 @@ PYEOF
 
     # --- 勝率取得 ---
     winrate=$(python3 "${PROJECT_DIR}/scripts/scrape-winrate.py" "$champ_slug" "$opp_slug") || {
-        echo "${LOG_PREFIX} WARN: winrate 取得失敗 → 50 で代替 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) WARN: winrate 取得失敗 → 50 で代替 (${champ_ja} vs ${opp_ja})"
         winrate="50"
     }
     if [ -z "$winrate" ]; then
-        echo "${LOG_PREFIX} WARN: winrate が空 → 50 で代替"
+        echo "$(log_prefix) WARN: winrate が空 → 50 で代替"
         winrate="50"
     fi
     winrate_b=$(python3 -c "print(round(100 - float('${winrate}'), 1))")
@@ -173,15 +172,15 @@ PYEOF
     entry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_a") || {
         ec=$?
         if [ $ec -eq 2 ]; then
-            echo "${LOG_PREFIX} ERROR: Gemini RPD上限に達した。バッチを中断 (${champ_ja} vs ${opp_ja})"
+            echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${champ_ja} vs ${opp_ja})"
             exit 1
         fi
-        echo "${LOG_PREFIX} ERROR: Gemini A 側失敗 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: Gemini A 側失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     }
     if [ -z "$entry_a" ]; then
-        echo "${LOG_PREFIX} ERROR: Gemini A 側が空 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: Gemini A 側が空 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     fi
@@ -194,15 +193,15 @@ PYEOF
     entry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_b") || {
         ec=$?
         if [ $ec -eq 2 ]; then
-            echo "${LOG_PREFIX} ERROR: Gemini RPD上限に達した。バッチを中断 (${opp_ja} vs ${champ_ja})"
+            echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${opp_ja} vs ${champ_ja})"
             exit 1
         fi
-        echo "${LOG_PREFIX} ERROR: Gemini B 側失敗 (${opp_ja} vs ${champ_ja})"
+        echo "$(log_prefix) ERROR: Gemini B 側失敗 (${opp_ja} vs ${champ_ja})"
         FAILED=$((FAILED + 1))
         continue
     }
     if [ -z "$entry_b" ]; then
-        echo "${LOG_PREFIX} ERROR: Gemini B 側が空 (${opp_ja} vs ${champ_ja})"
+        echo "$(log_prefix) ERROR: Gemini B 側が空 (${opp_ja} vs ${champ_ja})"
         FAILED=$((FAILED + 1))
         continue
     fi
@@ -213,12 +212,12 @@ PYEOF
 
     # --- DRY_RUN: review + 書き込みスキップ ---
     if [ "$DRY_RUN" = "1" ]; then
-        echo "${LOG_PREFIX} [DRY-RUN] A 側:"
+        echo "$(log_prefix) [DRY-RUN] A 側:"
         echo "$linted_a"
         echo ""
-        echo "${LOG_PREFIX} [DRY-RUN] B 側:"
+        echo "$(log_prefix) [DRY-RUN] B 側:"
         echo "$linted_b"
-        echo "${LOG_PREFIX} [DRY-RUN] review + ファイル書き込みスキップ"
+        echo "$(log_prefix) [DRY-RUN] review + ファイル書き込みスキップ"
         PROCESSED=$((PROCESSED + 1))
         continue
     fi
@@ -248,12 +247,12 @@ print(json.dumps({
 ")
 
     review_result=$(run_cmd "review-matchup" "$review_input") || {
-        echo "${LOG_PREFIX} ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     }
     if [ -z "$review_result" ]; then
-        echo "${LOG_PREFIX} ERROR: review 結果が空 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: review 結果が空 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     fi
@@ -267,21 +266,21 @@ print(json.dumps({
 
     elif [ "$review_status" = "rejected" ]; then
         reject_reason=$(echo "$review_result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('reason','unknown'))" 2>/dev/null || echo "unknown")
-        echo "${LOG_PREFIX} WARN: rejected: ${reject_reason} (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) WARN: rejected: ${reject_reason} (${champ_ja} vs ${opp_ja})"
 
         # --- リトライ（最大 2 回） ---
         RETRY_OK=0
         for retry_i in 1 2; do
-            echo "${LOG_PREFIX} INFO: リトライ ${retry_i}/2 (${champ_ja} vs ${opp_ja})"
+            echo "$(log_prefix) INFO: リトライ ${retry_i}/2 (${champ_ja} vs ${opp_ja})"
             sleep "$SLEEP"
 
             retry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_a") || {
-                echo "${LOG_PREFIX} ERROR: リトライ Gemini A 失敗"
+                echo "$(log_prefix) ERROR: リトライ Gemini A 失敗"
                 continue
             }
             sleep "$SLEEP"
             retry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_b") || {
-                echo "${LOG_PREFIX} ERROR: リトライ Gemini B 失敗"
+                echo "$(log_prefix) ERROR: リトライ Gemini B 失敗"
                 continue
             }
 
@@ -314,7 +313,7 @@ print(json.dumps({
 ")
             sleep "$SLEEP"
             retry_review=$(run_cmd "review-matchup" "$retry_review_input") || {
-                echo "${LOG_PREFIX} ERROR: リトライ review 失敗"
+                echo "$(log_prefix) ERROR: リトライ review 失敗"
                 continue
             }
 
@@ -323,24 +322,24 @@ print(json.dumps({
                 final_a=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_a'])")
                 final_b=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_b'])")
                 RETRY_OK=1
-                echo "${LOG_PREFIX} INFO: リトライ ${retry_i} で approved"
+                echo "$(log_prefix) INFO: リトライ ${retry_i} で approved"
                 break
             else
                 reject_reason=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('reason','unknown'))" 2>/dev/null || echo "unknown")
-                echo "${LOG_PREFIX} WARN: リトライ ${retry_i} も rejected: ${reject_reason}"
+                echo "$(log_prefix) WARN: リトライ ${retry_i} も rejected: ${reject_reason}"
             fi
         done
 
         if [ "$RETRY_OK" = "0" ]; then
-            echo "${LOG_PREFIX} ERROR: 2回リトライ後も rejected (${champ_ja} vs ${opp_ja})"
+            echo "$(log_prefix) ERROR: 2回リトライ後も rejected (${champ_ja} vs ${opp_ja})"
             echo "[$(date +%Y-%m-%d)] RETRY_FAILED: ${champ_ja} vs ${opp_ja} [${reject_reason}]" \
                 >> "${PROJECT_DIR}/scripts/add-matchups-review.log"
             FAILED=$((FAILED + 1))
             continue
         fi
     else
-        echo "${LOG_PREFIX} ERROR: review パース失敗 (${champ_ja} vs ${opp_ja})"
-        echo "${LOG_PREFIX} DEBUG: review_result=${review_result:0:200}"
+        echo "$(log_prefix) ERROR: review パース失敗 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) DEBUG: review_result=${review_result:0:200}"
         FAILED=$((FAILED + 1))
         continue
     fi
@@ -350,13 +349,13 @@ print(json.dumps({
     if [ "$FORCE" = "1" ] && [ "$ENTRY_EXISTS" = "1" ]; then
         echo "$final_a" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
             "$champ_id" "$opp_ja" "$opp_en_from_data" || {
-            echo "${LOG_PREFIX} ERROR: A 側 replace 失敗 (${champ_ja} vs ${opp_ja})"
+            echo "$(log_prefix) ERROR: A 側 replace 失敗 (${champ_ja} vs ${opp_ja})"
             FAILED=$((FAILED + 1))
             continue
         }
     else
         printf '\n%s\n' "$final_a" >> "$matchup_file"
-        echo "${LOG_PREFIX} INFO: A 側追記 → ${champ_id}/matchups.md"
+        echo "$(log_prefix) INFO: A 側追記 → ${champ_id}/matchups.md"
     fi
 
     # B 側
@@ -364,10 +363,10 @@ print(json.dumps({
     if [ -f "$matchup_b" ] && grep -q "^## vs ${champ_ja}" "$matchup_b"; then
         echo "$final_b" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
             "$opp_id" "$champ_ja" "$champ_en" || \
-            echo "${LOG_PREFIX} WARN: B 側 replace 失敗 (${opp_ja} vs ${champ_ja})"
+            echo "$(log_prefix) WARN: B 側 replace 失敗 (${opp_ja} vs ${champ_ja})"
     else
         printf '\n%s\n' "$final_b" >> "$matchup_b"
-        echo "${LOG_PREFIX} INFO: B 側追記 → ${opp_id}/matchups.md"
+        echo "$(log_prefix) INFO: B 側追記 → ${opp_id}/matchups.md"
     fi
 
     # --- missing ファイルから削除 ---
@@ -393,24 +392,24 @@ if len(new) < len(lines):
 "
     done
 
-    echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} 追加完了"
+    echo "$(log_prefix) OK: ${champ_ja} vs ${opp_ja} 追加完了"
     PROCESSED=$((PROCESSED + 1))
 done
 
-echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
+echo "$(log_prefix) ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
 
 # git commit → quality-fix → build-json → push
 if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
     git -C "$PROJECT_DIR" add champions/*/matchups.md
     git -C "$PROJECT_DIR" commit -m "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
-    echo "${LOG_PREFIX} INFO: git commit 完了"
+    echo "$(log_prefix) INFO: git commit 完了"
 
     # 表記揺れ・日英混在を修正
-    echo "${LOG_PREFIX} INFO: quality-fix 実行中..."
+    echo "$(log_prefix) INFO: quality-fix 実行中..."
     python3 "${PROJECT_DIR}/scripts/quality-fix.py" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
 
     # guide.md 得意/苦手を matchups.md verdict に同期
-    echo "${LOG_PREFIX} INFO: guide.md 得意/苦手 同期中..."
+    echo "$(log_prefix) INFO: guide.md 得意/苦手 同期中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
     git -C "$PROJECT_DIR" add champions/*/matchups.md champions/*/guide.md
     # 変更があればコミット
@@ -418,14 +417,14 @@ if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
         git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
 
     # data.json 再ビルド
-    echo "${LOG_PREFIX} INFO: data.json 再ビルド中..."
+    echo "$(log_prefix) INFO: data.json 再ビルド中..."
     node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
     git -C "$PROJECT_DIR" add docs/data.json
     git -C "$PROJECT_DIR" diff --cached --quiet || \
         git -C "$PROJECT_DIR" commit -m "chore: data.json 再ビルド (対面ガイド追加後)"
 
     # push
-    echo "${LOG_PREFIX} INFO: push 中..."
+    echo "$(log_prefix) INFO: push 中..."
     git -C "$PROJECT_DIR" push
-    echo "${LOG_PREFIX} INFO: push 完了"
+    echo "$(log_prefix) INFO: push 完了"
 fi

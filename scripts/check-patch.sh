@@ -12,7 +12,7 @@ export NVM_DIR="/home/ojita/.nvm"
 
 PROJECT_DIR="/home/ojita/lol-guides-jp"
 DATE=$(date +%Y-%m-%d)
-LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
+log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 PATCH_FILE="${PROJECT_DIR}/current-patch.txt"
 CLAUDE_LOCAL="/home/ojita/CLAUDE.local.md"
 
@@ -26,13 +26,13 @@ export DRY_RUN
 # --- 失敗通知（CLAUDE.local.md への追記） ---
 notify_failure() {
     local reason="$1"
-    echo "${LOG_PREFIX} ERROR: ${reason}"
+    echo "$(log_prefix) ERROR: ${reason}"
     echo "⚠️ ${DATE}: lol-guides-jp check-patch.sh 失敗（${reason}）" >> "${CLAUDE_LOCAL}"
 }
 
-cd "$PROJECT_DIR" || { echo "${LOG_PREFIX} ERROR: ディレクトリが見つかりません"; exit 1; }
+cd "$PROJECT_DIR" || { echo "$(log_prefix) ERROR: ディレクトリが見つかりません"; exit 1; }
 
-echo "${LOG_PREFIX} ===== パッチチェック開始 ====="
+echo "$(log_prefix) ===== パッチチェック開始 ====="
 
 # --- 最新パッチバージョンを取得（L1: Python stdlib、公式ニュースページから抽出） ---
 LATEST=$(python3 - <<'PYEOF'
@@ -58,29 +58,29 @@ PYEOF
     exit 1
 }
 
-echo "${LOG_PREFIX} INFO: 最新パッチ=${LATEST}"
+echo "$(log_prefix) INFO: 最新パッチ=${LATEST}"
 
 # --- 既知パッチと比較 ---
 CURRENT=$(cat "${PATCH_FILE}" 2>/dev/null | tr -d '[:space:]' || echo "")
 
 if [ "${LATEST}" = "${CURRENT}" ]; then
-    echo "${LOG_PREFIX} INFO: パッチ変更なし（${CURRENT}）。終了"
-    echo "${LOG_PREFIX} ===== パッチチェック完了 ====="
+    echo "$(log_prefix) INFO: パッチ変更なし（${CURRENT}）。終了"
+    echo "$(log_prefix) ===== パッチチェック完了 ====="
     exit 0
 fi
 
-echo "${LOG_PREFIX} INFO: 新パッチ検出: ${CURRENT} → ${LATEST}"
+echo "$(log_prefix) INFO: 新パッチ検出: ${CURRENT} → ${LATEST}"
 
 if [ "${DRY_RUN:-0}" = "1" ]; then
-    echo "${LOG_PREFIX} DRY-RUN: fetch-patch-notes.py ${LATEST} をスキップ"
-    echo "${LOG_PREFIX} DRY-RUN: update-guides をスキップ"
-    echo "${LOG_PREFIX} DRY-RUN: current-patch.txt 更新をスキップ"
-    echo "${LOG_PREFIX} ===== パッチチェック完了（DRY-RUN） ====="
+    echo "$(log_prefix) DRY-RUN: fetch-patch-notes.py ${LATEST} をスキップ"
+    echo "$(log_prefix) DRY-RUN: update-guides をスキップ"
+    echo "$(log_prefix) DRY-RUN: current-patch.txt 更新をスキップ"
+    echo "$(log_prefix) ===== パッチチェック完了（DRY-RUN） ====="
     exit 0
 fi
 
 # --- パッチノート取得（L1: fetch-patch-notes.py） ---
-echo "${LOG_PREFIX} INFO: パッチノート取得中..."
+echo "$(log_prefix) INFO: パッチノート取得中..."
 if ! python3 "${PROJECT_DIR}/scripts/fetch-patch-notes.py" "${LATEST}"; then
     notify_failure "fetch-patch-notes.py 失敗（パッチ${LATEST}）"
     exit 1
@@ -92,7 +92,7 @@ if [ ! -f "${PROJECT_DIR}/patches/${LATEST}.md" ]; then
 fi
 
 # --- ガイド更新（L3: Claude） ---
-echo "${LOG_PREFIX} INFO: ガイド更新中..."
+echo "$(log_prefix) INFO: ガイド更新中..."
 json=$(run_cmd "update-guides") || { notify_failure "update-guides 失敗"; exit 1; }
 if [ -z "$json" ]; then
     notify_failure "update-guides 結果が空"
@@ -106,7 +106,7 @@ fi
 
 # --- パッチバージョンを更新 ---
 echo "${LATEST}" > "${PATCH_FILE}"
-echo "${LOG_PREFIX} INFO: current-patch.txt を ${LATEST} に更新"
+echo "$(log_prefix) INFO: current-patch.txt を ${LATEST} に更新"
 
 # --- git push ---
 git add .
@@ -118,4 +118,4 @@ git push origin main
 grep -v "lol-guides-jp check-patch" "${CLAUDE_LOCAL}" > "${CLAUDE_LOCAL}.tmp" && mv "${CLAUDE_LOCAL}.tmp" "${CLAUDE_LOCAL}" || true
 echo "- ${DATE} lol-guides-jp: パッチ${LATEST} ガイド更新完了 → lol-guides-jp/champions/ を確認" >> "${CLAUDE_LOCAL}"
 
-echo "${LOG_PREFIX} ===== パッチチェック完了 ====="
+echo "$(log_prefix) ===== パッチチェック完了 ====="

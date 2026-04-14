@@ -12,17 +12,16 @@ export NVM_DIR="/home/ojita/.nvm"
 
 PROJECT_DIR="/home/ojita/lol-guides-jp"
 LOCK_FILE="/tmp/lol-guides-add-matchups.lock"
-DATE=$(date +%Y-%m-%d)
-LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
+log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 
 # 重複実行防止（PIDベース: 異常終了でロックが残った場合は自動回復）
 if [ -f "$LOCK_FILE" ]; then
     pid=$(cat "$LOCK_FILE")
     if kill -0 "$pid" 2>/dev/null; then
-        echo "${LOG_PREFIX} INFO: 前回の実行が残っているためスキップ (PID=${pid})"
+        echo "$(log_prefix) INFO: 前回の実行が残っているためスキップ (PID=${pid})"
         exit 0
     else
-        echo "${LOG_PREFIX} WARN: ロックファイルが残っていたが PID=${pid} は存在しない。削除して続行"
+        echo "$(log_prefix) WARN: ロックファイルが残っていたが PID=${pid} は存在しない。削除して続行"
         rm -f "$LOCK_FILE"
     fi
 fi
@@ -31,9 +30,9 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 
 cd "$PROJECT_DIR"
 
-echo "${LOG_PREFIX} ===== cron-add-matchups 起動 ====="
+echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
 "${PROJECT_DIR}/scripts/add-matchups.sh" --batch 200 --sleep 4 2>&1 | tee /tmp/add-matchups-last.log
-echo "${LOG_PREFIX} ===== cron-add-matchups 終了 ====="
+echo "$(log_prefix) ===== cron-add-matchups 終了 ====="
 
 # 実行結果をCLAUDE.local.mdに記録
 SUMMARY=$(grep "完了: 成功=" /tmp/add-matchups-last.log | tail -1 || echo "完了行なし")

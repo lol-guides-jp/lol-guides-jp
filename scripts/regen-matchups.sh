@@ -16,8 +16,7 @@ export NVM_DIR="/home/ojita/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 PROJECT_DIR="/home/ojita/lol-guides-jp"
-DATE=$(date +%Y-%m-%d)
-LOG_PREFIX="[${DATE} $(date +%H:%M:%S)]"
+log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
@@ -43,7 +42,7 @@ export DRY_RUN
 
 cd "$PROJECT_DIR"
 
-echo "${LOG_PREFIX} ===== regen-matchups 開始 (tier=${TIER}, batch=${BATCH}) ====="
+echo "$(log_prefix) ===== regen-matchups 開始 (tier=${TIER}, batch=${BATCH}) ====="
 
 # --- scan-broken.py から対象エントリを取得（broken を quality より先に処理）---
 mapfile -t JOBS < <(
@@ -52,11 +51,11 @@ mapfile -t JOBS < <(
 )
 
 if [ ${#JOBS[@]} -eq 0 ]; then
-    echo "${LOG_PREFIX} INFO: 対象エントリなし。終了"
+    echo "$(log_prefix) INFO: 対象エントリなし。終了"
     exit 0
 fi
 
-echo "${LOG_PREFIX} INFO: ${#JOBS[@]} 件処理します"
+echo "$(log_prefix) INFO: ${#JOBS[@]} 件処理します"
 
 # --- data.json からチャンプ情報を取得するヘルパー ---
 get_champ_info() {
@@ -94,7 +93,7 @@ _ITER=0
 for job in "${JOBS[@]}"; do
     # sleep はループ先頭で実施（失敗時の continue でも必ずかかる）
     if [ "$_ITER" -gt 0 ] && [ "$SLEEP" -gt 0 ]; then
-        echo "${LOG_PREFIX} INFO: ${SLEEP}秒 sleep..."
+        echo "$(log_prefix) INFO: ${SLEEP}秒 sleep..."
         sleep "$SLEEP"
     fi
     _ITER=$((_ITER + 1))
@@ -108,12 +107,12 @@ for job in "${JOBS[@]}"; do
 
     # opp_en が取れない場合（opp_id 不明）はスキップ
     if [ -z "$opp_en" ]; then
-        echo "${LOG_PREFIX} SKIP: opp_en 不明 (${champ_id} vs ${opp_ja}, opp_id=${opp_id})"
+        echo "$(log_prefix) SKIP: opp_en 不明 (${champ_id} vs ${opp_ja}, opp_id=${opp_id})"
         FAILED=$((FAILED + 1))
         continue
     fi
 
-    echo "${LOG_PREFIX} INFO: [${tier}] ${champ_ja} vs ${opp_ja} ..."
+    echo "$(log_prefix) INFO: [${tier}] ${champ_ja} vs ${opp_ja} ..."
 
     champ_skills=$(get_skills_str "$champ_id")
     opp_skills=$(get_skills_str "$opp_id")
@@ -146,12 +145,12 @@ else: print('五分')
     args="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en}|${type_hint}||${champ_skills}|${opp_skills}"
 
     research_json=$(run_cmd "research-matchup" "$args") || {
-        echo "${LOG_PREFIX} ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: research-matchup 失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     }
     if [ -z "$research_json" ]; then
-        echo "${LOG_PREFIX} ERROR: research 結果が空 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: research 結果が空 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     fi
@@ -161,33 +160,33 @@ else: print('五分')
     fi
 
     ops_json=$(run_cmd "write-matchup" "$research_json") || {
-        echo "${LOG_PREFIX} ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: write-matchup 失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     }
 
     if [ -z "$ops_json" ]; then
-        echo "${LOG_PREFIX} ERROR: ops_json が空 (${champ_ja} vs ${opp_ja})"
+        echo "$(log_prefix) ERROR: ops_json が空 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
     fi
 
     # --- セクション置換 ---
     if [ "$DRY_RUN" = "1" ]; then
-        echo "${LOG_PREFIX} [DRY-RUN] replace-section をスキップ (ops_json長=${#ops_json})"
+        echo "$(log_prefix) [DRY-RUN] replace-section をスキップ (ops_json長=${#ops_json})"
     else
         echo "$ops_json" | python3 scripts/replace-section.py "$champ_id" "$opp_ja" "$opp_en" || {
-            echo "${LOG_PREFIX} ERROR: replace-section 失敗 (${champ_ja} vs ${opp_ja})"
+            echo "$(log_prefix) ERROR: replace-section 失敗 (${champ_ja} vs ${opp_ja})"
             FAILED=$((FAILED + 1))
             continue
         }
     fi
 
-    echo "${LOG_PREFIX} OK: ${champ_ja} vs ${opp_ja} [${tier}] 完了"
+    echo "$(log_prefix) OK: ${champ_ja} vs ${opp_ja} [${tier}] 完了"
     PROCESSED=$((PROCESSED + 1))
 done
 
-echo "${LOG_PREFIX} ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
+echo "$(log_prefix) ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
 
 # --- post-processing ---
 if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
@@ -195,28 +194,28 @@ if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
 
     # 変更がなければスキップ
     if git -C "$PROJECT_DIR" diff --cached --quiet; then
-        echo "${LOG_PREFIX} INFO: matchups.md に変更なし（コミットスキップ）"
+        echo "$(log_prefix) INFO: matchups.md に変更なし（コミットスキップ）"
         exit 0
     fi
 
     git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド ${PROCESSED}件再生成 (tier=${TIER})"
-    echo "${LOG_PREFIX} INFO: git commit 完了"
+    echo "$(log_prefix) INFO: git commit 完了"
 
     # guide.md 得意/苦手を同期
-    echo "${LOG_PREFIX} INFO: fix-guide-matchups.py 実行中..."
+    echo "$(log_prefix) INFO: fix-guide-matchups.py 実行中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
     git -C "$PROJECT_DIR" add champions/*/guide.md
     git -C "$PROJECT_DIR" diff --cached --quiet || \
         git -C "$PROJECT_DIR" commit -m "fix: guide.md 得意/苦手 同期 (regen後)"
 
     # data.json 再ビルド
-    echo "${LOG_PREFIX} INFO: data.json 再ビルド中..."
+    echo "$(log_prefix) INFO: data.json 再ビルド中..."
     node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
     git -C "$PROJECT_DIR" add docs/data.json
     git -C "$PROJECT_DIR" diff --cached --quiet || \
         git -C "$PROJECT_DIR" commit -m "chore: data.json 再ビルド (regen後)"
 
-    echo "${LOG_PREFIX} INFO: push 中..."
+    echo "$(log_prefix) INFO: push 中..."
     git -C "$PROJECT_DIR" push
-    echo "${LOG_PREFIX} INFO: push 完了"
+    echo "$(log_prefix) INFO: push 完了"
 fi
