@@ -14,6 +14,7 @@
 
 import os
 import sys
+import time
 
 # venv の google-genai を使う
 VENV_SITE = os.path.join(
@@ -185,17 +186,33 @@ def generate(data: dict, feedback: str = "") -> str:
 
     prompt = build_prompt(data, feedback)
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-3.1-flash-lite-preview",
-            contents=prompt,
-        )
-    except Exception as e:
-        if "RESOURCE_EXHAUSTED" in str(e):
-            # exit 2 = RPD上限。呼び出し元はバッチ全体を中断すること
-            print("ERROR: Gemini RPD上限に達した (RESOURCE_EXHAUSTED)", file=sys.stderr)
-            sys.exit(2)
-        print(f"ERROR: Gemini API error: {e}", file=sys.stderr)
+    # 503 UNAVAILABLE 用バックオフ（tenacity が諦めた後に追加リトライ）
+    # 朝方など需要ピーク時に多発する過負荷エラーに対処する。
+    # 連続して 503 が出るほど待機時間を延ばす（30s → 60s → 120s）。
+    _503_sleeps = [30, 60, 120]
+    response = None
+    for _attempt, _sleep in enumerate([0] + _503_sleeps):
+        if _sleep > 0:
+            print(f"WARN: 503 UNAVAILABLE - {_sleep}秒待機してリトライ ({_attempt}/{len(_503_sleeps)})", file=sys.stderr)
+            time.sleep(_sleep)
+        try:
+            response = client.models.generate_content(
+                model="gemini-3.1-flash-lite-preview",
+                contents=prompt,
+            )
+            break  # 成功
+        except Exception as e:
+            err_str = str(e)
+            if "RESOURCE_EXHAUSTED" in err_str:
+                # exit 2 = RPD上限。呼び出し元はバッチ全体を中断すること
+                print("ERROR: Gemini RPD上限に達した (RESOURCE_EXHAUSTED)", file=sys.stderr)
+                sys.exit(2)
+            if "UNAVAILABLE" in err_str and _attempt < len(_503_sleeps):
+                continue  # バックオフして再試行
+            print(f"ERROR: Gemini API error: {e}", file=sys.stderr)
+            sys.exit(1)
+    if response is None:
+        print(f"ERROR: 503 UNAVAILABLE - {len(_503_sleeps)}回リトライ後も失敗", file=sys.stderr)
         sys.exit(1)
 
     text = response.text.strip()
