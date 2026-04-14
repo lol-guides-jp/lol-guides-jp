@@ -1,7 +1,7 @@
 # lol-guides-jp — アーキテクチャリファレンス
 
 > システム構成の参照用。行動指針は CLAUDE.md、コンテンツ方針は POLICY.md を参照。
-> 最終更新: 2026-04-12
+> 最終更新: 2026-04-15
 
 ---
 
@@ -18,7 +18,7 @@
 Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
 
 - **dirs**: champions/\*/matchups.md, scripts/research-cache/ (旧、移行後に削除)
-- **scripts**: add-matchups.sh, cron-add-matchups.sh, scrape-winrate.py, call-gemini.py, lint-matchup.py, scan-broken.py, replace-section.py, fix-guide-matchups.py, quality-fix.py, lib.sh
+- **scripts**: scripts/add-matchups.sh, scripts/cron-add-matchups.sh, scripts/scrape-winrate.py, scripts/call-gemini.py, scripts/lint-matchup.py, scripts/scan-broken.py, scripts/replace-section.py, scripts/replace-section-text.py, scripts/fix-guide-matchups.py, scripts/quality-fix.py, scripts/lib.sh
 - **commands**: review-matchup.md
 - **data**: missing-\*.txt（ロール別未生成リスト）, missing-matchups.json, lint-rules.json
 - **cron**: cron-add-matchups.sh（一時停止中、Gemini 移行後に再開）
@@ -27,7 +27,7 @@ Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
 
 パッチリリース検知 → ガイド更新。
 
-- **scripts**: check-patch.sh, fetch-patch-notes.py
+- **scripts**: scripts/check-patch.sh, scripts/fetch-patch-notes.py
 - **commands**: update-guides.md
 - **cron**: 毎週月 04:00
 
@@ -35,7 +35,7 @@ Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
 
 表現品質スキャン → 修正 → ルール学習のフィードバックループ。
 
-- **scripts**: quality-check.py, quality-fix.py, scan-expressions.py, learn.py, check-coverage.py, check-skill-names.py
+- **scripts**: scripts/quality-check.py, scripts/quality-fix.py, scripts/scan-expressions.py, scripts/learn.py, scripts/check-coverage.py, scripts/check-skill-names.py
 - **data**: expression-rules.json
 - **config**: .claude/writing-rules.md
 - **cron**: 毎週日 02:00 (scan-expressions.py)
@@ -44,14 +44,14 @@ Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
 
 Gemini 出力の L1 品質チェック + ルール蓄積。
 
-- **scripts**: lint-matchup.py, learn-lint.py
+- **scripts**: scripts/lint-matchup.py, scripts/learn-lint.py
 - **data**: lint-rules.json
 
 ### 再生成パイプライン [ACTIVE]
 
 品質不良エントリを検出して再生成。
 
-- **scripts**: regen-matchups.sh, list-regen-targets.py, scan-broken.py
+- **scripts**: scripts/regen-matchups.sh, scripts/list-regen-targets.py, scripts/scan-broken.py
 
 ### OGP・静的サイト [ACTIVE]
 
@@ -65,7 +65,7 @@ GitHub Pages 用の JSON/HTML/OGP 画像生成。
 
 複数スクリプトから参照される辞書・マッピングデータ。
 
-- **data**: scripts/runes-ja.json (fetch-runes.py で更新), scripts/items-ja.json, scripts/ddragon-keys.json, scripts/beginner-picks.json
+- **data**: scripts/runes-ja.json (scripts/fetch-runes.py で更新), scripts/items-ja.json, scripts/ddragon-keys.json, scripts/beginner-picks.json
 
 ---
 
