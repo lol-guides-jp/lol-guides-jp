@@ -1,10 +1,11 @@
 #!/bin/bash
 # cron-add-matchups.sh
-# 毎日5回（0,5,10,15,20時）対面ガイドを自動追加する（batch=48, Gemini 3.1 Flash Lite + Sonnet レビュー）
-# Sonnet review 2件連続失敗時はバッチ終了（spending limit 判断）
+# 90分ごと（1日16回）対面ガイドを自動追加する（batch=12, Gemini 3.1 Flash Lite + Sonnet レビュー）
+# 503時は即バッチ終了して次のcronに委ねる。Sonnet review 2件連続失敗時もバッチ終了。
 #
 # cron登録:
-#   0 0,5,10,15,20 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0  0,3,6,9,12,15,18,21 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   30 1,4,7,10,13,16,19,22 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
 
 set -euo pipefail
 
@@ -32,7 +33,7 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 cd "$PROJECT_DIR"
 
 echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
-"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 48 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
+"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
 echo "$(log_prefix) ===== cron-add-matchups 終了 ====="
 
 # 実行結果をCLAUDE.local.mdに記録

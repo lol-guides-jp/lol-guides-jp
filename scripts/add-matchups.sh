@@ -176,6 +176,10 @@ PYEOF
             echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${champ_ja} vs ${opp_ja})"
             exit 1
         fi
+        if [ $ec -eq 3 ]; then
+            echo "$(log_prefix) ERROR: Gemini 503。次のcronに委ねる (${champ_ja} vs ${opp_ja})"
+            exit 1
+        fi
         echo "$(log_prefix) ERROR: Gemini A 側失敗 (${champ_ja} vs ${opp_ja})"
         FAILED=$((FAILED + 1))
         continue
@@ -195,6 +199,10 @@ PYEOF
         ec=$?
         if [ $ec -eq 2 ]; then
             echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${opp_ja} vs ${champ_ja})"
+            exit 1
+        fi
+        if [ $ec -eq 3 ]; then
+            echo "$(log_prefix) ERROR: Gemini 503。次のcronに委ねる (${opp_ja} vs ${champ_ja})"
             exit 1
         fi
         echo "$(log_prefix) ERROR: Gemini B 側失敗 (${opp_ja} vs ${champ_ja})"
@@ -286,11 +294,21 @@ print(json.dumps({
             sleep "$SLEEP"
 
             retry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_a") || {
+                ec=$?
+                if [ $ec -eq 3 ]; then
+                    echo "$(log_prefix) ERROR: リトライ Gemini A 503。次のcronに委ねる"
+                    exit 1
+                fi
                 echo "$(log_prefix) ERROR: リトライ Gemini A 失敗"
                 continue
             }
             sleep "$SLEEP"
             retry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_b") || {
+                ec=$?
+                if [ $ec -eq 3 ]; then
+                    echo "$(log_prefix) ERROR: リトライ Gemini B 503。次のcronに委ねる"
+                    exit 1
+                fi
                 echo "$(log_prefix) ERROR: リトライ Gemini B 失敗"
                 continue
             }
