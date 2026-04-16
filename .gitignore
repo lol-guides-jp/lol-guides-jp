@@ -9,5 +9,8 @@ scripts/research-cache/
 .env.*
 .DS_Store
 CLAUDE.local.md
+
+# 内部メモ（公開不要）
+notes/
 .venv/
 __pycache__/
