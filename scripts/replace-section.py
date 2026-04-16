@@ -25,7 +25,7 @@ if not os.path.isfile(path):
     print(f"ERROR: {path} が見つかりません", file=sys.stderr)
     sys.exit(1)
 
-content = open(path).read()
+content = open(path, encoding="utf-8").read()
 header  = f"## vs {opp_ja}（{opp_en}）"
 pat = re.compile(r'^' + re.escape(header) + r'\n.*?(?=\n## |\Z)', re.MULTILINE | re.DOTALL)
 
@@ -33,8 +33,8 @@ clean = new_content.lstrip('\n')  # 先頭の余分な改行を除去
 
 if pat.search(content):
     result = pat.sub(clean, content)
-    open(path, 'w').write(result)
+    open(path, 'w', encoding="utf-8").write(result)
     print(f"replaced: {champ_id}/matchups.md  vs {opp_ja}")
 else:
-    open(path, 'a').write(f"\n{clean}")
+    open(path, 'a', encoding="utf-8").write(f"\n{clean}")
     print(f"appended (fallback): {champ_id}/matchups.md  vs {opp_ja}")

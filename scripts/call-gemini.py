@@ -31,7 +31,7 @@ def load_api_key() -> str:
     if not os.path.isfile(env_file):
         print("ERROR: ~/.secrets/.env not found", file=sys.stderr)
         sys.exit(1)
-    for line in open(env_file):
+    for line in open(env_file, encoding="utf-8"):
         line = line.strip()
         if line.startswith("GEMINI_API_KEY="):
             return line.split("=", 1)[1].strip().strip('"').strip("'")

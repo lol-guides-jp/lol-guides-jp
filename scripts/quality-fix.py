@@ -6,7 +6,7 @@ import os, re, json, subprocess
 CHAMP_DIR = os.path.join(os.path.dirname(__file__), "..", "champions")
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "data.json")
 
-DATA = json.load(open(DATA_FILE))
+DATA = json.load(open(DATA_FILE, encoding="utf-8"))
 ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
 id_to_ja = {c["id"]: c["ja"] for c in DATA["champions"]}
 
@@ -22,7 +22,7 @@ def parse_matchups_with_pos(champ_id):
     path = os.path.join(CHAMP_DIR, champ_id, "matchups.md")
     if not os.path.isfile(path):
         return {}, ""
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         content = f.read()
     result = {}
     for m in re.finditer(r'(## vs .+?（(.+?)）\n- \*\*)(.+?)(（勝率約)', content):
@@ -73,10 +73,10 @@ for cid, data in all_data.items():
     path = os.path.join(CHAMP_DIR, cid, "matchups.md")
     if not os.path.isfile(path):
         continue
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         original = f.read()
     if data["content"] != original:
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             f.write(data["content"])
 
 print(f"対称修正: {sym_fixes}件\n")
@@ -165,7 +165,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
         if not os.path.isfile(filepath):
             continue
-        with open(filepath, "r") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         new_content = content
         for old, new in REPLACEMENTS + _learned:
@@ -173,7 +173,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         for pattern, replacement in REGEX_REPLACEMENTS:
             new_content = re.sub(pattern, replacement, new_content)
         if new_content != content:
-            with open(filepath, "w") as f:
+            with open(filepath, "w", encoding="utf-8") as f:
                 f.write(new_content)
             notation_fixes += 1
             print(f"  修正: {champ_dir}/{filename}")
@@ -207,11 +207,11 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
         if not os.path.isfile(filepath):
             continue
-        with open(filepath, "r") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         new_content = FORMAT_FIX_PATTERN.sub(lambda m: f"{m.group(2)}（{m.group(1)}）", content)
         if new_content != content:
-            with open(filepath, "w") as f:
+            with open(filepath, "w", encoding="utf-8") as f:
                 f.write(new_content)
             format_fixes += 1
             print(f"  修正: {champ_dir}/{filename}")
@@ -262,7 +262,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
     if not os.path.isfile(filepath):
         continue
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     new_lines = []
@@ -298,7 +298,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         new_lines.append(new_line)
 
     if changed:
-        with open(filepath, "w") as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
         mix_fixes += 1
         print(f"  修正: {champ_dir}/matchups.md")
@@ -322,7 +322,7 @@ if os.path.isfile(ITEMS_FILE):
         filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
         if not os.path.isfile(filepath):
             continue
-        with open(filepath, "r") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             lines = f.readlines()
 
         new_lines = []
@@ -341,7 +341,7 @@ if os.path.isfile(ITEMS_FILE):
             new_lines.append(new_line)
 
         if changed:
-            with open(filepath, "w") as f:
+            with open(filepath, "w", encoding="utf-8") as f:
                 f.writelines(new_lines)
             item_fixes += 1
             print(f"  修正: {champ_dir}/matchups.md")
@@ -370,7 +370,7 @@ if os.path.isfile(RUNES_FILE):
             filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
             if not os.path.isfile(filepath):
                 continue
-            with open(filepath, "r") as f:
+            with open(filepath, "r", encoding="utf-8") as f:
                 lines = f.readlines()
 
             new_lines = []
@@ -392,7 +392,7 @@ if os.path.isfile(RUNES_FILE):
                 new_lines.append(new_line)
 
             if changed:
-                with open(filepath, "w") as f:
+                with open(filepath, "w", encoding="utf-8") as f:
                     f.writelines(new_lines)
                 rune_fixes += 1
                 print(f"  修正: {champ_dir}/{filename}")
@@ -422,11 +422,11 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
     if not os.path.isfile(filepath):
         continue
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
     new_content = re.sub(r'勝率約([\d.]+(?:〜[\d.]+)?)%', normalize_winrate, content)
     if new_content != content:
-        with open(filepath, "w") as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.write(new_content)
         winrate_fixes += 1
         print(f"  修正: {champ_dir}/matchups.md")
@@ -475,7 +475,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     main_sm = _champ_sm[champ_dir]
     opp_sm_cur = {}
 
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     new_lines = []
@@ -497,7 +497,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         new_lines.append(new_line)
 
     if changed:
-        with open(filepath, "w") as f:
+        with open(filepath, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
         extra_fix_total += 1
         print(f"  修正: {champ_dir}/matchups.md")
@@ -513,7 +513,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
     main_sm = _champ_sm[champ_dir]
 
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         content = f.read()
     lines = content.splitlines(keepends=True)
 
@@ -601,7 +601,11 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
 
     new_content = "".join(new_lines)
     if new_content != content:
-        with open(filepath, "w") as f:
+        if '\ufffd' in new_content and '\ufffd' not in content:
+            # U+FFFD が新たに混入するなら書き込みをスキップ（encoding問題等による壊れた置換を防ぐ）
+            print(f"  WARN: {champ_dir}: U+FFFD detected in replacement — skipping to prevent corruption", file=sys.stderr)
+            continue
+        with open(filepath, "w", encoding="utf-8") as f:
             f.write(new_content)
         n = len(global_replacements) + len(section_replacements)
         skill_fix_total += n

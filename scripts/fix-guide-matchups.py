@@ -24,7 +24,7 @@ MECHANICS_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "champion
 
 TOP_N = 4  # 得意/苦手それぞれ上位何件を掲載するか
 
-DATA = json.load(open(DATA_FILE))
+DATA = json.load(open(DATA_FILE, encoding="utf-8"))
 ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
 en_to_id = {c["en"]: c["id"] for c in DATA["champions"]}
 
@@ -39,7 +39,7 @@ def parse_matchups(champ_id):
     path = os.path.join(CHAMP_DIR, champ_id, "matchups.md")
     if not os.path.isfile(path):
         return {}
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         content = f.read()
     result = {}
     for m in re.finditer(r'^## vs (.+?)（.+?）\n(.*?)(?=\n## |\Z)', content, re.MULTILINE | re.DOTALL):
@@ -95,7 +95,7 @@ def update_guide(champ_id, matchups, dry_run=False):
     if not favorable and not unfavorable:
         return False
 
-    with open(guide_path) as f:
+    with open(guide_path, encoding="utf-8") as f:
         content = f.read()
 
     new_content = content
@@ -114,7 +114,7 @@ def update_guide(champ_id, matchups, dry_run=False):
         for ja, d in unfavorable:
             print(f"    苦手: {ja}（{d['verdict']}）")
     else:
-        with open(guide_path, "w") as f:
+        with open(guide_path, "w", encoding="utf-8") as f:
             f.write(new_content)
 
     return True
@@ -129,7 +129,7 @@ def find_q4_champs():
         path = os.path.join(CHAMP_DIR, champ_id, "guide.md")
         if not os.path.isfile(path):
             return set(), set()
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             content = f.read()
         favorable, unfavorable = set(), set()
         cur = None

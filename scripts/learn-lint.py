@@ -32,12 +32,12 @@ RULES_PATH = os.path.join(SCRIPT_DIR, "lint-rules.json")
 
 
 def load_rules() -> dict:
-    with open(RULES_PATH) as f:
+    with open(RULES_PATH, encoding="utf-8") as f:
         return json.load(f)
 
 
 def save_rules(rules: dict) -> None:
-    with open(RULES_PATH, "w") as f:
+    with open(RULES_PATH, "w", encoding="utf-8") as f:
         json.dump(rules, f, ensure_ascii=False, indent=2)
     print(f"OK: {RULES_PATH} updated", file=sys.stderr)
 
@@ -144,9 +144,9 @@ def cmd_diff(args: list[str]) -> None:
         print("Usage: learn-lint.py diff before.txt after.txt", file=sys.stderr)
         sys.exit(1)
 
-    with open(args[0]) as f:
+    with open(args[0], encoding="utf-8") as f:
         before = f.read()
-    with open(args[1]) as f:
+    with open(args[1], encoding="utf-8") as f:
         after = f.read()
 
     rules = load_rules()

@@ -3,7 +3,7 @@
 
 import json
 
-DATA = json.load(open("docs/data.json"))
+DATA = json.load(open("docs/data.json", encoding="utf-8"))
 
 missing_total = 0
 champs_with_missing = 0

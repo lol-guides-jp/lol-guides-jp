@@ -23,7 +23,7 @@ RULES_PATH = os.path.join(SCRIPT_DIR, "lint-rules.json")
 
 
 def load_rules() -> dict:
-    with open(RULES_PATH) as f:
+    with open(RULES_PATH, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -119,10 +119,46 @@ def check_form_skill_mismatch(text: str, rules: dict) -> list[dict]:
     return issues
 
 
+def check_opp_skill_prefix(text: str, opp_skills_str: str) -> list[dict]:
+    """対戦相手スキルがスロット記号（Q（）等）なしで出現していないか検出。
+    opp_skills_str: "Q(スキル名), W(スキル名), ..." 形式（add-matchups.sh の OPP_SKILLS 環境変数）
+    """
+    if not opp_skills_str:
+        return []
+    # パース: Q(スキル名) → {スキル名: key}
+    skill_map: dict[str, str] = {}
+    for m in re.finditer(r'([QWER])\(([^)]+)\)', opp_skills_str):
+        key, name = m.group(1), m.group(2)
+        # 形態変化チャンプ: "スキルA/スキルB" は "/" で分割
+        for part in name.split("/"):
+            part = part.strip()
+            if len(part) >= 3:  # 短すぎる名前は誤検知リスクが高いためスキップ
+                skill_map[part] = key
+
+    issues = []
+    for skill_name, key in skill_map.items():
+        # (?<!（) で「（スキル名）」形式はスキップ（= 既にフォーマット済み）
+        pattern = r'(?<!（)' + re.escape(skill_name)
+        if re.search(pattern, text):
+            issues.append({
+                "type": "opp_skill_no_prefix",
+                "pattern": pattern,
+                "replacement": f"{key}（{skill_name}）",
+                "reason": f"対戦相手スキル「{skill_name}」にスロット記号なし（正: {key}（{skill_name}））",
+                "auto_fix": True,
+                "is_regex": True,
+            })
+    return issues
+
+
 def apply_fixes(text: str, issues: list[dict]) -> str:
     """auto_fix=True の issue を適用して修正済みテキストを返す。"""
     for issue in issues:
-        if issue.get("auto_fix") and issue.get("replacement") is not None:
+        if not issue.get("auto_fix"):
+            continue
+        if issue.get("is_regex"):
+            text = re.sub(issue["pattern"], issue["replacement"], text)
+        elif issue.get("replacement") is not None:
             text = text.replace(issue["pattern"], issue["replacement"])
     return text
 
@@ -140,12 +176,14 @@ def main():
         sys.exit(1)
 
     rules = load_rules()
+    opp_skills_str = os.environ.get("OPP_SKILLS", "")
 
     all_issues = []
     all_issues.extend(check_banned_words(text, rules))
     all_issues.extend(check_polite_endings(text, rules))
     all_issues.extend(check_verbosity(text, rules))
     all_issues.extend(check_form_skill_mismatch(text, rules))
+    all_issues.extend(check_opp_skill_prefix(text, opp_skills_str))
 
     if mode == "--check":
         if not all_issues:

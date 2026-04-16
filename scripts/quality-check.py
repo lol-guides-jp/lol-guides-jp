@@ -6,7 +6,7 @@ import os, re, json
 CHAMP_DIR = os.path.join(os.path.dirname(__file__), "..", "champions")
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "data.json")
 
-DATA = json.load(open(DATA_FILE))
+DATA = json.load(open(DATA_FILE, encoding="utf-8"))
 id_to_ja = {c["id"]: c["ja"] for c in DATA["champions"]}
 ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
 en_to_id = {c["en"]: c["id"] for c in DATA["champions"]}
@@ -21,7 +21,7 @@ def parse_matchups(champ_id):
     path = os.path.join(CHAMP_DIR, champ_id, "matchups.md")
     if not os.path.isfile(path):
         return {}
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         content = f.read()
     result = {}
     for m in re.finditer(r'## vs .+?（(.+?)）\n- \*\*(.+?)(（勝率)', content):
@@ -92,7 +92,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
         if not os.path.isfile(filepath):
             continue
-        with open(filepath, "r") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         for pattern, correct in KNOWN_ISSUES:
             matches = re.findall(pattern, content)
@@ -139,7 +139,7 @@ for champ_dir in sorted(os.listdir(CHAMP_DIR)):
     filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
     if not os.path.isfile(filepath):
         continue
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     for lineno, line in enumerate(lines, 1):
@@ -206,7 +206,7 @@ def check_skill_names_in_file(filepath, main_sm, is_matchups=True):
     opp_sm = {}
     opp_ja_name = ""
 
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     for lineno, line in enumerate(lines, 1):

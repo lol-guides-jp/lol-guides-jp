@@ -20,8 +20,8 @@ CHAMP_DIR = os.path.join(os.path.dirname(__file__), "..", "champions")
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "data.json")
 MECHANICS_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "champion-mechanics.json")
 
-DATA = json.load(open(DATA_FILE))
-MECHANICS = json.load(open(MECHANICS_FILE))
+DATA = json.load(open(DATA_FILE, encoding="utf-8"))
+MECHANICS = json.load(open(MECHANICS_FILE, encoding="utf-8"))
 
 cmap = {c["id"]: c for c in DATA["champions"]}
 ja_to_id = {c["ja"]: c["id"] for c in DATA["champions"]}
@@ -50,7 +50,7 @@ def parse_entries(champ_id):
     path = os.path.join(CHAMP_DIR, champ_id, "matchups.md")
     if not os.path.isfile(path):
         return []
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         content = f.read()
     entries = []
     for m in re.finditer(r'^## vs (.+?)（(.+?)）\n(.*?)(?=\n## |\Z)', content, re.MULTILINE | re.DOTALL):
@@ -138,7 +138,7 @@ def _parse_guide_matchups(champ_id):
     path = os.path.join(CHAMP_DIR, champ_id, "guide.md")
     if not os.path.isfile(path):
         return set(), set()
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         content = f.read()
     favorable, unfavorable = set(), set()
     cur = None

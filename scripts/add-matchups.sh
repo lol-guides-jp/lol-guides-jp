@@ -245,8 +245,9 @@ PYEOF
     fi
 
     # --- L1 lint + 自動修正 ---
-    linted_a=$(echo "$entry_a" | python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_a="$entry_a"
-    linted_b=$(echo "$entry_b" | python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_b="$entry_b"
+    # A側: OPP_SKILLS=対戦相手スキル / B側: OPP_SKILLS=メインチャンプスキル（視点が逆転するため）
+    linted_a=$(echo "$entry_a" | OPP_SKILLS="$opp_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_a="$entry_a"
+    linted_b=$(echo "$entry_b" | OPP_SKILLS="$champ_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_b="$entry_b"
 
     # --- DRY_RUN: review + 書き込みスキップ ---
     if [ "$DRY_RUN" = "1" ]; then
@@ -343,8 +344,8 @@ print(json.dumps({
             }
 
             # lint
-            retry_a=$(echo "$retry_a" | python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
-            retry_b=$(echo "$retry_b" | python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
+            retry_a=$(echo "$retry_a" | OPP_SKILLS="$opp_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
+            retry_b=$(echo "$retry_b" | OPP_SKILLS="$champ_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
 
             # re-review
             retry_review_input=$(CHAMP_ID="$champ_id" CHAMP_JA="$champ_ja" CHAMP_EN="$champ_en" \
