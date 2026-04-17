@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """matchups.md / guide.md 品質修正スクリプト"""
 
-import os, re, json, subprocess
+import os, re, json, subprocess, sys
 
 CHAMP_DIR = os.path.join(os.path.dirname(__file__), "..", "champions")
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "data.json")
