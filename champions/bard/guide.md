@@ -1,4 +1,4 @@
-# Bard（バード）サポート パッチ26.6
+# Bard（バード）サポート パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/bard/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/bard/guide)*

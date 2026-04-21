@@ -1,9 +1,13 @@
 #!/bin/bash
 # check-patch.sh
 # 毎週月曜4時: パッチバージョンを確認し、更新があればガイドを自動更新する
+# 複数パッチをスキップした場合は順番に処理し、matchupは重複排除して1回だけキューに追加する
 #
 # cron登録:
 #   0 4 * * 1 /home/ojita/lol-guides-jp/scripts/check-patch.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#
+# 手動実行（ドライラン）:
+#   ./scripts/check-patch.sh --dry-run
 
 set -euo pipefail
 
@@ -71,44 +75,86 @@ fi
 
 echo "$(log_prefix) INFO: 新パッチ検出: ${CURRENT} → ${LATEST}"
 
-if [ "${DRY_RUN:-0}" = "1" ]; then
-    echo "$(log_prefix) DRY-RUN: fetch-patch-notes.py ${LATEST} をスキップ"
-    echo "$(log_prefix) DRY-RUN: update-guides をスキップ"
-    echo "$(log_prefix) DRY-RUN: current-patch.txt 更新をスキップ"
+# --- 処理対象パッチ一覧を生成（CURRENT+1 〜 LATEST、同一メジャーのみ対応） ---
+CUR_MAJOR=$(echo "${CURRENT}" | cut -d. -f1)
+CUR_MINOR=$(echo "${CURRENT}" | cut -d. -f2)
+LAT_MAJOR=$(echo "${LATEST}" | cut -d. -f1)
+LAT_MINOR=$(echo "${LATEST}" | cut -d. -f2)
+
+if [ "${CUR_MAJOR}" != "${LAT_MAJOR}" ]; then
+    notify_failure "メジャーバージョンが変わりました（${CURRENT}→${LATEST}）。手動対応が必要です"
+    exit 1
+fi
+
+MISSED_PATCHES=()
+for minor in $(seq $((CUR_MINOR + 1)) "${LAT_MINOR}"); do
+    MISSED_PATCHES+=("${CUR_MAJOR}.${minor}")
+done
+
+echo "$(log_prefix) INFO: 処理対象パッチ: ${MISSED_PATCHES[*]}"
+
+if [ "${DRY_RUN}" = "1" ]; then
+    echo "$(log_prefix) DRY-RUN: 以下の処理をスキップします:"
+    for patch in "${MISSED_PATCHES[@]}"; do
+        echo "$(log_prefix)   - fetch-patch-notes.py ${patch}"
+        echo "$(log_prefix)   - update-guides (patches/${patch}.md)"
+    done
+    echo "$(log_prefix)   - update-patch-version.py → パッチ${LATEST}"
+    echo "$(log_prefix)   - requeue-patched-matchups.py ${MISSED_PATCHES[*]}"
+    echo "$(log_prefix)   - build-json.js"
+    echo "$(log_prefix)   - current-patch.txt を ${LATEST} に更新"
+    echo "$(log_prefix)   - git commit + push"
     echo "$(log_prefix) ===== パッチチェック完了（DRY-RUN） ====="
     exit 0
 fi
 
-# --- パッチノート取得（L1: fetch-patch-notes.py） ---
-echo "$(log_prefix) INFO: パッチノート取得中..."
-if ! python3 "${PROJECT_DIR}/scripts/fetch-patch-notes.py" "${LATEST}"; then
-    notify_failure "fetch-patch-notes.py 失敗（パッチ${LATEST}）"
-    exit 1
-fi
+# --- 各パッチを順番に処理 ---
+for PATCH in "${MISSED_PATCHES[@]}"; do
+    echo "$(log_prefix) INFO: ===== パッチ${PATCH} 処理開始 ====="
 
-if [ ! -f "${PROJECT_DIR}/patches/${LATEST}.md" ]; then
-    notify_failure "patches/${LATEST}.md が生成されていない"
-    exit 1
-fi
+    # パッチノート取得
+    echo "$(log_prefix) INFO: パッチノート取得中（${PATCH}）..."
+    if ! python3 "${PROJECT_DIR}/scripts/fetch-patch-notes.py" "${PATCH}"; then
+        notify_failure "fetch-patch-notes.py 失敗（パッチ${PATCH}）"
+        exit 1
+    fi
+    if [ ! -f "${PROJECT_DIR}/patches/${PATCH}.md" ]; then
+        notify_failure "patches/${PATCH}.md が生成されていない"
+        exit 1
+    fi
 
-# --- ガイド更新（L3: Claude） ---
-echo "$(log_prefix) INFO: ガイド更新中..."
-json=$(run_cmd "update-guides") || { notify_failure "update-guides 失敗"; exit 1; }
-if [ -z "$json" ]; then
-    notify_failure "update-guides 結果が空"
-    exit 1
-fi
+    # ガイド更新（L3: Claude）
+    echo "$(log_prefix) INFO: ガイド更新中（${PATCH}）..."
+    json=$(run_cmd "update-guides") || { notify_failure "update-guides 失敗（パッチ${PATCH}）"; exit 1; }
+    if [ -z "$json" ]; then
+        notify_failure "update-guides 結果が空（パッチ${PATCH}）"
+        exit 1
+    fi
+    dispatch_ops "$json" || { notify_failure "update-guides dispatch_ops 失敗（パッチ${PATCH}）"; exit 1; }
 
-if ! dispatch_ops "$json"; then
-    notify_failure "update-guides dispatch_ops 失敗"
-    exit 1
-fi
+    echo "$(log_prefix) INFO: ===== パッチ${PATCH} ガイド更新完了 ====="
+done
+
+# --- 全ページのパッチバージョン表記を最新に一括更新（L1） ---
+echo "$(log_prefix) INFO: パッチバージョン表記を パッチ${LATEST} に更新中..."
+python3 "${PROJECT_DIR}/scripts/update-patch-version.py" "${LATEST}" || \
+    notify_failure "update-patch-version.py 失敗（パッチ${LATEST}）"
+
+# --- data.json 再ビルド ---
+echo "$(log_prefix) INFO: data.json 再ビルド中..."
+node "${PROJECT_DIR}/scripts/build-json.js" || \
+    notify_failure "build-json.js 失敗（パッチ${LATEST}）"
+
+# --- matchup再キュー（全対象パッチをまとめて重複排除し先頭に追加） ---
+echo "$(log_prefix) INFO: matchup再キュー中（${MISSED_PATCHES[*]}）..."
+python3 "${PROJECT_DIR}/scripts/requeue-patched-matchups.py" "${MISSED_PATCHES[@]}" || \
+    notify_failure "requeue-patched-matchups.py 失敗"
 
 # --- パッチバージョンを更新 ---
 echo "${LATEST}" > "${PATCH_FILE}"
 echo "$(log_prefix) INFO: current-patch.txt を ${LATEST} に更新"
 
-# --- git push ---
+# --- git commit + push ---
 git add .
 git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.github.com" \
     commit -m "[自動] パッチ${LATEST} ガイド更新"

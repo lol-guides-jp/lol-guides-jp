@@ -1,4 +1,4 @@
-# Smolder（スモルダー）ADC パッチ26.6
+# Smolder（スモルダー）ADC パッチ26.8
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Qのスタックを貯めて段階的に強化される超スケーリング型A
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/smolder/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/smolder/guide)*

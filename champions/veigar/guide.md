@@ -1,4 +1,4 @@
-# Veigar（ベイガー）ミッドレーン パッチ26.7
+# Veigar（ベイガー）ミッドレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.7 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/veigar/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/veigar/guide)*

@@ -1,4 +1,4 @@
-# Renata Glasc（レナータ・グラスク）サポート パッチ26.6
+# Renata Glasc（レナータ・グラスク）サポート パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/renata/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/renata/guide)*

@@ -1,4 +1,4 @@
-# Camille（カミール）トップレーン パッチ26.6
+# Camille（カミール）トップレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/camille/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/camille/guide)*

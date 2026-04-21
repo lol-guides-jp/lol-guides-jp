@@ -1,4 +1,4 @@
-# Ornn（オーン）トップレーン パッチ26.7
+# Ornn（オーン）トップレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.7 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ornn/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ornn/guide)*

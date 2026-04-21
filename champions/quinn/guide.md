@@ -1,4 +1,4 @@
-# Quinn（クイン）トップレーン パッチ26.6
+# Quinn（クイン）トップレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/quinn/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/quinn/guide)*

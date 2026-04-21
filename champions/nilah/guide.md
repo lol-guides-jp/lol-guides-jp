@@ -1,4 +1,4 @@
-# Nilah（ニーラ）ADC パッチ26.6
+# Nilah（ニーラ）ADC パッチ26.8
 
 ## 一言まとめ
 近接型ADCでありながら集団戦での爆発力が非常に高いスケーラー。パッシブの経験値共有でレベル先行しやすく、ウルトの範囲ダメージとシールドでチームファイトを支配する。
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nilah/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nilah/guide)*

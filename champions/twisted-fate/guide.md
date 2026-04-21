@@ -1,4 +1,4 @@
-# Twisted Fate（ツイステッド・フェイト）ミッドレーン パッチ26.6
+# Twisted Fate（ツイステッド・フェイト）ミッドレーン パッチ26.8
 
 ## 一言まとめ
 ウルトによるマップ全体への圧力が最大の武器。レーンで勝つチャンピオンではなく、ロームとピックでチーム全体を勝たせるユーティリティ型メイジ。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twistedfate/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twistedfate/guide)*

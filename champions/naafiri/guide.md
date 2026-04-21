@@ -1,4 +1,4 @@
-# Naafiri（ナフィーリ）ミッドレーン パッチ26.6
+# Naafiri（ナフィーリ）ミッドレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/naafiri/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/naafiri/guide)*

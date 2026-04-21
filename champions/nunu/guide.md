@@ -1,4 +1,4 @@
-# Nunu & Willump（ヌヌ＆ウィルンプ）ジャングル パッチ26.6
+# Nunu & Willump（ヌヌ＆ウィルンプ）ジャングル パッチ26.8
 
 ## 一言まとめ
 ガンク・オブジェクトコントロールに特化したタンク型ジャングラー。Wの雪玉突撃で強力なガンクを仕掛け、Qのオブジェクト確保力でドラゴン・バロンを安定して取れる。操作が比較的簡単でジャングル入門にも最適。
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nunu/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nunu/guide)*

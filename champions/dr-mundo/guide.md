@@ -1,4 +1,4 @@
-# Dr. Mundo（ドクター・ムンド）ジャングル パッチ26.6
+# Dr. Mundo（ドクター・ムンド）ジャングル パッチ26.8
 
 ## 一言まとめ
 圧倒的な耐久力と回復力で前線に居座り続ける不死身のタンク。操作がシンプルで初心者にも扱いやすい。
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/drmundo/guide/jungle)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/drmundo/guide/jungle)*

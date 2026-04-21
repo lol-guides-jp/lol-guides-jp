@@ -1,4 +1,4 @@
-# Janna（ジャンナ）サポート パッチ26.6
+# Janna（ジャンナ）サポート パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/janna/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/janna/guide)*

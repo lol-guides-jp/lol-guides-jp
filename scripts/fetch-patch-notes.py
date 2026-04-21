@@ -32,7 +32,7 @@ def notify_failure(patch_version: str, reason: str) -> None:
 
 
 def fetch_html(patch_version: str) -> str:
-    slug = "patch-" + patch_version.replace(".", "-") + "-notes"
+    slug = "league-of-legends-patch-" + patch_version.replace(".", "-") + "-notes"
     url = f"https://www.leagueoflegends.com/en-us/news/game-updates/{slug}/"
     print(f"INFO: フェッチ中: {url}")
 
@@ -145,7 +145,7 @@ def main() -> None:
     output_path = PATCHES_DIR / f"{patch_version}.md"
 
     if args.dry_run:
-        slug = "patch-" + patch_version.replace(".", "-") + "-notes"
+        slug = "league-of-legends-patch-" + patch_version.replace(".", "-") + "-notes"
         url = f"https://www.leagueoflegends.com/en-us/news/game-updates/{slug}/"
         print(f"[DRY-RUN] フェッチ対象: {url}")
         print(f"[DRY-RUN] 保存先: {output_path}")

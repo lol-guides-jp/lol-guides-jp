@@ -1,4 +1,4 @@
-# Pyke（パイク）サポート パッチ26.6
+# Pyke（パイク）サポート パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/pyke/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/pyke/guide)*

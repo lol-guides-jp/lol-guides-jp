@@ -1,4 +1,4 @@
-# Senna（セナ）サポート パッチ26.6
+# Senna（セナ）サポート パッチ26.8
 
 ## 一言まとめ
 ソウルを集めて永続的にスケーリングするAD寄りサポート。射程・火力・回復・カモフラージュと多機能で、試合が長引くほど脅威になる。
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/senna/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/senna/guide)*

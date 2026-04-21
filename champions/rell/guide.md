@@ -1,4 +1,4 @@
-# Rell（レル）サポート パッチ26.7
+# Rell（レル）サポート パッチ26.8
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.7 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rell/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rell/guide)*

@@ -1,4 +1,4 @@
-# Tahm Kench（タム・ケンチ）トップレーン パッチ26.6
+# Tahm Kench（タム・ケンチ）トップレーン パッチ26.8
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@ Heartsteel を軸にHP を積みながら殴り合いで勝つタンクファイ
 
 ---
 
-*パッチ26.6 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/tahmkench/guide)*
+*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/tahmkench/guide)*
