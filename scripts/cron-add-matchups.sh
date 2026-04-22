@@ -47,7 +47,11 @@ echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
 "${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
 echo "$(log_prefix) ===== cron-add-matchups 終了 ====="
 
-# 実行結果をCLAUDE.local.mdに記録
+# 実行結果を CLAUDE.local.md に記録（CLAUDE.md §セッション管理の通知方針に従う）
+# 正常系（失敗=0）は記録しない。~/CLAUDE.local.md は「ユーザーが確認すべきもの」専用のため。
+# 詳細なログは /mnt/c/Obsidian/90_Claude作業用/ログ/ 側に蓄積する想定。
 SUMMARY=$(grep "完了: 成功=" /tmp/add-matchups-last.log | tail -1 || echo "完了行なし")
-echo "- [$(date '+%Y-%m-%d %H:%M')] lol-guides-jp: cron-add-matchups ${SUMMARY}" \
-    >> /home/ojita/CLAUDE.local.md
+if echo "$SUMMARY" | grep -qE "失敗=[1-9]|完了行なし"; then
+    echo "- [$(date '+%Y-%m-%d %H:%M')] lol-guides-jp: cron-add-matchups ${SUMMARY}" \
+        >> /home/ojita/CLAUDE.local.md
+fi

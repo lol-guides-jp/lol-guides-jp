@@ -164,7 +164,14 @@ auto_commit patches champions docs/data.json current-patch.txt \
 auto_push || { notify_failure "push 失敗（パッチ${LATEST}）"; exit 1; }
 
 # CLAUDE.local.md に成功通知
-grep -v "lol-guides-jp check-patch" "${CLAUDE_LOCAL}" > "${CLAUDE_LOCAL}.tmp" && mv "${CLAUDE_LOCAL}.tmp" "${CLAUDE_LOCAL}" || true
+# 過去の check-patch 関連の失敗/成功通知を掃除してから新しい成功通知を付ける。
+# notify_failure は "⚠️ <日付>: lol-guides-jp <何か> 失敗" 形式で append するが、
+# reason 文字列の組み立てによってはパイプ内のスクリプト名（fetch-patch-notes.py 等）が
+# 行の主語になる場合があるため、check-patch / fetch-patch-notes / update-patch-version /
+# update-guides を一括で掃除対象にする。
+# 過去成功通知（"- <日付> lol-guides-jp: パッチX.Y ガイド更新完了"）も重複回避のため掃除。
+grep -vE "lol-guides-jp (check-patch|fetch-patch-notes|update-patch-version|update-guides)|lol-guides-jp: パッチ.+ ガイド更新完了" \
+    "${CLAUDE_LOCAL}" > "${CLAUDE_LOCAL}.tmp" && mv "${CLAUDE_LOCAL}.tmp" "${CLAUDE_LOCAL}" || true
 echo "- ${DATE} lol-guides-jp: パッチ${LATEST} ガイド更新完了 → lol-guides-jp/champions/ を確認" >> "${CLAUDE_LOCAL}"
 
 echo "$(log_prefix) ===== パッチチェック完了 ====="
