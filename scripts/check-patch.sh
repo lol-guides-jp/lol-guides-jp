@@ -103,7 +103,8 @@ if [ "${DRY_RUN}" = "1" ]; then
     echo "$(log_prefix)   - requeue-patched-matchups.py ${MISSED_PATCHES[*]}"
     echo "$(log_prefix)   - build-json.js"
     echo "$(log_prefix)   - current-patch.txt を ${LATEST} に更新"
-    echo "$(log_prefix)   - git commit + push"
+    echo "$(log_prefix)   - auto_commit: patches/ champions/ docs/data.json current-patch.txt"
+    echo "$(log_prefix)   - auto_push"
     echo "$(log_prefix) ===== パッチチェック完了（DRY-RUN） ====="
     exit 0
 fi
@@ -154,11 +155,13 @@ python3 "${PROJECT_DIR}/scripts/requeue-patched-matchups.py" "${MISSED_PATCHES[@
 echo "${LATEST}" > "${PATCH_FILE}"
 echo "$(log_prefix) INFO: current-patch.txt を ${LATEST} に更新"
 
-# --- git commit + push ---
-git add .
-git -c user.name="lol-guides-jp" -c user.email="lol-guides-jp@users.noreply.github.com" \
-    commit -m "[自動] パッチ${LATEST} ガイド更新"
-git push origin main
+# --- git commit + push（auto_commit 経由で明示パスのみ stage） ---
+# coding-standards.md §8 に従い `git add .` は使わない。
+# 変更対象: パッチノート・champions/ ガイド・data.json・current-patch.txt
+# （scripts/missing-*.txt は gitignored のため含めない）
+auto_commit patches champions docs/data.json current-patch.txt \
+    -- "feat: パッチ${LATEST} ガイド更新 (自動)"
+auto_push || { notify_failure "push 失敗（パッチ${LATEST}）"; exit 1; }
 
 # CLAUDE.local.md に成功通知
 grep -v "lol-guides-jp check-patch" "${CLAUDE_LOCAL}" > "${CLAUDE_LOCAL}.tmp" && mv "${CLAUDE_LOCAL}.tmp" "${CLAUDE_LOCAL}" || true

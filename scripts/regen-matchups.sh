@@ -189,33 +189,32 @@ done
 echo "$(log_prefix) ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
 
 # --- post-processing ---
+# coding-standards.md §8: auto_commit を使い明示パスだけ stage する。
+# 再生成の新規追加がなければ後段の同期・ビルドはスキップ。
 if [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ]; then
-    git -C "$PROJECT_DIR" add champions/*/matchups.md
-
-    # 変更がなければスキップ
-    if git -C "$PROJECT_DIR" diff --cached --quiet; then
+    # 変更があるか先に検査（push 不要なら早期 return）
+    if git -C "$PROJECT_DIR" diff --quiet -- champions/*/matchups.md \
+       && git -C "$PROJECT_DIR" diff --cached --quiet -- champions/*/matchups.md; then
         echo "$(log_prefix) INFO: matchups.md に変更なし（コミットスキップ）"
         exit 0
     fi
 
-    git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド ${PROCESSED}件再生成 (tier=${TIER})"
-    echo "$(log_prefix) INFO: git commit 完了"
+    auto_commit champions/*/matchups.md \
+        -- "fix: 対面ガイド ${PROCESSED}件再生成 (tier=${TIER})"
 
     # guide.md 得意/苦手を同期
     echo "$(log_prefix) INFO: fix-guide-matchups.py 実行中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    git -C "$PROJECT_DIR" add champions/*/guide.md
-    git -C "$PROJECT_DIR" diff --cached --quiet || \
-        git -C "$PROJECT_DIR" commit -m "fix: guide.md 得意/苦手 同期 (regen後)"
+    auto_commit champions/*/guide.md \
+        -- "fix: guide.md 得意/苦手 同期 (regen後)"
 
     # data.json 再ビルド
     echo "$(log_prefix) INFO: data.json 再ビルド中..."
     node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    git -C "$PROJECT_DIR" add docs/data.json
-    git -C "$PROJECT_DIR" diff --cached --quiet || \
-        git -C "$PROJECT_DIR" commit -m "chore: data.json 再ビルド (regen後)"
+    auto_commit docs/data.json \
+        -- "chore: data.json 再ビルド (regen後)"
 
     echo "$(log_prefix) INFO: push 中..."
-    git -C "$PROJECT_DIR" push
+    auto_push || { echo "$(log_prefix) ERROR: push 失敗"; exit 1; }
     echo "$(log_prefix) INFO: push 完了"
 fi

@@ -18,31 +18,30 @@ log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 source "${PROJECT_DIR}/scripts/lib.sh"
 
 # --- 終了時コミット（正常終了・503中断どちらでも PROCESSED > 0 なら実行） ---
+# coding-standards.md §8 に従い auto_commit / auto_push を使う。
+# 3段コミット: 新規追加 → 表記揺れ同期 → data.json 再ビルド。
+# 各段は auto_commit の冪等性（変更なし→skip）に任せる。
 _commit_if_processed() {
     [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ] || return 0
 
-    git -C "$PROJECT_DIR" add champions/*/matchups.md
-    git -C "$PROJECT_DIR" commit -m "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
-    echo "$(log_prefix) INFO: git commit 完了"
+    auto_commit champions/*/matchups.md \
+        -- "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
 
     echo "$(log_prefix) INFO: quality-fix 実行中..."
     python3 "${PROJECT_DIR}/scripts/quality-fix.py" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
 
     echo "$(log_prefix) INFO: guide.md 得意/苦手 同期中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    git -C "$PROJECT_DIR" add champions/*/matchups.md champions/*/guide.md
-    git -C "$PROJECT_DIR" diff --cached --quiet || \
-        git -C "$PROJECT_DIR" commit -m "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
+    auto_commit champions/*/matchups.md champions/*/guide.md \
+        -- "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
 
     echo "$(log_prefix) INFO: data.json 再ビルド中..."
     node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    git -C "$PROJECT_DIR" add docs/data.json
-    git -C "$PROJECT_DIR" diff --cached --quiet || \
-        git -C "$PROJECT_DIR" commit -m "chore: data.json 再ビルド (対面ガイド追加後)"
+    auto_commit docs/data.json \
+        -- "chore: data.json 再ビルド (対面ガイド追加後)"
 
     echo "$(log_prefix) INFO: push 中..."
-    git -C "$PROJECT_DIR" push
-    echo "$(log_prefix) INFO: push 完了"
+    auto_push || echo "$(log_prefix) WARN: push 失敗（trap EXIT 内のため継続）"
 }
 trap '_commit_if_processed' EXIT
 
