@@ -1,4 +1,4 @@
-# Jhin（ジン）ADC パッチ26.8
+# Jhin（ジン）ADC パッチ26.9
 
 ## 一言まとめ
 4発リロード式の独特なAA仕様を持つユーティリティ型ADC。Wのスネアとウルトの超長射程で集団戦の前哨戦に強く、4発目のクリティカルで瞬間火力も出せる。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jhin/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jhin/guide)*

@@ -1,4 +1,4 @@
-# Lucian（ルシアン）ADC パッチ26.8
+# Lucian（ルシアン）ADC パッチ26.9
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/lucian/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/lucian/guide)*

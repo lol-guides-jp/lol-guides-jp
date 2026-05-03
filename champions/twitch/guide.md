@@ -1,4 +1,4 @@
-# Twitch（トゥイッチ）ADC パッチ26.8
+# Twitch（トゥイッチ）ADC パッチ26.9
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twitch/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twitch/guide)*

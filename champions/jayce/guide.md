@@ -1,4 +1,4 @@
-# Jayce（ジェイス）トップレーン パッチ26.8
+# Jayce（ジェイス）トップレーン パッチ26.9
 
 ## 一言まとめ
 キャノンモードのポークとハンマーモードのオールインを切り替えるレンジ/メレーハイブリッド。序盤のレーン支配力が高く、スキルショットの精度で試合を左右するテクニカルなチャンピオン。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jayce/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jayce/guide)*

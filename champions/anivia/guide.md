@@ -1,4 +1,4 @@
-# Anivia（アニビア）ミッドレーン パッチ26.8
+# Anivia（アニビア）ミッドレーン パッチ26.9
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/anivia/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/anivia/guide)*

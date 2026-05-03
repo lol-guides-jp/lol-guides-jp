@@ -1,4 +1,4 @@
-# Kayn（ケイン）ジャングル パッチ26.8
+# Kayn（ケイン）ジャングル パッチ26.9
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kayn/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kayn/guide)*

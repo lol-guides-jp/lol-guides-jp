@@ -1,4 +1,4 @@
-# Jax（ジャックス）トップレーン パッチ26.8
+# Jax（ジャックス）トップレーン パッチ26.9
 
 ## 一言まとめ
 スプリットプッシュとデュエル性能に特化したレイトキャリー型ファイター。Eのカウンターストライクで通常攻撃を無効化し、後半のサイドレーン1対1では手がつけられない強さを持つ。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jax/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jax/guide)*

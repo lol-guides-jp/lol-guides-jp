@@ -1,4 +1,4 @@
-# Morgana（モルガナ）サポート パッチ26.8
+# Morgana（モルガナ）サポート パッチ26.9
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/morgana/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/morgana/guide)*

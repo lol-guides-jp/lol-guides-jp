@@ -1,4 +1,4 @@
-# K'Sante（カ・サンテ）トップレーン パッチ26.8
+# K'Sante（カ・サンテ）トップレーン パッチ26.9
 
 ## 一言まとめ
 タンクでありながらウルトで攻撃型に変身できる二面性を持つファイター。豊富なCCとダメージ軽減で前線を張りつつ、ウルトで敵キャリーを壁裏に引きずり込む独自のプレイパターンが強力。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ksante/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ksante/guide)*

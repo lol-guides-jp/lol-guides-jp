@@ -1,4 +1,4 @@
-# Renekton（レネクトン）トップレーン パッチ26.8
+# Renekton（レネクトン）トップレーン パッチ26.9
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/renekton/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/renekton/guide)*

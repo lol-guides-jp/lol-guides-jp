@@ -1,4 +1,4 @@
-# Miss Fortune（ミス・フォーチュン）ADC パッチ26.8
+# Miss Fortune（ミス・フォーチュン）ADC パッチ26.9
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/missfortune/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/missfortune/guide)*

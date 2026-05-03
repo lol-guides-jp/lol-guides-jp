@@ -1,4 +1,4 @@
-# Diana（ダイアナ）ジャングル パッチ26.8
+# Diana（ダイアナ）ジャングル パッチ26.9
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/diana/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/diana/guide)*

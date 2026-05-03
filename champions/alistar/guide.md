@@ -1,4 +1,4 @@
-# Alistar（アリスター）サポート パッチ26.8
+# Alistar（アリスター）サポート パッチ26.9
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ W→Qコンボによる強力なエンゲージを持つタンクサポート。
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/alistar/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/alistar/guide)*

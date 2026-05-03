@@ -1,4 +1,4 @@
-# Ezreal（エズリアル）ADC パッチ26.8
+# Ezreal（エズリアル）ADC パッチ26.9
 
 ## 一言まとめ
 
@@ -53,4 +53,4 @@ Qポークとブリンク（E）による安全性を両立したスキル依存
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ezreal/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ezreal/guide)*

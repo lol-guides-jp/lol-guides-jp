@@ -1,4 +1,4 @@
-# Olaf（オラフ）トップレーン パッチ26.8
+# Olaf（オラフ）トップレーン パッチ26.9
 
 ## 一言まとめ
 序盤のレーン戦が圧倒的に強いブルーザー。ウルトでCC無効化しながら敵キャリーに突っ込む単純明快なプレイスタイル。体力が減るほど攻撃速度が上がるパッシブにより、瀕死の状態が最も危険。
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.8 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/olaf/guide)*
+*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/olaf/guide)*
