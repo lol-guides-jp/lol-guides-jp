@@ -192,7 +192,7 @@ def generate(data: dict, feedback: str = "") -> str:
     response = None
     try:
         response = client.models.generate_content(
-            model="gemini-3.1-flash-lite-preview",
+            model="gemini-3.1-flash-lite",
             contents=prompt,
         )
     except Exception as e:
