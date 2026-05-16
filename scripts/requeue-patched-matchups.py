@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
 # requeue-patched-matchups.py
-# パッチノートで変更されたチャンピオンの既存matchupをmissing-*.txtの先頭に再投入する
-# 複数パッチを渡すと変更チャンピオンを合算・重複排除してから1回だけキューに追加する
+# パッチノートで変更されたチャンピオンの既存matchupをrequeue-*.txtに退避する。
+# add-matchups.sh は requeue-*.txt を見ないため、コンテンツ完成（missing-*.txt が空）後に
+#   ./scripts/add-matchups.sh --source scripts/requeue-{role}.txt --force
+# で消化する想定。
+#
+# 2026-05-16 変更: 出力先を missing-*.txt → requeue-*.txt に分離。
+#   理由: missing-*.txt の先頭に既存対面を prepend していたが、add-matchups.sh は
+#   既存対面を SKIP するため、パッチ反映の意図が達成されていなかった（実害:
+#   263行の無駄な SKIP がキューに居座り、新規生成を約32時間ブロックした）。
 #
 # 使い方:
 #   python3 scripts/requeue-patched-matchups.py 26.8
@@ -17,12 +24,12 @@ from pathlib import Path
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 SCRIPTS_DIR = PROJECT_DIR / "scripts"
 
-ROLE_TO_MISSING = {
-    "トップレーン": "missing-トップ.txt",
-    "ミッドレーン": "missing-ミッド.txt",
-    "ジャングル": "missing-ジャング.txt",
-    "ADC": "missing-ADC.txt",
-    "サポート": "missing-サポート.txt",
+ROLE_TO_REQUEUE = {
+    "トップレーン": "requeue-トップ.txt",
+    "ミッドレーン": "requeue-ミッド.txt",
+    "ジャングル": "requeue-ジャング.txt",
+    "ADC": "requeue-ADC.txt",
+    "サポート": "requeue-サポート.txt",
 }
 
 
@@ -66,28 +73,30 @@ def get_existing_opponents(champ_id: str, ja_map: dict) -> list[str]:
     return opp_ids
 
 
-def load_existing_missing(role: str) -> set[str]:
-    fname = ROLE_TO_MISSING.get(role)
+def load_existing_requeue(role: str) -> set[str]:
+    fname = ROLE_TO_REQUEUE.get(role)
     if not fname:
         return set()
-    missing_file = SCRIPTS_DIR / fname
-    if not missing_file.exists():
+    requeue_file = SCRIPTS_DIR / fname
+    if not requeue_file.exists():
         return set()
-    return set(l for l in missing_file.read_text(encoding="utf-8").splitlines() if l.strip())
+    return set(l for l in requeue_file.read_text(encoding="utf-8").splitlines() if l.strip())
 
 
-def prepend_to_missing(role: str, entries: list[str], dry_run: bool) -> int:
-    """missing-{role}.txt の先頭にエントリを挿入する（パッチ対応を優先処理するため）。"""
-    fname = ROLE_TO_MISSING.get(role)
+def append_to_requeue(role: str, entries: list[str], dry_run: bool) -> int:
+    """requeue-{role}.txt にエントリを追記する（コンテンツ完成後に消化する退避先）。"""
+    fname = ROLE_TO_REQUEUE.get(role)
     if not fname:
         return 0
-    missing_file = SCRIPTS_DIR / fname
+    requeue_file = SCRIPTS_DIR / fname
     if dry_run:
         for e in entries:
-            print(f"[DRY-RUN] {fname} の先頭に挿入: {e}")
+            print(f"[DRY-RUN] {fname} に追記: {e}")
         return len(entries)
-    existing = missing_file.read_text(encoding="utf-8") if missing_file.exists() else ""
-    missing_file.write_text("\n".join(entries) + "\n" + existing, encoding="utf-8")
+    existing = requeue_file.read_text(encoding="utf-8") if requeue_file.exists() else ""
+    if existing and not existing.endswith("\n"):
+        existing += "\n"
+    requeue_file.write_text(existing + "\n".join(entries) + "\n", encoding="utf-8")
     return len(entries)
 
 
@@ -116,7 +125,7 @@ def main() -> None:
     for champ_id in sorted(all_changed):
         champ = id_map[champ_id]
         role = champ["role"]
-        existing_missing = load_existing_missing(role)
+        existing_requeue = load_existing_requeue(role)
 
         opp_ids = get_existing_opponents(champ_id, ja_map)
         if not opp_ids:
@@ -129,18 +138,18 @@ def main() -> None:
             if not opp:
                 continue
             entry = f"{champ_id}|{champ['ja']}|{opp_id}|{opp['ja']}|{opp['en']}||"
-            if entry not in existing_missing:
+            if entry not in existing_requeue:
                 entries_to_add.append(entry)
 
         if not entries_to_add:
-            print(f"INFO: {champ['ja']}: 全対面が既にmissingに存在。スキップ")
+            print(f"INFO: {champ['ja']}: 全対面が既にrequeueに存在。スキップ")
             continue
 
-        added = prepend_to_missing(role, entries_to_add, args.dry_run)
+        added = append_to_requeue(role, entries_to_add, args.dry_run)
         total_added += added
         print(f"INFO: {champ['ja']}（{role}）: {added}件")
 
-    print(f"INFO: 合計 {total_added}件 をmissing-*.txtの先頭に追加")
+    print(f"INFO: 合計 {total_added}件 を requeue-*.txt に追加")
 
 
 if __name__ == "__main__":

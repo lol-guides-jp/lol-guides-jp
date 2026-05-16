@@ -4,8 +4,12 @@
 #
 # 使い方:
 #   ./scripts/add-matchups.sh [--role トップ|ミッド|ジャング|ADC|サポート] [--batch N] [--sleep N] [--dry-run]
+#   ./scripts/add-matchups.sh --source scripts/requeue-ADC.txt --force    # パッチ反映用（requeue 消化）
 #
 # デフォルト: 全ロールから最大3件処理、sleep 4秒（RPM 15 対策）
+#
+# --source: 任意のキューファイル1つを指定する。--role と排他。--force と組み合わせて
+#   requeue-*.txt（パッチ反映）の消化に使う想定（2026-05-16 追加）。
 
 set -euo pipefail
 
@@ -17,12 +21,15 @@ log_prefix() { echo "[$(date '+%Y-%m-%d %H:%M:%S')]"; }
 
 source "${PROJECT_DIR}/scripts/lib.sh"
 
-# --- 終了時コミット（正常終了・503中断どちらでも PROCESSED > 0 なら実行） ---
+# --- 終了時処理（集計行 + コミット） ---
 # coding-standards.md §8 に従い auto_commit / auto_push を使う。
 # 3段コミット: 新規追加 → 表記揺れ同期 → data.json 再ビルド。
 # 各段は auto_commit の冪等性（変更なし→skip）に任せる。
-_commit_if_processed() {
-    [ "$DRY_RUN" = "0" ] && [ "$PROCESSED" -gt 0 ] || return 0
+# 注意: 早期終了パス（503・連続失敗等）でも集計行を出す必要があるため trap で出力する。
+#       スクリプト末尾の echo は重複するので削除済み（2026-04-29）。
+_finalize() {
+    echo "$(log_prefix) ===== 完了: 成功=${PROCESSED:-0} 失敗=${FAILED:-0} ====="
+    [ "${DRY_RUN:-0}" = "0" ] && [ "${PROCESSED:-0}" -gt 0 ] || return 0
 
     auto_commit champions/*/matchups.md \
         -- "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
@@ -43,10 +50,11 @@ _commit_if_processed() {
     echo "$(log_prefix) INFO: push 中..."
     auto_push || echo "$(log_prefix) WARN: push 失敗（trap EXIT 内のため継続）"
 }
-trap '_commit_if_processed' EXIT
+trap '_finalize' EXIT
 
 # --- 引数解析 ---
 ROLE=""
+SOURCE=""  # 任意のキューファイル1つを指定（--role と排他、2026-05-16 追加）
 BATCH=3
 DRY_RUN=0
 FORCE=0  # 1 = 既存エントリでもスキップせず再生成（両方向再生成用）
@@ -56,6 +64,7 @@ SLEEP=4  # API コール間の sleep 秒数（RPM 15 対策）
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --role)    ROLE="$2";    shift 2 ;;
+        --source)  SOURCE="$2";  shift 2 ;;
         --batch)   BATCH="$2";   shift 2 ;;
         --sleep)   SLEEP="$2";   shift 2 ;;
         --force)   FORCE=1;      shift ;;
@@ -64,6 +73,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+if [ -n "$ROLE" ] && [ -n "$SOURCE" ]; then
+    echo "ERROR: --role と --source は同時に指定できません" >&2
+    exit 1
+fi
+
 export DRY_RUN
 
 cd "$PROJECT_DIR"
@@ -71,7 +85,9 @@ cd "$PROJECT_DIR"
 echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s) ====="
 
 # --- 対象ファイルを決定 ---
-if [ -n "$ROLE" ]; then
+if [ -n "$SOURCE" ]; then
+    MISSING_FILES=("$SOURCE")
+elif [ -n "$ROLE" ]; then
     MISSING_FILES=("scripts/missing-${ROLE}.txt")
 else
     MISSING_FILES=(scripts/missing-トップ.txt scripts/missing-ミッド.txt scripts/missing-ジャング.txt scripts/missing-ADC.txt scripts/missing-サポート.txt)
@@ -284,12 +300,16 @@ print(json.dumps({
 }, ensure_ascii=False))
 ")
 
+    # 連続失敗閾値: 4。spending limit と判断するには弱めだが、一時障害（API瞬断・503・タイムアウト）
+    # を「spending limit」と誤検知してバッチを早期終了させてしまう事故を避けるため。
+    # 4/29 03:08 に閾値2で誤検知 → 04:35 から正常再開した実例あり（→ known-failures.md）。
+    SONNET_FAIL_THRESHOLD=4
     review_result=$(run_cmd "review-matchup" "$review_input") || {
         SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
         echo "$(log_prefix) ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
         FAILED=$((FAILED + 1))
-        if [ "$SONNET_FAIL_STREAK" -ge 2 ]; then
-            echo "$(log_prefix) INFO: Sonnet review 2件連続失敗 → spending limit と判断してバッチ終了"
+        if [ "$SONNET_FAIL_STREAK" -ge "$SONNET_FAIL_THRESHOLD" ]; then
+            echo "$(log_prefix) INFO: Sonnet review ${SONNET_FAIL_STREAK}件連続失敗 → 一時障害の可能性が高いためバッチ中断"
             exit 0
         fi
         continue
@@ -298,8 +318,8 @@ print(json.dumps({
         SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
         echo "$(log_prefix) ERROR: review 結果が空 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
         FAILED=$((FAILED + 1))
-        if [ "$SONNET_FAIL_STREAK" -ge 2 ]; then
-            echo "$(log_prefix) INFO: Sonnet review 2件連続失敗 → spending limit と判断してバッチ終了"
+        if [ "$SONNET_FAIL_STREAK" -ge "$SONNET_FAIL_THRESHOLD" ]; then
+            echo "$(log_prefix) INFO: Sonnet review ${SONNET_FAIL_STREAK}件連続失敗 → 一時障害の可能性が高いためバッチ中断"
             exit 0
         fi
         continue
@@ -455,5 +475,4 @@ if len(new) < len(lines):
     echo "$(log_prefix) OK: ${champ_ja} vs ${opp_ja} 追加完了"
     PROCESSED=$((PROCESSED + 1))
 done
-
-echo "$(log_prefix) ===== 完了: 成功=${PROCESSED} 失敗=${FAILED} ====="
+# 集計行は trap '_finalize' EXIT で出力する（早期終了パスでも一貫させるため）。
