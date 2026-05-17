@@ -1,4 +1,4 @@
-# Nidalee（ニダリー）ジャングル パッチ26.9
+# Nidalee（ニダリー）ジャングル パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nidalee/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nidalee/guide)*

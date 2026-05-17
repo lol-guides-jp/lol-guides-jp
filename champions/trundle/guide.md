@@ -1,4 +1,4 @@
-# Trundle（トランドル）ジャングル パッチ26.9
+# Trundle（トランドル）ジャングル パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/trundle/guide/jungle)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/trundle/guide/jungle)*

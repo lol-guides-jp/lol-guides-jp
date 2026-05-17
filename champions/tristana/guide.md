@@ -1,4 +1,4 @@
-# Tristana（トリスターナ）ADC パッチ26.9
+# Tristana（トリスターナ）ADC パッチ26.10
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/tristana/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/tristana/guide)*

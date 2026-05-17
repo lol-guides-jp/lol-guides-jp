@@ -1,4 +1,4 @@
-# Aurora（オーロラ）ミッドレーン パッチ26.9
+# Aurora（オーロラ）ミッドレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aurora/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aurora/guide)*

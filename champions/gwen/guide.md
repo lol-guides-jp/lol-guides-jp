@@ -1,4 +1,4 @@
-# Gwen（グウェン）トップレーン パッチ26.9
+# Gwen（グウェン）トップレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -57,4 +57,4 @@ Qの中心ヒットで割合トゥルーダメージを叩き出すレイトゲ�
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/gwen/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/gwen/guide)*

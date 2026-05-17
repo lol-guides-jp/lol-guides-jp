@@ -1,4 +1,4 @@
-# LeBlanc（ルブラン）ミッドレーン パッチ26.9
+# LeBlanc（ルブラン）ミッドレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ W（瞬間移動）とパッシブ（分身）による圧倒的な機動力を�
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/leblanc/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/leblanc/guide)*

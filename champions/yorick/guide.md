@@ -1,4 +1,4 @@
-# Yorick（ヨリック）トップレーン パッチ26.9
+# Yorick（ヨリック）トップレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/yorick/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/yorick/guide)*

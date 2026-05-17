@@ -1,4 +1,4 @@
-# Malzahar（マルザハール）ミッドレーン パッチ26.9
+# Malzahar（マルザハール）ミッドレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -52,4 +52,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/malzahar/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/malzahar/guide)*

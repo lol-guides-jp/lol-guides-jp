@@ -1,4 +1,4 @@
-# Hecarim（ヘカリム）ジャングル パッチ26.9
+# Hecarim（ヘカリム）ジャングル パッチ26.10
 
 ## 一言まとめ
 
@@ -57,4 +57,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/hecarim/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/hecarim/guide)*

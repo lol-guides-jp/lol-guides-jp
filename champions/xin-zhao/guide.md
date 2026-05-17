@@ -1,4 +1,4 @@
-# Xin Zhao（シン・ジャオ）ジャングル パッチ26.9
+# Xin Zhao（シン・ジャオ）ジャングル パッチ26.10
 
 ## 一言まとめ
 序盤のガンク・1v1が最強クラスの早期決着型ファイター。ウルトで遠距離攻撃を弾きつつ敵キャリーを孤立させる。
@@ -53,4 +53,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/xinzhao/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/xinzhao/guide)*

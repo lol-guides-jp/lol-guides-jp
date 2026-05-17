@@ -1,4 +1,4 @@
-# Sejuani（セジュアニ）ジャングル パッチ26.9
+# Sejuani（セジュアニ）ジャングル パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/sejuani/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/sejuani/guide)*

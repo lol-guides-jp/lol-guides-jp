@@ -1,4 +1,4 @@
-# Fizz（フィズ）ミッドレーン パッチ26.9
+# Fizz（フィズ）ミッドレーン パッチ26.10
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Lv6以降のバースト力が凶悪なミーリーアサシン。Eの無敵回�
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fizz/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fizz/guide)*

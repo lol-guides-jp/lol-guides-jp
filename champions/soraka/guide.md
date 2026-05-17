@@ -1,4 +1,4 @@
-# Soraka（ソラカ）サポート パッチ26.9
+# Soraka（ソラカ）サポート パッチ26.10
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ LoL屈指の回復量を誇るエンチャンターサポート。Wの持続回�
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/soraka/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/soraka/guide)*

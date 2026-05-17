@@ -1,4 +1,4 @@
-# Warwick（ワーウィック）ジャングル パッチ26.9
+# Warwick（ワーウィック）ジャングル パッチ26.10
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@ Lv6以降の超長距離ウルトで奇襲が強力なファイター型ジャ�
 
 ---
 
-*パッチ26.9 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/warwick/guide)*
+*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/warwick/guide)*
