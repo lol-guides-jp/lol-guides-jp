@@ -18,5 +18,15 @@
     "last_reviewed": "2026-05-18",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "ashe": {
+    "last_reviewed": "2026-05-19",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "brand": {
+    "last_reviewed": "2026-05-19",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
