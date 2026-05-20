@@ -33,5 +33,15 @@
     "last_reviewed": "2026-05-20",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "ezreal": {
+    "last_reviewed": "2026-05-21",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "fizz": {
+    "last_reviewed": "2026-05-21",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
