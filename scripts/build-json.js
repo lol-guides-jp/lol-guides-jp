@@ -17,7 +17,8 @@ const BEGINNER_PICKS = JSON.parse(
   fs.readFileSync(path.join(__dirname, "beginner-picks.json"), "utf-8")
 );
 
-const DDRAGON_VERSION = "16.7.1";
+// Data Dragon API から動的取得（main() 冒頭で更新）。fetch 失敗時の fallback として既知値を残す。
+let DDRAGON_VERSION = "16.7.1";
 
 function parseGuide(markdown) {
   const sections = {};
@@ -232,6 +233,17 @@ champions.sort((a, b) => a.ja.localeCompare(b.ja, "ja"));
 
 // Phase 3: Data Dragon からスペルデータを並列フェッチ
 async function main() {
+  // Data Dragon の最新バージョンを動的取得（失敗時は冒頭の fallback 値を使う）
+  try {
+    const versions = await fetchJSON("https://ddragon.leagueoflegends.com/api/versions.json");
+    if (Array.isArray(versions) && versions.length > 0) {
+      DDRAGON_VERSION = versions[0];
+      console.log(`Data Dragon バージョン: ${DDRAGON_VERSION} (動的取得)`);
+    }
+  } catch (e) {
+    console.warn(`WARN: Data Dragon バージョン取得失敗、fallback ${DDRAGON_VERSION} を使用: ${e.message}`);
+  }
+
   console.log(`${champions.length}体のスペルデータを取得中...`);
   const BATCH_SIZE = 20;
   for (let i = 0; i < champions.length; i += BATCH_SIZE) {
