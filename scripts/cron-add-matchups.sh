@@ -1,11 +1,10 @@
 #!/bin/bash
 # cron-add-matchups.sh
-# 90分ごと（1日16回）対面ガイドを自動追加する（batch=12, Gemini 3.1 Flash Lite + Sonnet レビュー）
-# 503時は即バッチ終了して次のcronに委ねる。Sonnet review 2件連続失敗時もバッチ終了。
+# 5時間ごと（1日5回）対面ガイドを自動追加する（batch=12, 案B Sonnet 4.6 + WebSearch, lite モード）
+# missing-*.txt が空になったら自動的に requeue-*.txt（残数最多のロール）に切替。
 #
 # cron登録:
-#   0  0,3,6,9,12,15,18,21 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
-#   30 1,4,7,10,13,16,19,22 * * * /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0 0,5,10,15,20 * * * bash /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
 
 set -euo pipefail
 
@@ -45,7 +44,30 @@ fi
 
 echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
 # cost-mode lite: $0.30/件想定。品質劣化が目立てば --cost-mode quality に切替（notes/migration-2026-05-24-gen-matchup.md 参照）。
-"${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
+
+# missing 合計件数を計算（空ファイルが無い場合に備えて || true）
+MISSING_TOTAL=$(cat "${PROJECT_DIR}"/scripts/missing-*.txt 2>/dev/null | wc -l || true)
+
+if [ "${MISSING_TOTAL:-0}" -gt 0 ]; then
+    echo "$(log_prefix) INFO: missing キュー残 ${MISSING_TOTAL} 件、通常モード"
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
+else
+    # requeue モード: 残数最多のロールを選択（ラウンドロビン的な偏り回避）
+    REQUEUE_TARGET=$(for f in "${PROJECT_DIR}"/scripts/requeue-*.txt; do
+        [ -f "$f" ] && [ -s "$f" ] && echo "$(wc -l < "$f") $f"
+    done | sort -rn | head -1 | awk '{print $2}')
+
+    if [ -z "${REQUEUE_TARGET:-}" ]; then
+        echo "$(log_prefix) INFO: missing/requeue 共に空、処理なし"
+        exit 0
+    fi
+
+    REQUEUE_REMAIN=$(wc -l < "$REQUEUE_TARGET")
+    echo "$(log_prefix) INFO: missing 空、requeue モード ($(basename "$REQUEUE_TARGET"), 残 ${REQUEUE_REMAIN} 件)"
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 \
+        --source "$REQUEUE_TARGET" --force 2>&1 | tee /tmp/add-matchups-last.log
+fi
+
 echo "$(log_prefix) ===== cron-add-matchups 終了 ====="
 
 # 実行結果を CLAUDE.local.md に記録（CLAUDE.md §セッション管理の通知方針に従う）
