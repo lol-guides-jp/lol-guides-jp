@@ -1,10 +1,10 @@
 #!/bin/bash
 # check-patch.sh
-# 毎週月曜4時: パッチバージョンを確認し、更新があればガイドを自動更新する
+# 毎日4時: 公式パッチ番号 (26.x 系) を確認し、更新があればガイドを自動更新する
 # 複数パッチをスキップした場合は順番に処理し、matchupは重複排除して1回だけキューに追加する
 #
 # cron登録:
-#   0 4 * * 1 /home/ojita/lol-guides-jp/scripts/check-patch.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#   0 4 * * * /home/ojita/lol-guides-jp/scripts/check-patch.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
 #
 # 手動実行（ドライラン）:
 #   ./scripts/check-patch.sh --dry-run
