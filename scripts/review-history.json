@@ -58,5 +58,15 @@
     "last_reviewed": "2026-05-23",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "kennen": {
+    "last_reviewed": "2026-05-24",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "kindred": {
+    "last_reviewed": "2026-05-24",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
