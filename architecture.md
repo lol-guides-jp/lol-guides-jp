@@ -1,7 +1,7 @@
 # lol-guides-jp — アーキテクチャリファレンス
 
 > システム構成の参照用。行動指針は CLAUDE.md、コンテンツ方針は POLICY.md を参照。
-> 最終更新: 2026-04-15
+> 最終更新: 2026-05-24（案A→案B 移行完了）
 
 ---
 
@@ -13,15 +13,16 @@
 
 ## 機能 → アーティファクト対応表
 
-### 対面ガイド生成パイプライン [ACTIVE — Gemini 移行中]
+### 対面ガイド生成パイプライン [ACTIVE — 案B Sonnet 4.6 + WebSearch]
 
-Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
+Sonnet 4.6 が WebSearch で最新パッチ情報を調査して A/B 同時生成。`--cost-mode quality|lite` で切替可能。
 
-- **dirs**: champions/\*/matchups.md, scripts/research-cache/ (旧、移行後に削除)
-- **scripts**: scripts/add-matchups.sh, scripts/cron-add-matchups.sh, scripts/scrape-winrate.py, scripts/call-gemini.py, scripts/lint-matchup.py, scripts/scan-broken.py, scripts/replace-section.py, scripts/replace-section-text.py, scripts/fix-guide-matchups.py, scripts/quality-fix.py, scripts/lib.sh
-- **commands**: review-matchup.md
+- **dirs**: champions/\*/matchups.md
+- **scripts**: scripts/add-matchups.sh, scripts/cron-add-matchups.sh, scripts/validate-matchup-format.py, scripts/lint-matchup.py, scripts/scan-broken.py, scripts/replace-section.py, scripts/replace-section-text.py, scripts/fix-guide-matchups.py, scripts/quality-fix.py, scripts/lib.sh
+- **commands**: gen-matchup.md (quality), gen-matchup-lite.md (cost-optimized)
 - **data**: missing-\*.txt（ロール別未生成リスト）, missing-matchups.json, lint-rules.json
-- **cron**: cron-add-matchups.sh（一時停止中、Gemini 移行後に再開）
+- **cron**: cron-add-matchups.sh（毎日16回、90分間隔）
+- **詳細設計**: notes/migration-2026-05-24-gen-matchup.md
 
 ### パッチ更新 [ACTIVE]
 
@@ -42,7 +43,7 @@ Gemini 2.5 Flash Lite でガイド生成 → Sonnet でレビュー。
 
 ### Lint・学習サイクル [ACTIVE]
 
-Gemini 出力の L1 品質チェック + ルール蓄積。
+gen-matchup 出力の L1 品質チェック + ルール蓄積（保険）。
 
 - **scripts**: scripts/lint-matchup.py, scripts/learn-lint.py
 - **data**: lint-rules.json
@@ -69,9 +70,20 @@ GitHub Pages 用の JSON/HTML/OGP 画像生成。
 
 ---
 
-## 旧パイプライン [DEPRECATED — Gemini 移行完了時に削除]
+## 旧パイプライン [DEPRECATED]
 
-Gemini 移行前の Sonnet ベースパイプライン。配線変更完了後に一括削除。
+### 案A: Gemini パイプ（2026-05-24 廃止）
+
+Gemini 3.1 Flash Lite が内部知識のみで生成していたためパッチ追従できず、案B に置換。
+
+- **scripts**: scripts/call-gemini.py（削除済み）, scripts/scrape-winrate.py（削除済み）
+- **dirs**: .venv/（削除済み）
+- **commands**: review-matchup.md（残置、廃止フローでのみ呼ばれていたため運用上は不要）
+- **詳細**: notes/migration-2026-05-24-gen-matchup.md
+
+### 案前段: 旧 Sonnet パイプ（要削除判断）
+
+案A 以前の Sonnet ベース手法。
 
 - **commands**: research-matchup.md, write-matchup.md, cross-check-matchup.md
 - **scripts**: check-research-symmetry.py
@@ -79,25 +91,25 @@ Gemini 移行前の Sonnet ベースパイプライン。配線変更完了後�
 
 ---
 
-## ファイルフロー（Gemini 移行後）
+## ファイルフロー（案B、現行）
 
 ```
-missing-*.txt（ロール別未生成リスト）
+missing-*.txt / requeue-*.txt（生成キュー）
   ↓
-scrape-winrate.py（勝率取得）
+Data Dragon API（patch 番号取得、fallback で data.json）
   ↓
-call-gemini.py（Gemini 2.5 Flash Lite × 2、A側+B側）
+gen-matchup{,-lite}.md（Sonnet 4.6 + WebSearch、A/B 同時生成）
+  ↓ 出力: JSON {status, entry_a, entry_b, sources, used_patch}
+validate-matchup-format.py（フォーマット検証 / extract）
   ↓
-lint-matchup.py --fix（L1 品質チェック + 自動修正）
-  ↓
-review-matchup.md（Sonnet レビュー + 修正）
-  ↓ rejected → call-gemini.py --feedback で再生成（上限2回）
+lint-matchup.py --fix（保険として表記揺れ修正）
   ↓
 Python 後処理:
-  replace-section.py → champions/*/matchups.md に挿入
+  replace-section.py / printf 追記 → champions/*/matchups.md に挿入
   fix-guide-matchups.py → guide.md の得意/苦手を同期
   quality-fix.py → 表記揺れ正規化
   build-json.js → docs/data.json 更新
+  auto_commit + auto_push（3段コミット: feat → fix → chore）
 ```
 
 ## 人間の日常タスク

@@ -37,14 +37,15 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 cd "$PROJECT_DIR"
 
 if [ "${DRY_RUN}" = "1" ]; then
-    echo "$(log_prefix) DRY-RUN: add-matchups.sh --batch 12 --sleep 10 --dry-run を実行します"
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 --dry-run 2>&1
+    echo "$(log_prefix) DRY-RUN: add-matchups.sh --cost-mode lite --batch 12 --sleep 10 --dry-run を実行します"
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 --dry-run 2>&1
     echo "$(log_prefix) DRY-RUN: 完了（本番への書き込みなし）"
     exit 0
 fi
 
 echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
-"${PROJECT_DIR}/scripts/add-matchups.sh" --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
+# cost-mode lite: $0.30/件想定。品質劣化が目立てば --cost-mode quality に切替（notes/migration-2026-05-24-gen-matchup.md 参照）。
+"${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
 echo "$(log_prefix) ===== cron-add-matchups 終了 ====="
 
 # 実行結果を CLAUDE.local.md に記録（CLAUDE.md §セッション管理の通知方針に従う）

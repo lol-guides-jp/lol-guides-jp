@@ -1,15 +1,26 @@
 #!/bin/bash
 # add-matchups.sh
-# missing-*.txt から未対面を取り出し、Gemini 生成 → lint → Sonnet レビュー のパイプラインで追加する
+# missing-*.txt から未対面を取り出し、gen-matchup（Sonnet 4.6 + WebSearch）で A/B 同時生成して追加する
 #
 # 使い方:
 #   ./scripts/add-matchups.sh [--role トップ|ミッド|ジャング|ADC|サポート] [--batch N] [--sleep N] [--dry-run]
+#   ./scripts/add-matchups.sh --cost-mode lite              # コスト最適化版（WebSearch 2クエリ・snippet制限）
 #   ./scripts/add-matchups.sh --source scripts/requeue-ADC.txt --force    # パッチ反映用（requeue 消化）
 #
-# デフォルト: 全ロールから最大3件処理、sleep 4秒（RPM 15 対策）
+# デフォルト: 全ロールから最大3件処理、sleep 4秒、cost-mode=quality
+#
+# --cost-mode quality|lite: quality は gen-matchup.md（WebSearch 2-3クエリ・全規約適用）。
+#   lite は gen-matchup-lite.md（WebSearch 2クエリ固定・snippet 上位3件のみ）。
+#   コストの目安: quality は約 $0.49/対面、lite は約 $0.10/対面（cache hit時はさらに低い）。
 #
 # --source: 任意のキューファイル1つを指定する。--role と排他。--force と組み合わせて
 #   requeue-*.txt（パッチ反映）の消化に使う想定（2026-05-16 追加）。
+#
+# 新パイプライン（2026-05-23 案B 移行）:
+#   missing から1対面取得 → run_cmd "gen-matchup{,-lite}" 1回呼び → validate-matchup-format.py
+#     → lint-matchup.py で表記揺れ修正 → ファイル書き込み
+#   旧フロー（call-gemini.py × 2 + Sonnet review-matchup × 1）は廃止。
+#   patch・recent_changes は data.json から取得（recent_changes は将来 requeue-patched-matchups.py と連動）。
 
 set -euo pipefail
 
@@ -58,17 +69,19 @@ SOURCE=""  # 任意のキューファイル1つを指定（--role と排他、20
 BATCH=3
 DRY_RUN=0
 FORCE=0  # 1 = 既存エントリでもスキップせず再生成（両方向再生成用）
+COST_MODE="quality"  # quality (gen-matchup) or lite (gen-matchup-lite)
 
-SLEEP=4  # API コール間の sleep 秒数（RPM 15 対策）
+SLEEP=4  # API コール間の sleep 秒数（Sonnet RPM 緩和）
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --role)    ROLE="$2";    shift 2 ;;
-        --source)  SOURCE="$2";  shift 2 ;;
-        --batch)   BATCH="$2";   shift 2 ;;
-        --sleep)   SLEEP="$2";   shift 2 ;;
-        --force)   FORCE=1;      shift ;;
-        --dry-run) DRY_RUN=1;    shift ;;
+        --role)      ROLE="$2";      shift 2 ;;
+        --source)    SOURCE="$2";    shift 2 ;;
+        --batch)     BATCH="$2";     shift 2 ;;
+        --sleep)     SLEEP="$2";     shift 2 ;;
+        --cost-mode) COST_MODE="$2"; shift 2 ;;
+        --force)     FORCE=1;        shift ;;
+        --dry-run)   DRY_RUN=1;      shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
@@ -78,11 +91,38 @@ if [ -n "$ROLE" ] && [ -n "$SOURCE" ]; then
     exit 1
 fi
 
-export DRY_RUN
+# cost-mode → コマンド名を決定
+case "$COST_MODE" in
+    quality) COMMAND_NAME="gen-matchup" ;;
+    lite)    COMMAND_NAME="gen-matchup-lite" ;;
+    *) echo "ERROR: --cost-mode は quality か lite (received: ${COST_MODE})"; exit 1 ;;
+esac
+
+# パッチ番号を Data Dragon API から直接取得（"16.10.1" → "16.10"）
+# data.json は check-patch.sh（毎週月曜4時）に依存しており、月曜以外のパッチ発行を追従できない。
+# WebSearch の検索精度を確保するため、API から最新を取りに行く。失敗時のみ data.json にフォールバック。
+PATCH=$(curl -s --max-time 8 'https://ddragon.leagueoflegends.com/api/versions.json' 2>/dev/null \
+    | python3 -c "import json,sys; v=json.load(sys.stdin)[0]; print('.'.join(v.split('.')[:2]))" 2>/dev/null \
+    || echo "")
+
+if [ -z "$PATCH" ]; then
+    echo "$(log_prefix) WARN: Data Dragon API 取得失敗 → data.json にフォールバック"
+    PATCH=$(python3 -c "
+import json
+d = json.load(open('${PROJECT_DIR}/docs/data.json', encoding='utf-8'))
+ver = d.get('meta', {}).get('ddragonVersion', '')
+print('.'.join(ver.split('.')[:2]) if ver else 'unknown')
+" 2>/dev/null || echo "unknown")
+fi
+
+# 注意: DRY_RUN は export しない。export すると lib.sh の run_cmd が
+# 「[DRY-RUN] スキップ」して [] を返してしまい、validate に進めない。
+# ドライランは「実 API call を投げて生成物だけ確認し、ファイル書き込みはスキップ」が意図。
+# 旧フロー（call-gemini.py 経由）からの引き継ぎで export していたが、新パイプでは不要。
 
 cd "$PROJECT_DIR"
 
-echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s) ====="
+echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s, cost-mode=${COST_MODE}, patch=${PATCH}) ====="
 
 # --- 対象ファイルを決定 ---
 if [ -n "$SOURCE" ]; then
@@ -164,26 +204,8 @@ cmap = {c['id']:c for c in data['champions']}
 print(cmap.get('${opp_id}', {}).get('en', '${opp_en}'))
 " 2>/dev/null || echo "$opp_en")
 
-    # Lolalytics URL スラグ: ddragonKey.lower() を使う（en は空白・記号を含む場合があるため）
-    # 例外: Wukong の ddragonKey は "MonkeyKing" だが Lolalytics URL は "wukong"。
-    #       理由不明（Riot 内部の歴史的経緯と推測）。全 170 体を実測して確認済み（2026-04-14）。
-    champ_slug=$(python3 -c "
-import json
-_OVERRIDE = {'monkeyking': 'wukong'}  # Wukong: ddragonKey=MonkeyKing だが Lolalytics は wukong
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
-cmap = {c['id']:c for c in data['champions']}
-slug = cmap.get('${champ_id}', {}).get('ddragonKey', '${champ_id}').lower()
-print(_OVERRIDE.get(slug, slug))
-" 2>/dev/null || echo "$champ_id")
-
-    opp_slug=$(python3 -c "
-import json
-_OVERRIDE = {'monkeyking': 'wukong'}  # Wukong: ddragonKey=MonkeyKing だが Lolalytics は wukong
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
-cmap = {c['id']:c for c in data['champions']}
-slug = cmap.get('${opp_id}', {}).get('ddragonKey', '${opp_id}').lower()
-print(_OVERRIDE.get(slug, slug))
-" 2>/dev/null || echo "$opp_id")
+    # champ_slug / opp_slug は scrape-winrate.py 用のみだったため削除（2026-05-24 案B 移行）。
+    # gen-matchup は en 名で WebSearch するためスラグ不要。
 
     read -r champ_skills opp_skills < <(python3 - << PYEOF
 import json
@@ -200,86 +222,12 @@ print(skills_str("${champ_id}"), skills_str("${opp_id}"))
 PYEOF
 )
 
-    # --- 勝率取得 ---
-    winrate=$(python3 "${PROJECT_DIR}/scripts/scrape-winrate.py" "$champ_slug" "$opp_slug") || {
-        echo "$(log_prefix) WARN: winrate 取得失敗 → 50 で代替 (${champ_ja} vs ${opp_ja})"
-        winrate="50"
-    }
-    if [ -z "$winrate" ]; then
-        echo "$(log_prefix) WARN: winrate が空 → 50 で代替"
-        winrate="50"
-    fi
-    winrate_b=$(python3 -c "print(round(100 - float('${winrate}'), 1))")
-
-    # --- Gemini 生成 A 側 ---
-    args_a="${champ_id}|${champ_ja}|${champ_en}|${opp_id}|${opp_ja}|${opp_en_from_data}||${winrate}|${champ_skills}|${opp_skills}"
-
-    entry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_a") || {
-        ec=$?
-        if [ $ec -eq 2 ]; then
-            echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${champ_ja} vs ${opp_ja})"
-            exit 1
-        fi
-        if [ $ec -eq 3 ]; then
-            echo "$(log_prefix) ERROR: Gemini 503。次のcronに委ねる (${champ_ja} vs ${opp_ja})"
-            exit 1
-        fi
-        echo "$(log_prefix) ERROR: Gemini A 側失敗 (${champ_ja} vs ${opp_ja})"
-        FAILED=$((FAILED + 1))
-        continue
-    }
-    if [ -z "$entry_a" ]; then
-        echo "$(log_prefix) ERROR: Gemini A 側が空 (${champ_ja} vs ${opp_ja})"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
-
-    sleep "$SLEEP"
-
-    # --- Gemini 生成 B 側 ---
-    args_b="${opp_id}|${opp_ja}|${opp_en_from_data}|${champ_id}|${champ_ja}|${champ_en}||${winrate_b}|${opp_skills}|${champ_skills}"
-
-    entry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" "$args_b") || {
-        ec=$?
-        if [ $ec -eq 2 ]; then
-            echo "$(log_prefix) ERROR: Gemini RPD上限に達した。バッチを中断 (${opp_ja} vs ${champ_ja})"
-            exit 1
-        fi
-        if [ $ec -eq 3 ]; then
-            echo "$(log_prefix) ERROR: Gemini 503。次のcronに委ねる (${opp_ja} vs ${champ_ja})"
-            exit 1
-        fi
-        echo "$(log_prefix) ERROR: Gemini B 側失敗 (${opp_ja} vs ${champ_ja})"
-        FAILED=$((FAILED + 1))
-        continue
-    }
-    if [ -z "$entry_b" ]; then
-        echo "$(log_prefix) ERROR: Gemini B 側が空 (${opp_ja} vs ${champ_ja})"
-        FAILED=$((FAILED + 1))
-        continue
-    fi
-
-    # --- L1 lint + 自動修正 ---
-    # A側: OPP_SKILLS=対戦相手スキル / B側: OPP_SKILLS=メインチャンプスキル（視点が逆転するため）
-    linted_a=$(echo "$entry_a" | OPP_SKILLS="$opp_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_a="$entry_a"
-    linted_b=$(echo "$entry_b" | OPP_SKILLS="$champ_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || linted_b="$entry_b"
-
-    # --- DRY_RUN: review + 書き込みスキップ ---
-    if [ "$DRY_RUN" = "1" ]; then
-        echo "$(log_prefix) [DRY-RUN] A 側:"
-        echo "$linted_a"
-        echo ""
-        echo "$(log_prefix) [DRY-RUN] B 側:"
-        echo "$linted_b"
-        echo "$(log_prefix) [DRY-RUN] review + ファイル書き込みスキップ"
-        PROCESSED=$((PROCESSED + 1))
-        continue
-    fi
-
-    # --- Sonnet レビュー ---
-    review_input=$(CHAMP_ID="$champ_id" CHAMP_JA="$champ_ja" CHAMP_EN="$champ_en" \
-        CHAMP_SKILLS="$champ_skills" OPP_ID="$opp_id" OPP_JA="$opp_ja" OPP_EN="$opp_en_from_data" \
-        OPP_SKILLS="$opp_skills" ENTRY_A="$linted_a" ENTRY_B="$linted_b" \
+    # --- gen-matchup 用 JSON 入力構築 ---
+    # 勝率は gen-matchup 側で WebSearch から取得する（Lolalytics が Cloudflare ブロックで scrape 不可、
+    # 2026-05-24 移行）。matchup tips の検索結果に勝率が含まれるため二度引きにならない。
+    gen_input=$(CHAMP_ID="$champ_id" CHAMP_JA="$champ_ja" CHAMP_EN="$champ_en" CHAMP_SKILLS="$champ_skills" \
+        OPP_ID="$opp_id" OPP_JA="$opp_ja" OPP_EN="$opp_en_from_data" OPP_SKILLS="$opp_skills" \
+        PATCH="$PATCH" \
         python3 -c "
 import json, os
 print(json.dumps({
@@ -288,137 +236,91 @@ print(json.dumps({
         'ja': os.environ['CHAMP_JA'],
         'en': os.environ['CHAMP_EN'],
         'skills': os.environ['CHAMP_SKILLS'],
-        'entry': os.environ['ENTRY_A'],
     },
     'champ_b': {
         'id': os.environ['OPP_ID'],
         'ja': os.environ['OPP_JA'],
         'en': os.environ['OPP_EN'],
         'skills': os.environ['OPP_SKILLS'],
-        'entry': os.environ['ENTRY_B'],
-    }
+    },
+    'patch': os.environ['PATCH'],
+    'recent_changes': []
 }, ensure_ascii=False))
 ")
 
-    # 連続失敗閾値: 4。spending limit と判断するには弱めだが、一時障害（API瞬断・503・タイムアウト）
-    # を「spending limit」と誤検知してバッチを早期終了させてしまう事故を避けるため。
-    # 4/29 03:08 に閾値2で誤検知 → 04:35 から正常再開した実例あり（→ known-failures.md）。
-    SONNET_FAIL_THRESHOLD=4
-    review_result=$(run_cmd "review-matchup" "$review_input") || {
+    # --- gen-matchup 実行（多層 timeout: 600 > run_cmd内 540 > Sonnet API 300）---
+    # クォート安全のため入力ファイルを介す（gen_input が " を含むため heredoc 不可）。
+    gen_input_file=$(mktemp /tmp/gen-matchup-input.XXXXXX.json)
+    echo "$gen_input" > "$gen_input_file"
+
+    gen_result=$(timeout 600 bash -c "
+        export NVM_DIR='${HOME}/.nvm'
+        [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"
+        export PROJECT_DIR='${PROJECT_DIR}'
+        export CLAUDE_SUBPROCESS=1
+        source '${PROJECT_DIR}/scripts/lib.sh'
+        run_cmd '${COMMAND_NAME}' \"\$(cat '${gen_input_file}')\"
+    ") || {
+        ec=$?
+        rm -f "$gen_input_file"
         SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
-        echo "$(log_prefix) ERROR: review-matchup 失敗 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
+        if [ $ec -eq 124 ]; then
+            echo "$(log_prefix) ERROR: ${COMMAND_NAME} timeout 600s (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
+        else
+            echo "$(log_prefix) ERROR: ${COMMAND_NAME} 失敗 ec=${ec} (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
+        fi
         FAILED=$((FAILED + 1))
-        if [ "$SONNET_FAIL_STREAK" -ge "$SONNET_FAIL_THRESHOLD" ]; then
-            echo "$(log_prefix) INFO: Sonnet review ${SONNET_FAIL_STREAK}件連続失敗 → 一時障害の可能性が高いためバッチ中断"
+        # 連続失敗閾値: 4。一時障害（API瞬断・503・タイムアウト）を spending limit と誤検知しないため。
+        # 詳細: known-failures.md「連続失敗で打ち切る判定の閾値が低いと一時障害で誤検知する」
+        if [ "$SONNET_FAIL_STREAK" -ge 4 ]; then
+            echo "$(log_prefix) INFO: ${COMMAND_NAME} ${SONNET_FAIL_STREAK}件連続失敗 → 一時障害の可能性が高いためバッチ中断"
             exit 0
         fi
         continue
     }
-    if [ -z "$review_result" ]; then
+    rm -f "$gen_input_file"
+
+    if [ -z "$gen_result" ]; then
         SONNET_FAIL_STREAK=$((SONNET_FAIL_STREAK + 1))
-        echo "$(log_prefix) ERROR: review 結果が空 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
+        echo "$(log_prefix) ERROR: ${COMMAND_NAME} 結果が空 (${champ_ja} vs ${opp_ja}) [streak=${SONNET_FAIL_STREAK}]"
         FAILED=$((FAILED + 1))
-        if [ "$SONNET_FAIL_STREAK" -ge "$SONNET_FAIL_THRESHOLD" ]; then
-            echo "$(log_prefix) INFO: Sonnet review ${SONNET_FAIL_STREAK}件連続失敗 → 一時障害の可能性が高いためバッチ中断"
+        if [ "$SONNET_FAIL_STREAK" -ge 4 ]; then
+            echo "$(log_prefix) INFO: ${COMMAND_NAME} ${SONNET_FAIL_STREAK}件連続空結果 → バッチ中断"
             exit 0
         fi
         continue
     fi
 
-    # --- レビュー結果パース ---
-    review_status=$(echo "$review_result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('status',''))" 2>/dev/null || echo "")
-
-    if [ "$review_status" = "approved" ]; then
-        final_a=$(echo "$review_result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_a'])")
-        final_b=$(echo "$review_result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_b'])")
-
-    elif [ "$review_status" = "rejected" ]; then
-        reject_reason=$(echo "$review_result" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('reason','unknown'))" 2>/dev/null || echo "unknown")
-        echo "$(log_prefix) WARN: rejected: ${reject_reason} (${champ_ja} vs ${opp_ja})"
-
-        # --- リトライ（最大 2 回） ---
-        RETRY_OK=0
-        for retry_i in 1 2; do
-            echo "$(log_prefix) INFO: リトライ ${retry_i}/2 (${champ_ja} vs ${opp_ja})"
-            sleep "$SLEEP"
-
-            retry_a=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_a") || {
-                ec=$?
-                if [ $ec -eq 3 ]; then
-                    echo "$(log_prefix) ERROR: リトライ Gemini A 503。次のcronに委ねる"
-                    exit 1
-                fi
-                echo "$(log_prefix) ERROR: リトライ Gemini A 失敗"
-                continue
-            }
-            sleep "$SLEEP"
-            retry_b=$(python3 "${PROJECT_DIR}/scripts/call-gemini.py" --feedback "$reject_reason" "$args_b") || {
-                ec=$?
-                if [ $ec -eq 3 ]; then
-                    echo "$(log_prefix) ERROR: リトライ Gemini B 503。次のcronに委ねる"
-                    exit 1
-                fi
-                echo "$(log_prefix) ERROR: リトライ Gemini B 失敗"
-                continue
-            }
-
-            # lint
-            retry_a=$(echo "$retry_a" | OPP_SKILLS="$opp_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
-            retry_b=$(echo "$retry_b" | OPP_SKILLS="$champ_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || true
-
-            # re-review
-            retry_review_input=$(CHAMP_ID="$champ_id" CHAMP_JA="$champ_ja" CHAMP_EN="$champ_en" \
-                CHAMP_SKILLS="$champ_skills" OPP_ID="$opp_id" OPP_JA="$opp_ja" OPP_EN="$opp_en_from_data" \
-                OPP_SKILLS="$opp_skills" ENTRY_A="$retry_a" ENTRY_B="$retry_b" \
-                python3 -c "
-import json, os
-print(json.dumps({
-    'champ_a': {
-        'id': os.environ['CHAMP_ID'],
-        'ja': os.environ['CHAMP_JA'],
-        'en': os.environ['CHAMP_EN'],
-        'skills': os.environ['CHAMP_SKILLS'],
-        'entry': os.environ['ENTRY_A'],
-    },
-    'champ_b': {
-        'id': os.environ['OPP_ID'],
-        'ja': os.environ['OPP_JA'],
-        'en': os.environ['OPP_EN'],
-        'skills': os.environ['OPP_SKILLS'],
-        'entry': os.environ['ENTRY_B'],
-    }
-}, ensure_ascii=False))
-")
-            sleep "$SLEEP"
-            retry_review=$(run_cmd "review-matchup" "$retry_review_input") || {
-                echo "$(log_prefix) ERROR: リトライ review 失敗"
-                continue
-            }
-
-            retry_status=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('status',''))" 2>/dev/null || echo "")
-            if [ "$retry_status" = "approved" ]; then
-                final_a=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_a'])")
-                final_b=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['entry_b'])")
-                RETRY_OK=1
-                echo "$(log_prefix) INFO: リトライ ${retry_i} で approved"
-                break
-            else
-                reject_reason=$(echo "$retry_review" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('reason','unknown'))" 2>/dev/null || echo "unknown")
-                echo "$(log_prefix) WARN: リトライ ${retry_i} も rejected: ${reject_reason}"
-            fi
-        done
-
-        if [ "$RETRY_OK" = "0" ]; then
-            echo "$(log_prefix) ERROR: 2回リトライ後も rejected (${champ_ja} vs ${opp_ja})"
-            echo "[$(date +%Y-%m-%d)] RETRY_FAILED: ${champ_ja} vs ${opp_ja} [${reject_reason}]" \
-                >> "${PROJECT_DIR}/scripts/add-matchups-review.log"
-            FAILED=$((FAILED + 1))
-            continue
-        fi
-    else
-        echo "$(log_prefix) ERROR: review パース失敗 (${champ_ja} vs ${opp_ja})"
-        echo "$(log_prefix) DEBUG: review_result=${review_result:0:200}"
+    # --- validate-matchup-format.py で検証 ---
+    validate_err=$(echo "$gen_result" | python3 "${PROJECT_DIR}/scripts/validate-matchup-format.py" 2>&1) || {
+        echo "$(log_prefix) ERROR: validate 失敗 (${champ_ja} vs ${opp_ja}): ${validate_err}"
+        echo "$(log_prefix) DEBUG: gen_result=${gen_result:0:200}"
+        echo "[$(date +%Y-%m-%d)] VALIDATE_FAILED: ${champ_ja} vs ${opp_ja} [${validate_err}]" \
+            >> "${PROJECT_DIR}/scripts/add-matchups-review.log"
         FAILED=$((FAILED + 1))
+        continue
+    }
+
+    # --- entry_a / entry_b / sources を抽出 ---
+    entry_a=$(echo "$gen_result" | python3 "${PROJECT_DIR}/scripts/validate-matchup-format.py" --extract a)
+    entry_b=$(echo "$gen_result" | python3 "${PROJECT_DIR}/scripts/validate-matchup-format.py" --extract b)
+    sources_json=$(echo "$gen_result" | python3 "${PROJECT_DIR}/scripts/validate-matchup-format.py" --extract sources)
+
+    # --- lint-matchup.py で表記揺れ修正（gen-matchup でも漏れる規約があるため保険として残す）---
+    final_a=$(echo "$entry_a" | OPP_SKILLS="$opp_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || final_a="$entry_a"
+    final_b=$(echo "$entry_b" | OPP_SKILLS="$champ_skills" python3 "${PROJECT_DIR}/scripts/lint-matchup.py" --fix 2>/dev/null) || final_b="$entry_b"
+
+    # --- DRY_RUN: 書き込みスキップ ---
+    if [ "$DRY_RUN" = "1" ]; then
+        echo "$(log_prefix) [DRY-RUN] A 側:"
+        echo "$final_a"
+        echo ""
+        echo "$(log_prefix) [DRY-RUN] B 側:"
+        echo "$final_b"
+        echo "$(log_prefix) [DRY-RUN] sources: ${sources_json}"
+        echo "$(log_prefix) [DRY-RUN] ファイル書き込みスキップ"
+        SONNET_FAIL_STREAK=0
+        PROCESSED=$((PROCESSED + 1))
         continue
     fi
 
