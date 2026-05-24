@@ -68,5 +68,15 @@
     "last_reviewed": "2026-05-24",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "lee-sin": {
+    "last_reviewed": "2026-05-25",
+    "review_count": 1,
+    "last_status": "no_change"
+  },
+  "naafiri": {
+    "last_reviewed": "2026-05-25",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
