@@ -17,6 +17,13 @@ const BEGINNER_PICKS = JSON.parse(
   fs.readFileSync(path.join(__dirname, "beginner-picks.json"), "utf-8")
 );
 
+// サブロール判定（フェーズ4で導入、2026-05-25）
+// ファイルが無い場合は空オブジェクトを返し、既存挙動を維持する。
+const SUBROLE_TARGETS_FILE = path.join(__dirname, "subrole-targets.json");
+const SUBROLE_TARGETS = fs.existsSync(SUBROLE_TARGETS_FILE)
+  ? JSON.parse(fs.readFileSync(SUBROLE_TARGETS_FILE, "utf-8"))
+  : { champions: {} };
+
 // Data Dragon API から動的取得（main() 冒頭で更新）。fetch 失敗時の fallback として既知値を残す。
 let DDRAGON_VERSION = "16.7.1";
 
@@ -218,15 +225,29 @@ for (const dir of dirs) {
   });
 }
 
-// Phase 2: 名前→IDマップ構築後、matchups.md をパース
+// Phase 2: 名前→IDマップ構築後、matchups.md / matchups-sub.md をパース
 const nameToId = buildNameToIdMap(champions);
 
 for (const champ of champions) {
+  // メインロール対面（既存）
   const matchupsPath = path.join(CHAMPIONS_DIR, champ.id, "matchups.md");
-  if (!fs.existsSync(matchupsPath)) continue;
+  if (fs.existsSync(matchupsPath)) {
+    const md = fs.readFileSync(matchupsPath, "utf-8");
+    champ.matchups = parseMatchupsFile(md, nameToId);
+  }
 
-  const md = fs.readFileSync(matchupsPath, "utf-8");
-  champ.matchups = parseMatchupsFile(md, nameToId);
+  // サブロール対面（matchups-sub.md、2026-05-25 追加）
+  // matchups-sub.md は「## vs <name>」が並ぶフォーマット（matchups.md と同じ）。
+  // ロール別の構造化は将来対応。今は1リストとして matchupsSub に格納する。
+  const matchupsSubPath = path.join(CHAMPIONS_DIR, champ.id, "matchups-sub.md");
+  champ.matchupsSub = fs.existsSync(matchupsSubPath)
+    ? parseMatchupsFile(fs.readFileSync(matchupsSubPath, "utf-8"), nameToId)
+    : [];
+
+  // サブロール判定（subrole-targets.json 由来）
+  const subroleEntry = SUBROLE_TARGETS.champions?.[champ.id] || {};
+  champ.mainRole = champ.role; // 既存 role を mainRole として明示
+  champ.subRoles = Array.isArray(subroleEntry.sub) ? subroleEntry.sub : [];
 }
 
 champions.sort((a, b) => a.ja.localeCompare(b.ja, "ja"));
@@ -264,6 +285,7 @@ async function main() {
       buildDate: new Date().toISOString().split("T")[0],
       championCount: champions.length,
       matchupCount: champions.filter((c) => c.matchups.length > 0).length,
+      subroleMatchupCount: champions.filter((c) => c.matchupsSub.length > 0).length,
     },
     champions,
   };

@@ -35,37 +35,94 @@ trap "rm -f '${LOCK_FILE}'" EXIT
 
 cd "$PROJECT_DIR"
 
+echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
+# cost-mode lite: $0.30/件想定。品質劣化が目立てば --cost-mode quality に切替（notes/migration-2026-05-24-gen-matchup.md 参照）。
+#
+# DRY_RUN の方針: 4段切替の判定までは実行し、どの段に入るか・どのキューを使うかを報告する。
+# add-matchups.sh の呼び出しはスキップする（その dry-run は単体で確認すること）。
+
+# 4段切替: missing → requeue → missing-subrole → requeue-subrole
+# subrole 系は matchups-sub.md に書き込むため、add-matchups.sh に --target を指定する
+# （Phase C-3 で add-matchups.sh 側に --target サポートを追加予定）
+#
+# 「残数最多のロール」を毎回選ぶラウンドロビン: requeue / requeue-subrole 系で使う
+pick_max_remaining() {
+    local pattern="$1"
+    for f in $pattern; do
+        [ -f "$f" ] && [ -s "$f" ] && echo "$(wc -l < "$f") $f"
+    done | sort -rn | head -1 | awk '{print $2}'
+}
+
+MISSING_TOTAL=$(cat "${PROJECT_DIR}"/scripts/missing-*.txt 2>/dev/null \
+    | grep -v subrole | wc -l || true)
+
+SELECTED_STAGE=""
+SELECTED_SOURCE=""
+SELECTED_TARGET="matchups.md"
+SELECTED_FORCE=""
+
+if [ "${MISSING_TOTAL:-0}" -gt 0 ]; then
+    # ① missing モード（既存）
+    SELECTED_STAGE="missing"
+    SELECTED_SOURCE="(scripts/missing-*.txt 自動選択)"
+    echo "$(log_prefix) INFO: missing キュー残 ${MISSING_TOTAL} 件、通常モード"
+else
+    # ② requeue モード（メインロール対面の再生成）
+    REQUEUE_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-[!s]*.txt")
+    if [ -n "${REQUEUE_TARGET:-}" ]; then
+        REQUEUE_REMAIN=$(wc -l < "$REQUEUE_TARGET")
+        SELECTED_STAGE="requeue"
+        SELECTED_SOURCE="$REQUEUE_TARGET"
+        SELECTED_FORCE="--force"
+        echo "$(log_prefix) INFO: missing 空、requeue モード ($(basename "$REQUEUE_TARGET"), 残 ${REQUEUE_REMAIN} 件)"
+    else
+        # ③ missing-subrole モード（サブロール対面の新規生成）
+        MISSING_SUB_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/missing-subrole-*.txt")
+        if [ -n "${MISSING_SUB_TARGET:-}" ]; then
+            MISSING_SUB_REMAIN=$(wc -l < "$MISSING_SUB_TARGET")
+            SELECTED_STAGE="missing-subrole"
+            SELECTED_SOURCE="$MISSING_SUB_TARGET"
+            SELECTED_TARGET="matchups-sub.md"
+            echo "$(log_prefix) INFO: missing/requeue 空、missing-subrole モード ($(basename "$MISSING_SUB_TARGET"), 残 ${MISSING_SUB_REMAIN} 件)"
+        else
+            # ④ requeue-subrole モード（サブロール対面の再生成）
+            REQUEUE_SUB_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-subrole-*.txt")
+            if [ -n "${REQUEUE_SUB_TARGET:-}" ]; then
+                REQUEUE_SUB_REMAIN=$(wc -l < "$REQUEUE_SUB_TARGET")
+                SELECTED_STAGE="requeue-subrole"
+                SELECTED_SOURCE="$REQUEUE_SUB_TARGET"
+                SELECTED_TARGET="matchups-sub.md"
+                SELECTED_FORCE="--force"
+                echo "$(log_prefix) INFO: 全 missing/requeue 空、requeue-subrole モード ($(basename "$REQUEUE_SUB_TARGET"), 残 ${REQUEUE_SUB_REMAIN} 件)"
+            else
+                echo "$(log_prefix) INFO: 全キュー（missing/requeue/missing-subrole/requeue-subrole）空、処理なし"
+                exit 0
+            fi
+        fi
+    fi
+fi
+
+# DRY_RUN: 判定までで止める。本実行の add-matchups.sh を呼ばない。
 if [ "${DRY_RUN}" = "1" ]; then
-    echo "$(log_prefix) DRY-RUN: add-matchups.sh --cost-mode lite --batch 12 --sleep 10 --dry-run を実行します"
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 --dry-run 2>&1
-    echo "$(log_prefix) DRY-RUN: 完了（本番への書き込みなし）"
+    echo "$(log_prefix) DRY-RUN: 選択された段=${SELECTED_STAGE} target=${SELECTED_TARGET}"
+    echo "$(log_prefix) DRY-RUN:   source=${SELECTED_SOURCE}"
+    echo "$(log_prefix) DRY-RUN:   add-matchups.sh は呼ばない（単体 dry-run で確認すること）"
+    echo "$(log_prefix) ===== cron-add-matchups 終了（DRY-RUN） ====="
     exit 0
 fi
 
-echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
-# cost-mode lite: $0.30/件想定。品質劣化が目立てば --cost-mode quality に切替（notes/migration-2026-05-24-gen-matchup.md 参照）。
-
-# missing 合計件数を計算（空ファイルが無い場合に備えて || true）
-MISSING_TOTAL=$(cat "${PROJECT_DIR}"/scripts/missing-*.txt 2>/dev/null | wc -l || true)
-
-if [ "${MISSING_TOTAL:-0}" -gt 0 ]; then
-    echo "$(log_prefix) INFO: missing キュー残 ${MISSING_TOTAL} 件、通常モード"
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 2>&1 | tee /tmp/add-matchups-last.log
-else
-    # requeue モード: 残数最多のロールを選択（ラウンドロビン的な偏り回避）
-    REQUEUE_TARGET=$(for f in "${PROJECT_DIR}"/scripts/requeue-*.txt; do
-        [ -f "$f" ] && [ -s "$f" ] && echo "$(wc -l < "$f") $f"
-    done | sort -rn | head -1 | awk '{print $2}')
-
-    if [ -z "${REQUEUE_TARGET:-}" ]; then
-        echo "$(log_prefix) INFO: missing/requeue 共に空、処理なし"
-        exit 0
-    fi
-
-    REQUEUE_REMAIN=$(wc -l < "$REQUEUE_TARGET")
-    echo "$(log_prefix) INFO: missing 空、requeue モード ($(basename "$REQUEUE_TARGET"), 残 ${REQUEUE_REMAIN} 件)"
+# 本実行: 選択された段で add-matchups.sh を呼ぶ
+if [ "$SELECTED_STAGE" = "missing" ]; then
     "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 \
-        --source "$REQUEUE_TARGET" --force 2>&1 | tee /tmp/add-matchups-last.log
+        2>&1 | tee /tmp/add-matchups-last.log
+elif [ -n "$SELECTED_TARGET" ] && [ "$SELECTED_TARGET" != "matchups.md" ]; then
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 \
+        --source "$SELECTED_SOURCE" --target "$SELECTED_TARGET" ${SELECTED_FORCE} \
+        2>&1 | tee /tmp/add-matchups-last.log
+else
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 12 --sleep 10 \
+        --source "$SELECTED_SOURCE" ${SELECTED_FORCE} \
+        2>&1 | tee /tmp/add-matchups-last.log
 fi
 
 echo "$(log_prefix) ===== cron-add-matchups 終了 ====="

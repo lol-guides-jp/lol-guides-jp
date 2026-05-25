@@ -644,9 +644,21 @@ function renderChampion(id) {
   c.favorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) favIds.add(o.id); });
   c.unfavorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) unfavIds.add(o.id); });
 
-  // matchupsにデータがある対戦相手のみ表示
-  const matchupIds = new Set(c.matchups.map((m) => m.opponentId));
-  const sameRole = DATA.champions.filter((o) => o.id !== id && matchupIds.has(o.id));
+  // サブロール対面の有無（フェーズ4、2026-05-25）。matchupsSub が存在し1件以上あるかで判定。
+  const hasSubMatchups = Array.isArray(c.matchupsSub) && c.matchupsSub.length > 0;
+
+  // 表示する対面ロール（"main" or "sub"）
+  let matchupRoleView = "main";
+
+  // 表示対象の対面リスト切替
+  function currentMatchups() {
+    return matchupRoleView === "sub" ? c.matchupsSub : c.matchups;
+  }
+
+  // 対面 ID 集合（表示対象に応じて変動）
+  function currentMatchupIds() {
+    return new Set(currentMatchups().map((m) => m.opponentId));
+  }
 
   // マッチアップフィルター状態
   let matchupFilter = "all";
@@ -664,6 +676,12 @@ function renderChampion(id) {
 
     <div class="matchup-section">
       <h3>対面を選んでマッチアップガイドを見る</h3>
+      ${hasSubMatchups ? `
+      <div class="matchup-role-toggle" id="matchupRoleToggle" style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+        <button class="matchup-filter-btn active" data-mr="main">メイン (${c.mainRole || c.role})</button>
+        <button class="matchup-filter-btn" data-mr="sub">サブロール対面</button>
+      </div>
+      ` : ""}
       <div class="matchup-filters" id="matchupFilters">
         <button class="matchup-filter-btn active" data-mf="all">全て</button>
         <button class="matchup-filter-btn fav" data-mf="fav">有利</button>
@@ -733,12 +751,26 @@ function renderChampion(id) {
     });
   }
 
+  // 対面ロール切替ボタン（hasSubMatchups の場合のみ）
+  const roleToggleEl = document.getElementById("matchupRoleToggle");
+  if (roleToggleEl) {
+    roleToggleEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".matchup-filter-btn");
+      if (!btn) return;
+      matchupRoleView = btn.dataset.mr;
+      roleToggleEl.querySelectorAll(".matchup-filter-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderOppGrid();
+    });
+  }
+
   // マッチアップフィルターのクリックイベント
   document.getElementById("matchupFilters").addEventListener("click", (e) => {
     const btn = e.target.closest(".matchup-filter-btn");
     if (!btn) return;
     matchupFilter = btn.dataset.mf;
-    document.querySelectorAll(".matchup-filter-btn").forEach((b) => b.classList.remove("active"));
+    // role-toggle 側のボタンを巻き込まないよう、matchupFilters 配下だけリセット
+    document.querySelectorAll("#matchupFilters .matchup-filter-btn").forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     renderOppGrid();
   });
@@ -746,6 +778,10 @@ function renderChampion(id) {
   // 対戦相手グリッド
   function renderOppGrid() {
     const q = state.oppQuery;
+    // 表示中の対面ロールに応じてリストを切り替える
+    const matchupIds = currentMatchupIds();
+    const sameRole = DATA.champions.filter((o) => o.id !== id && matchupIds.has(o.id));
+
     let filtered = sameRole.filter((o) => matchQuery(o, q));
     if (matchupFilter === "fav") filtered = filtered.filter((o) => favIds.has(o.id));
     else if (matchupFilter === "unfav") filtered = filtered.filter((o) => unfavIds.has(o.id));
@@ -787,8 +823,9 @@ function renderMatchupDetail(selfId, oppId) {
 
   const app = document.getElementById("app");
 
-  // matchups.mdの詳細データを検索
-  const detail = self.matchups.find((m) => m.opponentId === oppId);
+  // matchups.md / matchups-sub.md の両方から詳細を探す（サブロール対面対応、2026-05-25）
+  const detail = self.matchups.find((m) => m.opponentId === oppId)
+    || (Array.isArray(self.matchupsSub) ? self.matchupsSub.find((m) => m.opponentId === oppId) : null);
 
   // guide.mdの得意/苦手からサマリーを検索
   const favEntry = self.favorableMatchups.find((m) => {

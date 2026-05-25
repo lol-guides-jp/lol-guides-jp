@@ -3,7 +3,8 @@
     "ddragonVersion": "16.10.1",
     "buildDate": "2026-05-25",
     "championCount": 170,
-    "matchupCount": 170
+    "matchupCount": 170,
+    "subroleMatchupCount": 0
   },
   "champions": [
     {
@@ -1391,6 +1392,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -2717,6 +2721,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -4039,6 +4046,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -5366,6 +5376,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -6691,6 +6704,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -7986,6 +8002,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -8849,6 +8868,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -10168,6 +10190,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -11526,6 +11551,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -12317,6 +12345,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -13690,6 +13721,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -14641,6 +14675,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -16121,6 +16158,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -17510,6 +17550,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -18933,6 +18976,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -20412,6 +20458,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -21768,6 +21817,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -22558,6 +22610,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -23945,6 +24000,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -25393,6 +25451,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -26162,6 +26223,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -27456,6 +27520,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -28783,6 +28850,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -30132,6 +30202,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -31542,6 +31615,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -32960,6 +33036,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -33749,6 +33828,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -35103,6 +35185,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -36428,6 +36513,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -37934,6 +38022,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -39478,6 +39569,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -40836,6 +40930,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -42162,6 +42259,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -43767,6 +43867,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -45111,6 +45214,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -46495,6 +46601,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -47260,6 +47369,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -48617,6 +48729,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -49914,6 +50029,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -51332,6 +51450,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -51387,7 +51508,7 @@
           "cost": "0",
           "range": "550",
           "leveltip": [
-            "短剣1本あ��りのダメージ",
+            "短剣1本あたりのダメージ",
             "クールダウン",
             "通常攻撃時効果のダメージ適用割合"
           ]
@@ -52810,6 +52931,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -54168,6 +54292,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -54956,6 +55083,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -55934,6 +56064,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -57386,6 +57519,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -58804,6 +58940,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -60193,6 +60332,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -61540,6 +61682,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -62955,6 +63100,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -64405,6 +64553,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -65822,6 +65973,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -67207,6 +67361,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -68658,6 +68815,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -69489,11 +69649,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "ヘッドショット",
-          "description": "通常攻撃数回ごと、または自身のトラップやネットにかけた対象に、クリティカル率に��ってダメージが増加する「ヘッドショット」を発射できる。トラップまたはネットにかけた対象に対しては「ヘッドショット」の射程が2倍になる。",
+          "description": "通常攻撃数回ごと、または自身のトラップやネットにかけた対象に、クリティカル率によってダメージが増加する「ヘッドショット」を発射できる。トラップまたはネットにかけた対象に対しては「ヘッドショット」の射程が2倍になる。",
           "image": "Caitlyn_Headshot.png"
         },
         {
@@ -70938,6 +71101,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -72300,6 +72466,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -73811,6 +73980,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -75262,6 +75434,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -76055,6 +76230,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -77536,6 +77714,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -78492,6 +78673,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -79876,6 +80060,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -81263,6 +81450,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -82028,6 +82218,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -82850,6 +83043,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -84328,6 +84524,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -85120,6 +85319,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -86599,6 +86801,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -88168,6 +88373,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -89451,6 +89659,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -90798,6 +91009,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -92124,6 +92338,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -93636,6 +93853,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -94615,6 +94835,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -95656,6 +95879,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -96453,6 +96679,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -97867,6 +98096,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -98726,6 +98958,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -100261,6 +100496,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -101585,6 +101823,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -101634,7 +101875,7 @@
         {
           "key": "R",
           "name": "魔力の奔流",
-          "description": "発生中のすべての「ダークスフィア」で敵チャンピオン1体を集中攻撃する。",
+          "description": "発生中のすべての「ダークスフ���ア」で敵チャンピオン1体を集中攻撃する。",
           "image": "SyndraR.png",
           "cooldown": "120/100/80",
           "cost": "100",
@@ -103063,6 +103304,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -104359,6 +104603,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -105243,6 +105490,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -106227,6 +106477,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -107615,6 +107868,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -109063,11 +109319,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "ファイティングスピリット",
-          "description": "通常攻撃で左右のパンチを交互に繰り出す。右のパンチの方が少し強く、速い。また、セトは負けず嫌いで、減少体力に応じて体力自動回復が増加する。",
+          "description": "通常攻撃で左右のパンチを交互に繰り出す。右のパンチの方が少し強く、速い。また、セトは負けず嫌いで、減少体力に応じて体力自動回��が増加する。",
           "image": "Sett_P.png"
         },
         {
@@ -110414,6 +110673,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -111323,6 +111585,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -111382,7 +111647,7 @@
           "range": "25000",
           "leveltip": [
             "ダメージ",
-            "シー���ド量",
+            "シールド量",
             "クールダウン"
           ]
         }
@@ -112668,6 +112933,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -113643,6 +113911,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -114461,6 +114732,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -115788,6 +116062,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -116772,6 +117049,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -117750,6 +118030,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -119203,6 +119486,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -120684,6 +120970,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -122199,6 +122488,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -123143,6 +123435,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -124483,6 +124778,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -125835,6 +126133,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -127284,6 +127585,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -128612,6 +128916,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -130095,11 +130402,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "やぶからヨードル",
-          "description": "短時間行動せずにいると無限にインビジブル状態になる。茂みの中であれば移動中でもインビジブル状態になり、動き回っても解除されない。インビジブル状態が解除されると「奇襲モード」になり、攻撃速度が数秒間増加する。",
+          "description": "短時間行動せずにいると無限にインビジブル状態になる。茂み���中であれば移動中でもインビジブル状態になり、動き回っても解除されない。インビジブル状態が解除されると「奇襲モード」になり、攻撃速度が数秒間増加する。",
           "image": "TeemoPassive.png"
         },
         {
@@ -130860,6 +131170,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -132275,6 +132588,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -133665,6 +133981,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -134517,6 +134836,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -135968,6 +136290,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -136734,6 +137059,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -138176,6 +138504,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -139661,6 +139992,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -141049,6 +141383,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -142129,6 +142466,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -143480,6 +143820,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -144345,6 +144688,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -145761,6 +146107,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -147089,6 +147438,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -148044,6 +148396,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -149527,6 +149882,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -150505,6 +150863,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -151549,6 +151910,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -153025,6 +153389,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -154533,6 +154900,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -155888,6 +156258,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -157339,6 +157712,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -158695,6 +159071,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -160087,6 +160466,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -161445,11 +161827,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "夢想家の銘",
-          "description": "スキルで敵チャンピオンにダメージを与えると、最後の仕上げとなるサインを施せるよう、対象を下塗りする。2つ目の攻撃スキルを敵に命中させるとサインが完成し、対象の足元に残る。少しするとサインは爆発し、範囲内のすべての敵に魔法ダメージを与える。",
+          "description": "スキルで敵チャンピオンにダメージを与えると、最後の仕上げとなるサインを施せるよう、対象を下塗りする。2つ目の攻撃スキルを敵に命中させるとサインが完成し、対象の足元に残る。少しするとサインは爆発し、範囲内のすべての敵に魔法ダメージを��える。",
           "image": "HweiPassive.png"
         },
         {
@@ -162816,6 +163201,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -163836,6 +164224,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -165349,11 +165740,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "真紅の盟約",
-          "description": "増加体力を30得るたび魔力が1増加する。また、魔力1につき体力が1.6増加する(この固有スキル自身の効果とは重複しない)���",
+          "description": "増加体力を30得るたび魔力が1増加する。また、魔力1につき体力が1.6増加する(この固有スキル自身の効果とは重複しない)。",
           "image": "VladimirP.png"
         },
         {
@@ -166421,6 +166815,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -167374,6 +167771,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -168697,6 +169097,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -170024,6 +170427,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -170076,7 +170482,7 @@
         {
           "key": "R",
           "name": "スペクターズ・オンスロート",
-          "description": "亡霊の騎士たちを召喚し、指定地点まで突撃して直線上の敵ユニットに魔法ダメージを与える。ヘカリムは到着と同時に衝撃波を放ち、付近の敵を恐怖に陥れて逃走させる。",
+          "description": "亡霊の騎士たちを召喚し、指定地点まで突撃して直線上の敵ユニット���魔法ダメージを与える。ヘカリムは到着と同時に衝撃波を放ち、付近の敵を恐怖に陥れて逃走させる。",
           "image": "HecarimUlt.png",
           "cooldown": "140/120/100",
           "cost": "100",
@@ -171473,6 +171879,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -172989,6 +173398,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -174533,6 +174945,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -175892,6 +176307,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -177278,6 +177696,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -178558,6 +178979,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -180039,6 +180463,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -180808,6 +181235,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -180865,7 +181295,7 @@
           "range": "25000",
           "leveltip": [
             "大量の銃弾",
-            "クールダウン"
+            "クールダウ��"
           ]
         }
       ]
@@ -181778,6 +182208,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -183093,6 +183526,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -184084,6 +184520,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -185533,6 +185972,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -186856,6 +187298,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -186891,7 +187336,7 @@
         {
           "key": "E",
           "name": "風薙ぎ",
-          "description": "指定した敵を通り過ぎるようにダッシュし、魔法ダメージを与える。発動ごとに、その後のダッシュで与えるダメージが増加する(上限あり)。同一の敵に対しては数秒間、このスキルを再発動できない。このスキルのダッシュ中に「抜刀」を発動すると、円状に斬撃を繰り出す。",
+          "description": "指定した敵を通り過ぎるようにダッシュし、魔法ダメージを与える。発動ごとに、その後のダッシュで与えるダメージが増加する(上限あり)。同一の敵に対しては数秒間、このスキルを再発動できない。このスキル��ダッシュ中に「抜刀」を発動すると、円状に斬撃を繰り出す。",
           "image": "YasuoE.png",
           "cooldown": "0.5/0.4/0.3/0.2/0.1",
           "cost": "0",
@@ -187833,6 +188278,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -189192,6 +189640,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -190637,11 +191088,14 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
           "name": "魂の導き手",
-          "description": "呪われし一群: 周囲の敵に襲いかかり��撃する「ミストウォーカー」を召喚する。",
+          "description": "呪われし一群: 周囲の敵に襲いかかり攻撃する「ミストウォーカー」を召喚する。",
           "image": "Yorick_P.png"
         },
         {
@@ -191965,6 +192419,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -192887,6 +193344,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -193836,6 +194296,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -193894,7 +194357,7 @@
           "range": "3340",
           "leveltip": [
             "ダメージ",
-            "クールダウン"
+            "クー���ダウン"
           ]
         }
       ]
@@ -195210,6 +195673,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -196679,6 +197145,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -198002,6 +198471,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -199420,6 +199892,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -200712,6 +201187,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -202133,6 +202611,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -202899,6 +203380,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ADC",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -204192,6 +204676,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ミッドレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -205177,6 +205664,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -206100,6 +206590,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -207487,6 +207980,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -208473,6 +208969,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -209952,6 +210451,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "トップレーン",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -210908,6 +211410,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "サポート",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -212294,6 +212799,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",
@@ -213708,6 +214216,9 @@
           ]
         }
       ],
+      "matchupsSub": [],
+      "mainRole": "ジャングル",
+      "subRoles": [],
       "skills": [
         {
           "key": "P",

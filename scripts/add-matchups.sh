@@ -42,16 +42,27 @@ _finalize() {
     echo "$(log_prefix) ===== 完了: 成功=${PROCESSED:-0} 失敗=${FAILED:-0} ====="
     [ "${DRY_RUN:-0}" = "0" ] && [ "${PROCESSED:-0}" -gt 0 ] || return 0
 
-    auto_commit champions/*/matchups.md \
-        -- "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
+    # 対面ファイル本体のコミット。TARGET が matchups-sub.md のときはサブロール対面用のパスを含める。
+    if [ "${TARGET:-matchups.md}" = "matchups-sub.md" ]; then
+        auto_commit champions/*/matchups-sub.md \
+            -- "feat: サブロール対面ガイド ${PROCESSED}件追加 (自動生成)"
+    else
+        auto_commit champions/*/matchups.md \
+            -- "feat: 対面ガイド ${PROCESSED}件追加 (自動生成)"
+    fi
 
     echo "$(log_prefix) INFO: quality-fix 実行中..."
     python3 "${PROJECT_DIR}/scripts/quality-fix.py" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
 
     echo "$(log_prefix) INFO: guide.md 得意/苦手 同期中..."
     python3 "${PROJECT_DIR}/scripts/fix-guide-matchups.py" --all >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
-    auto_commit champions/*/matchups.md champions/*/guide.md \
-        -- "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
+    if [ "${TARGET:-matchups.md}" = "matchups-sub.md" ]; then
+        auto_commit champions/*/matchups-sub.md champions/*/guide.md \
+            -- "fix: サブロール対面 表記揺れ・得意苦手同期 (自動)"
+    else
+        auto_commit champions/*/matchups.md champions/*/guide.md \
+            -- "fix: 対面ガイド 表記揺れ・得意苦手同期 (自動)"
+    fi
 
     echo "$(log_prefix) INFO: data.json 再ビルド中..."
     node "${PROJECT_DIR}/scripts/build-json.js" >> "${PROJECT_DIR}/scripts/cron.log" 2>&1
@@ -70,6 +81,7 @@ BATCH=3
 DRY_RUN=0
 FORCE=0  # 1 = 既存エントリでもスキップせず再生成（両方向再生成用）
 COST_MODE="quality"  # quality (gen-matchup) or lite (gen-matchup-lite)
+TARGET="matchups.md"  # 書き込み先ファイル名（matchups.md or matchups-sub.md）。サブロール対面用に 2026-05-25 追加
 
 SLEEP=4  # API コール間の sleep 秒数（Sonnet RPM 緩和）
 
@@ -80,11 +92,18 @@ while [[ $# -gt 0 ]]; do
         --batch)     BATCH="$2";     shift 2 ;;
         --sleep)     SLEEP="$2";     shift 2 ;;
         --cost-mode) COST_MODE="$2"; shift 2 ;;
+        --target)    TARGET="$2";    shift 2 ;;
         --force)     FORCE=1;        shift ;;
         --dry-run)   DRY_RUN=1;      shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
+
+# TARGET は matchups.md / matchups-sub.md のみ許可（不正値の早期検出）
+case "$TARGET" in
+    matchups.md|matchups-sub.md) ;;
+    *) echo "ERROR: --target は matchups.md か matchups-sub.md (received: ${TARGET})" >&2; exit 1 ;;
+esac
 
 if [ -n "$ROLE" ] && [ -n "$SOURCE" ]; then
     echo "ERROR: --role と --source は同時に指定できません" >&2
@@ -122,7 +141,7 @@ fi
 
 cd "$PROJECT_DIR"
 
-echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s, cost-mode=${COST_MODE}, patch=${PATCH}) ====="
+echo "$(log_prefix) ===== add-matchups 開始 (batch=${BATCH}, role=${ROLE:-全て}, sleep=${SLEEP}s, cost-mode=${COST_MODE}, target=${TARGET}, patch=${PATCH}) ====="
 
 # --- 対象ファイルを決定 ---
 if [ -n "$SOURCE" ]; then
@@ -169,7 +188,7 @@ for job in "${JOBS[@]}"; do
     echo "$(log_prefix) INFO: ${champ_ja} vs ${opp_ja} ..."
 
     # --- 重複チェック ---
-    matchup_file="${PROJECT_DIR}/champions/${champ_id}/matchups.md"
+    matchup_file="${PROJECT_DIR}/champions/${champ_id}/${TARGET}"
     ENTRY_EXISTS=0
     if [ -f "$matchup_file" ] && grep -q "^## vs ${opp_ja}" "$matchup_file"; then
         ENTRY_EXISTS=1
@@ -337,18 +356,18 @@ print(json.dumps({
         }
     else
         printf '\n%s\n' "$final_a" >> "$matchup_file"
-        echo "$(log_prefix) INFO: A 側追記 → ${champ_id}/matchups.md"
+        echo "$(log_prefix) INFO: A 側追記 → ${champ_id}/${TARGET}"
     fi
 
     # B 側
-    matchup_b="${PROJECT_DIR}/champions/${opp_id}/matchups.md"
+    matchup_b="${PROJECT_DIR}/champions/${opp_id}/${TARGET}"
     if [ -f "$matchup_b" ] && grep -q "^## vs ${champ_ja}" "$matchup_b"; then
         echo "$final_b" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
             "$opp_id" "$champ_ja" "$champ_en" || \
             echo "$(log_prefix) WARN: B 側 replace 失敗 (${opp_ja} vs ${champ_ja})"
     else
         printf '\n%s\n' "$final_b" >> "$matchup_b"
-        echo "$(log_prefix) INFO: B 側追記 → ${opp_id}/matchups.md"
+        echo "$(log_prefix) INFO: B 側追記 → ${opp_id}/${TARGET}"
     fi
 
     # --- missing ファイルから削除 ---
@@ -359,12 +378,16 @@ lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' n
 open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
 "
 
-    # B 側（全ロールの missing を検索）
-    for mf in "${PROJECT_DIR}/scripts/missing-トップ.txt" \
-               "${PROJECT_DIR}/scripts/missing-ミッド.txt" \
-               "${PROJECT_DIR}/scripts/missing-ジャング.txt" \
-               "${PROJECT_DIR}/scripts/missing-ADC.txt" \
-               "${PROJECT_DIR}/scripts/missing-サポート.txt"; do
+    # B 側（全キューを検索: missing/requeue/missing-subrole/requeue-subrole）
+    # TARGET によって対象キューを切り替える:
+    #   matchups.md     → missing-{role}.txt / requeue-{role}.txt （メインロール対面）
+    #   matchups-sub.md → missing-subrole-{role}.txt / requeue-subrole-{role}.txt （サブロール対面）
+    if [ "$TARGET" = "matchups-sub.md" ]; then
+        queue_glob="${PROJECT_DIR}/scripts/missing-subrole-*.txt ${PROJECT_DIR}/scripts/requeue-subrole-*.txt"
+    else
+        queue_glob="${PROJECT_DIR}/scripts/missing-トップ.txt ${PROJECT_DIR}/scripts/missing-ミッド.txt ${PROJECT_DIR}/scripts/missing-ジャング.txt ${PROJECT_DIR}/scripts/missing-ADC.txt ${PROJECT_DIR}/scripts/missing-サポート.txt"
+    fi
+    for mf in $queue_glob; do
         [ -f "$mf" ] || continue
         python3 -c "
 lines = open('${mf}').read().splitlines()

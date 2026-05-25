@@ -1,0 +1,1500 @@
+{
+  "_generated": "2026-05-25T10:00:00Z",
+  "_patch": "26.10",
+  "champions": {
+    "urgot": {
+      "ja": "アーゴット",
+      "en": "Urgot",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "ahri": {
+      "ja": "アーリ",
+      "en": "Ahri",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "ivern": {
+      "ja": "アイバーン",
+      "en": "Ivern",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "akali": {
+      "ja": "アカリ",
+      "en": "Akali",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "akshan": {
+      "ja": "アクシャン",
+      "en": "Akshan",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "azir": {
+      "ja": "アジール",
+      "en": "Azir",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "ashe": {
+      "ja": "アッシュ",
+      "en": "Ashe",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "annie": {
+      "ja": "アニー",
+      "en": "Annie",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "anivia": {
+      "ja": "アニビア",
+      "en": "Anivia",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "aphelios": {
+      "ja": "アフェリオス",
+      "en": "Aphelios",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "amumu": {
+      "ja": "アムム",
+      "en": "Amumu",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "alistar": {
+      "ja": "アリスター",
+      "en": "Alistar",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "ambessa": {
+      "ja": "アンベッサ",
+      "en": "Ambessa",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "evelynn": {
+      "ja": "イブリン",
+      "en": "Evelynn",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "illaoi": {
+      "ja": "イラオイ",
+      "en": "Illaoi",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "irelia": {
+      "ja": "イレリア",
+      "en": "Irelia",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "vi": {
+      "ja": "ヴァイ",
+      "en": "Vi",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "varus": {
+      "ja": "ヴァルス",
+      "en": "Varus",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "viego": {
+      "ja": "ヴィエゴ",
+      "en": "Viego",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "wukong": {
+      "ja": "ウーコン",
+      "en": "Wukong",
+      "main": [
+        "トップレーン",
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "vayne": {
+      "ja": "ヴェイン",
+      "en": "Vayne",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "vex": {
+      "ja": "ヴェックス",
+      "en": "Vex",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "velkoz": {
+      "ja": "ヴェル＝コズ",
+      "en": "Vel'Koz",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "udyr": {
+      "ja": "ウディア",
+      "en": "Udyr",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "aatrox": {
+      "ja": "エイトロックス",
+      "en": "Aatrox",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "ekko": {
+      "ja": "エコー",
+      "en": "Ekko",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "ezreal": {
+      "ja": "エズリアル",
+      "en": "Ezreal",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "elise": {
+      "ja": "エリス",
+      "en": "Elise",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "aurora": {
+      "ja": "オーロラ",
+      "en": "Aurora",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "ornn": {
+      "ja": "オーン",
+      "en": "Ornn",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "olaf": {
+      "ja": "オラフ",
+      "en": "Olaf",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "orianna": {
+      "ja": "オリアナ",
+      "en": "Orianna",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "aurelion-sol": {
+      "ja": "オレリオン・ソル",
+      "en": "Aurelion Sol",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "ksante": {
+      "ja": "カ・サンテ",
+      "en": "K'Sante",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "khazix": {
+      "ja": "カ＝ジックス",
+      "en": "Kha'Zix",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "karthus": {
+      "ja": "カーサス",
+      "en": "Karthus",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "ADC"
+      ]
+    },
+    "kaisa": {
+      "ja": "カイ＝サ",
+      "en": "Kai'Sa",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "kassadin": {
+      "ja": "カサディン",
+      "en": "Kassadin",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "cassiopeia": {
+      "ja": "カシオペア",
+      "en": "Cassiopeia",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "katarina": {
+      "ja": "カタリナ",
+      "en": "Katarina",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "camille": {
+      "ja": "カミール",
+      "en": "Camille",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "galio": {
+      "ja": "ガリオ",
+      "en": "Galio",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "kalista": {
+      "ja": "カリスタ",
+      "en": "Kalista",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "karma": {
+      "ja": "カルマ",
+      "en": "Karma",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "garen": {
+      "ja": "ガレン",
+      "en": "Garen",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "gangplank": {
+      "ja": "ガングプランク",
+      "en": "Gangplank",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "qiyana": {
+      "ja": "キヤナ",
+      "en": "Qiyana",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "kindred": {
+      "ja": "キンドレッド",
+      "en": "Kindred",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "quinn": {
+      "ja": "クイン",
+      "en": "Quinn",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "gwen": {
+      "ja": "グウェン",
+      "en": "Gwen",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "gragas": {
+      "ja": "グラガス",
+      "en": "Gragas",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "graves": {
+      "ja": "グレイブス",
+      "en": "Graves",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "kled": {
+      "ja": "クレッド",
+      "en": "Kled",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "caitlyn": {
+      "ja": "ケイトリン",
+      "en": "Caitlyn",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "kayle": {
+      "ja": "ケイル",
+      "en": "Kayle",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "kayn": {
+      "ja": "ケイン",
+      "en": "Kayn",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "kennen": {
+      "ja": "ケネン",
+      "en": "Kennen",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "corki": {
+      "ja": "コーキ",
+      "en": "Corki",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "kogmaw": {
+      "ja": "コグ＝マウ",
+      "en": "Kog'Maw",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "sion": {
+      "ja": "サイオン",
+      "en": "Sion",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "zyra": {
+      "ja": "ザイラ",
+      "en": "Zyra",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "sylas": {
+      "ja": "サイラス",
+      "en": "Sylas",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "zac": {
+      "ja": "ザック",
+      "en": "Zac",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "samira": {
+      "ja": "サミーラ",
+      "en": "Samira",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "xayah": {
+      "ja": "ザヤ",
+      "en": "Xayah",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "shyvana": {
+      "ja": "シヴァーナ",
+      "en": "Shyvana",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "sivir": {
+      "ja": "シヴィア",
+      "en": "Sivir",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "jayce": {
+      "ja": "ジェイス",
+      "en": "Jayce",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "shen": {
+      "ja": "シェン",
+      "en": "Shen",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "ziggs": {
+      "ja": "ジグス",
+      "en": "Ziggs",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ADC"
+      ]
+    },
+    "jarvan-iv": {
+      "ja": "ジャーヴァンIV",
+      "en": "Jarvan IV",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "shaco": {
+      "ja": "シャコ",
+      "en": "Shaco",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "jax": {
+      "ja": "ジャックス",
+      "en": "Jax",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "janna": {
+      "ja": "ジャンナ",
+      "en": "Janna",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "zilean": {
+      "ja": "ジリアン",
+      "en": "Zilean",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "jhin": {
+      "ja": "ジン",
+      "en": "Jhin",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "xin-zhao": {
+      "ja": "シン・ジャオ",
+      "en": "Xin Zhao",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "jinx": {
+      "ja": "ジンクス",
+      "en": "Jinx",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "singed": {
+      "ja": "シンジド",
+      "en": "Singed",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "syndra": {
+      "ja": "シンドラ",
+      "en": "Syndra",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "swain": {
+      "ja": "スウェイン",
+      "en": "Swain",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "skarner": {
+      "ja": "スカーナー",
+      "en": "Skarner",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "smolder": {
+      "ja": "スモルダー",
+      "en": "Smolder",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "thresh": {
+      "ja": "スレッシュ",
+      "en": "Thresh",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "sejuani": {
+      "ja": "セジュアニ",
+      "en": "Sejuani",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "sett": {
+      "ja": "セト",
+      "en": "Sett",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "zed": {
+      "ja": "ゼド",
+      "en": "Zed",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "senna": {
+      "ja": "セナ",
+      "en": "Senna",
+      "main": [
+        "サポート",
+        "ADC"
+      ],
+      "sub": []
+    },
+    "xerath": {
+      "ja": "ゼラス",
+      "en": "Xerath",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "seraphine": {
+      "ja": "セラフィーン",
+      "en": "Seraphine",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ADC"
+      ]
+    },
+    "zeri": {
+      "ja": "ゼリ",
+      "en": "Zeri",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "zoe": {
+      "ja": "ゾーイ",
+      "en": "Zoe",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "sona": {
+      "ja": "ソナ",
+      "en": "Sona",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "soraka": {
+      "ja": "ソラカ",
+      "en": "Soraka",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "diana": {
+      "ja": "ダイアナ",
+      "en": "Diana",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "tahm-kench": {
+      "ja": "タム・ケンチ",
+      "en": "Tahm Kench",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "darius": {
+      "ja": "ダリウス",
+      "en": "Darius",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "taric": {
+      "ja": "タリック",
+      "en": "Taric",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "taliyah": {
+      "ja": "タリヤ",
+      "en": "Taliyah",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "talon": {
+      "ja": "タロン",
+      "en": "Talon",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "chogath": {
+      "ja": "チョ＝ガス",
+      "en": "Cho'Gath",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "twisted-fate": {
+      "ja": "ツイステッド・フェイト",
+      "en": "Twisted Fate",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "teemo": {
+      "ja": "ティーモ",
+      "en": "Teemo",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "twitch": {
+      "ja": "トゥイッチ",
+      "en": "Twitch",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "dr-mundo": {
+      "ja": "ドクター・ムンド",
+      "en": "Dr. Mundo",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "trundle": {
+      "ja": "トランドル",
+      "en": "Trundle",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "tristana": {
+      "ja": "トリスターナ",
+      "en": "Tristana",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "tryndamere": {
+      "ja": "トリンダメア",
+      "en": "Tryndamere",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "draven": {
+      "ja": "ドレイヴン",
+      "en": "Draven",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "gnar": {
+      "ja": "ナー",
+      "en": "Gnar",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "nasus": {
+      "ja": "ナサス",
+      "en": "Nasus",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "naafiri": {
+      "ja": "ナフィーリ",
+      "en": "Naafiri",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "nami": {
+      "ja": "ナミ",
+      "en": "Nami",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "neeko": {
+      "ja": "ニーコ",
+      "en": "Neeko",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "nilah": {
+      "ja": "ニーラ",
+      "en": "Nilah",
+      "main": [
+        "ADC"
+      ],
+      "sub": []
+    },
+    "nidalee": {
+      "ja": "ニダリー",
+      "en": "Nidalee",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "nunu": {
+      "ja": "ヌヌ＆ウィルンプ",
+      "en": "Nunu & Willump",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "nautilus": {
+      "ja": "ノーチラス",
+      "en": "Nautilus",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "nocturne": {
+      "ja": "ノクターン",
+      "en": "Nocturne",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "bard": {
+      "ja": "バード",
+      "en": "Bard",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "pyke": {
+      "ja": "パイク",
+      "en": "Pyke",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "heimerdinger": {
+      "ja": "ハイマーディンガー",
+      "en": "Heimerdinger",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ミッドレーン",
+        "サポート"
+      ]
+    },
+    "pantheon": {
+      "ja": "パンテオン",
+      "en": "Pantheon",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン",
+        "トップレーン"
+      ]
+    },
+    "viktor": {
+      "ja": "ビクター",
+      "en": "Viktor",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "fiora": {
+      "ja": "フィオラ",
+      "en": "Fiora",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "fizz": {
+      "ja": "フィズ",
+      "en": "Fizz",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "fiddlesticks": {
+      "ja": "フィドルスティックス",
+      "en": "Fiddlesticks",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "hwei": {
+      "ja": "フェイ",
+      "en": "Hwei",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "briar": {
+      "ja": "ブライアー",
+      "en": "Briar",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "braum": {
+      "ja": "ブラウム",
+      "en": "Braum",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "vladimir": {
+      "ja": "ブラッドミア",
+      "en": "Vladimir",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "brand": {
+      "ja": "ブランド",
+      "en": "Brand",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン",
+        "ADC"
+      ]
+    },
+    "blitzcrank": {
+      "ja": "ブリッツクランク",
+      "en": "Blitzcrank",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "veigar": {
+      "ja": "ベイガー",
+      "en": "Veigar",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "hecarim": {
+      "ja": "ヘカリム",
+      "en": "Hecarim",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "belveth": {
+      "ja": "ベル＝ヴェス",
+      "en": "Bel'Veth",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "poppy": {
+      "ja": "ポッピー",
+      "en": "Poppy",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン",
+        "サポート"
+      ]
+    },
+    "volibear": {
+      "ja": "ボリベア",
+      "en": "Volibear",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "maokai": {
+      "ja": "マオカイ",
+      "en": "Maokai",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "master-yi": {
+      "ja": "マスター・イー",
+      "en": "Master Yi",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "malzahar": {
+      "ja": "マルザハール",
+      "en": "Malzahar",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "malphite": {
+      "ja": "マルファイト",
+      "en": "Malphite",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "miss-fortune": {
+      "ja": "ミス・フォーチュン",
+      "en": "Miss Fortune",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "サポート"
+      ]
+    },
+    "milio": {
+      "ja": "ミリオ",
+      "en": "Milio",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "mel": {
+      "ja": "メル",
+      "en": "Mel",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "morgana": {
+      "ja": "モルガナ",
+      "en": "Morgana",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "mordekaiser": {
+      "ja": "モルデカイザー",
+      "en": "Mordekaiser",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "yasuo": {
+      "ja": "ヤスオ",
+      "en": "Yasuo",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "ADC"
+      ]
+    },
+    "yuumi": {
+      "ja": "ユーミ",
+      "en": "Yuumi",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "yone": {
+      "ja": "ヨネ",
+      "en": "Yone",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "yorick": {
+      "ja": "ヨリック",
+      "en": "Yorick",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "ryze": {
+      "ja": "ライズ",
+      "en": "Ryze",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "rakan": {
+      "ja": "ラカン",
+      "en": "Rakan",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "lux": {
+      "ja": "ラックス",
+      "en": "Lux",
+      "main": [
+        "サポート"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "rammus": {
+      "ja": "ラムス",
+      "en": "Rammus",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "rumble": {
+      "ja": "ランブル",
+      "en": "Rumble",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": [
+        "ジャングル"
+      ]
+    },
+    "lee-sin": {
+      "ja": "リー・シン",
+      "en": "Lee Sin",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "riven": {
+      "ja": "リヴェン",
+      "en": "Riven",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "lissandra": {
+      "ja": "リサンドラ",
+      "en": "Lissandra",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "lillia": {
+      "ja": "リリア",
+      "en": "Lillia",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "lucian": {
+      "ja": "ルシアン",
+      "en": "Lucian",
+      "main": [
+        "ADC"
+      ],
+      "sub": [
+        "ミッドレーン"
+      ]
+    },
+    "leblanc": {
+      "ja": "ルブラン",
+      "en": "LeBlanc",
+      "main": [
+        "ミッドレーン"
+      ],
+      "sub": []
+    },
+    "lulu": {
+      "ja": "ルル",
+      "en": "Lulu",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "leona": {
+      "ja": "レオナ",
+      "en": "Leona",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "reksai": {
+      "ja": "レク＝サイ",
+      "en": "Rek'Sai",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    },
+    "renata-glasc": {
+      "ja": "レナータ・グラスク",
+      "en": "Renata Glasc",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "renekton": {
+      "ja": "レネクトン",
+      "en": "Renekton",
+      "main": [
+        "トップレーン"
+      ],
+      "sub": []
+    },
+    "rell": {
+      "ja": "レル",
+      "en": "Rell",
+      "main": [
+        "サポート"
+      ],
+      "sub": []
+    },
+    "rengar": {
+      "ja": "レンガー",
+      "en": "Rengar",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ]
+    },
+    "warwick": {
+      "ja": "ワーウィック",
+      "en": "Warwick",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": []
+    }
+  }
+}

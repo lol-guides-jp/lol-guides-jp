@@ -151,15 +151,23 @@ echo "$(log_prefix) INFO: matchup再キュー中（${MISSED_PATCHES[*]}）..."
 python3 "${PROJECT_DIR}/scripts/requeue-patched-matchups.py" "${MISSED_PATCHES[@]}" || \
     notify_failure "requeue-patched-matchups.py 失敗"
 
+# --- サブロール判定の再生成（フェーズ4、2026-05-25 追加）---
+# パッチ変動と同期して subrole-targets.json を更新し、新規サブ化/卒業を
+# missing-subrole-*.txt / requeue-subrole-*.txt に反映する。
+# 失敗してもパッチ更新自体は成功扱いとする（既存ガイド更新は完了済みのため）。
+echo "$(log_prefix) INFO: サブロール判定再生成中..."
+python3 "${PROJECT_DIR}/scripts/refresh-subrole-targets.py" || \
+    notify_failure "refresh-subrole-targets.py 失敗（パッチ更新は完了済み）"
+
 # --- パッチバージョンを更新 ---
 echo "${LATEST}" > "${PATCH_FILE}"
 echo "$(log_prefix) INFO: current-patch.txt を ${LATEST} に更新"
 
 # --- git commit + push（auto_commit 経由で明示パスのみ stage） ---
 # coding-standards.md §8 に従い `git add .` は使わない。
-# 変更対象: パッチノート・champions/ ガイド・data.json・current-patch.txt
+# 変更対象: パッチノート・champions/ ガイド・data.json・current-patch.txt・subrole-targets.json
 # （scripts/missing-*.txt は gitignored のため含めない）
-auto_commit patches champions docs/data.json current-patch.txt \
+auto_commit patches champions docs/data.json current-patch.txt scripts/subrole-targets.json \
     -- "feat: パッチ${LATEST} ガイド更新 (自動)"
 auto_push || { notify_failure "push 失敗（パッチ${LATEST}）"; exit 1; }
 
