@@ -78,7 +78,7 @@ Gemini 3.1 Flash Lite が内部知識のみで生成していたためパッチ�
 
 - **scripts**: scripts/call-gemini.py（削除済み）, scripts/scrape-winrate.py（削除済み）
 - **dirs**: .venv/（削除済み）
-- **commands**: review-matchup.md（残置、廃止フローでのみ呼ばれていたため運用上は不要）
+- **commands**: review-matchup.md（削除済み、2026-05-25）
 - **詳細**: notes/migration-2026-05-24-gen-matchup.md
 
 ### 案前段: 旧 Sonnet パイプ（要削除判断）

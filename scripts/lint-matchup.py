@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""lint-matchup.py — Gemini 生成エントリの L1 品質チェック + 自動修正
+"""lint-matchup.py — 自動生成エントリの L1 品質チェック + 自動修正
 
 使い方:
   echo "## vs ..." | python3 scripts/lint-matchup.py --check

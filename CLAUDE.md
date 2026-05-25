@@ -22,5 +22,5 @@
 
 ## 技術スタック
 - コンテンツ: Markdown / champions/ ディレクトリに1体1ファイル
-- 自動化: cron-add-matchups.sh → add-matchups.sh（Gemini 移行中、詳細は architecture.md 参照）
+- 自動化: cron-add-matchups.sh → add-matchups.sh（Sonnet 4.6 + WebSearch、詳細は architecture.md 参照）
 - Git: WSL側の git で push（HTTPS）

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""learn-lint.py — Sonnet レビューの修正差分から lint-rules.json にルールを追加する
+"""learn-lint.py — レビュー指摘の修正差分から lint-rules.json にルールを追加する
 
 改善サイクル:
-  1. Gemini が生成 → lint-matchup.py --fix → Sonnet レビュー → 修正済みエントリ
-  2. Gemini 原文と Sonnet 修正後を比較し、繰り返し現れる修正パターンを抽出
+  1. gen-matchup{,-lite} で生成 → lint-matchup.py --fix → レビュー → 修正済みエントリ
+  2. 自動生成の原文と修正後を比較し、繰り返し現れる修正パターンを抽出
   3. このスクリプトで lint-rules.json に追加 → 次回から lint が自動修正
 
 使い方:
