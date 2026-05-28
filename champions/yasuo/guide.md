@@ -1,4 +1,4 @@
-# Yasuo（ヤスオ）ミッドレーン パッチ26.10
+# Yasuo（ヤスオ）ミッドレーン パッチ26.11
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/yasuo/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/yasuo/guide)*

@@ -1,4 +1,4 @@
-# Vayne（ヴェイン）ADC パッチ26.10
+# Vayne（ヴェイン）ADC パッチ26.11
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Wのトゥルーダメージでタンクを溶かすレイトゲーム特化型A
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/vayne/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/vayne/guide)*

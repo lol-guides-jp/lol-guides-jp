@@ -1,4 +1,4 @@
-# Rumble（ランブル）トップレーン パッチ26.10
+# Rumble（ランブル）トップレーン パッチ26.11
 
 ## 一言まとめ
 
@@ -52,4 +52,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rumble/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rumble/guide)*

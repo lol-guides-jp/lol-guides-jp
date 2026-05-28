@@ -1,4 +1,4 @@
-# Zyra（ザイラ）サポート パッチ26.10
+# Zyra（ザイラ）サポート パッチ26.11
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zyra/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zyra/guide)*

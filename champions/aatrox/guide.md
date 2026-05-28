@@ -1,4 +1,4 @@
-# Aatrox（エイトロックス）トップレーン パッチ26.10
+# Aatrox（エイトロックス）トップレーン パッチ26.11
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@ Qのスイートスポットを当て続けることで圧倒的なダメージ�
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aatrox/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aatrox/guide)*

@@ -1,4 +1,4 @@
-# Rammus（ラムス）ジャングル パッチ26.10
+# Rammus（ラムス）ジャングル パッチ26.11
 
 ## 一言まとめ
 
@@ -52,4 +52,4 @@ AD重めの敵構成に対する最強カウンターピック。Qの高速ガ�
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rammus/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rammus/guide)*

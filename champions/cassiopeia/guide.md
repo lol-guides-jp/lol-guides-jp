@@ -1,4 +1,4 @@
-# Cassiopeia（カシオペア）ミッドレーン パッチ26.10
+# Cassiopeia（カシオペア）ミッドレーン パッチ26.11
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ DPS型メイジの最高峰。Eの連射で継続火力が極めて高く、ブ�
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/cassiopeia/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/cassiopeia/guide)*

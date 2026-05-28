@@ -1,4 +1,4 @@
-# Twitch（トゥイッチ）ADC パッチ26.10
+# Twitch（トゥイッチ）ADC パッチ26.11
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twitch/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/twitch/guide)*

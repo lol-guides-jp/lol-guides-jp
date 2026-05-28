@@ -1,4 +1,4 @@
-# Kha'Zix（カ＝ジックス）ジャングル パッチ26.10
+# Kha'Zix（カ＝ジックス）ジャングル パッチ26.11
 
 ## 一言まとめ
 
@@ -52,4 +52,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/khazix/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/khazix/guide)*

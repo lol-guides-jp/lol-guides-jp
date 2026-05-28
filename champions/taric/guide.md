@@ -1,4 +1,4 @@
-# Taric（タリック）サポート パッチ26.10
+# Taric（タリック）サポート パッチ26.11
 
 ## 一言まとめ
 
@@ -52,4 +52,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/taric/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/taric/guide)*

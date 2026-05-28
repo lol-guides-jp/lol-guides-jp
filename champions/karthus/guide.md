@@ -1,4 +1,4 @@
-# Karthus（カーサス）ジャングル パッチ26.10
+# Karthus（カーサス）ジャングル パッチ26.11
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/karthus/guide/jungle)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/karthus/guide/jungle)*

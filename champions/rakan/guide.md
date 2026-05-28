@@ -1,4 +1,4 @@
-# Rakan（ラカン）サポート パッチ26.10
+# Rakan（ラカン）サポート パッチ26.11
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ LoL屈指のエンゲージサポート。W→Rのコンボで複数人をチャ
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rakan/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/rakan/guide)*

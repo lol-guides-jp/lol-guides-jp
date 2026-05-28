@@ -1,4 +1,4 @@
-# Draven（ドレイヴン）ADC パッチ26.10
+# Draven（ドレイヴン）ADC パッチ26.11
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.10 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/draven/guide)*
+*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/draven/guide)*
