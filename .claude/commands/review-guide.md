@@ -20,12 +20,11 @@ $ARGUMENTS
 
 ## レビュー手順
 
-1. `docs/data.json` を Read して該当チャンプの正規データ（en, ja, role, skills, ddragonKey）を取得する
+1. 入力の champion_id を使って `/tmp/review-data-<champion_id>.json` を Read する（例: champion_id が `ekko` なら `/tmp/review-data-ekko.json` を Read）。これは review-guide.sh が `docs/data.json` から該当チャンプ分だけ事前抽出した slim ファイルで、正規データ（en, ja, role, skills, ddragonKey）が入っている。14MB の data.json 全体は読まない
 2. `current-patch.txt` を Read して現在のパッチ番号を取得する
 3. `champions/{champion_id}/guide.md` を Read してガイド本文を取得する
-4. `champions/{champion_id}/matchups.md` を Read（あれば）。対策セクションとの整合性チェック用
-5. 下記の検査項目で問題を洗い出す
-6. 修正できる範囲のものは修正版 `guide_md` を返す。根本的な問題があれば rejected で返す
+4. 下記の検査項目で問題を洗い出す
+5. 修正できる範囲のものは修正版 `guide_md` を返す。根本的な問題があれば rejected で返す
 
 ## 検査項目
 
@@ -35,9 +34,9 @@ $ARGUMENTS
 - 役職表記: `トップレーン / ミッドレーン / ジャングル / ADC / サポート` のいずれか
 
 ### 2. スキル名の正確性（最重要）
-- `data.json` の `skills[].name` と guide.md 本文の `P/Q/W/E/R(スキル名)` 表記が一致しているか
+- 抽出データの `skills[].name` と guide.md 本文の `P/Q/W/E/R(スキル名)` 表記が一致しているか
 - 旧名・通称・推測名があれば公式名に修正する
-- **`P/Q/W/E/R（…）`形式だけでなく、地の文のスキル言及も検証する**。「ウルト（X）」「R（X）」「パッシブ（X）」「アルティメット（X）」のような括弧付き言及の X が data.json の該当キー名と一致するか確認する
+- **`P/Q/W/E/R（…）`形式だけでなく、地の文のスキル言及も検証する**。「ウルト（X）」「R（X）」「パッシブ（X）」「アルティメット（X）」のような括弧付き言及の X が抽出データの該当キー名と一致するか確認する
   - 例: ダイアナ R の公式名は「崩月」。「ウルト（月下美人）取得」は誤名 → 「R（崩月）取得」に修正する
 - 形態変化チャンプ（ジェイス・ニダリー・エリス・ナー等）は形態名が明示されているか
 
@@ -77,9 +76,7 @@ $ARGUMENTS
 - 「〜しましょう」「〜です/ます」→「〜する」「〜を当てる」の簡潔体に統一
 - 各セクションは簡潔にまとめる。冗長な説明は削る
 
-### 6. 対策セクションと matchups.md の整合性（任意）
-- `## 対策` で言及されているチャンプが matchups.md に記載されている対戦相手と矛盾していないか
-- 矛盾があっても guide.md 側の文体修正に留め、matchups.md は書き換えない（別パイプラインで処理される）
+> 対策セクションと matchups.md の整合性チェックは L1 の `fix-guide-matchups.py` に委譲済み。このレビューでは matchups.md（平均22k文字）を読まない（入力トークン削減のため。2026-05-30）。
 
 ## 判断基準
 

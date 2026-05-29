@@ -88,8 +88,31 @@ for champ_id in "${TARGETS[@]}"; do
         continue
     fi
 
+    # data.json（14MB・matchups 全文込み）から該当チャンプの正規データだけ /tmp に抽出する。
+    # review-guide.md にはこの slim ファイルを読ませ、AI に 14MB を読ませる無駄を消す（2026-05-30）。
+    # data.json 本体は無変更なので SPA・build-json・他スクリプトには影響しない。
+    slim_data="/tmp/review-data-${champ_id}.json"
+    rm -f "${slim_data}"
+    python3 - "${champ_id}" "${slim_data}" << 'PYEOF' || true
+import json, sys
+champ_id, out_path = sys.argv[1], sys.argv[2]
+data = json.load(open("docs/data.json", encoding="utf-8"))
+c = next((x for x in data["champions"] if x["id"] == champ_id), None)
+if c is None:
+    sys.exit(1)
+keys = ["id", "en", "ja", "ddragonKey", "role", "skills"]
+slim = {k: c[k] for k in keys if k in c}
+with open(out_path, "w", encoding="utf-8") as f:
+    json.dump(slim, f, ensure_ascii=False, indent=2)
+PYEOF
+    if [ ! -f "${slim_data}" ]; then
+        echo "$(log_prefix) ERROR: ${champ_id} データ抽出失敗（data.json に存在しない？）"
+        FAILED=$((FAILED + 1))
+        continue
+    fi
+
     if [ "${DRY_RUN}" = "1" ]; then
-        echo "$(log_prefix) [DRY-RUN] review-guide ${champ_id} を実行（スキップ）"
+        echo "$(log_prefix) [DRY-RUN] ${champ_id}: slim抽出OK ($(wc -m < "${slim_data}")文字)。Sonnet 呼び出しはスキップ"
         continue
     fi
 
