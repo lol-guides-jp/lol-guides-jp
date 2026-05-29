@@ -67,6 +67,23 @@ echo "$(log_prefix) INFO: 最新パッチ=${LATEST}"
 # --- 既知パッチと比較 ---
 CURRENT=$(cat "${PATCH_FILE}" 2>/dev/null | tr -d '[:space:]' || echo "")
 
+# --- パッチ表記ドリフト検出（毎回実行・observability、2026-05-30）---
+# champions/ 内の「パッチX.Y」表記が current-patch.txt とズレていないか毎日確認する。
+# 通常は update-patch-version.py が全ファイルを書き換えるが、生成タイミングのズレ等で
+# 取り残しが出ることがある。番兵として件数を可視化する（パッチ更新自体はブロックしない）。
+if [ -n "${CURRENT}" ]; then
+    DRIFT=$(grep -rhoE "パッチ[0-9]+\.[0-9]+" champions/*/*.md 2>/dev/null | grep -vc "パッチ${CURRENT}" || true)
+    if [ -n "${DRIFT}" ] && [ "${DRIFT}" != "0" ]; then
+        echo "$(log_prefix) WARN: パッチ表記ドリフト ${DRIFT}件（current=${CURRENT}）"
+        # パッチ変更がない通常日のドリフトのみ通知（変更日は後段で一括更新されるため誤報になる）
+        if [ "${LATEST}" = "${CURRENT}" ]; then
+            echo "⚠️ ${DATE}: lol-guides-jp パッチ表記ドリフト ${DRIFT}件（current=${CURRENT}、update-patch-version.py の取り残しの可能性）" >> "${CLAUDE_LOCAL}"
+        fi
+    else
+        echo "$(log_prefix) INFO: パッチ表記ドリフトなし（current=${CURRENT}）"
+    fi
+fi
+
 if [ "${LATEST}" = "${CURRENT}" ]; then
     echo "$(log_prefix) INFO: パッチ変更なし（${CURRENT}）。終了"
     echo "$(log_prefix) ===== パッチチェック完了 ====="

@@ -17,6 +17,14 @@ const BEGINNER_PICKS = JSON.parse(
   fs.readFileSync(path.join(__dirname, "beginner-picks.json"), "utf-8")
 );
 
+// トップページのパッチバッジ用。current-patch.txt を唯一の真実とする。
+// 以前は index.html が champions[0].patch を参照していたが、先頭チャンプが
+// たまたまドリフトすると全体表示が狂うため meta.patch に集約する（2026-05-29）。
+const CURRENT_PATCH_FILE = path.join(__dirname, "..", "current-patch.txt");
+const CURRENT_PATCH = fs.existsSync(CURRENT_PATCH_FILE)
+  ? fs.readFileSync(CURRENT_PATCH_FILE, "utf-8").trim()
+  : "";
+
 // サブロール判定（フェーズ4で導入、2026-05-25）
 // ファイルが無い場合は空オブジェクトを返し、既存挙動を維持する。
 const SUBROLE_TARGETS_FILE = path.join(__dirname, "subrole-targets.json");
@@ -150,9 +158,14 @@ function buildNameToIdMap(champions) {
 function fetchJSON(url) {
   return new Promise((resolve, reject) => {
     https.get(url, (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
+      // チャンクは Buffer のまま貯めて最後に結合する。
+      // `data += chunk` だとチャンク境界でマルチバイト文字（UTF-8 3バイトの日本語等）が
+      // 分割デコードされ U+FFFD に化ける（coding-standards §5 の encoding 明示と同根の問題）。
+      // 実測: ja_JP のスキル説明文で「に」「の」等の助詞が17箇所化けていた（2026-05-29）。
+      const chunks = [];
+      res.on("data", (chunk) => chunks.push(chunk));
       res.on("end", () => {
+        const data = Buffer.concat(chunks).toString("utf8");
         try { resolve(JSON.parse(data)); }
         catch (e) { reject(new Error(`JSON parse error: ${url}`)); }
       });
@@ -281,6 +294,7 @@ async function main() {
 
   const output = {
     meta: {
+      patch: CURRENT_PATCH,
       ddragonVersion: DDRAGON_VERSION,
       buildDate: new Date().toISOString().split("T")[0],
       championCount: champions.length,

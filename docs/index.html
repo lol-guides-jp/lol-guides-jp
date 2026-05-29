@@ -553,7 +553,7 @@ async function init() {
     console.error(e);
     return;
   }
-  document.getElementById("patchBadge").textContent = `Patch ${DATA.champions[0]?.patch || ""}`;
+  document.getElementById("patchBadge").textContent = `Patch ${DATA.meta.patch || DATA.champions[0]?.patch || ""}`;
   document.getElementById("homeLink").addEventListener("click", () => {
     location.hash = "#home";
   });
