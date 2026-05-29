@@ -95,6 +95,9 @@ REPLACEMENTS = [
     # アイテム名の誤り
     ("オラクルのエリクサー", "オラクルレンズ"),
     ("オラクルエリクサー", "オラクルレンズ"),
+    # カタカナ音写アイテム名 → ddragon 公式日本語名（items-ja.json 準拠、2026-05-30）
+    # 英語名は section 5 で変換されるが、音写（・区切り）は拾えないため明示置換する
+    ("ダスク・アンド・ドーン", "黄昏と暁"),
     # ルーン名の誤り
     ("第2の風", "息継ぎ"),
     ("第二の風", "息継ぎ"),
@@ -126,6 +129,22 @@ REPLACEMENTS = [
     ("プレート金", "プレートゴールド"),
     # アンベッサRカタカナ音写
     ("パブリックエクセキューション", "公開処刑"),
+    # 馴染みのない横文字の日本語化（writing-rules.md 準拠、2026-05-30）
+    # 順序注意:
+    #   - ギャップクローザー を ギャップクローズ より先（部分一致防止。ザ≠ズ だが念のため）
+    #   - イモビリティ を先に消す。残りの モビリティ は下の REGEX 側で (?<!イ) ガード付き処理
+    # モビリティ単体は「モビリティブーツ（アイテム）」を巻き込むため plain では扱わない（REGEX 参照）
+    ("ギャップクローザー", "接近スキル"),
+    ("ギャップクローズ", "接近"),
+    ("イモビリティ", "低機動"),
+    ("パックメイト", "猟犬"),
+    ("スカーミッシュ", "小規模戦闘"),
+    ("レーンブリー", "レーン制圧役"),
+    ("シージ", "包囲"),
+    ("デュエル", "タイマン"),
+    ("アーリーゲーム", "序盤"),
+    ("ミッドゲーム", "中盤"),
+    ("レイトゲーム", "終盤"),
 ]
 
 # 正規表現置換（単語境界必要なもの）
@@ -155,6 +174,9 @@ REGEX_REPLACEMENTS = [
     (r"CD(?!300|240|360)\d+[./〜]?\d*秒", "CD"),
     # スキル持続時間の秒数除去
     (r"持続約\d+秒", "持続"),
+    # モビリティ→機動力（横文字日本語化、2026-05-30）
+    # アイテム「モビリティブーツ」と「イモビリティ」（plain で既に低機動化済み）を除外
+    (r"(?<!イ)モビリティ(?!ブーツ)", "機動力"),
 ]
 
 notation_fixes = 0
@@ -316,35 +338,38 @@ if os.path.isfile(ITEMS_FILE):
     # 長い名前優先でソート（部分マッチ防止）
     items_sorted = sorted(items_map.items(), key=lambda x: len(x[0]), reverse=True)
 
+    # guide.md のパワースパイク欄にも英語アイテム名（Essence Reaver 等）が残るため
+    # matchups.md と guide.md の両方を対象にする（2026-05-30）。ルーン名化（5b）と同じ方針。
     for champ_dir in sorted(os.listdir(CHAMP_DIR)):
         if champ_dir == "_template":
             continue
-        filepath = os.path.join(CHAMP_DIR, champ_dir, "matchups.md")
-        if not os.path.isfile(filepath):
-            continue
-        with open(filepath, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-
-        new_lines = []
-        changed = False
-        for line in lines:
-            if line.startswith("#") or line.startswith(">") or line.startswith("---"):
-                new_lines.append(line)
+        for filename in ["matchups.md", "guide.md"]:
+            filepath = os.path.join(CHAMP_DIR, champ_dir, filename)
+            if not os.path.isfile(filepath):
                 continue
-            new_line = line
-            for en_name, ja_name in items_sorted:
-                # 単語境界（ASCII）でマッチ
-                pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?![a-zA-Z])'
-                new_line = re.sub(pattern, ja_name, new_line)
-            if new_line != line:
-                changed = True
-            new_lines.append(new_line)
+            with open(filepath, "r", encoding="utf-8") as f:
+                lines = f.readlines()
 
-        if changed:
-            with open(filepath, "w", encoding="utf-8") as f:
-                f.writelines(new_lines)
-            item_fixes += 1
-            print(f"  修正: {champ_dir}/matchups.md")
+            new_lines = []
+            changed = False
+            for line in lines:
+                if line.startswith("#") or line.startswith(">") or line.startswith("---"):
+                    new_lines.append(line)
+                    continue
+                new_line = line
+                for en_name, ja_name in items_sorted:
+                    # 単語境界（ASCII）でマッチ
+                    pattern = r'(?<![a-zA-Z])' + re.escape(en_name) + r'(?![a-zA-Z])'
+                    new_line = re.sub(pattern, ja_name, new_line)
+                if new_line != line:
+                    changed = True
+                new_lines.append(new_line)
+
+            if changed:
+                with open(filepath, "w", encoding="utf-8") as f:
+                    f.writelines(new_lines)
+                item_fixes += 1
+                print(f"  修正: {champ_dir}/{filename}")
 else:
     print("  items-ja.json が見つかりません。scripts/fetch-items.py を実行してください")
 

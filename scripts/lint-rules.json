@@ -15,7 +15,18 @@
     {"pattern": "ADキャリー", "replacement": "ダメージディーラー", "reason": "AD carry は禁止表現"},
     {"pattern": "セカンドウィンド", "replacement": "息継ぎ", "reason": "ルーン名は公式日本語名を使う"},
     {"pattern": "コンカー", "replacement": "征服者", "reason": "ルーン名は公式日本語名を使う"},
-    {"pattern": "オートアタック", "replacement": "AA", "reason": "通常攻撃は AA に統一"}
+    {"pattern": "オートアタック", "replacement": "AA", "reason": "通常攻撃は AA に統一"},
+    {"pattern": "ギャップクローザー", "replacement": "接近スキル", "reason": "馴染みのない横文字。ギャップクローズより先に置換（部分一致防止）"},
+    {"pattern": "ギャップクローズ", "replacement": "接近", "reason": "馴染みのない横文字"},
+    {"pattern": "イモビリティ", "replacement": "低機動", "reason": "馴染みのない横文字"},
+    {"pattern": "パックメイト", "replacement": "猟犬", "reason": "馴染みのない横文字（ナフィーリの使い魔）"},
+    {"pattern": "スカーミッシュ", "replacement": "小規模戦闘", "reason": "馴染みのない横文字"},
+    {"pattern": "レーンブリー", "replacement": "レーン制圧役", "reason": "馴染みのない横文字"},
+    {"pattern": "シージ", "replacement": "包囲", "reason": "馴染みのない横文字"},
+    {"pattern": "デュエル", "replacement": "タイマン", "reason": "馴染みのない横文字"},
+    {"pattern": "アーリーゲーム", "replacement": "序盤", "reason": "馴染みのない横文字"},
+    {"pattern": "ミッドゲーム", "replacement": "中盤", "reason": "馴染みのない横文字"},
+    {"pattern": "レイトゲーム", "replacement": "終盤", "reason": "馴染みのない横文字"}
   ],
 
   "polite_endings": [
