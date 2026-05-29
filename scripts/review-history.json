@@ -103,5 +103,30 @@
     "last_reviewed": "2026-05-29",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "ekko": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "gwen": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "heimerdinger": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "illaoi": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "irelia": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
