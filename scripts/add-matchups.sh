@@ -199,9 +199,9 @@ for job in "${JOBS[@]}"; do
         if [ "$DRY_RUN" = "0" ]; then
             python3 -c "
 import sys
-lines = open('${source_file}').read().splitlines()
+lines = open('${source_file}', encoding='utf-8').read().splitlines()
 lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' not in l]
-open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
+open('${source_file}', 'w', encoding='utf-8').write('\n'.join(lines) + ('\n' if lines else ''))
 "
         fi
         continue
@@ -211,14 +211,14 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
     # --- スキル名・英語名を data.json から抽出 ---
     champ_en=$(python3 -c "
 import json
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+data = json.load(open('${PROJECT_DIR}/docs/data.json', encoding='utf-8'))
 cmap = {c['id']:c for c in data['champions']}
 print(cmap.get('${champ_id}', {}).get('en', '${champ_id}'))
 " 2>/dev/null || echo "$champ_id")
 
     opp_en_from_data=$(python3 -c "
 import json
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+data = json.load(open('${PROJECT_DIR}/docs/data.json', encoding='utf-8'))
 cmap = {c['id']:c for c in data['champions']}
 print(cmap.get('${opp_id}', {}).get('en', '${opp_en}'))
 " 2>/dev/null || echo "$opp_en")
@@ -226,9 +226,12 @@ print(cmap.get('${opp_id}', {}).get('en', '${opp_en}'))
     # champ_slug / opp_slug は scrape-winrate.py 用のみだったため削除（2026-05-24 案B 移行）。
     # gen-matchup は en 名で WebSearch するためスラグ不要。
 
-    read -r champ_skills opp_skills < <(python3 - << PYEOF
+    # champ/opp のスキル文字列はタブ区切りで返し、タブで分割する。
+    # NG: print(a, b) は空白区切り → skills 内部の ", " 空白で read -r が誤分割し、
+    #     champ_skills が1スキル目で切れて残りが opp_skills に混入していた（2026-05-29 修正）。
+    IFS=$'\t' read -r champ_skills opp_skills < <(python3 - << PYEOF
 import json
-data = json.load(open("${PROJECT_DIR}/docs/data.json"))
+data = json.load(open("${PROJECT_DIR}/docs/data.json", encoding="utf-8"))
 cmap = {c["id"]: c for c in data["champions"]}
 def skills_str(cid):
     c = cmap.get(cid, {})
@@ -237,7 +240,7 @@ def skills_str(cid):
         if s["key"] in "PQWER":
             parts.append(f"{s['key']}({s['name']})")
     return ", ".join(parts)
-print(skills_str("${champ_id}"), skills_str("${opp_id}"))
+print(skills_str("${champ_id}") + "\t" + skills_str("${opp_id}"))
 PYEOF
 )
 
@@ -373,9 +376,9 @@ print(json.dumps({
     # --- missing ファイルから削除 ---
     # A 側
     python3 -c "
-lines = open('${source_file}').read().splitlines()
+lines = open('${source_file}', encoding='utf-8').read().splitlines()
 lines = [l for l in lines if not l.startswith('${champ_id}|') or '|${opp_id}|' not in l]
-open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
+open('${source_file}', 'w', encoding='utf-8').write('\n'.join(lines) + ('\n' if lines else ''))
 "
 
     # B 側（全キューを検索: missing/requeue/missing-subrole/requeue-subrole）
@@ -385,15 +388,18 @@ open('${source_file}', 'w').write('\n'.join(lines) + ('\n' if lines else ''))
     if [ "$TARGET" = "matchups-sub.md" ]; then
         queue_glob="${PROJECT_DIR}/scripts/missing-subrole-*.txt ${PROJECT_DIR}/scripts/requeue-subrole-*.txt"
     else
-        queue_glob="${PROJECT_DIR}/scripts/missing-トップ.txt ${PROJECT_DIR}/scripts/missing-ミッド.txt ${PROJECT_DIR}/scripts/missing-ジャング.txt ${PROJECT_DIR}/scripts/missing-ADC.txt ${PROJECT_DIR}/scripts/missing-サポート.txt"
+        # B側エントリは missing だけでなく requeue-{role}.txt にも残りうる（対称ペア）。
+        # requeue を含めないと opp|champ が消えず、後で --force で重複再生成され二度手間になる（2026-05-29 追加）。
+        # requeue-[!s]*.txt はメインロールの requeue のみ（requeue-subrole-* は除外）。
+        queue_glob="${PROJECT_DIR}/scripts/missing-トップ.txt ${PROJECT_DIR}/scripts/missing-ミッド.txt ${PROJECT_DIR}/scripts/missing-ジャング.txt ${PROJECT_DIR}/scripts/missing-ADC.txt ${PROJECT_DIR}/scripts/missing-サポート.txt ${PROJECT_DIR}/scripts/requeue-[!s]*.txt"
     fi
     for mf in $queue_glob; do
         [ -f "$mf" ] || continue
         python3 -c "
-lines = open('${mf}').read().splitlines()
+lines = open('${mf}', encoding='utf-8').read().splitlines()
 new = [l for l in lines if not (l.startswith('${opp_id}|') and '|${champ_id}|' in l)]
 if len(new) < len(lines):
-    open('${mf}', 'w').write('\n'.join(new) + ('\n' if new else ''))
+    open('${mf}', 'w', encoding='utf-8').write('\n'.join(new) + ('\n' if new else ''))
 "
     done
 

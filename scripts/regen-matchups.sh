@@ -62,7 +62,7 @@ get_champ_info() {
     local cid="$1"
     python3 -c "
 import json, sys
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+data = json.load(open('${PROJECT_DIR}/docs/data.json', encoding='utf-8'))
 cmap = {c['id']:c for c in data['champions']}
 c = cmap.get('$cid', {})
 print(c.get('ja',''), c.get('en',''))
@@ -73,7 +73,7 @@ get_skills_str() {
     local cid="$1"
     python3 -c "
 import json
-data = json.load(open('${PROJECT_DIR}/docs/data.json'))
+data = json.load(open('${PROJECT_DIR}/docs/data.json', encoding='utf-8'))
 cmap = {c['id']:c for c in data['champions']}
 c = cmap.get('$cid', {})
 parts = []
@@ -126,7 +126,7 @@ path = '${PROJECT_DIR}/champions/${champ_id}/guide.md'
 if not os.path.isfile(path):
     print('苦手')
     exit()
-content = open(path).read()
+content = open(path, encoding='utf-8').read()
 fav, unfav = set(), set()
 cur = None
 for line in content.splitlines():
