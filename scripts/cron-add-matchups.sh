@@ -53,8 +53,12 @@ pick_max_remaining() {
     done | sort -rn | head -1 | awk '{print $2}'
 }
 
-MISSING_TOTAL=$(cat "${PROJECT_DIR}"/scripts/missing-*.txt 2>/dev/null \
-    | grep -v subrole | wc -l || true)
+# メインロール missing の残件数。subrole はファイル名でフィルタする。
+# NG: `cat missing-*.txt | grep -v subrole` … missing-subrole-*.txt の中身は
+#     "subrole" 文字列を含まないため除外されず、subrole キューを誤カウントしていた
+#     （2026-05-25 フェーズ4実装で混入、4日間 missing モードに誤判定し生成停止）。
+# OK: ファイル名グロブ [!s] で subrole 系を除外（requeue 側の [!s] パターンに統一）。
+MISSING_TOTAL=$(cat "${PROJECT_DIR}"/scripts/missing-[!s]*.txt 2>/dev/null | wc -l || true)
 
 SELECTED_STAGE=""
 SELECTED_SOURCE=""
