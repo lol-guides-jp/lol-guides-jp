@@ -128,5 +128,30 @@
     "last_reviewed": "2026-05-30",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "kaisa": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "kalista": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "kassadin": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "leona": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "nami": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
