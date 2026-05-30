@@ -178,5 +178,30 @@
     "last_reviewed": "2026-05-30",
     "review_count": 1,
     "last_status": "approved"
+  },
+  "vayne": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "velkoz": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "wukong": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "xayah": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "xin-zhao": {
+    "last_reviewed": "2026-05-30",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
