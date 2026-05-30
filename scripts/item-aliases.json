@@ -1,0 +1,2750 @@
+{
+  "_comment": "gen-item-aliases.py が生成。手で編集しない（誤表記の追加は SEED_ALIASES へ）。",
+  "ddragon_version": "16.11.1",
+  "generated_at": "2026-05-30T07:53:01+00:00",
+  "count": 457,
+  "aliases": [
+    {
+      "pattern": "ブレード・オブ・ザ・ルインドキング",
+      "replacement": "ルインドキング ブレード",
+      "reason": "英語直訳カタカナ。公式名は「ルインドキング ブレード」",
+      "source": "seed"
+    },
+    {
+      "pattern": "ブレードオブザルインドキング",
+      "replacement": "ルインドキング ブレード",
+      "reason": "英語直訳カタカナ。公式名は「ルインドキング ブレード」",
+      "source": "seed"
+    },
+    {
+      "pattern": "サンファイアケープ",
+      "replacement": "サンファイア イージス",
+      "reason": "旧アイテム名。改名後の公式名は「サンファイア イージス」",
+      "source": "seed"
+    },
+    {
+      "pattern": "ヴォイドスタッフ",
+      "replacement": "ヴォイド スタッフ",
+      "reason": "区切りスペース欠落。公式は半角スペース区切り「ヴォイド スタッフ」",
+      "source": "seed"
+    },
+    {
+      "pattern": "フェアリー・チャーム",
+      "replacement": "フェアリー チャーム",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フェアリー チャーム」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フェアリー　チャーム",
+      "replacement": "フェアリー チャーム",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フェアリー チャーム」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ジャイアント・ベルト",
+      "replacement": "ジャイアント ベルト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ジャイアント ベルト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ジャイアント　ベルト",
+      "replacement": "ジャイアント ベルト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ジャイアント ベルト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アジリティ・クローク",
+      "replacement": "アジリティ クローク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アジリティ クローク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アジリティ　クローク",
+      "replacement": "アジリティ クローク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アジリティ クローク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブラスティング・ワンド",
+      "replacement": "ブラスティング ワンド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブラスティング ワンド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブラスティング　ワンド",
+      "replacement": "ブラスティング ワンド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブラスティング ワンド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サファイア・クリスタル",
+      "replacement": "サファイア クリスタル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サファイア クリスタル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サファイア　クリスタル",
+      "replacement": "サファイア クリスタル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サファイア クリスタル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルビー・クリスタル",
+      "replacement": "ルビー クリスタル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルビー クリスタル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルビー　クリスタル",
+      "replacement": "ルビー クリスタル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルビー クリスタル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クロース・アーマー",
+      "replacement": "クロース アーマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クロース アーマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クロース　アーマー",
+      "replacement": "クロース アーマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クロース アーマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "チェイン・ベスト",
+      "replacement": "チェイン ベスト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「チェイン ベスト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "チェイン　ベスト",
+      "replacement": "チェイン ベスト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「チェイン ベスト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヌルマジック・マント",
+      "replacement": "ヌルマジック マント",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヌルマジック マント」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヌルマジック　マント",
+      "replacement": "ヌルマジック マント",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヌルマジック マント」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロング・ソード",
+      "replacement": "ロング ソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロング ソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロング　ソード",
+      "replacement": "ロング ソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロング ソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "B.・F.・ソード",
+      "replacement": "B. F. ソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「B. F. ソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "B.　F.　ソード",
+      "replacement": "B. F. ソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「B. F. ソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リカーブ・ボウ",
+      "replacement": "リカーブ ボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リカーブ ボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リカーブ　ボウ",
+      "replacement": "リカーブ ボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リカーブ ボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴァンパイア・セプター",
+      "replacement": "ヴァンパイア セプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴァンパイア セプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴァンパイア　セプター",
+      "replacement": "ヴァンパイア セプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴァンパイア セプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン・シールド",
+      "replacement": "ドラン シールド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン シールド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン　シールド",
+      "replacement": "ドラン シールド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン シールド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン・ブレード",
+      "replacement": "ドラン ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン　ブレード",
+      "replacement": "ドラン ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン・リング",
+      "replacement": "ドラン リング",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン リング」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン　リング",
+      "replacement": "ドラン リング",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン リング」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ネガトロン・クローク",
+      "replacement": "ネガトロン クローク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ネガトロン クローク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ネガトロン　クローク",
+      "replacement": "ネガトロン クローク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ネガトロン クローク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ムダニ・デカイ・ロッド",
+      "replacement": "ムダニ デカイ ロッド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ムダニ デカイ ロッド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ムダニ　デカイ　ロッド",
+      "replacement": "ムダニ デカイ ロッド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ムダニ デカイ ロッド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ダーク・シール",
+      "replacement": "ダーク シール",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ダーク シール」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ダーク　シール",
+      "replacement": "ダーク シール",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ダーク シール」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン・ボウ",
+      "replacement": "ドラン ボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン　ボウ",
+      "replacement": "ドラン ボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン・ヘルム",
+      "replacement": "ドラン ヘルム",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ヘルム」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドラン　ヘルム",
+      "replacement": "ドラン ヘルム",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドラン ヘルム」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スチール・シジル",
+      "replacement": "スチール シジル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スチール シジル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スチール　シジル",
+      "replacement": "スチール シジル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スチール シジル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン・ホーン",
+      "replacement": "ガーディアン ホーン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ホーン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン　ホーン",
+      "replacement": "ガーディアン ホーン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ホーン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コントロール・ワード",
+      "replacement": "コントロール ワード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コントロール ワード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コントロール　ワード",
+      "replacement": "コントロール ワード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コントロール ワード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイアン・エリクサー",
+      "replacement": "アイアン エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイアン エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイアン　エリクサー",
+      "replacement": "アイアン エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイアン エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ソーサリー・エリクサー",
+      "replacement": "ソーサリー エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ソーサリー エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ソーサリー　エリクサー",
+      "replacement": "ソーサリー エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ソーサリー エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラース・エリクサー",
+      "replacement": "ラース エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラース エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラース　エリクサー",
+      "replacement": "ラース エリクサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラース エリクサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "シーカー・アームガード",
+      "replacement": "シーカー アームガード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「シーカー アームガード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "シーカー　アームガード",
+      "replacement": "シーカー アームガード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「シーカー アームガード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ケイニック・ルーケルン",
+      "replacement": "ケイニック ルーケルン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ケイニック ルーケルン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ケイニック　ルーケルン",
+      "replacement": "ケイニック ルーケルン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ケイニック ルーケルン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プロトプラズム・ハーネス",
+      "replacement": "プロトプラズム ハーネス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プロトプラズム ハーネス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プロトプラズム　ハーネス",
+      "replacement": "プロトプラズム ハーネス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プロトプラズム ハーネス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アークエンジェル・スタッフ",
+      "replacement": "アークエンジェル スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アークエンジェル スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アークエンジェル　スタッフ",
+      "replacement": "アークエンジェル スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アークエンジェル スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バーサーカー・ブーツ",
+      "replacement": "バーサーカー ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バーサーカー ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バーサーカー　ブーツ",
+      "replacement": "バーサーカー ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バーサーカー ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グラトナス・ブーツ",
+      "replacement": "グラトナス ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グラトナス ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グラトナス　ブーツ",
+      "replacement": "グラトナス ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グラトナス ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スイフトネス・ブーツ",
+      "replacement": "スイフトネス ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スイフトネス ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スイフトネス　ブーツ",
+      "replacement": "スイフトネス ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スイフトネス ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ソーサラー・シューズ",
+      "replacement": "ソーサラー シューズ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ソーサラー シューズ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ソーサラー　シューズ",
+      "replacement": "ソーサラー シューズ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ソーサラー シューズ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グレイシャル・バックラー",
+      "replacement": "グレイシャル バックラー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グレイシャル バックラー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グレイシャル　バックラー",
+      "replacement": "グレイシャル バックラー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グレイシャル バックラー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン・エンジェル",
+      "replacement": "ガーディアン エンジェル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン エンジェル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン　エンジェル",
+      "replacement": "ガーディアン エンジェル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン エンジェル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "インフィニティ・エッジ",
+      "replacement": "インフィニティ エッジ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「インフィニティ エッジ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "インフィニティ　エッジ",
+      "replacement": "インフィニティ エッジ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「インフィニティ エッジ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ユン・タル・ワイルドアロー",
+      "replacement": "ユン・タル ワイルドアロー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ユン・タル ワイルドアロー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ユン・タル　ワイルドアロー",
+      "replacement": "ユン・タル ワイルドアロー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ユン・タル ワイルドアロー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "モータル・リマインダー",
+      "replacement": "モータル リマインダー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「モータル リマインダー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "モータル　リマインダー",
+      "replacement": "モータル リマインダー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「モータル リマインダー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラスト・ウィスパー",
+      "replacement": "ラスト ウィスパー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラスト ウィスパー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラスト　ウィスパー",
+      "replacement": "ラスト ウィスパー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラスト ウィスパー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドミニク・リガード",
+      "replacement": "ドミニク リガード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドミニク リガード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドミニク　リガード",
+      "replacement": "ドミニク リガード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドミニク リガード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "メジャイ・ソウルスティーラー",
+      "replacement": "メジャイ ソウルスティーラー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「メジャイ ソウルスティーラー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "メジャイ　ソウルスティーラー",
+      "replacement": "メジャイ ソウルスティーラー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「メジャイ ソウルスティーラー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ファントム・ダンサー",
+      "replacement": "ファントム ダンサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ファントム ダンサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ファントム　ダンサー",
+      "replacement": "ファントム ダンサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ファントム ダンサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プレート・スチールキャップ",
+      "replacement": "プレート スチールキャップ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プレート スチールキャップ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プレート　スチールキャップ",
+      "replacement": "プレート スチールキャップ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プレート スチールキャップ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ジーク・コンバージェンス",
+      "replacement": "ジーク コンバージェンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ジーク コンバージェンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ジーク　コンバージェンス",
+      "replacement": "ジーク コンバージェンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ジーク コンバージェンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ハースバウンド・アックス",
+      "replacement": "ハースバウンド アックス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ハースバウンド アックス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ハースバウンド　アックス",
+      "replacement": "ハースバウンド アックス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ハースバウンド アックス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スピリット・ビサージュ",
+      "replacement": "スピリット ビサージュ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スピリット ビサージュ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スピリット　ビサージュ",
+      "replacement": "スピリット ビサージュ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スピリット ビサージュ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サンファイア・イージス",
+      "replacement": "サンファイア イージス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サンファイア イージス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サンファイア　イージス",
+      "replacement": "サンファイア イージス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サンファイア イージス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブラック・クリーバー",
+      "replacement": "ブラック クリーバー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブラック クリーバー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブラック　クリーバー",
+      "replacement": "ブラック クリーバー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブラック クリーバー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラヴァナス・ハイドラ",
+      "replacement": "ラヴァナス ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラヴァナス ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラヴァナス　ハイドラ",
+      "replacement": "ラヴァナス ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラヴァナス ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブランブル・ベスト",
+      "replacement": "ブランブル ベスト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブランブル ベスト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ブランブル　ベスト",
+      "replacement": "ブランブル ベスト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ブランブル ベスト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "トリニティ・フォース",
+      "replacement": "トリニティ フォース",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「トリニティ フォース」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "トリニティ　フォース",
+      "replacement": "トリニティ フォース",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「トリニティ フォース」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワーデン・メイル",
+      "replacement": "ワーデン メイル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワーデン メイル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワーデン　メイル",
+      "replacement": "ワーデン メイル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワーデン メイル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワーモグ・アーマー",
+      "replacement": "ワーモグ アーマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワーモグ アーマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワーモグ　アーマー",
+      "replacement": "ワーモグ アーマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワーモグ アーマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルナーン・ハリケーン",
+      "replacement": "ルナーン ハリケーン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルナーン ハリケーン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルナーン　ハリケーン",
+      "replacement": "ルナーン ハリケーン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルナーン ハリケーン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スタティック・シヴ",
+      "replacement": "スタティック シヴ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スタティック シヴ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スタティック　シヴ",
+      "replacement": "スタティック シヴ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スタティック シヴ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラバドン・デスキャップ",
+      "replacement": "ラバドン デスキャップ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラバドン デスキャップ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラバドン　デスキャップ",
+      "replacement": "ラバドン デスキャップ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラバドン デスキャップ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ウィッツ・エンド",
+      "replacement": "ウィッツ エンド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ウィッツ エンド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ウィッツ　エンド",
+      "replacement": "ウィッツ エンド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ウィッツ エンド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラピッド・ファイアキャノン",
+      "replacement": "ラピッド ファイアキャノン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラピッド ファイアキャノン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ラピッド　ファイアキャノン",
+      "replacement": "ラピッド ファイアキャノン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ラピッド ファイアキャノン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リッチ・ベイン",
+      "replacement": "リッチ ベイン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リッチ ベイン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リッチ　ベイン",
+      "replacement": "リッチ ベイン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リッチ ベイン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バンシー・ヴェール",
+      "replacement": "バンシー ヴェール",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バンシー ヴェール」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バンシー　ヴェール",
+      "replacement": "バンシー ヴェール",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バンシー ヴェール」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フローズン・ハート",
+      "replacement": "フローズン ハート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フローズン ハート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フローズン　ハート",
+      "replacement": "フローズン ハート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フローズン ハート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "マーキュリー・ブーツ",
+      "replacement": "マーキュリー ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「マーキュリー ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "マーキュリー　ブーツ",
+      "replacement": "マーキュリー ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「マーキュリー ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン・オーブ",
+      "replacement": "ガーディアン オーブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン オーブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン　オーブ",
+      "replacement": "ガーディアン オーブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン オーブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エーテル・ウィスプ",
+      "replacement": "エーテル ウィスプ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エーテル ウィスプ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エーテル　ウィスプ",
+      "replacement": "エーテル ウィスプ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エーテル ウィスプ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フォビドゥン・アイドル",
+      "replacement": "フォビドゥン アイドル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フォビドゥン アイドル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フォビドゥン　アイドル",
+      "replacement": "フォビドゥン アイドル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フォビドゥン アイドル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナッシャー・トゥース",
+      "replacement": "ナッシャー トゥース",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナッシャー トゥース」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナッシャー　トゥース",
+      "replacement": "ナッシャー トゥース",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナッシャー トゥース」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リーライ・クリスタル・セプター",
+      "replacement": "リーライ クリスタル セプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リーライ クリスタル セプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "リーライ　クリスタル　セプター",
+      "replacement": "リーライ クリスタル セプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「リーライ クリスタル セプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エクスキューショナー・コーリング",
+      "replacement": "エクスキューショナー コーリング",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エクスキューショナー コーリング」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エクスキューショナー　コーリング",
+      "replacement": "エクスキューショナー コーリング",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エクスキューショナー コーリング」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グインソー・レイジブレード",
+      "replacement": "グインソー レイジブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グインソー レイジブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "グインソー　レイジブレード",
+      "replacement": "グインソー レイジブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「グインソー レイジブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コールフィールド・ウォーハンマー",
+      "replacement": "コールフィールド ウォーハンマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コールフィールド ウォーハンマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コールフィールド　ウォーハンマー",
+      "replacement": "コールフィールド ウォーハンマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コールフィールド ウォーハンマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "セレイテッド・ダーク",
+      "replacement": "セレイテッド ダーク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「セレイテッド ダーク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "セレイテッド　ダーク",
+      "replacement": "セレイテッド ダーク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「セレイテッド ダーク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴォイド・スタッフ",
+      "replacement": "ヴォイド スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴォイド スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴォイド　スタッフ",
+      "replacement": "ヴォイド スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴォイド スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "マーキュリアル・シミター",
+      "replacement": "マーキュリアル シミター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「マーキュリアル シミター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "マーキュリアル　シミター",
+      "replacement": "マーキュリアル シミター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「マーキュリアル シミター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クイックシルバー・サッシュ",
+      "replacement": "クイックシルバー サッシュ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クイックシルバー サッシュ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クイックシルバー　サッシュ",
+      "replacement": "クイックシルバー サッシュ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クイックシルバー サッシュ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ランデュイン・オーメン",
+      "replacement": "ランデュイン オーメン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ランデュイン オーメン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ランデュイン　オーメン",
+      "replacement": "ランデュイン オーメン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ランデュイン オーメン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック・オルタネーター",
+      "replacement": "ヘクステック オルタネーター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック オルタネーター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック　オルタネーター",
+      "replacement": "ヘクステック オルタネーター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック オルタネーター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック・ガンブレード",
+      "replacement": "ヘクステック ガンブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック ガンブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック　ガンブレード",
+      "replacement": "ヘクステック ガンブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック ガンブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック・ロケットベルト",
+      "replacement": "ヘクステック ロケットベルト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック ロケットベルト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヘクステック　ロケットベルト",
+      "replacement": "ヘクステック ロケットベルト",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヘクステック ロケットベルト」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルインドキング・ブレード",
+      "replacement": "ルインドキング ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルインドキング ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルインドキング　ブレード",
+      "replacement": "ルインドキング ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルインドキング ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイオニア・ブーツ",
+      "replacement": "アイオニア ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイオニア ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイオニア　ブーツ",
+      "replacement": "アイオニア ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイオニア ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "真紅のアイオニア・ブーツ",
+      "replacement": "真紅のアイオニア ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「真紅のアイオニア ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "真紅のアイオニア　ブーツ",
+      "replacement": "真紅のアイオニア ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「真紅のアイオニア ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガンメタル・ブーツ",
+      "replacement": "ガンメタル ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガンメタル ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガンメタル　ブーツ",
+      "replacement": "ガンメタル ブーツ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガンメタル ブーツ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "チェインレースド・クラッシャー",
+      "replacement": "チェインレースド クラッシャー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「チェインレースド クラッシャー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "チェインレースド　クラッシャー",
+      "replacement": "チェインレースド クラッシャー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「チェインレースド クラッシャー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン・ブレード",
+      "replacement": "ガーディアン ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン　ブレード",
+      "replacement": "ガーディアン ブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アンブラル・グレイブ",
+      "replacement": "アンブラル グレイブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アンブラル グレイブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アンブラル　グレイブ",
+      "replacement": "アンブラル グレイブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アンブラル グレイブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン・ハンマー",
+      "replacement": "ガーディアン ハンマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ハンマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーディアン　ハンマー",
+      "replacement": "ガーディアン ハンマー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーディアン ハンマー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スペクター・カウル",
+      "replacement": "スペクター カウル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スペクター カウル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "スペクター　カウル",
+      "replacement": "スペクター カウル",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「スペクター カウル」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アーデント・センサー",
+      "replacement": "アーデント センサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アーデント センサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アーデント　センサー",
+      "replacement": "アーデント センサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アーデント センサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フロー・ウォーター・スタッフ",
+      "replacement": "フロー ウォーター スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フロー ウォーター スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "フロー　ウォーター　スタッフ",
+      "replacement": "フロー ウォーター スタッフ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「フロー ウォーター スタッフ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロッド・オブ・エイジス",
+      "replacement": "ロッド オブ エイジス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロッド オブ エイジス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロッド　オブ　エイジス",
+      "replacement": "ロッド オブ エイジス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロッド オブ エイジス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アビサル・マスク",
+      "replacement": "アビサル マスク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アビサル マスク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アビサル　マスク",
+      "replacement": "アビサル マスク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アビサル マスク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エッセンス・リーバー",
+      "replacement": "エッセンス リーバー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エッセンス リーバー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "エッセンス　リーバー",
+      "replacement": "エッセンス リーバー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「エッセンス リーバー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "デッド・マン・プレート",
+      "replacement": "デッド マン プレート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「デッド マン プレート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "デッド　マン　プレート",
+      "replacement": "デッド マン プレート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「デッド マン プレート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "タイタン・ハイドラ",
+      "replacement": "タイタン ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「タイタン ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "タイタン　ハイドラ",
+      "replacement": "タイタン ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「タイタン ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クリスタル・ブレーサー",
+      "replacement": "クリスタル ブレーサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クリスタル ブレーサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クリスタル　ブレーサー",
+      "replacement": "クリスタル ブレーサー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クリスタル ブレーサー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロスト・チャプター",
+      "replacement": "ロスト チャプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロスト チャプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ロスト　チャプター",
+      "replacement": "ロスト チャプター",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ロスト チャプター」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナイト・エッジ",
+      "replacement": "ナイト エッジ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナイト エッジ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナイト　エッジ",
+      "replacement": "ナイト エッジ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナイト エッジ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワールド・アトラス",
+      "replacement": "ワールド アトラス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワールド アトラス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ワールド　アトラス",
+      "replacement": "ワールド アトラス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ワールド アトラス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "セレスティアル・オポジション",
+      "replacement": "セレスティアル オポジション",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「セレスティアル オポジション」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "セレスティアル　オポジション",
+      "replacement": "セレスティアル オポジション",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「セレスティアル オポジション」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドリーム・メーカー",
+      "replacement": "ドリーム メーカー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドリーム メーカー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ドリーム　メーカー",
+      "replacement": "ドリーム メーカー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ドリーム メーカー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ホライゾン・フォーカス",
+      "replacement": "ホライゾン フォーカス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ホライゾン フォーカス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ホライゾン　フォーカス",
+      "replacement": "ホライゾン フォーカス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ホライゾン フォーカス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コズミック・ドライブ",
+      "replacement": "コズミック ドライブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コズミック ドライブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "コズミック　ドライブ",
+      "replacement": "コズミック ドライブ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「コズミック ドライブ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴァーダント・バリア",
+      "replacement": "ヴァーダント バリア",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴァーダント バリア」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ヴァーダント　バリア",
+      "replacement": "ヴァーダント バリア",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ヴァーダント バリア」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "デス・ダンス",
+      "replacement": "デス ダンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「デス ダンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "デス　ダンス",
+      "replacement": "デス ダンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「デス ダンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ケミパンク・チェーンソード",
+      "replacement": "ケミパンク チェーンソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ケミパンク チェーンソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ケミパンク　チェーンソード",
+      "replacement": "ケミパンク チェーンソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ケミパンク チェーンソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サンダード・スカイ",
+      "replacement": "サンダード スカイ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サンダード スカイ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "サンダード　スカイ",
+      "replacement": "サンダード スカイ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「サンダード スカイ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "モルテンストーン・シールド",
+      "replacement": "モルテンストーン シールド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「モルテンストーン シールド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "モルテンストーン　シールド",
+      "replacement": "モルテンストーン シールド",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「モルテンストーン シールド」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーゴイル・ストーンプレート",
+      "replacement": "ガーゴイル ストーンプレート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーゴイル ストーンプレート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ガーゴイル　ストーンプレート",
+      "replacement": "ガーゴイル ストーンプレート",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ガーゴイル ストーンプレート」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "シャッタードクイーン・クラウン",
+      "replacement": "シャッタードクイーン クラウン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「シャッタードクイーン クラウン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "シャッタードクイーン　クラウン",
+      "replacement": "シャッタードクイーン クラウン",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「シャッタードクイーン クラウン」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルーデン・エコー",
+      "replacement": "ルーデン エコー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルーデン エコー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ルーデン　エコー",
+      "replacement": "ルーデン エコー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ルーデン エコー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バミ・シンダー",
+      "replacement": "バミ シンダー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バミ シンダー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "バミ　シンダー",
+      "replacement": "バミ シンダー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「バミ シンダー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイスボーン・ガントレット",
+      "replacement": "アイスボーン ガントレット",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイスボーン ガントレット」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アイスボーン　ガントレット",
+      "replacement": "アイスボーン ガントレット",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アイスボーン ガントレット」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ホロウ・レディアンス",
+      "replacement": "ホロウ レディアンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ホロウ レディアンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ホロウ　レディアンス",
+      "replacement": "ホロウ レディアンス",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ホロウ レディアンス」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クラーケン・スレイヤー",
+      "replacement": "クラーケン スレイヤー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クラーケン スレイヤー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "クラーケン　スレイヤー",
+      "replacement": "クラーケン スレイヤー",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「クラーケン スレイヤー」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "イモータル・シールドボウ",
+      "replacement": "イモータル シールドボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「イモータル シールドボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "イモータル　シールドボウ",
+      "replacement": "イモータル シールドボウ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「イモータル シールドボウ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナヴォリ・フリッカーブレード",
+      "replacement": "ナヴォリ フリッカーブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナヴォリ フリッカーブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ナヴォリ　フリッカーブレード",
+      "replacement": "ナヴォリ フリッカーブレード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ナヴォリ フリッカーブレード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アクシオム・アーク",
+      "replacement": "アクシオム アーク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アクシオム アーク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "アクシオム　アーク",
+      "replacement": "アクシオム アーク",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「アクシオム アーク」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プロフェイン・ハイドラ",
+      "replacement": "プロフェイン ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プロフェイン ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "プロフェイン　ハイドラ",
+      "replacement": "プロフェイン ハイドラ",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「プロフェイン ハイドラ」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ボルテイク・サイクロソード",
+      "replacement": "ボルテイク サイクロソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ボルテイク サイクロソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "ボルテイク　サイクロソード",
+      "replacement": "ボルテイク サイクロソード",
+      "reason": "アイテム名の区切り揺れ。公式は半角スペース区切り「ボルテイク サイクロソード」",
+      "source": "spacing"
+    },
+    {
+      "pattern": "Faerie Charm",
+      "replacement": "フェアリー チャーム",
+      "reason": "アイテム英語名「Faerie Charm」は公式日本語名「フェアリー チャーム」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Rejuvenation Bead",
+      "replacement": "再生の珠",
+      "reason": "アイテム英語名「Rejuvenation Bead」は公式日本語名「再生の珠」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Giant's Belt",
+      "replacement": "ジャイアント ベルト",
+      "reason": "アイテム英語名「Giant's Belt」は公式日本語名「ジャイアント ベルト」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cloak of Agility",
+      "replacement": "アジリティ クローク",
+      "reason": "アイテム英語名「Cloak of Agility」は公式日本語名「アジリティ クローク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Blasting Wand",
+      "replacement": "ブラスティング ワンド",
+      "reason": "アイテム英語名「Blasting Wand」は公式日本語名「ブラスティング ワンド」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sapphire Crystal",
+      "replacement": "サファイア クリスタル",
+      "reason": "アイテム英語名「Sapphire Crystal」は公式日本語名「サファイア クリスタル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Ruby Crystal",
+      "replacement": "ルビー クリスタル",
+      "reason": "アイテム英語名「Ruby Crystal」は公式日本語名「ルビー クリスタル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cloth Armor",
+      "replacement": "クロース アーマー",
+      "reason": "アイテム英語名「Cloth Armor」は公式日本語名「クロース アーマー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Chain Vest",
+      "replacement": "チェイン ベスト",
+      "reason": "アイテム英語名「Chain Vest」は公式日本語名「チェイン ベスト」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Null-Magic Mantle",
+      "replacement": "ヌルマジック マント",
+      "reason": "アイテム英語名「Null-Magic Mantle」は公式日本語名「ヌルマジック マント」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Long Sword",
+      "replacement": "ロング ソード",
+      "reason": "アイテム英語名「Long Sword」は公式日本語名「ロング ソード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "B. F. Sword",
+      "replacement": "B. F. ソード",
+      "reason": "アイテム英語名「B. F. Sword」は公式日本語名「B. F. ソード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Recurve Bow",
+      "replacement": "リカーブ ボウ",
+      "reason": "アイテム英語名「Recurve Bow」は公式日本語名「リカーブ ボウ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Amplifying Tome",
+      "replacement": "増魔の書",
+      "reason": "アイテム英語名「Amplifying Tome」は公式日本語名「増魔の書」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Vampiric Scepter",
+      "replacement": "ヴァンパイア セプター",
+      "reason": "アイテム英語名「Vampiric Scepter」は公式日本語名「ヴァンパイア セプター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Doran's Shield",
+      "replacement": "ドラン シールド",
+      "reason": "アイテム英語名「Doran's Shield」は公式日本語名「ドラン シールド」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Doran's Blade",
+      "replacement": "ドラン ブレード",
+      "reason": "アイテム英語名「Doran's Blade」は公式日本語名「ドラン ブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Doran's Ring",
+      "replacement": "ドラン リング",
+      "reason": "アイテム英語名「Doran's Ring」は公式日本語名「ドラン リング」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Negatron Cloak",
+      "replacement": "ネガトロン クローク",
+      "reason": "アイテム英語名「Negatron Cloak」は公式日本語名「ネガトロン クローク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Needlessly Large Rod",
+      "replacement": "ムダニ デカイ ロッド",
+      "reason": "アイテム英語名「Needlessly Large Rod」は公式日本語名「ムダニ デカイ ロッド」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Dark Seal",
+      "replacement": "ダーク シール",
+      "reason": "アイテム英語名「Dark Seal」は公式日本語名「ダーク シール」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Doran's Bow",
+      "replacement": "ドラン ボウ",
+      "reason": "アイテム英語名「Doran's Bow」は公式日本語名「ドラン ボウ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Scorchclaw Pup",
+      "replacement": "スコーチクロウの幼体",
+      "reason": "アイテム英語名「Scorchclaw Pup」は公式日本語名「スコーチクロウの幼体」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Gustwalker Hatchling",
+      "replacement": "ガストウォーカーの幼体",
+      "reason": "アイテム英語名「Gustwalker Hatchling」は公式日本語名「ガストウォーカーの幼体」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mosstomper Seedling",
+      "replacement": "モスストンパーの幼体",
+      "reason": "アイテム英語名「Mosstomper Seedling」は公式日本語名「モスストンパーの幼体」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Doran's Helm",
+      "replacement": "ドラン ヘルム",
+      "reason": "アイテム英語名「Doran's Helm」は公式日本語名「ドラン ヘルム」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Health Potion",
+      "replacement": "体力ポーション",
+      "reason": "アイテム英語名「Health Potion」は公式日本語名「体力ポーション」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Steel Sigil",
+      "replacement": "スチール シジル",
+      "reason": "アイテム英語名「Steel Sigil」は公式日本語名「スチール シジル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "The Brutalizer",
+      "replacement": "ブルータライザー",
+      "reason": "アイテム英語名「The Brutalizer」は公式日本語名「ブルータライザー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Tunneler",
+      "replacement": "トンネル掘り",
+      "reason": "アイテム英語名「Tunneler」は公式日本語名「トンネル掘り」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Glowing Mote",
+      "replacement": "輝きのモート",
+      "reason": "アイテム英語名「Glowing Mote」は公式日本語名「輝きのモート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Refillable Potion",
+      "replacement": "詰め替えポーション",
+      "reason": "アイテム英語名「Refillable Potion」は公式日本語名「詰め替えポーション」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guardian's Horn",
+      "replacement": "ガーディアン ホーン",
+      "reason": "アイテム英語名「Guardian's Horn」は公式日本語名「ガーディアン ホーン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Control Ward",
+      "replacement": "コントロール ワード",
+      "reason": "アイテム英語名「Control Ward」は公式日本語名「コントロール ワード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Shurelya's Battlesong",
+      "replacement": "シュレリアの戦歌",
+      "reason": "アイテム英語名「Shurelya's Battlesong」は公式日本語名「シュレリアの戦歌」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Elixir of Iron",
+      "replacement": "アイアン エリクサー",
+      "reason": "アイテム英語名「Elixir of Iron」は公式日本語名「アイアン エリクサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Elixir of Sorcery",
+      "replacement": "ソーサリー エリクサー",
+      "reason": "アイテム英語名「Elixir of Sorcery」は公式日本語名「ソーサリー エリクサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Elixir of Wrath",
+      "replacement": "ラース エリクサー",
+      "reason": "アイテム英語名「Elixir of Wrath」は公式日本語名「ラース エリクサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cappa Juice",
+      "replacement": "帽子ジュース",
+      "reason": "アイテム英語名「Cappa Juice」は公式日本語名「帽子ジュース」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Seeker's Armguard",
+      "replacement": "シーカー アームガード",
+      "reason": "アイテム英語名「Seeker's Armguard」は公式日本語名「シーカー アームガード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Shattered Armguard",
+      "replacement": "砕けたアームガード",
+      "reason": "アイテム英語名「Shattered Armguard」は公式日本語名「砕けたアームガード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Overlord's Bloodmail",
+      "replacement": "覇王のブラッドメイル",
+      "reason": "アイテム英語名「Overlord's Bloodmail」は公式日本語名「覇王のブラッドメイル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Unending Despair",
+      "replacement": "終わりなき絶望",
+      "reason": "アイテム英語名「Unending Despair」は公式日本語名「終わりなき絶望」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Blackfire Torch",
+      "replacement": "黒炎のトーチ",
+      "reason": "アイテム英語名「Blackfire Torch」は公式日本語名「黒炎のトーチ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Kaenic Rookern",
+      "replacement": "ケイニック ルーケルン",
+      "reason": "アイテム英語名「Kaenic Rookern」は公式日本語名「ケイニック ルーケルン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Fated Ashes",
+      "replacement": "運命の灰",
+      "reason": "アイテム英語名「Fated Ashes」は公式日本語名「運命の灰」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Dusk and Dawn",
+      "replacement": "黄昏と暁",
+      "reason": "アイテム英語名「Dusk and Dawn」は公式日本語名「黄昏と暁」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Fiendhunter Bolts",
+      "replacement": "フィーンドハンターの矢",
+      "reason": "アイテム英語名「Fiendhunter Bolts」は公式日本語名「フィーンドハンターの矢」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Endless Hunger",
+      "replacement": "終わりなき飢え",
+      "reason": "アイテム英語名「Endless Hunger」は公式日本語名「終わりなき飢え」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bastionbreaker",
+      "replacement": "バスティオンブレイカー",
+      "reason": "アイテム英語名「Bastionbreaker」は公式日本語名「バスティオンブレイカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Actualizer",
+      "replacement": "アクチュアライザー",
+      "reason": "アイテム英語名「Actualizer」は公式日本語名「アクチュアライザー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hexoptics C44",
+      "replacement": "ヘクスオプティックC44",
+      "reason": "アイテム英語名「Hexoptics C44」は公式日本語名「ヘクスオプティックC44」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bandlepipes",
+      "replacement": "バンドルパイプ",
+      "reason": "アイテム英語名「Bandlepipes」は公式日本語名「バンドルパイプ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Protoplasm Harness",
+      "replacement": "プロトプラズム ハーネス",
+      "reason": "アイテム英語名「Protoplasm Harness」は公式日本語名「プロトプラズム ハーネス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Whispering Circlet",
+      "replacement": "囁きのサークレット",
+      "reason": "アイテム英語名「Whispering Circlet」は公式日本語名「囁きのサークレット」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Archangel's Staff",
+      "replacement": "アークエンジェル スタッフ",
+      "reason": "アイテム英語名「Archangel's Staff」は公式日本語名「アークエンジェル スタッフ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Manamune",
+      "replacement": "マナムネ",
+      "reason": "アイテム英語名「Manamune」は公式日本語名「マナムネ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Berserker's Greaves",
+      "replacement": "バーサーカー ブーツ",
+      "reason": "アイテム英語名「Berserker's Greaves」は公式日本語名「バーサーカー ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Gluttonous Greaves",
+      "replacement": "グラトナス ブーツ",
+      "reason": "アイテム英語名「Gluttonous Greaves」は公式日本語名「グラトナス ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Boots of Swiftness",
+      "replacement": "スイフトネス ブーツ",
+      "reason": "アイテム英語名「Boots of Swiftness」は公式日本語名「スイフトネス ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sorcerer's Shoes",
+      "replacement": "ソーサラー シューズ",
+      "reason": "アイテム英語名「Sorcerer's Shoes」は公式日本語名「ソーサラー シューズ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Glacial Buckler",
+      "replacement": "グレイシャル バックラー",
+      "reason": "アイテム英語名「Glacial Buckler」は公式日本語名「グレイシャル バックラー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guardian Angel",
+      "replacement": "ガーディアン エンジェル",
+      "reason": "アイテム英語名「Guardian Angel」は公式日本語名「ガーディアン エンジェル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Infinity Edge",
+      "replacement": "インフィニティ エッジ",
+      "reason": "アイテム英語名「Infinity Edge」は公式日本語名「インフィニティ エッジ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Yun Tal Wildarrows",
+      "replacement": "ユン・タル ワイルドアロー",
+      "reason": "アイテム英語名「Yun Tal Wildarrows」は公式日本語名「ユン・タル ワイルドアロー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mortal Reminder",
+      "replacement": "モータル リマインダー",
+      "reason": "アイテム英語名「Mortal Reminder」は公式日本語名「モータル リマインダー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Last Whisper",
+      "replacement": "ラスト ウィスパー",
+      "reason": "アイテム英語名「Last Whisper」は公式日本語名「ラスト ウィスパー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Lord Dominik's Regards",
+      "replacement": "ドミニク リガード",
+      "reason": "アイテム英語名「Lord Dominik's Regards」は公式日本語名「ドミニク リガード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mejai's Soulstealer",
+      "replacement": "メジャイ ソウルスティーラー",
+      "reason": "アイテム英語名「Mejai's Soulstealer」は公式日本語名「メジャイ ソウルスティーラー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Phantom Dancer",
+      "replacement": "ファントム ダンサー",
+      "reason": "アイテム英語名「Phantom Dancer」は公式日本語名「ファントム ダンサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Plated Steelcaps",
+      "replacement": "プレート スチールキャップ",
+      "reason": "アイテム英語名「Plated Steelcaps」は公式日本語名「プレート スチールキャップ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Zeke's Convergence",
+      "replacement": "ジーク コンバージェンス",
+      "reason": "アイテム英語名「Zeke's Convergence」は公式日本語名「ジーク コンバージェンス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hearthbound Axe",
+      "replacement": "ハースバウンド アックス",
+      "reason": "アイテム英語名「Hearthbound Axe」は公式日本語名「ハースバウンド アックス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sterak's Gage",
+      "replacement": "ステラックの篭手",
+      "reason": "アイテム英語名「Sterak's Gage」は公式日本語名「ステラックの篭手」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Spirit Visage",
+      "replacement": "スピリット ビサージュ",
+      "reason": "アイテム英語名「Spirit Visage」は公式日本語名「スピリット ビサージュ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Winged Moonplate",
+      "replacement": "翼のムーンプレート",
+      "reason": "アイテム英語名「Winged Moonplate」は公式日本語名「翼のムーンプレート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Kindlegem",
+      "replacement": "キンドルジェム",
+      "reason": "アイテム英語名「Kindlegem」は公式日本語名「キンドルジェム」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sunfire Aegis",
+      "replacement": "サンファイア イージス",
+      "reason": "アイテム英語名「Sunfire Aegis」は公式日本語名「サンファイア イージス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Tear of the Goddess",
+      "replacement": "女神の涙",
+      "reason": "アイテム英語名「Tear of the Goddess」は公式日本語名「女神の涙」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Black Cleaver",
+      "replacement": "ブラック クリーバー",
+      "reason": "アイテム英語名「Black Cleaver」は公式日本語名「ブラック クリーバー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bloodthirster",
+      "replacement": "ブラッドサースター",
+      "reason": "アイテム英語名「Bloodthirster」は公式日本語名「ブラッドサースター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Experimental Hexplate",
+      "replacement": "実験的ヘクスプレート",
+      "reason": "アイテム英語名「Experimental Hexplate」は公式日本語名「実験的ヘクスプレート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Ravenous Hydra",
+      "replacement": "ラヴァナス ハイドラ",
+      "reason": "アイテム英語名「Ravenous Hydra」は公式日本語名「ラヴァナス ハイドラ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Thornmail",
+      "replacement": "ソーンメイル",
+      "reason": "アイテム英語名「Thornmail」は公式日本語名「ソーンメイル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bramble Vest",
+      "replacement": "ブランブル ベスト",
+      "reason": "アイテム英語名「Bramble Vest」は公式日本語名「ブランブル ベスト」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Trinity Force",
+      "replacement": "トリニティ フォース",
+      "reason": "アイテム英語名「Trinity Force」は公式日本語名「トリニティ フォース」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Warden's Mail",
+      "replacement": "ワーデン メイル",
+      "reason": "アイテム英語名「Warden's Mail」は公式日本語名「ワーデン メイル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Warmog's Armor",
+      "replacement": "ワーモグ アーマー",
+      "reason": "アイテム英語名「Warmog's Armor」は公式日本語名「ワーモグ アーマー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Heartsteel",
+      "replacement": "心の鋼",
+      "reason": "アイテム英語名「Heartsteel」は公式日本語名「心の鋼」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Runaan's Hurricane",
+      "replacement": "ルナーン ハリケーン",
+      "reason": "アイテム英語名「Runaan's Hurricane」は公式日本語名「ルナーン ハリケーン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Statikk Shiv",
+      "replacement": "スタティック シヴ",
+      "reason": "アイテム英語名「Statikk Shiv」は公式日本語名「スタティック シヴ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Rabadon's Deathcap",
+      "replacement": "ラバドン デスキャップ",
+      "reason": "アイテム英語名「Rabadon's Deathcap」は公式日本語名「ラバドン デスキャップ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Wit's End",
+      "replacement": "ウィッツ エンド",
+      "reason": "アイテム英語名「Wit's End」は公式日本語名「ウィッツ エンド」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Rapid Firecannon",
+      "replacement": "ラピッド ファイアキャノン",
+      "reason": "アイテム英語名「Rapid Firecannon」は公式日本語名「ラピッド ファイアキャノン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Stormrazor",
+      "replacement": "ストームレイザー",
+      "reason": "アイテム英語名「Stormrazor」は公式日本語名「ストームレイザー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Lich Bane",
+      "replacement": "リッチ ベイン",
+      "reason": "アイテム英語名「Lich Bane」は公式日本語名「リッチ ベイン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Banshee's Veil",
+      "replacement": "バンシー ヴェール",
+      "reason": "アイテム英語名「Banshee's Veil」は公式日本語名「バンシー ヴェール」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Redemption",
+      "replacement": "リデンプション",
+      "reason": "アイテム英語名「Redemption」は公式日本語名「リデンプション」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Fiendish Codex",
+      "replacement": "フィンディッシュの古書",
+      "reason": "アイテム英語名「Fiendish Codex」は公式日本語名「フィンディッシュの古書」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Knight's Vow",
+      "replacement": "騎士の誓い",
+      "reason": "アイテム英語名「Knight's Vow」は公式日本語名「騎士の誓い」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Frozen Heart",
+      "replacement": "フローズン ハート",
+      "reason": "アイテム英語名「Frozen Heart」は公式日本語名「フローズン ハート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mercury's Treads",
+      "replacement": "マーキュリー ブーツ",
+      "reason": "アイテム英語名「Mercury's Treads」は公式日本語名「マーキュリー ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guardian's Orb",
+      "replacement": "ガーディアン オーブ",
+      "reason": "アイテム英語名「Guardian's Orb」は公式日本語名「ガーディアン オーブ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Aether Wisp",
+      "replacement": "エーテル ウィスプ",
+      "reason": "アイテム英語名「Aether Wisp」は公式日本語名「エーテル ウィスプ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Forbidden Idol",
+      "replacement": "フォビドゥン アイドル",
+      "reason": "アイテム英語名「Forbidden Idol」は公式日本語名「フォビドゥン アイドル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Nashor's Tooth",
+      "replacement": "ナッシャー トゥース",
+      "reason": "アイテム英語名「Nashor's Tooth」は公式日本語名「ナッシャー トゥース」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Rylai's Crystal Scepter",
+      "replacement": "リーライ クリスタル セプター",
+      "reason": "アイテム英語名「Rylai's Crystal Scepter」は公式日本語名「リーライ クリスタル セプター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Malignance",
+      "replacement": "マリグナンス",
+      "reason": "アイテム英語名「Malignance」は公式日本語名「マリグナンス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Winter's Approach",
+      "replacement": "冬の訪れ",
+      "reason": "アイテム英語名「Winter's Approach」は公式日本語名「冬の訪れ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Executioner's Calling",
+      "replacement": "エクスキューショナー コーリング",
+      "reason": "アイテム英語名「Executioner's Calling」は公式日本語名「エクスキューショナー コーリング」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guinsoo's Rageblade",
+      "replacement": "グインソー レイジブレード",
+      "reason": "アイテム英語名「Guinsoo's Rageblade」は公式日本語名「グインソー レイジブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Caulfield's Warhammer",
+      "replacement": "コールフィールド ウォーハンマー",
+      "reason": "アイテム英語名「Caulfield's Warhammer」は公式日本語名「コールフィールド ウォーハンマー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Serrated Dirk",
+      "replacement": "セレイテッド ダーク",
+      "reason": "アイテム英語名「Serrated Dirk」は公式日本語名「セレイテッド ダーク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Void Staff",
+      "replacement": "ヴォイド スタッフ",
+      "reason": "アイテム英語名「Void Staff」は公式日本語名「ヴォイド スタッフ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cryptbloom",
+      "replacement": "クリプトブルーム",
+      "reason": "アイテム英語名「Cryptbloom」は公式日本語名「クリプトブルーム」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mercurial Scimitar",
+      "replacement": "マーキュリアル シミター",
+      "reason": "アイテム英語名「Mercurial Scimitar」は公式日本語名「マーキュリアル シミター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Quicksilver Sash",
+      "replacement": "クイックシルバー サッシュ",
+      "reason": "アイテム英語名「Quicksilver Sash」は公式日本語名「クイックシルバー サッシュ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Youmuu's Ghostblade",
+      "replacement": "妖夢の霊剣",
+      "reason": "アイテム英語名「Youmuu's Ghostblade」は公式日本語名「妖夢の霊剣」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Randuin's Omen",
+      "replacement": "ランデュイン オーメン",
+      "reason": "アイテム英語名「Randuin's Omen」は公式日本語名「ランデュイン オーメン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Scout's Slingshot",
+      "replacement": "偵察兵のパチンコ",
+      "reason": "アイテム英語名「Scout's Slingshot」は公式日本語名「偵察兵のパチンコ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hextech Alternator",
+      "replacement": "ヘクステック オルタネーター",
+      "reason": "アイテム英語名「Hextech Alternator」は公式日本語名「ヘクステック オルタネーター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hextech Gunblade",
+      "replacement": "ヘクステック ガンブレード",
+      "reason": "アイテム英語名「Hextech Gunblade」は公式日本語名「ヘクステック ガンブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Haunting Guise",
+      "replacement": "悲愴な仮面",
+      "reason": "アイテム英語名「Haunting Guise」は公式日本語名「悲愴な仮面」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hextech Rocketbelt",
+      "replacement": "ヘクステック ロケットベルト",
+      "reason": "アイテム英語名「Hextech Rocketbelt」は公式日本語名「ヘクステック ロケットベルト」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Blade of The Ruined King",
+      "replacement": "ルインドキング ブレード",
+      "reason": "アイテム英語名「Blade of The Ruined King」は公式日本語名「ルインドキング ブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Blade of the Ruined King",
+      "replacement": "ルインドキング ブレード",
+      "reason": "アイテム英語名「Blade of the Ruined King」は公式日本語名「ルインドキング ブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hexdrinker",
+      "replacement": "ヘクスドリンカー",
+      "reason": "アイテム英語名「Hexdrinker」は公式日本語名「ヘクスドリンカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Maw of Malmortius",
+      "replacement": "マルモティウスの胃袋",
+      "reason": "アイテム英語名「Maw of Malmortius」は公式日本語名「マルモティウスの胃袋」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Zhonya's Hourglass",
+      "replacement": "ゾーニャの砂時計",
+      "reason": "アイテム英語名「Zhonya's Hourglass」は公式日本語名「ゾーニャの砂時計」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Ionian Boots of Lucidity",
+      "replacement": "アイオニア ブーツ",
+      "reason": "アイテム英語名「Ionian Boots of Lucidity」は公式日本語名「アイオニア ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Spear of Shojin",
+      "replacement": "ショウジンの矛",
+      "reason": "アイテム英語名「Spear of Shojin」は公式日本語名「ショウジンの矛」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Morellonomicon",
+      "replacement": "モレロノミコン",
+      "reason": "アイテム英語名「Morellonomicon」は公式日本語名「モレロノミコン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Immortal Path",
+      "replacement": "不滅の道",
+      "reason": "アイテム英語名「Immortal Path」は公式日本語名「不滅の道」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Swiftmarch",
+      "replacement": "スイフトマーチ",
+      "reason": "アイテム英語名「Swiftmarch」は公式日本語名「スイフトマーチ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Crimson Lucidity",
+      "replacement": "真紅のアイオニア ブーツ",
+      "reason": "アイテム英語名「Crimson Lucidity」は公式日本語名「真紅のアイオニア ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Gunmetal Greaves",
+      "replacement": "ガンメタル ブーツ",
+      "reason": "アイテム英語名「Gunmetal Greaves」は公式日本語名「ガンメタル ブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Chainlaced Crushers",
+      "replacement": "チェインレースド クラッシャー",
+      "reason": "アイテム英語名「Chainlaced Crushers」は公式日本語名「チェインレースド クラッシャー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Armored Advance",
+      "replacement": "装甲強化の進撃",
+      "reason": "アイテム英語名「Armored Advance」は公式日本語名「装甲強化の進撃」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Spellslinger's Shoes",
+      "replacement": "連呪使いのブーツ",
+      "reason": "アイテム英語名「Spellslinger's Shoes」は公式日本語名「連呪使いのブーツ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guardian's Blade",
+      "replacement": "ガーディアン ブレード",
+      "reason": "アイテム英語名「Guardian's Blade」は公式日本語名「ガーディアン ブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Umbral Glaive",
+      "replacement": "アンブラル グレイブ",
+      "reason": "アイテム英語名「Umbral Glaive」は公式日本語名「アンブラル グレイブ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hullbreaker",
+      "replacement": "ハルブレイカー",
+      "reason": "アイテム英語名「Hullbreaker」は公式日本語名「ハルブレイカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Guardian's Hammer",
+      "replacement": "ガーディアン ハンマー",
+      "reason": "アイテム英語名「Guardian's Hammer」は公式日本語名「ガーディアン ハンマー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Locket of the Iron Solari",
+      "replacement": "ソラリのロケット",
+      "reason": "アイテム英語名「Locket of the Iron Solari」は公式日本語名「ソラリのロケット」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Spectre's Cowl",
+      "replacement": "スペクター カウル",
+      "reason": "アイテム英語名「Spectre's Cowl」は公式日本語名「スペクター カウル」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Mikael's Blessing",
+      "replacement": "ミカエルの祝福",
+      "reason": "アイテム英語名「Mikael's Blessing」は公式日本語名「ミカエルの祝福」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Ardent Censer",
+      "replacement": "アーデント センサー",
+      "reason": "アイテム英語名「Ardent Censer」は公式日本語名「アーデント センサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Imperial Mandate",
+      "replacement": "帝国の指令",
+      "reason": "アイテム英語名「Imperial Mandate」は公式日本語名「帝国の指令」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Staff of Flowing Water",
+      "replacement": "フロー ウォーター スタッフ",
+      "reason": "アイテム英語名「Staff of Flowing Water」は公式日本語名「フロー ウォーター スタッフ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Moonstone Renewer",
+      "replacement": "ムーンストーンの再生",
+      "reason": "アイテム英語名「Moonstone Renewer」は公式日本語名「ムーンストーンの再生」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Echoes of Helia",
+      "replacement": "ヘリアの残響",
+      "reason": "アイテム英語名「Echoes of Helia」は公式日本語名「ヘリアの残響」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Dawncore",
+      "replacement": "ドーンコア",
+      "reason": "アイテム英語名「Dawncore」は公式日本語名「ドーンコア」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Rod of Ages",
+      "replacement": "ロッド オブ エイジス",
+      "reason": "アイテム英語名「Rod of Ages」は公式日本語名「ロッド オブ エイジス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Abyssal Mask",
+      "replacement": "アビサル マスク",
+      "reason": "アイテム英語名「Abyssal Mask」は公式日本語名「アビサル マスク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Terminus",
+      "replacement": "テルミヌス",
+      "reason": "アイテム英語名「Terminus」は公式日本語名「テルミヌス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Essence Reaver",
+      "replacement": "エッセンス リーバー",
+      "reason": "アイテム英語名「Essence Reaver」は公式日本語名「エッセンス リーバー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Dead Man's Plate",
+      "replacement": "デッド マン プレート",
+      "reason": "アイテム英語名「Dead Man's Plate」は公式日本語名「デッド マン プレート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Titanic Hydra",
+      "replacement": "タイタン ハイドラ",
+      "reason": "アイテム英語名「Titanic Hydra」は公式日本語名「タイタン ハイドラ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Crystalline Bracer",
+      "replacement": "クリスタル ブレーサー",
+      "reason": "アイテム英語名「Crystalline Bracer」は公式日本語名「クリスタル ブレーサー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Lost Chapter",
+      "replacement": "ロスト チャプター",
+      "reason": "アイテム英語名「Lost Chapter」は公式日本語名「ロスト チャプター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Catalyst of Aeons",
+      "replacement": "久遠のカタリスト",
+      "reason": "アイテム英語名「Catalyst of Aeons」は公式日本語名「久遠のカタリスト」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Edge of Night",
+      "replacement": "ナイト エッジ",
+      "reason": "アイテム英語名「Edge of Night」は公式日本語名「ナイト エッジ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "World Atlas",
+      "replacement": "ワールド アトラス",
+      "reason": "アイテム英語名「World Atlas」は公式日本語名「ワールド アトラス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Celestial Opposition",
+      "replacement": "セレスティアル オポジション",
+      "reason": "アイテム英語名「Celestial Opposition」は公式日本語名「セレスティアル オポジション」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Dream Maker",
+      "replacement": "ドリーム メーカー",
+      "reason": "アイテム英語名「Dream Maker」は公式日本語名「ドリーム メーカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Zaz'Zak's Realmspike",
+      "replacement": "ザズ＝ザクのレルムスパイク",
+      "reason": "アイテム英語名「Zaz'Zak's Realmspike」は公式日本語名「ザズ＝ザクのレルムスパイク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Solstice Sleigh",
+      "replacement": "至点のソリ",
+      "reason": "アイテム英語名「Solstice Sleigh」は公式日本語名「至点のソリ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bloodsong",
+      "replacement": "ブラッドソング",
+      "reason": "アイテム英語名「Bloodsong」は公式日本語名「ブラッドソング」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Oblivion Orb",
+      "replacement": "忘却のオーブ",
+      "reason": "アイテム英語名「Oblivion Orb」は公式日本語名「忘却のオーブ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Force of Nature",
+      "replacement": "自然の力",
+      "reason": "アイテム英語名「Force of Nature」は公式日本語名「自然の力」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Horizon Focus",
+      "replacement": "ホライゾン フォーカス",
+      "reason": "アイテム英語名「Horizon Focus」は公式日本語名「ホライゾン フォーカス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cosmic Drive",
+      "replacement": "コズミック ドライブ",
+      "reason": "アイテム英語名「Cosmic Drive」は公式日本語名「コズミック ドライブ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Blighting Jewel",
+      "replacement": "枯死の宝石",
+      "reason": "アイテム英語名「Blighting Jewel」は公式日本語名「枯死の宝石」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Verdant Barrier",
+      "replacement": "ヴァーダント バリア",
+      "reason": "アイテム英語名「Verdant Barrier」は公式日本語名「ヴァーダント バリア」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Riftmaker",
+      "replacement": "リフトメーカー",
+      "reason": "アイテム英語名「Riftmaker」は公式日本語名「リフトメーカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bandleglass Mirror",
+      "replacement": "バンドルグラスの鏡",
+      "reason": "アイテム英語名「Bandleglass Mirror」は公式日本語名「バンドルグラスの鏡」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Shadowflame",
+      "replacement": "シャドウフレイム",
+      "reason": "アイテム英語名「Shadowflame」は公式日本語名「シャドウフレイム」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Stormsurge",
+      "replacement": "ストームサージ",
+      "reason": "アイテム英語名「Stormsurge」は公式日本語名「ストームサージ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Death's Dance",
+      "replacement": "デス ダンス",
+      "reason": "アイテム英語名「Death's Dance」は公式日本語名「デス ダンス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Chempunk Chainsword",
+      "replacement": "ケミパンク チェーンソード",
+      "reason": "アイテム英語名「Chempunk Chainsword」は公式日本語名「ケミパンク チェーンソード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sundered Sky",
+      "replacement": "サンダード スカイ",
+      "reason": "アイテム英語名「Sundered Sky」は公式日本語名「サンダード スカイ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Atma's Reckoning",
+      "replacement": "アトマの報い",
+      "reason": "アイテム英語名「Atma's Reckoning」は公式日本語名「アトマの報い」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Demon King's Crown",
+      "replacement": "不死身の大王の王冠",
+      "reason": "アイテム英語名「Demon King's Crown」は公式日本語名「不死身の大王の王冠」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Shield of Molten Stone",
+      "replacement": "モルテンストーン シールド",
+      "reason": "アイテム英語名「Shield of Molten Stone」は公式日本語名「モルテンストーン シールド」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Cloak of Starry Night",
+      "replacement": "星空のマント",
+      "reason": "アイテム英語名「Cloak of Starry Night」は公式日本語名「星空のマント」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sword of the Divine",
+      "replacement": "天帝の剣",
+      "reason": "アイテム英語名「Sword of the Divine」は公式日本語名「天帝の剣」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Veigar's Talisman of Ascension",
+      "replacement": "ベイガーの超越のタリスマン",
+      "reason": "アイテム英語名「Veigar's Talisman of Ascension」は公式日本語名「ベイガーの超越のタリスマン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Stridebreaker",
+      "replacement": "ストライドブレイカー",
+      "reason": "アイテム英語名「Stridebreaker」は公式日本語名「ストライドブレイカー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Gargoyle Stoneplate",
+      "replacement": "ガーゴイル ストーンプレート",
+      "reason": "アイテム英語名「Gargoyle Stoneplate」は公式日本語名「ガーゴイル ストーンプレート」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Sword of Blossoming Dawn",
+      "replacement": "花咲く夜明けの剣",
+      "reason": "アイテム英語名「Sword of Blossoming Dawn」は公式日本語名「花咲く夜明けの剣」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Crown of the Shattered Queen",
+      "replacement": "シャッタードクイーン クラウン",
+      "reason": "アイテム英語名「Crown of the Shattered Queen」は公式日本語名「シャッタードクイーン クラウン」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Liandry's Torment",
+      "replacement": "ライアンドリーの仮面",
+      "reason": "アイテム英語名「Liandry's Torment」は公式日本語名「ライアンドリーの仮面」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Luden's Echo",
+      "replacement": "ルーデン エコー",
+      "reason": "アイテム英語名「Luden's Echo」は公式日本語名「ルーデン エコー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bami's Cinder",
+      "replacement": "バミ シンダー",
+      "reason": "アイテム英語名「Bami's Cinder」は公式日本語名「バミ シンダー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Iceborn Gauntlet",
+      "replacement": "アイスボーン ガントレット",
+      "reason": "アイテム英語名「Iceborn Gauntlet」は公式日本語名「アイスボーン ガントレット」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Hollow Radiance",
+      "replacement": "ホロウ レディアンス",
+      "reason": "アイテム英語名「Hollow Radiance」は公式日本語名「ホロウ レディアンス」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Jak'Sho, The Protean",
+      "replacement": "変幻自在のジャック＝ショー",
+      "reason": "アイテム英語名「Jak'Sho, The Protean」は公式日本語名「変幻自在のジャック＝ショー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Jak'Sho, the Protean",
+      "replacement": "変幻自在のジャック＝ショー",
+      "reason": "アイテム英語名「Jak'Sho, the Protean」は公式日本語名「変幻自在のジャック＝ショー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Noonquiver",
+      "replacement": "ヌーンクィヴァー",
+      "reason": "アイテム英語名「Noonquiver」は公式日本語名「ヌーンクィヴァー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Gambler's Blade",
+      "replacement": "ギャンブラーの剣",
+      "reason": "アイテム英語名「Gambler's Blade」は公式日本語名「ギャンブラーの剣」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Flesheater",
+      "replacement": "肉喰らう者",
+      "reason": "アイテム英語名「Flesheater」は公式日本語名「肉喰らう者」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Kraken Slayer",
+      "replacement": "クラーケン スレイヤー",
+      "reason": "アイテム英語名「Kraken Slayer」は公式日本語名「クラーケン スレイヤー」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Immortal Shieldbow",
+      "replacement": "イモータル シールドボウ",
+      "reason": "アイテム英語名「Immortal Shieldbow」は公式日本語名「イモータル シールドボウ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Navori Flickerblade",
+      "replacement": "ナヴォリ フリッカーブレード",
+      "reason": "アイテム英語名「Navori Flickerblade」は公式日本語名「ナヴォリ フリッカーブレード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "The Collector",
+      "replacement": "コレクター",
+      "reason": "アイテム英語名「The Collector」は公式日本語名「コレクター」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Serylda's Grudge",
+      "replacement": "セリルダの怨恨",
+      "reason": "アイテム英語名「Serylda's Grudge」は公式日本語名「セリルダの怨恨」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Serpent's Fang",
+      "replacement": "毒蛇の牙",
+      "reason": "アイテム英語名「Serpent's Fang」は公式日本語名「毒蛇の牙」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Axiom Arc",
+      "replacement": "アクシオム アーク",
+      "reason": "アイテム英語名「Axiom Arc」は公式日本語名「アクシオム アーク」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Profane Hydra",
+      "replacement": "プロフェイン ハイドラ",
+      "reason": "アイテム英語名「Profane Hydra」は公式日本語名「プロフェイン ハイドラ」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Voltaic Cyclosword",
+      "replacement": "ボルテイク サイクロソード",
+      "reason": "アイテム英語名「Voltaic Cyclosword」は公式日本語名「ボルテイク サイクロソード」に統一",
+      "source": "ddragon"
+    },
+    {
+      "pattern": "Bloodletter's Curse",
+      "replacement": "ブラッドレターの呪い",
+      "reason": "アイテム英語名「Bloodletter's Curse」は公式日本語名「ブラッドレターの呪い」に統一",
+      "source": "ddragon"
+    }
+  ]
+}

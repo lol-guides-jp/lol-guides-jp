@@ -20,11 +20,24 @@ import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 RULES_PATH = os.path.join(SCRIPT_DIR, "lint-rules.json")
+# アイテム名正規化辞書（gen-item-aliases.py が Data Dragon から生成）。
+# 人手の lint-rules.json とは別ファイルにして、機械再生成で全面上書きしても
+# 人手ルールを壊さないようにする（関心事の分離）。
+ITEM_ALIASES_PATH = os.path.join(SCRIPT_DIR, "item-aliases.json")
 
 
 def load_rules() -> dict:
     with open(RULES_PATH, encoding="utf-8") as f:
         return json.load(f)
+
+
+def load_item_aliases() -> list[dict]:
+    """アイテム名の「誤表記 → 公式日本語名」辞書を読む。
+    gen-item-aliases.py が生成。ファイルが無くても lint は動く（空で返す）。"""
+    if not os.path.exists(ITEM_ALIASES_PATH):
+        return []
+    with open(ITEM_ALIASES_PATH, encoding="utf-8") as f:
+        return json.load(f).get("aliases", [])
 
 
 def check_banned_words(text: str, rules: dict) -> list[dict]:
@@ -151,6 +164,26 @@ def check_opp_skill_prefix(text: str, opp_skills_str: str) -> list[dict]:
     return issues
 
 
+def check_item_aliases(text: str, aliases: list[dict]) -> list[dict]:
+    """アイテム名の英語直訳・英語表記を公式日本語名へ正規化する。
+    スキル名の form_skill_map / opp_skill と対をなすアイテム版。
+    辞書は Data Dragon 起点（gen-item-aliases.py が生成）。"""
+    issues = []
+    # 長い pattern を先に適用して、部分マッチによる二重置換を防ぐ
+    # （例: 「ルインドキング ブレード」が「ブレード」単体ルールに巻き込まれない）。
+    for rule in sorted(aliases, key=lambda r: len(r["pattern"]), reverse=True):
+        pattern = rule["pattern"]
+        if pattern in text:
+            issues.append({
+                "type": "item_alias",
+                "pattern": pattern,
+                "replacement": rule["replacement"],
+                "reason": rule.get("reason", f"アイテム名「{pattern}」→「{rule['replacement']}」"),
+                "auto_fix": True,
+            })
+    return issues
+
+
 def apply_fixes(text: str, issues: list[dict]) -> str:
     """auto_fix=True の issue を適用して修正済みテキストを返す。"""
     for issue in issues:
@@ -176,6 +209,7 @@ def main():
         sys.exit(1)
 
     rules = load_rules()
+    item_aliases = load_item_aliases()
     opp_skills_str = os.environ.get("OPP_SKILLS", "")
 
     all_issues = []
@@ -184,6 +218,7 @@ def main():
     all_issues.extend(check_verbosity(text, rules))
     all_issues.extend(check_form_skill_mismatch(text, rules))
     all_issues.extend(check_opp_skill_prefix(text, opp_skills_str))
+    all_issues.extend(check_item_aliases(text, item_aliases))
 
     if mode == "--check":
         if not all_issues:
