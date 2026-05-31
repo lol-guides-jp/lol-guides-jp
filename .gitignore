@@ -6,6 +6,8 @@ scripts/missing-matchups.json
 scripts/missing-*.txt
 scripts/requeue-*.txt
 scripts/research-cache/
+scripts/*.prev
+logs/
 .env
 .env.*
 .DS_Store
