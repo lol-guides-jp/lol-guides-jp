@@ -100,29 +100,29 @@
     "last_status": "approved"
   },
   "diana": {
-    "last_reviewed": "2026-05-29",
-    "review_count": 1,
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "gwen": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "illaoi": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "irelia": {
     "last_reviewed": "2026-05-30",
