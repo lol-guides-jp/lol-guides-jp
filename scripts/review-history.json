@@ -70,18 +70,18 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-05-25",
-    "review_count": 1,
-    "last_status": "no_change"
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
+    "last_status": "approved"
   },
   "naafiri": {
-    "last_reviewed": "2026-05-25",
-    "review_count": 1,
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
     "last_status": "approved"
   },
   "quinn": {
-    "last_reviewed": "2026-05-26",
-    "review_count": 1,
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
     "last_status": "approved"
   },
   "shaco": {
@@ -90,13 +90,13 @@
     "last_status": "approved"
   },
   "shyvana": {
-    "last_reviewed": "2026-05-28",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-05-28",
-    "review_count": 1,
+    "last_reviewed": "2026-05-31",
+    "review_count": 2,
     "last_status": "approved"
   },
   "diana": {
