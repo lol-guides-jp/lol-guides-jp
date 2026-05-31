@@ -84,6 +84,20 @@ if [ -n "${CURRENT}" ]; then
     fi
 fi
 
+# --- 新規チャンピオン検出・追加（パッチ変更の有無に関わらず毎日実行）---
+# 新チャンプは通常パッチで追加されるが、ホットフィックスや遅延実装で「パッチ番号据え置きの
+# まま新チャンプ追加」もありうるため、パッチ比較の前に毎日チェックする。
+# add-champion.sh は自己完結型（検出→guide生成→data.json→キュー→commit/push）で、
+# 新規がなければ即 exit 0（冪等）。失敗してもパッチチェックは継続する（責務分離）。
+echo "$(log_prefix) INFO: 新規チャンピオン検出中..."
+if [ "${DRY_RUN}" = "1" ]; then
+    bash "${PROJECT_DIR}/scripts/add-champion.sh" --dry-run || \
+        echo "$(log_prefix) WARN: add-champion.sh (dry-run) 非ゼロ終了"
+else
+    bash "${PROJECT_DIR}/scripts/add-champion.sh" || \
+        notify_failure "add-champion.sh 失敗（パッチチェックは継続）"
+fi
+
 if [ "${LATEST}" = "${CURRENT}" ]; then
     echo "$(log_prefix) INFO: パッチ変更なし（${CURRENT}）。終了"
     echo "$(log_prefix) ===== パッチチェック完了 ====="
