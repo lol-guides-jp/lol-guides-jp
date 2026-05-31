@@ -1,8 +1,8 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
+    "last_status": "no_change"
   },
   "aphelios": {
     "last_reviewed": "2026-05-17",
@@ -10,8 +10,8 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
     "last_status": "approved"
   },
   "annie": {
@@ -20,14 +20,14 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
+    "last_status": "no_change"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -35,18 +35,18 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
+    "last_status": "no_change"
   },
   "fizz": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
     "last_status": "approved"
   },
   "galio": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
     "last_status": "approved"
   },
   "gragas": {
@@ -100,14 +100,14 @@
     "last_status": "approved"
   },
   "diana": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-05-31",
-    "review_count": 2,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-01",
+    "review_count": 3,
+    "last_status": "approved"
   },
   "gwen": {
     "last_reviewed": "2026-05-31",
@@ -150,58 +150,58 @@
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "tahm-kench": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "vayne": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "velkoz": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "wukong": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "xayah": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-05-30",
-    "review_count": 1,
+    "last_reviewed": "2026-06-01",
+    "review_count": 2,
     "last_status": "approved"
   },
   "zed": {
