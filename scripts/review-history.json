@@ -1,7 +1,7 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 7,
+    "last_reviewed": "2026-06-02",
+    "review_count": 8,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -10,8 +10,8 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 7,
+    "last_reviewed": "2026-06-02",
+    "review_count": 8,
     "last_status": "approved"
   },
   "annie": {
@@ -20,14 +20,14 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 7,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-02",
+    "review_count": 8,
+    "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 7,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-02",
+    "review_count": 8,
+    "last_status": "approved"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -35,18 +35,18 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
+    "last_status": "approved"
   },
   "fizz": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "galio": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "gragas": {
@@ -55,8 +55,8 @@
     "last_status": "approved"
   },
   "ivern": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "kennen": {
@@ -70,13 +70,13 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "naafiri": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "quinn": {
@@ -100,53 +100,53 @@
     "last_status": "approved"
   },
   "diana": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
+    "last_status": "no_change"
   },
   "gwen": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
-    "last_status": "approved"
-  },
-  "illaoi": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "no_change"
   },
+  "illaoi": {
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
+    "last_status": "approved"
+  },
   "irelia": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "kalista": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "kassadin": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
+    "last_status": "no_change"
   },
   "leona": {
-    "last_reviewed": "2026-06-01",
-    "review_count": 6,
+    "last_reviewed": "2026-06-02",
+    "review_count": 7,
     "last_status": "approved"
   },
   "nami": {
