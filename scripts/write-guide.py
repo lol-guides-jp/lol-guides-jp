@@ -54,6 +54,11 @@ def main() -> int:
         print("ERROR: guide_md が空または必須セクション（一言まとめ）を欠く", file=sys.stderr)
         return 1
 
+    # モデルがゲームプラン等のフェーズを ### 見出しで返すことがある（2026-06-01 ユナラで発覚）。
+    # 既存170体は太字フォーマット（**序盤（〜15分）**: 本文）に統一しているため、
+    # 書き込み前に「### 見出し + 直後本文」を太字＋同一行に正規化して崩れを根本封じする。
+    guide_md = re.sub(r"^### +(.+?)\n+(?=\S)", r"**\1**: ", guide_md, flags=re.M)
+
     out_dir = PROJECT_DIR / "champions" / slug
     out_dir.mkdir(parents=True, exist_ok=True)
     guide_path = out_dir / "guide.md"
