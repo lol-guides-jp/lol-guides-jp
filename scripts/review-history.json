@@ -1,7 +1,7 @@
 {
   "ambessa": {
     "last_reviewed": "2026-06-03",
-    "review_count": 13,
+    "review_count": 14,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -11,7 +11,7 @@
   },
   "anivia": {
     "last_reviewed": "2026-06-03",
-    "review_count": 13,
+    "review_count": 14,
     "last_status": "approved"
   },
   "annie": {
@@ -21,12 +21,12 @@
   },
   "ashe": {
     "last_reviewed": "2026-06-03",
-    "review_count": 13,
-    "last_status": "approved"
+    "review_count": 14,
+    "last_status": "no_change"
   },
   "brand": {
     "last_reviewed": "2026-06-03",
-    "review_count": 13,
+    "review_count": 14,
     "last_status": "no_change"
   },
   "briar": {
@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 4,
+    "last_reviewed": "2026-06-03",
+    "review_count": 5,
     "last_status": "approved"
   },
   "shaco": {
@@ -90,13 +90,13 @@
     "last_status": "approved"
   },
   "shyvana": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 4,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-03",
+    "review_count": 5,
+    "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 4,
+    "last_reviewed": "2026-06-03",
+    "review_count": 5,
     "last_status": "no_change"
   },
   "diana": {
@@ -150,68 +150,68 @@
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
+    "last_status": "approved"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "no_change"
   },
   "tahm-kench": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "vayne": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "velkoz": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "wukong": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "xayah": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   },
   "zed": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
+    "last_status": "approved"
   },
   "zeri": {
-    "last_reviewed": "2026-06-02",
-    "review_count": 3,
+    "last_reviewed": "2026-06-03",
+    "review_count": 4,
     "last_status": "approved"
   }
 }
