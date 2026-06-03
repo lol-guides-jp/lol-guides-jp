@@ -5,6 +5,10 @@
 #
 # cron登録:
 #   0 0,5,10,15,20 * * * bash /home/ojita/lol-guides-jp/scripts/cron-add-matchups.sh >> /home/ojita/lol-guides-jp/scripts/cron.log 2>&1
+#
+# 枠タイプ検証（dry-run、add-matchups.sh は呼ばず段選択だけ確認）:
+#   FORCE_HOUR=5  bash scripts/cron-add-matchups.sh --dry-run   # subrole 枠の選択を確認
+#   FORCE_HOUR=10 bash scripts/cron-add-matchups.sh --dry-run   # requeue 枠の選択を確認
 
 set -euo pipefail
 
@@ -42,16 +46,52 @@ echo "$(log_prefix) ===== cron-add-matchups 起動 ====="
 # add-matchups.sh の呼び出しはスキップする（その dry-run は単体で確認すること）。
 
 # 4段切替: missing → requeue → missing-subrole → requeue-subrole
-# subrole 系は matchups-sub.md に書き込むため、add-matchups.sh に --target を指定する
-# （Phase C-3 で add-matchups.sh 側に --target サポートを追加予定）
+# subrole 系は matchups-sub.md に書き込むため、add-matchups.sh に --target を指定する。
 #
-# 「残数最多のロール」を毎回選ぶラウンドロビン: requeue / requeue-subrole 系で使う
+# 枠タイプ制（2026-06-03 追加）: requeue(メイン再生成) がパッチ追従で定期的に再充填され、
+# subrole が構造的に後回しになってサイトに1件も出ない問題への対処。
+# 実行時刻で枠を分け、subrole 枠では subrole を requeue より優先する。
+#   - subrole 枠（5,15時）: missing → missing-subrole → requeue-subrole → requeue
+#   - requeue 枠（その他 0,10,20時）: missing → requeue → missing-subrole → requeue-subrole
+# どちらの枠でもメイン新規 missing（新チャンプ等）は最優先（取りこぼし防止）。
+#
+# 「残数最多のロール」を毎回選ぶラウンドロビン: requeue / subrole 系で使う
 pick_max_remaining() {
     local pattern="$1"
     for f in $pattern; do
         [ -f "$f" ] && [ -s "$f" ] && echo "$(wc -l < "$f") $f"
     done | sort -rn | head -1 | awk '{print $2}'
 }
+
+# 各段を試す。キューがあれば SELECTED_* を設定して return 0、空なら return 1。
+# set -e 下でも || で連鎖するため return 1 は安全（左辺の非ゼロは set -e 対象外）。
+try_requeue() {
+    local t; t=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-[!s]*.txt")
+    [ -z "${t:-}" ] && return 1
+    SELECTED_STAGE="requeue"; SELECTED_SOURCE="$t"; SELECTED_TARGET="matchups.md"; SELECTED_FORCE="--force"
+    echo "$(log_prefix) INFO: requeue モード ($(basename "$t"), 残 $(wc -l < "$t") 件)"
+}
+try_missing_subrole() {
+    local t; t=$(pick_max_remaining "${PROJECT_DIR}/scripts/missing-subrole-*.txt")
+    [ -z "${t:-}" ] && return 1
+    SELECTED_STAGE="missing-subrole"; SELECTED_SOURCE="$t"; SELECTED_TARGET="matchups-sub.md"; SELECTED_FORCE=""
+    echo "$(log_prefix) INFO: missing-subrole モード ($(basename "$t"), 残 $(wc -l < "$t") 件)"
+}
+try_requeue_subrole() {
+    local t; t=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-subrole-*.txt")
+    [ -z "${t:-}" ] && return 1
+    SELECTED_STAGE="requeue-subrole"; SELECTED_SOURCE="$t"; SELECTED_TARGET="matchups-sub.md"; SELECTED_FORCE="--force"
+    echo "$(log_prefix) INFO: requeue-subrole モード ($(basename "$t"), 残 $(wc -l < "$t") 件)"
+}
+
+# 実行時刻で枠タイプを決める。FORCE_HOUR で上書き可（dry-run 検証用）。
+# 注意: 下の 5|15 は crontab の発火時刻（0,5,10,15,20）のうち subrole に割り当てる2枠。
+#       crontab の時刻を変えたらこの case も必ず見直すこと（時刻が両者で二重管理のため修正漏れ注意）。
+HOUR=$((10#${FORCE_HOUR:-$(date +%H)}))
+case "$HOUR" in
+    5|15) SLOT_TYPE="subrole" ;;   # subrole 枠（1日2回）
+    *)    SLOT_TYPE="requeue" ;;   # requeue 枠（0,10,20時）
+esac
 
 # メインロール missing の残件数。subrole はファイル名でフィルタする。
 # NG: `cat missing-*.txt | grep -v subrole` … missing-subrole-*.txt の中身は
@@ -66,44 +106,22 @@ SELECTED_TARGET="matchups.md"
 SELECTED_FORCE=""
 
 if [ "${MISSING_TOTAL:-0}" -gt 0 ]; then
-    # ① missing モード（既存）
+    # ① missing モード（両枠共通で最優先。新チャンプ等の取りこぼし防止）
     SELECTED_STAGE="missing"
     SELECTED_SOURCE="(scripts/missing-*.txt 自動選択)"
-    echo "$(log_prefix) INFO: missing キュー残 ${MISSING_TOTAL} 件、通常モード"
+    echo "$(log_prefix) INFO: missing キュー残 ${MISSING_TOTAL} 件、通常モード (${SLOT_TYPE}枠)"
+elif [ "$SLOT_TYPE" = "subrole" ]; then
+    # subrole 枠（5,15時）: サブロールを requeue より優先して消化する
+    echo "$(log_prefix) INFO: missing 空、subrole 枠 → subrole 優先で選択"
+    try_missing_subrole || try_requeue_subrole || try_requeue || {
+        echo "$(log_prefix) INFO: 全キュー空、処理なし"; exit 0
+    }
 else
-    # ② requeue モード（メインロール対面の再生成）
-    REQUEUE_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-[!s]*.txt")
-    if [ -n "${REQUEUE_TARGET:-}" ]; then
-        REQUEUE_REMAIN=$(wc -l < "$REQUEUE_TARGET")
-        SELECTED_STAGE="requeue"
-        SELECTED_SOURCE="$REQUEUE_TARGET"
-        SELECTED_FORCE="--force"
-        echo "$(log_prefix) INFO: missing 空、requeue モード ($(basename "$REQUEUE_TARGET"), 残 ${REQUEUE_REMAIN} 件)"
-    else
-        # ③ missing-subrole モード（サブロール対面の新規生成）
-        MISSING_SUB_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/missing-subrole-*.txt")
-        if [ -n "${MISSING_SUB_TARGET:-}" ]; then
-            MISSING_SUB_REMAIN=$(wc -l < "$MISSING_SUB_TARGET")
-            SELECTED_STAGE="missing-subrole"
-            SELECTED_SOURCE="$MISSING_SUB_TARGET"
-            SELECTED_TARGET="matchups-sub.md"
-            echo "$(log_prefix) INFO: missing/requeue 空、missing-subrole モード ($(basename "$MISSING_SUB_TARGET"), 残 ${MISSING_SUB_REMAIN} 件)"
-        else
-            # ④ requeue-subrole モード（サブロール対面の再生成）
-            REQUEUE_SUB_TARGET=$(pick_max_remaining "${PROJECT_DIR}/scripts/requeue-subrole-*.txt")
-            if [ -n "${REQUEUE_SUB_TARGET:-}" ]; then
-                REQUEUE_SUB_REMAIN=$(wc -l < "$REQUEUE_SUB_TARGET")
-                SELECTED_STAGE="requeue-subrole"
-                SELECTED_SOURCE="$REQUEUE_SUB_TARGET"
-                SELECTED_TARGET="matchups-sub.md"
-                SELECTED_FORCE="--force"
-                echo "$(log_prefix) INFO: 全 missing/requeue 空、requeue-subrole モード ($(basename "$REQUEUE_SUB_TARGET"), 残 ${REQUEUE_SUB_REMAIN} 件)"
-            else
-                echo "$(log_prefix) INFO: 全キュー（missing/requeue/missing-subrole/requeue-subrole）空、処理なし"
-                exit 0
-            fi
-        fi
-    fi
+    # requeue 枠（0,10,20時）: メイン再生成を優先（従来の段順）
+    echo "$(log_prefix) INFO: missing 空、requeue 枠 → 従来の段順で選択"
+    try_requeue || try_missing_subrole || try_requeue_subrole || {
+        echo "$(log_prefix) INFO: 全キュー空、処理なし"; exit 0
+    }
 fi
 
 # DRY_RUN: 判定までで止める。本実行の add-matchups.sh を呼ばない。
