@@ -1,7 +1,7 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 17,
+    "last_reviewed": "2026-06-04",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -10,8 +10,8 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 17,
+    "last_reviewed": "2026-06-04",
+    "review_count": 18,
     "last_status": "approved"
   },
   "annie": {
@@ -20,13 +20,13 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 17,
+    "last_reviewed": "2026-06-04",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "brand": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 17,
+    "last_reviewed": "2026-06-04",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "briar": {
@@ -35,19 +35,19 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "fizz": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "no_change"
   },
   "galio": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
+    "last_status": "no_change"
   },
   "gragas": {
     "last_reviewed": "2026-05-22",
@@ -55,8 +55,8 @@
     "last_status": "approved"
   },
   "ivern": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "kennen": {
@@ -70,13 +70,13 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
+    "last_status": "approved"
   },
   "naafiri": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "no_change"
   },
   "quinn": {
@@ -100,53 +100,53 @@
     "last_status": "no_change"
   },
   "diana": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
-    "last_status": "approved"
-  },
-  "gwen": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "no_change"
   },
+  "gwen": {
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
+    "last_status": "approved"
+  },
   "heimerdinger": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "no_change"
   },
   "illaoi": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "no_change"
   },
   "irelia": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "kalista": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
+    "last_status": "no_change"
   },
   "kassadin": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-03",
-    "review_count": 14,
+    "last_reviewed": "2026-06-04",
+    "review_count": 15,
     "last_status": "approved"
   },
   "nami": {
