@@ -1,7 +1,7 @@
 {
   "ambessa": {
     "last_reviewed": "2026-06-04",
-    "review_count": 21,
+    "review_count": 22,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -11,7 +11,7 @@
   },
   "anivia": {
     "last_reviewed": "2026-06-04",
-    "review_count": 21,
+    "review_count": 22,
     "last_status": "no_change"
   },
   "annie": {
@@ -21,13 +21,13 @@
   },
   "ashe": {
     "last_reviewed": "2026-06-04",
-    "review_count": 21,
-    "last_status": "approved"
+    "review_count": 22,
+    "last_status": "no_change"
   },
   "brand": {
     "last_reviewed": "2026-06-04",
-    "review_count": 21,
-    "last_status": "no_change"
+    "review_count": 22,
+    "last_status": "approved"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -36,17 +36,17 @@
   },
   "ezreal": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
-    "last_status": "approved"
+    "review_count": 18,
+    "last_status": "no_change"
   },
   "fizz": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
+    "review_count": 18,
     "last_status": "no_change"
   },
   "galio": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
+    "review_count": 18,
     "last_status": "no_change"
   },
   "gragas": {
@@ -101,17 +101,17 @@
   },
   "diana": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
-    "last_status": "no_change"
+    "review_count": 18,
+    "last_status": "approved"
   },
   "ekko": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
-    "last_status": "approved"
+    "review_count": 18,
+    "last_status": "no_change"
   },
   "gwen": {
     "last_reviewed": "2026-06-04",
-    "review_count": 17,
+    "review_count": 18,
     "last_status": "no_change"
   },
   "heimerdinger": {
