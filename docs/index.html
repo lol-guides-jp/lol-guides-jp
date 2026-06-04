@@ -489,7 +489,9 @@ header .patch {
 
 <script>
 let DATA = { meta: {}, champions: [] };
-let state = { query: "", role: "all", beginner: false, oppQuery: "" };
+// champView: チャンプページの対面タブ選択を id ごとに記憶する。
+// 対面詳細→「○○に戻る」で renderChampion が再実行されてもサブ/メインや有利/不利の選択を復元するため。
+let state = { query: "", role: "all", beginner: false, oppQuery: "", champView: {} };
 
 // ロール名（matchupsByRole のキー）→ UI 表示用の略称。トグルボタンのラベルに使う。
 const ROLE_ABBR = { "トップレーン": "TOP", "ジャングル": "JG", "ミッドレーン": "MID", "ADC": "ADC", "サポート": "SUP" };
@@ -631,8 +633,10 @@ function renderHome() {
 
 function renderGrid() {
   const filtered = DATA.champions.filter((c) => {
-    // メインだけでなくサブで起用されるレーンで絞っても表示する（roles = [main, ...sub]）。
-    if (state.role !== "all" && !(c.roles || [c.role]).includes(state.role)) return false;
+    // 対面データのあるレーンでのみ表示する。c.roles（宣言サブロール含む）だと、対面ガイドが
+    // 無いレーンにもチャンプが出てしまう（例: リリア/ノクターンが MID に出るが MID 対面データは無い）。
+    // matchupRolesOf は「実際に対面データを持つレーン」なので、開けば必ずそのレーンのタブがある状態に揃う。
+    if (state.role !== "all" && !matchupRolesOf(c).includes(state.role)) return false;
     if (state.beginner && c.beginnerRating < 4) return false;
     return matchQuery(c, state.query);
   });
@@ -675,8 +679,10 @@ function renderChampion(id) {
   // 複数レーンで対面データがあるときだけロール切替トグルを出す。
   const hasRoleToggle = matchupRoles.length > 1;
 
-  // 表示中の対面レーン（ロール名）。初期値はメインロール（matchupRoles の先頭）。
-  let matchupRoleView = matchupRoles[0];
+  // 表示中の対面レーン（ロール名）。前回このチャンプで選んだタブを復元（無ければメイン先頭）。
+  // 保存値が現在の matchupRoles に存在しない場合（データ構成変化など）はメインにフォールバック。
+  const savedView = state.champView[id] || {};
+  let matchupRoleView = matchupRoles.includes(savedView.role) ? savedView.role : matchupRoles[0];
 
   // 表示対象の対面リスト切替
   function currentMatchups() {
@@ -688,8 +694,8 @@ function renderChampion(id) {
     return new Set(currentMatchups().map((m) => m.opponentId));
   }
 
-  // マッチアップフィルター状態
-  let matchupFilter = "all";
+  // マッチアップフィルター状態（有利/不利）。これも前回選択を復元する。
+  let matchupFilter = savedView.filter || "all";
 
   app.innerHTML = `
     <div class="champ-header">
@@ -708,14 +714,14 @@ function renderChampion(id) {
       <div class="matchup-role-toggle" id="matchupRoleToggle" style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
         ${matchupRoles.map((r, i) => {
           const kind = r === (c.mainRole || c.role) ? "メイン" : "サブ";
-          return `<button class="matchup-filter-btn${i === 0 ? " active" : ""}" data-mr="${r}">${kind} (${roleAbbr(r)})</button>`;
+          return `<button class="matchup-filter-btn${r === matchupRoleView ? " active" : ""}" data-mr="${r}">${kind} (${roleAbbr(r)})</button>`;
         }).join("")}
       </div>
       ` : ""}
       <div class="matchup-filters" id="matchupFilters">
-        <button class="matchup-filter-btn active" data-mf="all">全て</button>
-        <button class="matchup-filter-btn fav" data-mf="fav">有利</button>
-        <button class="matchup-filter-btn unfav" data-mf="unfav">不利</button>
+        <button class="matchup-filter-btn${matchupFilter === "all" ? " active" : ""}" data-mf="all">全て</button>
+        <button class="matchup-filter-btn fav${matchupFilter === "fav" ? " active" : ""}" data-mf="fav">有利</button>
+        <button class="matchup-filter-btn unfav${matchupFilter === "unfav" ? " active" : ""}" data-mf="unfav">不利</button>
       </div>
       <input class="opponent-search" id="oppSearch" type="text"
         placeholder="相手チャンピオンを検索..." value="${state.oppQuery}">
@@ -788,6 +794,7 @@ function renderChampion(id) {
       const btn = e.target.closest(".matchup-filter-btn");
       if (!btn) return;
       matchupRoleView = btn.dataset.mr;
+      (state.champView[id] = state.champView[id] || {}).role = matchupRoleView;
       roleToggleEl.querySelectorAll(".matchup-filter-btn").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
       renderOppGrid();
@@ -799,6 +806,7 @@ function renderChampion(id) {
     const btn = e.target.closest(".matchup-filter-btn");
     if (!btn) return;
     matchupFilter = btn.dataset.mf;
+    (state.champView[id] = state.champView[id] || {}).filter = matchupFilter;
     // role-toggle 側のボタンを巻き込まないよう、matchupFilters 配下だけリセット
     document.querySelectorAll("#matchupFilters .matchup-filter-btn").forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
