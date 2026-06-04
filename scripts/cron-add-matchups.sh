@@ -1,6 +1,6 @@
 #!/bin/bash
 # cron-add-matchups.sh
-# 5時間ごと（1日5回）対面ガイドを自動追加する（batch=20, 案B Sonnet 4.6 + WebSearch, lite モード）
+# 5時間ごと（1日5回）対面ガイドを自動追加する（batch=10, 案B Sonnet 4.6 + WebSearch, lite モード）
 # missing-*.txt が空になったら自動的に requeue-*.txt（残数最多のロール）に切替。
 #
 # cron登録:
@@ -135,14 +135,14 @@ fi
 
 # 本実行: 選択された段で add-matchups.sh を呼ぶ
 if [ "$SELECTED_STAGE" = "missing" ]; then
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 20 --sleep 10 \
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 10 --sleep 10 \
         2>&1 | tee /tmp/add-matchups-last.log
 elif [ -n "$SELECTED_TARGET" ] && [ "$SELECTED_TARGET" != "matchups.md" ]; then
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 20 --sleep 10 \
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 10 --sleep 10 \
         --source "$SELECTED_SOURCE" --target "$SELECTED_TARGET" ${SELECTED_FORCE} \
         2>&1 | tee /tmp/add-matchups-last.log
 else
-    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 20 --sleep 10 \
+    "${PROJECT_DIR}/scripts/add-matchups.sh" --cost-mode lite --batch 10 --sleep 10 \
         --source "$SELECTED_SOURCE" ${SELECTED_FORCE} \
         2>&1 | tee /tmp/add-matchups-last.log
 fi
