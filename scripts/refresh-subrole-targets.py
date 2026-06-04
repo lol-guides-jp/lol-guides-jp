@@ -10,8 +10,8 @@
      - 新規サブ化: チャンプ X が新たにロール R を sub に追加
      - サブ卒業: チャンプ X が sub からロール R を外した
   3. 新規サブ化 → gen-subrole-queue.py を呼んで missing-subrole-{role}.txt に追加
-  4. サブ卒業 → champions/{champ}/matchups-sub.md の該当ロールセクションを
-                 抽出して requeue-subrole-{role}.txt に積む
+  4. サブ卒業 → そのレーンの missing/requeue 両キューから当該チャンプを掃除
+                 （卒業＝再生成不要。matchups-sub.md の生成物は残し build-json が非表示化）
 
 cron 経由: check-patch.sh の末尾から呼ばれる
 手動実行: ./scripts/refresh-subrole-targets.py [--dry-run] [--skip-list]
@@ -23,7 +23,6 @@ cron 経由: check-patch.sh の末尾から呼ばれる
 from __future__ import annotations
 import argparse
 import json
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -33,7 +32,6 @@ TARGETS_FILE = PROJECT_DIR / "scripts" / "subrole-targets.json"
 TARGETS_PREV = PROJECT_DIR / "scripts" / "subrole-targets.json.prev"
 LIST_SCRIPT = PROJECT_DIR / "scripts" / "list-subrole-targets.sh"
 GEN_QUEUE_SCRIPT = PROJECT_DIR / "scripts" / "gen-subrole-queue.py"
-CHAMPIONS_DIR = PROJECT_DIR / "champions"
 SCRIPTS_DIR = PROJECT_DIR / "scripts"
 
 ROLE_TO_FILE_SUFFIX = {
@@ -87,86 +85,28 @@ def compute_diff(old: dict, new: dict) -> tuple[dict, dict]:
     return new_subs, drops
 
 
-def extract_opponents_from_matchups_sub(champ_id: str, role: str) -> list[tuple[str, str, str]]:
-    """champions/{champ_id}/matchups-sub.md から指定ロールセクションの対面相手を抽出。
-    返り値: [(opp_id, opp_ja, opp_en), ...]
-    matchups-sub.md が存在しない・該当ロールが無い場合は空リスト。
-    """
-    sub_file = CHAMPIONS_DIR / champ_id / "matchups-sub.md"
-    if not sub_file.exists():
-        return []
+def remove_from_queue(prefix: str, role: str, champ_id: str, dry_run: bool) -> None:
+    """{prefix}-{role_suffix}.txt から champ_id が関与する行を削除する。
 
-    with open(sub_file, encoding="utf-8") as f:
-        content = f.read()
+    prefix は "missing-subrole" / "requeue-subrole" を想定。
 
-    # ## {role} セクションを抽出
-    role_pattern = re.compile(
-        rf"^## {re.escape(role)}\s*$(.*?)(?=^## |\Z)",
-        re.MULTILINE | re.DOTALL,
-    )
-    m = role_pattern.search(content)
-    if not m:
-        return []
-
-    section = m.group(1)
-    # ### vs <name> (en名) — ja名と en名を抽出
-    # 例: "### vs ヴェイガー（Veigar）" or "### vs Veigar"
-    opp_pattern = re.compile(r"^### vs (.+?)(?:（(.+?)）)?\s*$", re.MULTILINE)
-    opponents: list[tuple[str, str, str]] = []
-    for om in opp_pattern.finditer(section):
-        ja = om.group(1).strip()
-        en = (om.group(2) or ja).strip()
-        # id は champions/ ディレクトリから en 名で逆引き（ない場合は空）
-        opp_id = lookup_champ_id_by_en(en) or lookup_champ_id_by_ja(ja) or ""
-        if opp_id:
-            opponents.append((opp_id, ja, en))
-    return opponents
-
-
-def lookup_champ_id_by_en(en: str) -> str | None:
-    """docs/data.json から en 名で id を逆引き。"""
-    data_file = PROJECT_DIR / "docs" / "data.json"
-    if not data_file.exists():
-        return None
-    with open(data_file, encoding="utf-8") as f:
-        data = json.load(f)
-    en_lower = en.lower().replace(" ", "").replace("'", "").replace(".", "")
-    for c in data.get("champions", []):
-        cen = (c.get("en") or c.get("id") or "").lower().replace(" ", "").replace("'", "").replace(".", "")
-        if cen == en_lower:
-            return c.get("id")
-    return None
-
-
-def lookup_champ_id_by_ja(ja: str) -> str | None:
-    data_file = PROJECT_DIR / "docs" / "data.json"
-    if not data_file.exists():
-        return None
-    with open(data_file, encoding="utf-8") as f:
-        data = json.load(f)
-    for c in data.get("champions", []):
-        if c.get("ja") == ja:
-            return c.get("id")
-    return None
-
-
-def remove_from_missing(role: str, champ_id: str, dry_run: bool) -> None:
-    """missing-subrole-{role_suffix}.txt から champ_id が関与する行を削除する。
-
-    卒業（サブから外れた）チャンプの未生成キューが残っていると、cron が
-    「もうサブで使わないレーンの対面」を延々と生成し続ける。卒業を検知した時点で
-    そのレーンの missing キューから当該チャンプを掃除する。
+    卒業（サブから外れた）レーンの対面はもう生成不要。未生成キュー（missing）にも
+    再生成キュー（requeue）にも当該チャンプの行が残っていると、cron が「もう使わない
+    レーンの対面」を生成し続ける。卒業を検知した時点で両キューから掃除する。
 
     キューフォーマット: a_id|a_ja|b_id|b_ja|b_en||
     そのレーンで champ_id が a 側（field[0]）か b 側（field[2]）どちらかに居る行を消す。
     どちらの guide も「両者がそのレーンを実プレイする」前提なので、片方が卒業したら
     そのレーンの対面自体が成立しない。冪等（該当行が無ければ何もしない）。
+
+    matchups-sub.md の該当セクションは削除しない（build-json が非表示化する。
+    サブ復活時に冪等再表示できるよう生成物は残す）。
     """
     suffix = ROLE_TO_FILE_SUFFIX.get(role)
     if not suffix:
-        log(f"WARN: 未知のロール '{role}'、missing 掃除スキップ")
+        log(f"WARN: 未知のロール '{role}'、{prefix} 掃除スキップ")
         return
-    target = SCRIPTS_DIR / f"missing-subrole-{suffix}.txt"
+    target = SCRIPTS_DIR / f"{prefix}-{suffix}.txt"
     if not target.exists():
         return
     with open(target, encoding="utf-8") as f:
@@ -186,32 +126,6 @@ def remove_from_missing(role: str, champ_id: str, dry_run: bool) -> None:
     with open(target, "w", encoding="utf-8") as f:
         f.write("\n".join(kept) + ("\n" if kept else ""))
     log(f"  → {target.name}: {champ_id} 関与 {removed} 行を削除")
-
-
-def append_to_requeue(role: str, lines: list[str], dry_run: bool) -> None:
-    """requeue-subrole-{role_suffix}.txt に行を追加（重複除去）。"""
-    suffix = ROLE_TO_FILE_SUFFIX.get(role)
-    if not suffix:
-        log(f"WARN: 未知のロール '{role}'、スキップ")
-        return
-    target = SCRIPTS_DIR / f"requeue-subrole-{suffix}.txt"
-    existing = set()
-    if target.exists():
-        with open(target, encoding="utf-8") as f:
-            existing = set(f.read().splitlines())
-    new_lines = [ln for ln in lines if ln not in existing]
-    if not new_lines:
-        log(f"  → {target.name}: 追加なし（既存と重複）")
-        return
-    if dry_run:
-        log(f"  → DRY-RUN: {target.name} に {len(new_lines)} 行追加（実行しない）")
-        for ln in new_lines[:3]:
-            log(f"      {ln}")
-        return
-    with open(target, "a", encoding="utf-8") as f:
-        for ln in new_lines:
-            f.write(ln + "\n")
-    log(f"  → {target.name}: {len(new_lines)} 行追加")
 
 
 def main() -> int:
@@ -271,22 +185,17 @@ def main() -> int:
             log("ERROR: gen-subrole-queue.py 失敗")
             return 1
 
-    # Step 5: 卒業 → matchups-sub.md から該当対面を requeue に積む
+    # Step 5: 卒業 → そのレーンのキューを掃除（missing / requeue 両方）
+    #   旧実装は卒業対面を requeue に積み直していたが、これは誤り。卒業＝もうそのレーンで
+    #   使わないので再生成は不要。逆に積むと build-json が非表示にしたサブを cron が作り直し、
+    #   表示と生成が永久にイタチごっこになる。卒業を検知したら両キューから掃除する。
+    #   matchups-sub.md の生成物は残す（build-json が非表示化。サブ復活時に冪等再表示）。
     if drops:
-        log("INFO: 卒業エントリを requeue-subrole-{role}.txt に積む")
+        log("INFO: 卒業エントリのキューを掃除（missing / requeue 両方）")
         for champ_id, roles in drops.items():
             for role in roles:
-                # 卒業したレーンの未生成キューを先に掃除する（cron が誤サブを生成し続けるのを止める）。
-                remove_from_missing(role, champ_id, args.dry_run)
-                opponents = extract_opponents_from_matchups_sub(champ_id, role)
-                if not opponents:
-                    log(f"  {champ_id} ({role}): matchups-sub.md に対面なし、スキップ")
-                    continue
-                champ_ja = new.get("champions", {}).get(champ_id, {}).get("ja") or champ_id
-                # キューフォーマット: id_a|ja_a|id_b|ja_b|en_b||
-                lines = [f"{champ_id}|{champ_ja}|{opp_id}|{opp_ja}|{opp_en}||"
-                         for opp_id, opp_ja, opp_en in opponents]
-                append_to_requeue(role, lines, args.dry_run)
+                remove_from_queue("missing-subrole", role, champ_id, args.dry_run)
+                remove_from_queue("requeue-subrole", role, champ_id, args.dry_run)
 
     log("===== refresh-subrole-targets 完了 =====")
     return 0
