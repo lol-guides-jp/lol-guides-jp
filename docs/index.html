@@ -491,6 +491,30 @@ header .patch {
 let DATA = { meta: {}, champions: [] };
 let state = { query: "", role: "all", beginner: false, oppQuery: "" };
 
+// ロール名（matchupsByRole のキー）→ UI 表示用の略称。トグルボタンのラベルに使う。
+const ROLE_ABBR = { "トップレーン": "TOP", "ジャングル": "JG", "ミッドレーン": "MID", "ADC": "ADC", "サポート": "SUP" };
+const roleAbbr = (r) => ROLE_ABBR[r] || r;
+
+// 旧 data.json（matchupsByRole 未生成）でも壊れないようフォールバックする。
+// build-json.js 移行前の一時状態や、サブ対面ゼロのチャンプを保護する。
+function matchupsByRoleOf(c) {
+  if (c.matchupsByRole && Object.keys(c.matchupsByRole).length) return c.matchupsByRole;
+  return { [c.mainRole || c.role]: c.matchups || [] };
+}
+function matchupRolesOf(c) {
+  if (Array.isArray(c.matchupRoles) && c.matchupRoles.length) return c.matchupRoles;
+  return [c.mainRole || c.role];
+}
+// 全レーン横断で対面詳細を探す（どのタブ由来でも詳細ページを開けるように）。
+function findMatchupDetail(c, oppId) {
+  const byRole = matchupsByRoleOf(c);
+  for (const role in byRole) {
+    const m = byRole[role].find((x) => x.opponentId === oppId);
+    if (m) return m;
+  }
+  return null;
+}
+
 const DDRAGON_BASE = () =>
   `https://ddragon.leagueoflegends.com/cdn/${DATA.meta.ddragonVersion}/img`;
 
@@ -607,7 +631,8 @@ function renderHome() {
 
 function renderGrid() {
   const filtered = DATA.champions.filter((c) => {
-    if (state.role !== "all" && c.role !== state.role) return false;
+    // メインだけでなくサブで起用されるレーンで絞っても表示する（roles = [main, ...sub]）。
+    if (state.role !== "all" && !(c.roles || [c.role]).includes(state.role)) return false;
     if (state.beginner && c.beginnerRating < 4) return false;
     return matchQuery(c, state.query);
   });
@@ -644,15 +669,18 @@ function renderChampion(id) {
   c.favorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) favIds.add(o.id); });
   c.unfavorableMatchups.forEach((m) => { const o = findChampByName(m.name); if (o) unfavIds.add(o.id); });
 
-  // サブロール対面の有無（フェーズ4、2026-05-25）。matchupsSub が存在し1件以上あるかで判定。
-  const hasSubMatchups = Array.isArray(c.matchupsSub) && c.matchupsSub.length > 0;
+  // 対面データのあるレーン（メイン先頭、次いでサブ）。matchupsByRole をレーン単位で持つ（構造改修 2026-06-04）。
+  const matchupRoles = matchupRolesOf(c);
+  const matchupsByRole = matchupsByRoleOf(c);
+  // 複数レーンで対面データがあるときだけロール切替トグルを出す。
+  const hasRoleToggle = matchupRoles.length > 1;
 
-  // 表示する対面ロール（"main" or "sub"）
-  let matchupRoleView = "main";
+  // 表示中の対面レーン（ロール名）。初期値はメインロール（matchupRoles の先頭）。
+  let matchupRoleView = matchupRoles[0];
 
   // 表示対象の対面リスト切替
   function currentMatchups() {
-    return matchupRoleView === "sub" ? c.matchupsSub : c.matchups;
+    return matchupsByRole[matchupRoleView] || [];
   }
 
   // 対面 ID 集合（表示対象に応じて変動）
@@ -676,10 +704,12 @@ function renderChampion(id) {
 
     <div class="matchup-section">
       <h3>対面を選んでマッチアップガイドを見る</h3>
-      ${hasSubMatchups ? `
+      ${hasRoleToggle ? `
       <div class="matchup-role-toggle" id="matchupRoleToggle" style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
-        <button class="matchup-filter-btn active" data-mr="main">メイン (${c.mainRole || c.role})</button>
-        <button class="matchup-filter-btn" data-mr="sub">サブロール対面</button>
+        ${matchupRoles.map((r, i) => {
+          const kind = r === (c.mainRole || c.role) ? "メイン" : "サブ";
+          return `<button class="matchup-filter-btn${i === 0 ? " active" : ""}" data-mr="${r}">${kind} (${roleAbbr(r)})</button>`;
+        }).join("")}
       </div>
       ` : ""}
       <div class="matchup-filters" id="matchupFilters">
@@ -751,7 +781,7 @@ function renderChampion(id) {
     });
   }
 
-  // 対面ロール切替ボタン（hasSubMatchups の場合のみ）
+  // 対面ロール切替ボタン（複数レーンに対面データがある場合のみ存在）
   const roleToggleEl = document.getElementById("matchupRoleToggle");
   if (roleToggleEl) {
     roleToggleEl.addEventListener("click", (e) => {
@@ -823,9 +853,8 @@ function renderMatchupDetail(selfId, oppId) {
 
   const app = document.getElementById("app");
 
-  // matchups.md / matchups-sub.md の両方から詳細を探す（サブロール対面対応、2026-05-25）
-  const detail = self.matchups.find((m) => m.opponentId === oppId)
-    || (Array.isArray(self.matchupsSub) ? self.matchupsSub.find((m) => m.opponentId === oppId) : null);
+  // 全レーン（matchupsByRole）横断で対面詳細を探す（構造改修 2026-06-04）
+  const detail = findMatchupDetail(self, oppId);
 
   // guide.mdの得意/苦手からサマリーを検索
   const favEntry = self.favorableMatchups.find((m) => {
