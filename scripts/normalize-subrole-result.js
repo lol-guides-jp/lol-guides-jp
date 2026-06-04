@@ -6,10 +6,18 @@
 //
 //   stdin       : judge-subrole の生出力
 //   argv[2]     : フォールバック用チャンプ JSON  {"id","ja","en","role"}
+//   argv[3]     : （任意）前回判定エントリ {main,sub,roleShares,note,sources}
 //   stdout      : 正規エントリ JSON 1行  {id,ja,en,main,sub,roleShares,note,sources}
-//   stderr      : "OK" または "FALLBACK <理由>"（呼び出し側の集計用）
+//   stderr      : "OK" / "PRESERVE <理由>" / "FALLBACK <理由>"（呼び出し側の集計用）
 //
 // id/ja/en は data.json 由来（argv[2]）を正とする。モデルが id を取り違えても壊さないため。
+//
+// 判定失敗時の扱い（重要・2026-06-04 設計修正）:
+//   レート上限・API エラー等で判定できなかったケースを「サブなし」と同じ空フォールバックに
+//   落とすと、本物のサブ持ちチャンプが偽卒業し、キューと表示が破壊される（実際に85体で発生）。
+//   → argv[3] で前回判定を渡された場合は、失敗時に前回値を「保持」する（PRESERVE）。
+//     前回値が無い場合のみメインロールのみの空フォールバック（FALLBACK）に落とす。
+//   「判定できなかった（保持）」と「判定した結果サブが無い（success・sub空）」を区別する。
 // 単体テスト: scripts/__tests__ は持たないので、echo でサンプルを流して確認する（README はスクリプト冒頭）。
 
 const fs = require("fs");
@@ -24,7 +32,28 @@ try {
   process.exit(1);
 }
 
+// argv[3]（前回判定）は任意。壊れていても無視して空フォールバックに落とすだけ。
+let prev = null;
+if (process.argv[3]) {
+  try {
+    const p = JSON.parse(process.argv[3]);
+    if (p && Array.isArray(p.main) && p.main.length > 0) prev = p;
+  } catch (e) { /* prev 無効 → null のまま */ }
+}
+
 function fallbackEntry(reason) {
+  // 前回判定があれば保持（偽卒業を防ぐ）。無ければメインのみの空フォールバック。
+  if (prev) {
+    process.stderr.write("PRESERVE " + reason + "\n");
+    return {
+      id: fb.id, ja: fb.ja, en: fb.en,
+      main: prev.main,
+      sub: Array.isArray(prev.sub) ? prev.sub : [],
+      roleShares: prev.roleShares && typeof prev.roleShares === "object" ? prev.roleShares : {},
+      note: "preserved (judge失敗): " + reason,
+      sources: Array.isArray(prev.sources) ? prev.sources : [],
+    };
+  }
   process.stderr.write("FALLBACK " + reason + "\n");
   return { id: fb.id, ja: fb.ja, en: fb.en, main: [fb.role], sub: [], roleShares: {}, note: "fallback: " + reason, sources: [] };
 }
