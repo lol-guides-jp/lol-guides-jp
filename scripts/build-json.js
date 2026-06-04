@@ -291,6 +291,12 @@ for (const champ of champions) {
   const matchupsByRole = {};
   matchupsByRole[mainRole] = [...champ.matchups];
   for (const [role, ms] of Object.entries(subByRole)) {
+    // 現在の subrole-targets.json で有効な sub レーンのみ表示にマージする。
+    // サブから卒業した（subRoles に無い）レーンの生成済み matchups-sub.md は
+    // ディスクには残すが UI には出さない。判定が誤って付いていたサブ（例: ノクターン MID）が
+    // 後から正されたとき、生成物を消さずに表示だけ消えるようにするため。build-json は冪等なので
+    // サブが復活すれば次回ビルドで自動的に再表示される。
+    if (role !== mainRole && !champ.subRoles.includes(role)) continue;
     const target = (matchupsByRole[role] = matchupsByRole[role] || []);
     const seen = new Set(target.map((m) => m.opponentId));
     for (const m of ms) {

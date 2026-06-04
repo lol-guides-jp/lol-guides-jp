@@ -150,6 +150,44 @@ def lookup_champ_id_by_ja(ja: str) -> str | None:
     return None
 
 
+def remove_from_missing(role: str, champ_id: str, dry_run: bool) -> None:
+    """missing-subrole-{role_suffix}.txt から champ_id が関与する行を削除する。
+
+    卒業（サブから外れた）チャンプの未生成キューが残っていると、cron が
+    「もうサブで使わないレーンの対面」を延々と生成し続ける。卒業を検知した時点で
+    そのレーンの missing キューから当該チャンプを掃除する。
+
+    キューフォーマット: a_id|a_ja|b_id|b_ja|b_en||
+    そのレーンで champ_id が a 側（field[0]）か b 側（field[2]）どちらかに居る行を消す。
+    どちらの guide も「両者がそのレーンを実プレイする」前提なので、片方が卒業したら
+    そのレーンの対面自体が成立しない。冪等（該当行が無ければ何もしない）。
+    """
+    suffix = ROLE_TO_FILE_SUFFIX.get(role)
+    if not suffix:
+        log(f"WARN: 未知のロール '{role}'、missing 掃除スキップ")
+        return
+    target = SCRIPTS_DIR / f"missing-subrole-{suffix}.txt"
+    if not target.exists():
+        return
+    with open(target, encoding="utf-8") as f:
+        lines = f.read().splitlines()
+
+    def involves(line: str) -> bool:
+        fields = line.split("|")
+        return len(fields) >= 3 and (fields[0] == champ_id or fields[2] == champ_id)
+
+    kept = [ln for ln in lines if not involves(ln)]
+    removed = len(lines) - len(kept)
+    if removed == 0:
+        return
+    if dry_run:
+        log(f"  → DRY-RUN: {target.name} から {champ_id} 関与 {removed} 行を削除（実行しない）")
+        return
+    with open(target, "w", encoding="utf-8") as f:
+        f.write("\n".join(kept) + ("\n" if kept else ""))
+    log(f"  → {target.name}: {champ_id} 関与 {removed} 行を削除")
+
+
 def append_to_requeue(role: str, lines: list[str], dry_run: bool) -> None:
     """requeue-subrole-{role_suffix}.txt に行を追加（重複除去）。"""
     suffix = ROLE_TO_FILE_SUFFIX.get(role)
@@ -238,6 +276,8 @@ def main() -> int:
         log("INFO: 卒業エントリを requeue-subrole-{role}.txt に積む")
         for champ_id, roles in drops.items():
             for role in roles:
+                # 卒業したレーンの未生成キューを先に掃除する（cron が誤サブを生成し続けるのを止める）。
+                remove_from_missing(role, champ_id, args.dry_run)
                 opponents = extract_opponents_from_matchups_sub(champ_id, role)
                 if not opponents:
                     log(f"  {champ_id} ({role}): matchups-sub.md に対面なし、スキップ")
