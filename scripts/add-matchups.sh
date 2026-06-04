@@ -105,6 +105,25 @@ case "$TARGET" in
     *) echo "ERROR: --target は matchups.md か matchups-sub.md (received: ${TARGET})" >&2; exit 1 ;;
 esac
 
+# サブロール対面のキューファイル名から「対面が起きたレーン」のフルロール名を導出する。
+# 例: missing-subrole-ミッド.txt → ミッドレーン、requeue-subrole-ADC.txt → ADC。
+# suffix は gen-subrole-queue.py の ROLE_TO_FILE_SUFFIX と対で、ここはその逆引き。
+# A 側（サブ起用チャンプ）も B 側（相手）も同じレーンセクションに書く（レーン基準マージ）。
+sub_lane_from_source() {
+    local sf base suffix
+    sf="$1"
+    base=$(basename "$sf" .txt)   # missing-subrole-ミッド
+    suffix="${base##*-}"          # ミッド
+    case "$suffix" in
+        トップ)   echo "トップレーン" ;;
+        ジャング) echo "ジャングル" ;;
+        ミッド)   echo "ミッドレーン" ;;
+        ADC)      echo "ADC" ;;
+        サポート) echo "サポート" ;;
+        *)        echo "" ;;       # 不明 → 呼び出し側でエラー扱い
+    esac
+}
+
 if [ -n "$ROLE" ] && [ -n "$SOURCE" ]; then
     echo "ERROR: --role と --source は同時に指定できません" >&2
     exit 1
@@ -188,10 +207,15 @@ for job in "${JOBS[@]}"; do
     echo "$(log_prefix) INFO: ${champ_ja} vs ${opp_ja} ..."
 
     # --- 重複チェック ---
+    # matchups.md はフラット「## vs」、matchups-sub.md はセクション配下「### vs」。
     matchup_file="${PROJECT_DIR}/champions/${champ_id}/${TARGET}"
     ENTRY_EXISTS=0
-    if [ -f "$matchup_file" ] && grep -q "^## vs ${opp_ja}" "$matchup_file"; then
-        ENTRY_EXISTS=1
+    if [ -f "$matchup_file" ]; then
+        if [ "$TARGET" = "matchups-sub.md" ]; then
+            grep -q "^### vs ${opp_ja}" "$matchup_file" && ENTRY_EXISTS=1
+        else
+            grep -q "^## vs ${opp_ja}" "$matchup_file" && ENTRY_EXISTS=1
+        fi
     fi
     if [ "$ENTRY_EXISTS" = "1" ] && [ "$FORCE" = "0" ]; then
         echo "$(log_prefix) SKIP: ${champ_ja} vs ${opp_ja} は既に存在"
@@ -349,28 +373,51 @@ print(json.dumps({
     SONNET_FAIL_STREAK=0
 
     # --- ファイル書き込み ---
-    # A 側
-    if [ "$FORCE" = "1" ] && [ "$ENTRY_EXISTS" = "1" ]; then
-        echo "$final_a" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
-            "$champ_id" "$opp_ja" "$opp_en_from_data" || {
-            echo "$(log_prefix) ERROR: A 側 replace 失敗 (${champ_ja} vs ${opp_ja})"
+    matchup_b="${PROJECT_DIR}/champions/${opp_id}/${TARGET}"
+
+    if [ "$TARGET" = "matchups-sub.md" ]; then
+        # サブロール対面: レーンセクション構造へ upsert（冪等。同一相手は置換、無ければ追記）。
+        # A 側（サブ起用チャンプ）も B 側（相手）も「対面が起きたレーン」＝ source_file 由来の
+        # 同一 ## {lane} セクションに入れる。build-json.js がそのレーンへレーン基準マージする。
+        sub_lane=$(sub_lane_from_source "$source_file")
+        if [ -z "$sub_lane" ]; then
+            echo "$(log_prefix) ERROR: source_file からレーン導出失敗 (${source_file}) — スキップ"
+            FAILED=$((FAILED + 1))
+            continue
+        fi
+        echo "$final_a" | python3 "${PROJECT_DIR}/scripts/sub_matchup_io.py" upsert \
+            "$matchup_file" "$sub_lane" || {
+            echo "$(log_prefix) ERROR: A 側 upsert 失敗 (${champ_ja} vs ${opp_ja})"
             FAILED=$((FAILED + 1))
             continue
         }
+        echo "$(log_prefix) INFO: A 側 upsert → ${champ_id}/${TARGET} [## ${sub_lane}]"
+        echo "$final_b" | python3 "${PROJECT_DIR}/scripts/sub_matchup_io.py" upsert \
+            "$matchup_b" "$sub_lane" || \
+            echo "$(log_prefix) WARN: B 側 upsert 失敗 (${opp_ja} vs ${champ_ja})"
     else
-        printf '\n%s\n' "$final_a" >> "$matchup_file"
-        echo "$(log_prefix) INFO: A 側追記 → ${champ_id}/${TARGET}"
-    fi
-
-    # B 側
-    matchup_b="${PROJECT_DIR}/champions/${opp_id}/${TARGET}"
-    if [ -f "$matchup_b" ] && grep -q "^## vs ${champ_ja}" "$matchup_b"; then
-        echo "$final_b" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
-            "$opp_id" "$champ_ja" "$champ_en" || \
-            echo "$(log_prefix) WARN: B 側 replace 失敗 (${opp_ja} vs ${champ_ja})"
-    else
-        printf '\n%s\n' "$final_b" >> "$matchup_b"
-        echo "$(log_prefix) INFO: B 側追記 → ${opp_id}/${TARGET}"
+        # メインロール対面（matchups.md、フラット ## vs 構造）。
+        # A 側
+        if [ "$FORCE" = "1" ] && [ "$ENTRY_EXISTS" = "1" ]; then
+            echo "$final_a" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
+                "$champ_id" "$opp_ja" "$opp_en_from_data" || {
+                echo "$(log_prefix) ERROR: A 側 replace 失敗 (${champ_ja} vs ${opp_ja})"
+                FAILED=$((FAILED + 1))
+                continue
+            }
+        else
+            printf '\n%s\n' "$final_a" >> "$matchup_file"
+            echo "$(log_prefix) INFO: A 側追記 → ${champ_id}/${TARGET}"
+        fi
+        # B 側
+        if [ -f "$matchup_b" ] && grep -q "^## vs ${champ_ja}" "$matchup_b"; then
+            echo "$final_b" | python3 "${PROJECT_DIR}/scripts/replace-section-text.py" \
+                "$opp_id" "$champ_ja" "$champ_en" || \
+                echo "$(log_prefix) WARN: B 側 replace 失敗 (${opp_ja} vs ${champ_ja})"
+        else
+            printf '\n%s\n' "$final_b" >> "$matchup_b"
+            echo "$(log_prefix) INFO: B 側追記 → ${opp_id}/${TARGET}"
+        fi
     fi
 
     # --- missing ファイルから削除 ---

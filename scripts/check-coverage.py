@@ -9,7 +9,11 @@ missing_total = 0
 champs_with_missing = 0
 
 for c in DATA["champions"]:
-    matchup_ids = set(m["opponentId"] for m in c["matchups"])
+    # メイン対面（matchups.md 由来）= matchupsByRole のメインレーン。
+    # matchups フラットフィールドは matchupsByRole に統合され data.json から除外された（2026-06-04）。
+    main_role = c.get("mainRole") or c.get("role")
+    main_matchups = c.get("matchupsByRole", {}).get(main_role, [])
+    matchup_ids = set(m["opponentId"] for m in main_matchups)
 
     missing = []
     for entry in c["favorableMatchups"] + c["unfavorableMatchups"]:

@@ -32,6 +32,10 @@ const SUBROLE_TARGETS = fs.existsSync(SUBROLE_TARGETS_FILE)
   ? JSON.parse(fs.readFileSync(SUBROLE_TARGETS_FILE, "utf-8"))
   : { champions: {} };
 
+// レーン名（matchupsByRole のキー）。matchups-sub.md のセクション見出しと一致させる。
+// matchupRoles のタブ並び順にも使う（メインを先頭に置いた後、この順で残りを並べる）。
+const ROLE_ORDER = ["トップレーン", "ジャングル", "ミッドレーン", "ADC", "サポート"];
+
 // Data Dragon API から動的取得（main() 冒頭で更新）。fetch 失敗時の fallback として既知値を残す。
 let DDRAGON_VERSION = "16.7.1";
 
@@ -142,6 +146,26 @@ function parseMatchupsFile(markdown, nameToId) {
   return matchups;
 }
 
+// matchups-sub.md（ロールセクション構造）パーサー → { role: [matchup, ...] }
+// フォーマット: 「## {role}」でレーンを区切り、配下に「### vs X（Y）」が並ぶ（構造改修 2026-06-04）。
+// 各セクション本文の「### vs」を「## vs」に正規化して parseMatchupsFile に委譲し、
+// パースロジックを共有する（難易度・勝率・bullet の解釈を一本化）。
+function parseSubMatchupsByRole(markdown, nameToId) {
+  const byRole = {};
+  // 「## {role}」で分割（「## vs」は negative lookahead で除外）。先頭要素は前文なので捨てる。
+  const sections = markdown.split(/^## (?!vs )/m).slice(1);
+  for (const sec of sections) {
+    const nl = sec.indexOf("\n");
+    const role = (nl === -1 ? sec : sec.slice(0, nl)).trim();
+    if (!ROLE_ORDER.includes(role)) continue; // 未知の見出しは無視（防御）
+    const body = nl === -1 ? "" : sec.slice(nl + 1);
+    const normalized = body.replace(/^### vs /gm, "## vs ");
+    const ms = parseMatchupsFile(normalized, nameToId);
+    if (ms.length) byRole[role] = ms;
+  }
+  return byRole;
+}
+
 // 名前→IDの逆引きマップ構築
 function buildNameToIdMap(champions) {
   const map = {};
@@ -249,18 +273,54 @@ for (const champ of champions) {
     champ.matchups = parseMatchupsFile(md, nameToId);
   }
 
-  // サブロール対面（matchups-sub.md、2026-05-25 追加）
-  // matchups-sub.md は「## vs <name>」が並ぶフォーマット（matchups.md と同じ）。
-  // ロール別の構造化は将来対応。今は1リストとして matchupsSub に格納する。
+  // サブロール対面（matchups-sub.md）をロールセクション構造でパース（構造改修 2026-06-04）。
   const matchupsSubPath = path.join(CHAMPIONS_DIR, champ.id, "matchups-sub.md");
-  champ.matchupsSub = fs.existsSync(matchupsSubPath)
-    ? parseMatchupsFile(fs.readFileSync(matchupsSubPath, "utf-8"), nameToId)
-    : [];
+  const subByRole = fs.existsSync(matchupsSubPath)
+    ? parseSubMatchupsByRole(fs.readFileSync(matchupsSubPath, "utf-8"), nameToId)
+    : {};
 
   // サブロール判定（subrole-targets.json 由来）
   const subroleEntry = SUBROLE_TARGETS.champions?.[champ.id] || {};
-  champ.mainRole = champ.role; // 既存 role を mainRole として明示
+  const mainRole = champ.role;
+  champ.mainRole = mainRole; // 既存 role を mainRole として明示
   champ.subRoles = Array.isArray(subroleEntry.sub) ? subroleEntry.sub : [];
+
+  // matchupsByRole: レーン基準マージ。メイン由来（matchups.md）は mainRole レーンに、
+  // サブ由来（matchups-sub.md の各セクション）はそのレーンに統合する。同一相手は
+  // opponentId で重複排除し、先に入ったメイン由来を優先する。
+  const matchupsByRole = {};
+  matchupsByRole[mainRole] = [...champ.matchups];
+  for (const [role, ms] of Object.entries(subByRole)) {
+    const target = (matchupsByRole[role] = matchupsByRole[role] || []);
+    const seen = new Set(target.map((m) => m.opponentId));
+    for (const m of ms) {
+      if (!seen.has(m.opponentId)) {
+        target.push(m);
+        seen.add(m.opponentId);
+      }
+    }
+  }
+  champ.matchupsByRole = matchupsByRole;
+
+  // matchupRoles: 対面データのあるレーンを UI タブ順に並べる（メイン先頭 → ROLE_ORDER 順）。
+  const rolesWithData = Object.keys(matchupsByRole).filter((r) => matchupsByRole[r].length > 0);
+  const matchupRoles = [];
+  if (rolesWithData.includes(mainRole)) matchupRoles.push(mainRole);
+  for (const r of ROLE_ORDER) {
+    if (rolesWithData.includes(r) && !matchupRoles.includes(r)) matchupRoles.push(r);
+  }
+  for (const r of rolesWithData) {
+    if (!matchupRoles.includes(r)) matchupRoles.push(r); // ROLE_ORDER 外の保険
+  }
+  champ.matchupRoles = matchupRoles;
+
+  // roles: トップページのレーン絞り込み用。宣言ロール（メイン+サブ）に加え、
+  // 実データのあるレーンも含める（パッチでサブロールが変わっても対面データを辿れるように）。
+  champ.roles = [...new Set([mainRole, ...champ.subRoles, ...matchupRoles])];
+
+  // matchups（メイン対面フラット）は matchupsByRole[mainRole] に内包済み。
+  // data.json への二重書き出し（≒倍のファイルサイズ）を避けるため出力から除外する。
+  delete champ.matchups;
 }
 
 champions.sort((a, b) => a.ja.localeCompare(b.ja, "ja"));
@@ -298,8 +358,10 @@ async function main() {
       ddragonVersion: DDRAGON_VERSION,
       buildDate: new Date().toISOString().split("T")[0],
       championCount: champions.length,
-      matchupCount: champions.filter((c) => c.matchups.length > 0).length,
-      subroleMatchupCount: champions.filter((c) => c.matchupsSub.length > 0).length,
+      // メイン対面を持つチャンプ数 = matchupsByRole のメインレーンに1件以上ある。
+      matchupCount: champions.filter((c) => (c.matchupsByRole[c.mainRole] || []).length > 0).length,
+      // サブレーン対面を持つチャンプ数 = メイン以外のレーンにも対面データがある（matchupRoles が複数）。
+      subroleMatchupCount: champions.filter((c) => c.matchupRoles.length > 1).length,
     },
     champions,
   };
