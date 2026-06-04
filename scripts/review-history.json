@@ -1,7 +1,7 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 22,
+    "last_reviewed": "2026-06-05",
+    "review_count": 23,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -10,9 +10,9 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 22,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-05",
+    "review_count": 23,
+    "last_status": "approved"
   },
   "annie": {
     "last_reviewed": "2026-05-18",
@@ -20,14 +20,14 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 22,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-05",
+    "review_count": 23,
+    "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 22,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-05",
+    "review_count": 23,
+    "last_status": "no_change"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -35,18 +35,18 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
+    "last_status": "approved"
   },
   "fizz": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "galio": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "gragas": {
@@ -100,18 +100,18 @@
     "last_status": "no_change"
   },
   "diana": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "gwen": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 18,
+    "last_reviewed": "2026-06-05",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "heimerdinger": {
