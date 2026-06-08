@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 6,
+    "last_reviewed": "2026-06-09",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "shaco": {
@@ -90,13 +90,13 @@
     "last_status": "approved"
   },
   "shyvana": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 6,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-09",
+    "review_count": 7,
+    "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 6,
+    "last_reviewed": "2026-06-09",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "diana": {
@@ -150,38 +150,38 @@
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "tahm-kench": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "vayne": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "velkoz": {
