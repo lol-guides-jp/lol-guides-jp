@@ -1,4 +1,4 @@
-# Ahri（アーリ）ミッドレーン パッチ26.11
+# Ahri（アーリ）ミッドレーン パッチ26.12
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ahri/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ahri/guide)*

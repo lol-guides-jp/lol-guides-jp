@@ -1,4 +1,4 @@
-# Aphelios（アフェリオス）ADC パッチ26.11
+# Aphelios（アフェリオス）ADC パッチ26.12
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aphelios/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/aphelios/guide)*

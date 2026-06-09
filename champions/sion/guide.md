@@ -1,4 +1,4 @@
-# Sion（サイオン）トップレーン パッチ26.11
+# Sion（サイオン）トップレーン パッチ26.12
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ W（魂の炉心）のHP無限スケーリングとウルトの超長距離エ�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/sion/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/sion/guide)*

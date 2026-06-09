@@ -1,4 +1,4 @@
-# Graves（グレイブス）ジャングル パッチ26.11
+# Graves（グレイブス）ジャングル パッチ26.12
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/graves/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/graves/guide)*

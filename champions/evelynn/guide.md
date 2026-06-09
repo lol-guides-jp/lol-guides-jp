@@ -1,4 +1,4 @@
-# Evelynn（イブリン）ジャングル パッチ26.11
+# Evelynn（イブリン）ジャングル パッチ26.12
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ Lv6で常時カモフラージュを獲得するAPアサシン。視界外から
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/evelynn/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/evelynn/guide)*

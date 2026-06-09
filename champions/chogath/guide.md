@@ -1,4 +1,4 @@
-# Cho'Gath（チョ＝ガス）トップレーン パッチ26.11
+# Cho'Gath（チョ＝ガス）トップレーン パッチ26.12
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Rのスタックで無限にHPが増えるスケーリングタンク。ウェ�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/chogath/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/chogath/guide)*

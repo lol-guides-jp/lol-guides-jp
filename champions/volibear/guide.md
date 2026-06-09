@@ -1,4 +1,4 @@
-# Volibear（ボリベア）トップレーン パッチ26.11
+# Volibear（ボリベア）トップレーン パッチ26.12
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/volibear/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/volibear/guide)*

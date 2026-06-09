@@ -1,4 +1,4 @@
-# Briar（ブライアー）ジャングル パッチ26.11
+# Briar（ブライアー）ジャングル パッチ26.12
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Lv6から全マップを狩り場にする超攻撃型アサシンファイタ�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/briar/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/briar/guide)*

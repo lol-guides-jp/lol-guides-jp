@@ -1,4 +1,4 @@
-# Malphite（マルファイト）トップレーン パッチ26.11
+# Malphite（マルファイト）トップレーン パッチ26.12
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ Lv6のウルト1つで集団戦を決められるタンク。序盤は弱いが�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/malphite/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/malphite/guide)*

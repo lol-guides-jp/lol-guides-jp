@@ -1,4 +1,4 @@
-# Caitlyn（ケイトリン）ADC パッチ26.11
+# Caitlyn（ケイトリン）ADC パッチ26.12
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ ADC最長クラスの射程650を活かした序盤のレーン支配力が最�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/caitlyn/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/caitlyn/guide)*

@@ -1,4 +1,4 @@
-# Zaahen（ザーヘン）トップレーン パッチ26.11
+# Zaahen（ザーヘン）トップレーン パッチ26.12
 
 ## 一言まとめ
 近接打撃戦を制するダーキン系ファイター。パッシブ「戦威修養」のスタックを積むほど攻撃力が上昇し、最大スタック時には復活できる。序盤はファーミングで耐え、コアが揃う中盤以降に前線で暴れる。
@@ -52,4 +52,4 @@ Q（ダーキングレイヴ）の回復を活用して安定したファーミ�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zaahen/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zaahen/guide)*

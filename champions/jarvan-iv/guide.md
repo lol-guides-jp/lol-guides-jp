@@ -1,4 +1,4 @@
-# Jarvan IV（ジャーヴァンIV）ジャングル パッチ26.11
+# Jarvan IV（ジャーヴァンIV）ジャングル パッチ26.12
 
 ## 一言まとめ
 序盤のガンク性能が極めて高いイニシエーター型ジャングラー。EQ飛び込み＋ウルトの閉じ込めで集団戦の起点を作り、味方キャリーの火力を引き出す。
@@ -52,4 +52,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jarvaniv/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jarvaniv/guide)*

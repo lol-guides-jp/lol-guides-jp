@@ -1,4 +1,4 @@
-# Karma（カルマ）サポート パッチ26.11
+# Karma（カルマ）サポート パッチ26.12
 
 ## 一言まとめ
 
@@ -53,4 +53,4 @@ Lv1からUlt（Mantra）が使えるポーク＆シールド型エンチャン�
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/karma/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/karma/guide)*

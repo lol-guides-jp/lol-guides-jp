@@ -1,4 +1,4 @@
-# Bel'Veth（ベル＝ヴェス）ジャングル パッチ26.11
+# Bel'Veth（ベル＝ヴェス）ジャングル パッチ26.12
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.11 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/belveth/guide)*
+*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/belveth/guide)*
