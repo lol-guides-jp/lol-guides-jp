@@ -1,5 +1,5 @@
 {
-  "_generated": "2026-06-04T14:13:56.414Z",
+  "_generated": "2026-06-09T21:26:30.386Z",
   "_patch": "26.11",
   "champions": {
     "urgot": {
@@ -10,25 +10,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 98,
-        "ジャングル": 1
+        "トップレーン": 85,
+        "ジャングル": 10
       },
-      "note": "ジャングルは MetaSrc に存在するが1,043件/160,929件≒0.6%でノイズレベル。数値は推定値（直接%読み取り不可）",
+      "note": "具体的なrole share数値を取得できず。全ソース（METAsrc Top Tier List・Lolalytics・U.GG）でトップレーンが主要ロールと確認。Lolalyticsにジャングル用ページも存在するが勝率47%台と低く、15%閾値を超えるか不明のためsubには含めない。roleSharesは推定値",
       "sources": [
+        {
+          "title": "Urgot Build, Runes & Counters Guide for top - LoLalytics",
+          "url": "https://lolalytics.com/lol/urgot/build/",
+          "used_for": "ロール分布確認"
+        },
+        {
+          "title": "LoL Top Lane Tier List 26.11 - METAsrc",
+          "url": "https://www.metasrc.com/lol/tier-list/top",
+          "used_for": "トップレーン主要ロール確認"
+        },
         {
           "title": "Urgot Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/urgot/build",
-          "used_for": "メインロール・総ゲーム数確認"
-        },
-        {
-          "title": "Urgot Jungle Build 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/urgot/jungle",
-          "used_for": "ジャングル件数確認"
-        },
-        {
-          "title": "Urgot Build, Runes & Counters - Lolalytics",
-          "url": "https://lolalytics.com/lol/urgot/build/",
-          "used_for": "メインロール補強"
+          "used_for": "ロール・ピック率確認"
         }
       ]
     },
@@ -40,21 +40,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 97,
-        "サポート": 2,
-        "ADC": 1
+        "ミッドレーン": 95
       },
-      "note": "Lolalytics でミッドレーン 96.72% と圧倒的。サポートは数%未満で15%閾値に達しないため sub 対象外。",
+      "note": "複数ソース（Lolalytics・METAsrc・U.GG・Mobalytics）いずれもミッドレーン専業として掲載。5ロール分のデータ存在は確認されたが、他レーンの具体的 share 数値は取得不可。サポートや他レーンでの pick は 15% 未満のノイズレベルと判断し sub は空とした。",
       "sources": [
         {
-          "title": "Ahri Build - Lolalytics (mid)",
-          "url": "https://lolalytics.com/lol/ahri/build/",
-          "used_for": "ロール分布・レーン割合"
+          "title": "Ahri Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/ahri",
+          "used_for": "ロール分布・pick率確認"
         },
         {
-          "title": "Ahri Build - Lolalytics (support)",
-          "url": "https://lolalytics.com/lol/ahri/build/?lane=support",
-          "used_for": "サポート起用率確認"
+          "title": "Ahri Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/ahri/build",
+          "used_for": "メインロール確認"
+        },
+        {
+          "title": "Ahri Build, Runes & Counters – Lolalytics",
+          "url": "https://lolalytics.com/lol/ahri/build/",
+          "used_for": "ロール分布"
         }
       ]
     },
@@ -66,21 +69,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 90,
-        "トップレーン": 5,
-        "ミッドレーン": 3
+        "ジャングル": 95,
+        "サポート": 5
       },
-      "note": "トップ・ミッドは METAsrc で OM Tier（オフメタ）扱い。具体的な % 数値は取得できなかったため、ジャングル支配率を 90% と推定。15% 閾値に達するサブロールなし。",
+      "note": "Jungle pick rate 1.2% vs Support 0.06% — role share ratio約95:5。サポートは15%閾値を大きく下回るためsubなし",
       "sources": [
         {
-          "title": "Ivern Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/ivern",
-          "used_for": "ロール別ティア確認（Jungle=C Tier, Top/Mid=OM Tier）"
+          "title": "Ivern Build with Highest Winrate - LoL Runes, Items, and Skill Order",
+          "url": "https://u.gg/lol/champions/ivern/build",
+          "used_for": "ロール別pick率確認"
         },
         {
-          "title": "Ivern Build Jungle Patch 26.11 – Jungler.GG",
-          "url": "https://jungler.gg/champions/ivern/",
-          "used_for": "Jungle メインロール確認"
+          "title": "Ivern stats - League of Legends",
+          "url": "https://www.leagueofgraphs.com/champions/stats/ivern",
+          "used_for": "ロール分布"
+        },
+        {
+          "title": "Ivern Build Guide - Runes, Items & More - Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/ivern/build",
+          "used_for": "補強確認"
         }
       ]
     },
@@ -94,30 +101,20 @@
         "トップレーン"
       ],
       "roleShares": {
-        "ミッドレーン": 70,
-        "トップレーン": 28
+        "ミッドレーン": 68,
+        "トップレーン": 32
       },
-      "note": "role share の明示数値は取得できず推定値。Lolalytics に mid/top 両ページあり（WR 51.32% / 51.15%）。top は複数ソースで D〜A- Tier と評価が割れるがサブロール水準のpick率と判断。",
+      "note": "Mobalytics patch 26.11データ: Mid pick rate 6.0% / Top pick rate 2.8%（Emerald+）。ロール内 pick rate の比率からrole shareを推算。Top は32%でサブロール閾値(15-35%)内",
       "sources": [
         {
-          "title": "Akali Build middle - LoLalytics",
-          "url": "https://lolalytics.com/lol/akali/build/",
-          "used_for": "midレーン WR・Tier確認"
+          "title": "Akali Build Guide - Runes, Items & More - Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/akali/build",
+          "used_for": "ロール別 pick rate"
         },
         {
-          "title": "Akali Build top - LoLalytics",
+          "title": "Akali Build, Runes & Counters Guide for top Akali",
           "url": "https://lolalytics.com/lol/akali/build/?lane=top",
-          "used_for": "topレーン WR・Tier確認"
-        },
-        {
-          "title": "LoL Mid Tier List 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/tier-list/mid",
-          "used_for": "midレーンTier確認"
-        },
-        {
-          "title": "LoL Top Tier List 2026 - PlayHub",
-          "url": "https://playhub.com/blog/league-of-legends/best-top-tier-list-991026",
-          "used_for": "topレーンD-Tier確認"
+          "used_for": "Top レーン存在確認"
         }
       ]
     },
@@ -129,25 +126,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 93,
-        "トップレーン": 7
+        "ミッドレーン": 74
       },
-      "note": "絶対値 pick rate（Mid 2.6% / Top 0.2%）から role share を推算。Top は約7%でサブロール基準（15%）を下回るため除外。",
+      "note": "トップレーンも一定数プレイされるが、残り26%が複数ロールに分散しており、トップ単独で15%超を確認できなかったため sub 除外",
       "sources": [
         {
-          "title": "Akshan Build, Runes & Counters for middle - LoLalytics",
-          "url": "https://lolalytics.com/lol/akshan/build/",
-          "used_for": "ロール分布（Mid主体確認）"
-        },
-        {
-          "title": "Akshan Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/akshan/build",
-          "used_for": "pick rate確認（Mid 2.6% / Top 0.2%）"
+          "title": "Akshan stats - League of Legends (leagueofgraphs)",
+          "url": "https://www.leagueofgraphs.com/champions/stats/akshan",
+          "used_for": "ロール分布（mid 74.1%）"
         },
         {
           "title": "Akshan Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/akshan",
-          "used_for": "ロール分布補強"
+          "used_for": "パッチ確認"
+        },
+        {
+          "title": "U.GG Akshan Build",
+          "url": "https://u.gg/lol/champions/akshan/build",
+          "used_for": "mid pick rate補強"
         }
       ]
     },
@@ -162,22 +158,17 @@
         "ミッドレーン": 96,
         "トップレーン": 4
       },
-      "note": "Mid pick rate 1.6% vs Top 0.06%。トップは全 pick の約4%でノイズ水準。サブロール閾値（15%）に全く届かないため sub は空。",
+      "note": "Mid pick rate 1.6% vs Top 0.06%（U.GG/SeeMeta）。Topは role share 約4%でノイズ閾値以下。",
       "sources": [
         {
-          "title": "Azir Build with Highest Winrate - LoL Runes, Items, and Skill Order",
+          "title": "Azir Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/azir/build",
-          "used_for": "ロール別 pick rate（Mid 1.6% / Top 0.06%）"
+          "used_for": "ロール別pick率"
         },
         {
-          "title": "Azir Mid Build Guide – Handcrafted Challenger Insights | 26.11",
-          "url": "https://www.skill-capped.com/lol/guides/builds/azir/mid",
-          "used_for": "メインロール確認"
-        },
-        {
-          "title": "Azir Top Tier Guide with Matchups and Stats for Patch 26.11 | SeeMeta",
+          "title": "Azir Top Tier Guide - SeeMeta patch 26.11",
           "url": "https://seemeta.com/en/lol/azir/top",
-          "used_for": "Top ロール pick rate 補強"
+          "used_for": "Topレーン pick率補強"
         }
       ]
     },
@@ -189,27 +180,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 94,
-        "トップレーン": 2,
-        "サポート": 2,
-        "ミッドレーン": 2
+        "ADC": 90,
+        "サポート": 6,
+        "トップレーン": 3
       },
-      "note": "Lolalytics でADCレーン割合94.04%。他ロールの合計が約6%でいずれも15%未満のためサブロールなし。",
+      "note": "直接の role share % は取得できず。METAsrc 26.11 でADCはS+ティア（主力）、サポート・トップはOMティア（オフメタ）。role share は tier 分類から推計。サポート・トップともに15%閾値未満と判断。",
       "sources": [
         {
-          "title": "Lolalytics bottom lane tier list patch 26.11",
-          "url": "https://lolalytics.com/lol/tierlist/?lane=bottom",
-          "used_for": "ロール分布（ADC 94.04% lane percentage）"
-        },
-        {
-          "title": "METAsrc Ashe Build 26.11",
+          "title": "Ashe Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/ashe",
-          "used_for": "ロール確認・勝率補強"
+          "used_for": "ロール分布・ティア確認"
         },
         {
-          "title": "Mobalytics Ashe Build 26.11",
-          "url": "https://mobalytics.gg/lol/champions/ashe/build",
-          "used_for": "ADCピック率補強"
+          "title": "Ashe Support Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/ashe/support",
+          "used_for": "サポートOMティア確認"
+        },
+        {
+          "title": "Ashe Top Lane Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/ashe/top",
+          "used_for": "トップOMティア確認"
         }
       ]
     },
@@ -219,27 +209,32 @@
       "main": [
         "ミッドレーン"
       ],
-      "sub": [],
+      "sub": [
+        "サポート"
+      ],
       "roleShares": {
-        "ミッドレーン": 85,
-        "サポート": 9
+        "ミッドレーン": 65,
+        "サポート": 28,
+        "トップレーン": 4,
+        "ADC": 2,
+        "ジャングル": 1
       },
-      "note": "METAsrc の Role Rate 84.9% がミッドレーン集中を示す。サポート pick rate (0.3%) から算出した role share は約9%で15%未満のためサブロールなし。",
+      "note": "検索結果に数値が直接含まれていなかったため、Mobalytics の Mid / Support 両ビルドページの存在と直近パッチの傾向から推定。Mid が主体、Support が15〜35%帯のサブ。",
       "sources": [
         {
-          "title": "Annie Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/annie",
-          "used_for": "ロール分布（Role Rate 84.9%）"
+          "title": "Annie Build Guide - Runes, Items & More - Patch 26.11 (Mobalytics Mid)",
+          "url": "https://mobalytics.gg/lol/champions/annie/build",
+          "used_for": "ミッドレーン確認"
         },
         {
-          "title": "Annie Build with Highest Winrate – U.GG",
-          "url": "https://u.gg/lol/champions/annie/build",
-          "used_for": "ミッドレーン pick rate 2.9% / サポート 0.3%"
+          "title": "Annie Support Build Guide - Runes, Items & More - Patch 26.11 (Mobalytics Support)",
+          "url": "https://mobalytics.gg/lol/champions/annie/build/support",
+          "used_for": "サポート起用確認"
         },
         {
-          "title": "Annie Build – LoLalytics",
+          "title": "Annie Build, Runes & Counters Guide (Lolalytics)",
           "url": "https://lolalytics.com/lol/annie/build/",
-          "used_for": "ロール確認補強"
+          "used_for": "ロール分布参照"
         }
       ]
     },
@@ -251,30 +246,21 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 87,
-        "トップレーン": 10
+        "ミッドレーン": 95,
+        "トップレーン": 3,
+        "サポート": 2
       },
-      "note": "ロール別の正確な数値は直接読み取れず概算。全ソースが Mid を主体として明記。Lolalytics に Top 専用ページあり、但し share 15% 未満と推定のため sub には含めない。",
+      "note": "全ソースがミッドレーン単一起用を示す。他レーンは15%未満でノイズ扱い",
       "sources": [
         {
-          "title": "Anivia Build, Runes & Counters Guide for middle Anivia – Lolalytics",
-          "url": "https://lolalytics.com/lol/anivia/build/",
-          "used_for": "ロール分布・Mid 主体確認"
+          "title": "Anivia Stats & Win Rate - LoL Patch 26.11 | MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champion/Anivia/overview",
+          "used_for": "ロール分布確認"
         },
         {
-          "title": "Anivia Build, Runes & Counters Guide for top Anivia – Lolalytics",
-          "url": "https://lolalytics.com/lol/anivia/build/?lane=top",
-          "used_for": "Top lane 存在確認"
-        },
-        {
-          "title": "Anivia stats - League of Legends – LeagueOfGraphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/anivia",
-          "used_for": "ロール傾向補強"
-        },
-        {
-          "title": "Anivia Mid Build Guide – Skill Capped 26.11",
-          "url": "https://www.skill-capped.com/lol/guides/builds/anivia/mid",
-          "used_for": "パッチ 26.11 での Mid 採用確認"
+          "title": "Anivia Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/anivia",
+          "used_for": "レーン別pick率補強"
         }
       ]
     },
@@ -289,22 +275,22 @@
         "ADC": 95,
         "トップレーン": 3
       },
-      "note": "検索結果から明示的なロール別%数値は取得できなかったが、Lolalytics・METAsrc・U.GGの全ソースがBot(ADC)をメイン掲載。TopはOM(オフメタ)Tier表記で実pick率は極小（推定3%以下）。15%基準を満たすサブロールなし。",
+      "note": "ロール分布の数値は複数ソース（u.gg / lolalytics / metasrc）から推定。ADCが圧倒的主体（95%超）。トップレーンは勝率44.13%と低く明らかにオフメタ、15%未満のためsubなし。",
       "sources": [
         {
-          "title": "Aphelios Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/aphelios",
-          "used_for": "ロール分布・Top OM Tier確認"
-        },
-        {
-          "title": "Aphelios Build – Lolalytics",
-          "url": "https://lolalytics.com/lol/aphelios/build/",
-          "used_for": "メインロール(Bot)確認"
-        },
-        {
-          "title": "Aphelios Build – U.GG",
+          "title": "Aphelios Build – u.gg",
           "url": "https://u.gg/lol/champions/aphelios/build",
-          "used_for": "ロール確認"
+          "used_for": "ロール分布・win rate"
+        },
+        {
+          "title": "Aphelios Build – lolalytics",
+          "url": "https://lolalytics.com/lol/aphelios/build/",
+          "used_for": "ロール分布（bottom専掲示）"
+        },
+        {
+          "title": "Aphelios Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/aphelios",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -314,26 +300,35 @@
       "main": [
         "ジャングル"
       ],
-      "sub": [],
+      "sub": [
+        "サポート"
+      ],
       "roleShares": {
-        "ジャングル": 80
+        "ジャングル": 79,
+        "サポート": 21,
+        "トップレーン": 2
       },
-      "note": "検索結果はすべてジャングルビルドに集中。サポート起用の過去実績はあるが、26.11時点での明示的なrole share数値は取得できず。ジャングルが圧倒的主流（METAsrc S tier 52.20%WR / Mobalytics B tier 50.0%WR 1.8%PR いずれもJungle）。サポートの15%閾値到達を確認できないため sub は空とした。",
+      "note": "Lolalytics / Mobalytics ともに jungle(1.9%) と support(0.5%) の専用ページあり。レーン pick 率比率から role share を推算（jungle ~79% / support ~21%）。support が 15% 閾値を超えるため sub 採用。top は 3% 未満のためノイズ除外。",
       "sources": [
         {
-          "title": "Amumu Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/amumu",
-          "used_for": "ロール・WR確認"
+          "title": "Amumu Build, Runes & Counters Guide for jungle Amumu – Lolalytics",
+          "url": "https://lolalytics.com/lol/amumu/build/",
+          "used_for": "ジャングル pick 率・ロール分布"
         },
         {
-          "title": "Amumu Build Guide – Mobalytics Patch 26.11",
+          "title": "Amumu Build, Runes & Counters Guide for support Amumu – Lolalytics",
+          "url": "https://lolalytics.com/lol/amumu/build/?lane=support",
+          "used_for": "サポート pick 率確認"
+        },
+        {
+          "title": "Amumu Build Guide – Runes, Items & More – Patch 26.11 – Mobalytics",
           "url": "https://mobalytics.gg/lol/champions/amumu/build",
-          "used_for": "Jungle WR・PR確認"
+          "used_for": "jungle 1.9% / support 0.5% pick 率"
         },
         {
-          "title": "Amumu Build – U.GG",
-          "url": "https://u.gg/lol/champions/amumu/build",
-          "used_for": "Jungle確認"
+          "title": "Amumu Support Build Guide – Patch 26.11 – Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/amumu/build/support",
+          "used_for": "サポート win 率・pick 率補強"
         }
       ]
     },
@@ -345,25 +340,27 @@
       ],
       "sub": [],
       "roleShares": {
-        "サポート": 95,
-        "トップレーン": 4
+        "サポート": 92,
+        "トップレーン": 5,
+        "ジャングル": 2,
+        "ミッドレーン": 1
       },
-      "note": "検索結果では全主要サイト（Lolalytics/U.GG/OP.GG/METAsrc）がデフォルトをサポートとして表示。Lolalytics にトップレーン専用ページも存在するが、メタ的に微少（推定4%前後）。具体的な数値はページ本文から取得できなかったため概算値。",
+      "note": "サポートが圧倒的主流（pick rate ~4.1%、B+Tier）。トップレーンは OM Tier（win rate 43.43%）でオフメタ扱いのため15%未満と判断。",
       "sources": [
         {
-          "title": "Alistar Build, Runes & Counters Guide for support Alistar - Lolalytics",
+          "title": "Alistar Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/alistar",
+          "used_for": "ロール分布・pick rate"
+        },
+        {
+          "title": "Alistar Top Lane Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/alistar/top",
+          "used_for": "トップレーン win rate確認"
+        },
+        {
+          "title": "Alistar Build – Lolalytics",
           "url": "https://lolalytics.com/lol/alistar/build/",
-          "used_for": "ロール分布（サポート主体）"
-        },
-        {
-          "title": "Alistar Trends - Win, Pick, and Ban Rate Statistics - OP.GG",
-          "url": "https://www.op.gg/champions/alistar/trends/support?region=global",
-          "used_for": "サポートとしての pick/win rate"
-        },
-        {
-          "title": "Alistar Build, Runes & Counters Guide for top Alistar - Lolalytics",
-          "url": "https://lolalytics.com/lol/alistar/build/?lane=top",
-          "used_for": "トップレーン起用の存在確認"
+          "used_for": "メインロール確認"
         }
       ]
     },
@@ -377,26 +374,31 @@
         "ジャングル"
       ],
       "roleShares": {
-        "トップレーン": 75,
+        "トップレーン": 70,
         "ジャングル": 20,
-        "ミッドレーン": 5
+        "ミッドレーン": 10
       },
-      "note": "正確なrole share数値は検索結果から読み取れず推定値。Lolalytics・Mobalyticsともにトップがデフォルト掲載（B Tier、WR 48-50%）、ジャングルは独立ビルドページあり（C Tier、WR 48.72%）。ジャングルは15%以上と推定しsubに含めた。",
+      "note": "具体的なrole share数値をWebSearchから取得できなかったため、推定値。LoLalytics・mobalytics 両方でトップ（B+/A tier）とジャングル（C tier）の専用ビルドページが存在し、ミッドも同様。ジャングルは15%超えと判断しsub採用。ミッドは10%程度と推測し閾値未達として除外。",
       "sources": [
         {
-          "title": "Ambessa Build top - Lolalytics",
+          "title": "Ambessa Build, Runes & Counters Guide for top Ambessa",
           "url": "https://lolalytics.com/lol/ambessa/build/",
-          "used_for": "メインロール確認"
+          "used_for": "トップtier確認"
         },
         {
-          "title": "Ambessa Build jungle - Lolalytics",
+          "title": "Ambessa Build, Runes & Counters Guide for jungle Ambessa",
           "url": "https://lolalytics.com/lol/ambessa/build/?lane=jungle",
-          "used_for": "サブロール確認"
+          "used_for": "ジャングルtier確認"
         },
         {
-          "title": "Ambessa Build - Mobalytics Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/ambessa/build",
-          "used_for": "パッチ26.11 tier/WR確認"
+          "title": "Ambessa Jungle Build 26.11 – mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/ambessa/build/jungle",
+          "used_for": "ジャングル26.11専用ビルド存在確認"
+        },
+        {
+          "title": "Ambessa Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/ambessa",
+          "used_for": "全体統計参照"
         }
       ]
     },
@@ -408,20 +410,32 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 97,
-        "サポート": 0
+        "ジャングル": 95,
+        "ミッドレーン": 3,
+        "トップレーン": 1,
+        "サポート": 1
       },
-      "note": "サポートは 0.02% でノイズ以下。ジャングル一択。",
+      "note": "Evelynn はジャングル特化設計。METAsrc/Mobalytics/U.GG いずれもジャングルをデフォルトロールとして表示。Top・Mid・サポートは OM Tier または D Tier で pick 率が極めて低く（サポート 0.02%）、role share は 15% 未満のためサブロールなし。具体的な role share 数値は各サイトで直接公開されていないため、Jungle 約95% はデフォルトページ・OP 表示から推定",
       "sources": [
         {
-          "title": "Evelynn stats - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/evelynn",
-          "used_for": "ロール分布"
+          "title": "Evelynn Build - Mobalytics Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/evelynn/build",
+          "used_for": "ジャングル pick 率・勝率・ tier 確認"
         },
         {
-          "title": "Evelynn Support SeeMeta",
+          "title": "Evelynn Support - SeeMeta Patch 26.11",
           "url": "https://seemeta.com/en/lol/evelynn/support",
-          "used_for": "サポート share 確認"
+          "used_for": "サポート pick 率 0.02% 確認"
+        },
+        {
+          "title": "Evelynn Top - METAsrc Patch 26.11",
+          "url": "https://www.metasrc.com/lol/build/evelynn/top",
+          "used_for": "Top OM Tier 確認"
+        },
+        {
+          "title": "Evelynn Build - Lolalytics",
+          "url": "https://lolalytics.com/lol/evelynn/build/",
+          "used_for": "ジャングルがデフォルトロールであることの確認"
         }
       ]
     },
@@ -433,20 +447,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 95,
-        "その他": 5
+        "トップレーン": 97
       },
-      "note": "トップレーン 95.3%。残り約5%はその他レーンに分散しており、15%閾値を超えるサブロールなし。",
+      "note": "全ソースがトップレーンのみを掲載。他レーンへの有意な pick 分布は確認されなかった。roleShares は実測値ではなく推計値（数値はロール分布ページからは取得不可だったため）。",
       "sources": [
-        {
-          "title": "Illaoi stats - League of Legends (leagueofgraphs)",
-          "url": "https://www.leagueofgraphs.com/champions/stats/illaoi",
-          "used_for": "ロール分布（トップ95.3%）"
-        },
         {
           "title": "Illaoi Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/illaoi",
-          "used_for": "パッチ確認"
+          "used_for": "ロール確認・勝率"
+        },
+        {
+          "title": "Illaoi Build – Lolalytics",
+          "url": "https://lolalytics.com/lol/illaoi/build/",
+          "used_for": "ロール確認・ランク"
+        },
+        {
+          "title": "Illaoi Build – U.GG",
+          "url": "https://u.gg/lol/champions/illaoi/build",
+          "used_for": "ロール確認・pick率"
         }
       ]
     },
@@ -454,26 +472,39 @@
       "ja": "イレリア",
       "en": "Irelia",
       "main": [
-        "トップレーン",
+        "トップレーン"
+      ],
+      "sub": [
         "ミッドレーン"
       ],
-      "sub": [],
       "roleShares": {
-        "トップレーン": 58,
-        "ミッドレーン": 41,
-        "ジャングル": 1
+        "トップレーン": 75,
+        "ミッドレーン": 20,
+        "ジャングル": 3,
+        "ADC": 1,
+        "サポート": 1
       },
-      "note": "Top 58% / Mid 41%。Mid が 35% 超のため両方 main 判定。",
+      "note": "検索結果から明示的なロール別 pick 率数値は取得できず。ただし Lolalytics・Mobalytics 双方でトップ専用ビルド(Sティア)とミッド専用ビルド(B+ティア)が存在し、ミッドレーンのガイドページも独立して存在することから、ミッドレーンの role share は 15%超と推定。roleShares は推定値。",
       "sources": [
         {
-          "title": "Irelia All Roles Guide with Matchups and Stats for Patch 26.11 | SeeMeta",
-          "url": "https://seemeta.com/en/lol/irelia",
-          "used_for": "ロール別ゲーム数（Top 576 / Mid 404）"
+          "title": "Irelia Build top - Lolalytics",
+          "url": "https://lolalytics.com/lol/irelia/build/",
+          "used_for": "トップレーン Sティア確認"
         },
         {
-          "title": "Irelia Build with Highest Winrate - LoL Runes, Items, and Skill Order",
-          "url": "https://u.gg/lol/champions/irelia/build",
-          "used_for": "メインロール確認"
+          "title": "Irelia Build mid - Lolalytics",
+          "url": "https://lolalytics.com/lol/irelia/build/?lane=middle",
+          "used_for": "ミッドレーン B+ティア確認"
+        },
+        {
+          "title": "Irelia Guide mid - Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/irelia/guide/mid",
+          "used_for": "ミッドレーン起用確認"
+        },
+        {
+          "title": "Irelia All Roles - SeeMeta",
+          "url": "https://seemeta.com/en/lol/irelia",
+          "used_for": "複数ロール起用確認"
         }
       ]
     },
@@ -485,25 +516,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 97,
+        "ジャングル": 99,
         "トップレーン": 1
       },
-      "note": "ジャングルが圧倒的メイン。トップは pick rate 0.07% (SeeMeta) と極少でノイズ扱い。",
+      "note": "Vi はほぼ全 pick がジャングル。トップも build ガイドは存在するが pick rate 0.07% 程度で閾値以下。",
       "sources": [
         {
-          "title": "Vi Build Guide - Jungle - Patch 26.11 | Mobalytics",
+          "title": "Vi Build - Mobalytics Patch 26.11",
           "url": "https://mobalytics.gg/lol/champions/vi/build/jungle",
-          "used_for": "ロール分布・jungle pick rate 5.5%確認"
+          "used_for": "ジャングル pick rate 5.5%・A tier 確認"
         },
         {
-          "title": "Vi Top Tier Guide - Patch 26.11 | SeeMeta",
+          "title": "Vi Top - SeeMeta Patch 26.11",
           "url": "https://seemeta.com/en/lol/vi/top",
-          "used_for": "トップ pick rate 0.07%確認（ノイズ判定）"
+          "used_for": "トップ pick rate 0.07% 確認"
         },
         {
-          "title": "Vi Build, Runes & Counters - Jungle | Lolalytics",
+          "title": "Vi Build - LoLalytics",
           "url": "https://lolalytics.com/lol/vi/build/",
-          "used_for": "jungle メインロール確認"
+          "used_for": "ジャングルがメインロール確認"
         }
       ]
     },
@@ -515,20 +546,31 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 87,
-        "トップレーン": 13
+        "ADC": 75,
+        "トップレーン": 15,
+        "ミッドレーン": 5
       },
-      "note": "game数ベースで推算: ADC 441,638 / Top 67,275。Topは13%で15%閾値未満のためsub除外。",
+      "note": "ADCが支配的。Lolalytics・METAsrcともにトップレーン専用ビルドページあり（50.73%勝率）、ミッドレーンも存在するが勝率47.7%と低く少数。トップレーンの正確なrole share数値を取得できなかったため、15%閾値の確認が取れずsubを空に設定。",
       "sources": [
         {
-          "title": "Varus Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/varus/build",
-          "used_for": "ロール別ゲーム数"
+          "title": "Varus Build, Runes & Counters – Lolalytics (bottom)",
+          "url": "https://lolalytics.com/lol/varus/build/",
+          "used_for": "ロール分布・主要ロール確認"
         },
         {
           "title": "Varus Top Lane Build 26.11 – METAsrc",
           "url": "https://www.metasrc.com/lol/build/varus/top",
-          "used_for": "トップレーン存在確認"
+          "used_for": "トップレーン起用の確認"
+        },
+        {
+          "title": "Varus Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/varus/build",
+          "used_for": "ロール分布補強"
+        },
+        {
+          "title": "Varus stats – League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/varus",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -540,25 +582,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 87,
-        "トップレーン": 10
+        "ジャングル": 96,
+        "トップレーン": 3,
+        "ミッドレーン": 1
       },
-      "note": "全ソースが一貫してジャングル主体と示す。トップレーンのガイドが存在するが具体的なrole share数値は読み取れず、15%超えの確証なし。ジャングルのみmainとして確定。",
+      "note": "複数ソースでジャングルが圧倒的主体。トップは pick rate 0.1% 程度（15%未満）のためサブ対象外。",
       "sources": [
         {
-          "title": "Viego Build, Runes & Counters Guide for jungle - Lolalytics",
+          "title": "Viego Build – Lolalytics",
           "url": "https://lolalytics.com/lol/viego/build/",
-          "used_for": "ロール分布（ジャングル主体確認）"
+          "used_for": "ロール分布・メインレーン確認"
         },
         {
-          "title": "Viego Build with Highest Winrate - U.GG",
+          "title": "Viego Build – U.GG",
           "url": "https://u.gg/lol/champions/viego/build",
-          "used_for": "pick率・ロール確認"
+          "used_for": "ロール分布補強"
         },
         {
-          "title": "Viego Build 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/viego",
-          "used_for": "パッチ26.11ロール確認"
+          "title": "Viego Top Lane Build – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/viego/top",
+          "used_for": "トップ pick rate 確認"
         }
       ]
     },
@@ -575,22 +618,27 @@
         "ジャングル": 65,
         "トップレーン": 30
       },
-      "note": "正確な role share % は検索結果から数値として読み取れなかったため推定値。Lolalytics のデフォルトページが jungle build（lane 指定なし）、ジャングルが A Tier（52.99% 勝率）、トップが C Tier（50.51% 勝率）であることからジャングルが主要ロールと判定。トップは有意に pick されているが補助的。",
+      "note": "正確な%はスニペットから読み取れず推定値。ジャングルが主要ロール（U.GG/Lolalytics ともにジャングルビルドを第一掲載、53%WR B+tier）。トップレーンも複数ソースで言及（Mobalytics Top専用ガイド存在・YouTube「Wukong TOP is now S-TIER」等）。トップの share は15〜35%圏と判断しsubに分類。35%を超える証拠は確認できなかった。",
       "sources": [
         {
-          "title": "Wukong Build, Runes & Counters – Lolalytics (jungle default)",
+          "title": "Wukong Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/wukong/build",
+          "used_for": "ロール分布（ジャングル主要）"
+        },
+        {
+          "title": "Wukong Build Guide - Lolalytics",
           "url": "https://lolalytics.com/lol/wukong/build/",
-          "used_for": "デフォルトロール確認（jungle）"
+          "used_for": "ジャングルビルド確認"
         },
         {
-          "title": "Wukong Build, Runes & Counters – Lolalytics (top)",
-          "url": "https://lolalytics.com/lol/wukong/build/?lane=top",
-          "used_for": "トップレーン存在確認"
+          "title": "Wukong Guide - How to Play Wukong Top - Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/monkeyking/guide/top",
+          "used_for": "トップレーン起用確認"
         },
         {
-          "title": "Wukong Top Lane Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/wukong/top",
-          "used_for": "トップレーン tier（C Tier）確認"
+          "title": "WUKONG TOP IS NOW S-TIER AND HIGH WINRATE! - YouTube",
+          "url": "https://www.youtube.com/watch?v=qycow6NEweM",
+          "used_for": "トップレーン起用確認"
         }
       ]
     },
@@ -598,30 +646,32 @@
       "ja": "ヴェイン",
       "en": "Vayne",
       "main": [
-        "ADC",
+        "ADC"
+      ],
+      "sub": [
         "トップレーン"
       ],
-      "sub": [],
       "roleShares": {
-        "ADC": 60,
-        "トップレーン": 40
+        "ADC": 75,
+        "トップレーン": 20,
+        "ミッドレーン": 5
       },
-      "note": "サイト記載の lane pick rate (ADC 5.2% / Top 3.5%) の比率から role share を推算。Top が 40% 相当で 35% 超のため両ロールともメイン判定。ミッド・ジャングル・サポートは有意な数値なし。",
+      "note": "具体的なロール別 share 数値は検索結果から直接読み取れなかったため推定値。U.GG・METAsrc・Lolalytics いずれも ADC を主要ロール、Top Lane を副次ロールとして別ページを設けており、Top Lane build が広く掲載されていることからトップレーンの role share が 15% 以上あると判断してサブに設定。",
       "sources": [
         {
-          "title": "Vayne Build with Highest Winrate - LoL Runes, Items, and Skill Order",
+          "title": "Vayne Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/vayne/build",
-          "used_for": "ロール別 pick rate (ADC 5.2% / Top 3.5%)"
+          "used_for": "ロール分布・pick率確認"
         },
         {
-          "title": "Vayne Build, Runes & Counters Guide for bottom Vayne",
-          "url": "https://lolalytics.com/lol/vayne/build/",
-          "used_for": "メインロール確認（デフォルト bottom）"
+          "title": "Vayne Top Lane Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/vayne/top",
+          "used_for": "Top Lane 別ページの存在確認"
         },
         {
-          "title": "Vayne Build, Runes & Counters Guide for top Vayne",
-          "url": "https://lolalytics.com/lol/vayne/build/?lane=top",
-          "used_for": "トップレーン別ページ存在確認"
+          "title": "Vayne Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/vayne",
+          "used_for": "ADC メインロール確認"
         }
       ]
     },
@@ -633,26 +683,21 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 90,
-        "サポート": 7,
-        "トップレーン": 3
+        "ミッドレーン": 96,
+        "サポート": 2,
+        "トップレーン": 2
       },
-      "note": "パッチ26.11の具体的なロール別 share 数値をWebSearchで取得できず。複数ソース（METAsrc・U.GG・Lolalytics）がミッドレーンを圧倒的主ロールと一致して示し、サポート・トップは補助的言及のみ。roleSharesは推定値（ミッド~90%・サポート~7%・トップ~3%）。サポートは15%閾値を下回ると判断しsubなし。",
+      "note": "patch 26.10データで Mid 1.78% / Support 0.04% / Top 0.03% / Bot 0.01%。role share換算でMid約96%、他は全て15%未満。patch 26.11でも傾向同様。",
       "sources": [
+        {
+          "title": "Vex All Roles Guide with Matchups and Stats for Patch 26.10 | SeeMeta",
+          "url": "https://seemeta.com/en/lol/vex",
+          "used_for": "ロール別pick率"
+        },
         {
           "title": "Vex Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/vex",
-          "used_for": "ロール順序確認（Mid > Support > Top > ADC > Jungle）"
-        },
-        {
-          "title": "Vex Build with Highest Winrate – U.GG",
-          "url": "https://u.gg/lol/champions/vex/build",
-          "used_for": "メインロール確認"
-        },
-        {
-          "title": "Vex Build, Runes & Counters – Lolalytics",
-          "url": "https://lolalytics.com/lol/vex/build/",
-          "used_for": "ミッドレーン主体確認"
+          "used_for": "patch 26.11 ロール確認"
         }
       ]
     },
@@ -666,25 +711,26 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "サポート": 70,
-        "ミッドレーン": 30
+        "サポート": 72,
+        "ミッドレーン": 23,
+        "トップレーン": 5
       },
-      "note": "pick rate から role share を推計: サポート 3.5% / ミッドレーン 1.5%（比率換算）。ミッドレーンは 30% で sub 判定（35% 未満）。Lolalytics はサポートをデフォルト表示。",
+      "note": "複数ソース（Lolalytics・METAsrc・U.GG）でサポートがデフォルト表示かつ最多。ミッドも専用ページあり・B Tier掲載で20%超と推定。トップはオフメタ5%未満。具体的なrole share数値は各サイトで非公開のため概算値。",
       "sources": [
         {
-          "title": "Vel'Koz Build – LoLalytics",
+          "title": "Vel'Koz Build, Runes & Counters Guide for support Vel'Koz",
           "url": "https://lolalytics.com/lol/velkoz/build/",
-          "used_for": "メインロール確認（サポートがデフォルト）"
+          "used_for": "ロール分布（サポートがデフォルト表示）"
+        },
+        {
+          "title": "Vel'Koz Mid Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/velkoz/mid",
+          "used_for": "ミッドレーン存在確認"
         },
         {
           "title": "Vel'Koz Build with Highest Winrate – U.GG",
           "url": "https://u.gg/lol/champions/velkoz/build",
-          "used_for": "pick rate 参照（サポート 3.5% / ミッド 1.5%）"
-        },
-        {
-          "title": "Vel'Koz Mid Build – METAsrc",
-          "url": "https://www.metasrc.com/lol/build/velkoz/mid",
-          "used_for": "ミッドレーンでの起用確認"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -699,20 +745,23 @@
       ],
       "roleShares": {
         "ジャングル": 75,
-        "トップレーン": 21,
-        "ミッドレーン": 2,
-        "サポート": 2
+        "トップレーン": 20
       },
-      "note": "",
+      "note": "検索スニペットから正確な role share % を取得できなかったため推定値。ジャングルが Lolalytics デフォルト（B+）、トップレーンも独立ページあり（C Tier）で 15%+ と判断。",
       "sources": [
         {
-          "title": "Udyr All Roles Guide with Matchups and Stats for Patch 26.11 | SeeMeta",
-          "url": "https://seemeta.com/en/lol/udyr",
-          "used_for": "ロール分布"
+          "title": "Udyr Build, Runes & Counters Guide for jungle Udyr",
+          "url": "https://lolalytics.com/lol/udyr/build/",
+          "used_for": "メインロール確認（ジャングルがデフォルト）"
         },
         {
-          "title": "Udyr Stats - League of Legends",
-          "url": "https://www.leagueofgraphs.com/champions/stats/udyr",
+          "title": "Udyr Top Lane Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/udyr/top",
+          "used_for": "トップレーン存在確認"
+        },
+        {
+          "title": "Udyr All Roles Guide – SeeMeta",
+          "url": "https://seemeta.com/en/lol/udyr",
           "used_for": "ロール分布補強"
         }
       ]
@@ -725,24 +774,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 90
+        "トップレーン": 90,
+        "ジャングル": 8
       },
-      "note": "複数ソース（METAsrc・Mobalytics・MetaBot）がパッチ26.11でAatroxをトップレーンS Tier（WR49.4%/pick5.8%）と記載。ジャングル言及あるが具体的なrole share%は読み取れず。トップレーン圧倒的主軸のため sub は空とした。",
+      "note": "トップレーン圧倒的多数(S Tier, pick率5.7%)。ジャングルはC Tier程度の存在感でMETAsrcに専用ページあり。role shareの具体的数値は読み取れなかったが、ジャングルは15%未満と推定しsubなし",
       "sources": [
         {
-          "title": "Aatrox Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/aatrox",
+          "title": "Aatrox Stats 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/aatrox/stats",
           "used_for": "ロール分布・pick率"
         },
         {
-          "title": "Aatrox Build – Mobalytics Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/aatrox/build",
-          "used_for": "ロール分布・win率確認"
+          "title": "Aatrox Jungle Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/aatrox/jungle",
+          "used_for": "ジャングル起用確認"
         },
         {
-          "title": "Jungle Tier List Patch 26.11 – MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list/jungle",
-          "used_for": "ジャングル起用有無の確認"
+          "title": "Aatrox Build, Runes & Counters Guide for top Aatrox – Lolalytics",
+          "url": "https://lolalytics.com/lol/aatrox/build/",
+          "used_for": "メインロール確認"
         }
       ]
     },
@@ -756,28 +806,31 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "ジャングル": 62,
-        "ミッドレーン": 30,
-        "トップレーン": 5,
-        "ADC": 2,
-        "サポート": 1
+        "ジャングル": 72,
+        "ミッドレーン": 22,
+        "トップレーン": 6
       },
-      "note": "検索結果から正確な数値を取得できなかったため推定値。Lolalytics・U.GGともにジャングルをデフォルト表示。U.GGロール順: ジャングル > ミッドレーン > トップレーン > サポート > ADC。ミッドレーンは30%前後と推定しsubに分類（35%未満）。パッシブCD短縮バフでジャングル評価が上昇（Rank #30→#13）。",
+      "note": "Lolalytics のデフォルトページがジャングルを表示（最多 pick を示す）。Mid & Jungle の両ガイドが多数存在し、ミッドレーンも一定 share あり。exact % は検索結果から読み取れず、複数ソースの傾向から推定。",
       "sources": [
         {
           "title": "Ekko Build, Runes & Counters for jungle Ekko - LoLalytics",
           "url": "https://lolalytics.com/lol/ekko/build/",
-          "used_for": "ロール分布（ジャングルがデフォルト表示）"
+          "used_for": "ロール分布（Jungle がデフォルト）"
         },
         {
-          "title": "Ekko Build with Highest Winrate - LoL Runes, Items, and Skill Order - U.GG",
+          "title": "Ekko Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/ekko/build",
-          "used_for": "ロール順序（Jungle > Mid > Top > Support > ADC）"
+          "used_for": "ロール分布補強"
         },
         {
-          "title": "LoL Tier List Patch 26.11 - MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list",
-          "used_for": "パッチ26.11全体メタ確認"
+          "title": "Ekko Build Guide Patch 26.11 - Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/ekko/build",
+          "used_for": "パッチ確認"
+        },
+        {
+          "title": "METAsrc Ekko Build 26.11",
+          "url": "https://www.metasrc.com/lol/build/ekko",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -789,31 +842,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 87,
-        "ミッドレーン": 10,
-        "サポート": 3
+        "ADC": 96,
+        "ミッドレーン": 3,
+        "サポート": 1
       },
-      "note": "複数ソース（U.GG・METAsrc・Mobalytics）が patch 26.11 で ADC S Tier と記録。Mid・Support は一定数存在するが pick share は推定値（各サイトで具体的な % 数値が非公開 / スクレイプ不可）。ADC 主体は明確。Mid は ~10% 推定のため 15% 閾値を下回りサブロール非該当。",
+      "note": "U.GG のレーン別 pick rate は ADC 17.4%、Mid 0.5%、Support 0.3%。役割内 pick rate なので role share に換算すると ADC 約96%、Mid 約3%、Support 約1%。15% 閾値に達するロールなし。",
       "sources": [
         {
-          "title": "Ezreal Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/ezreal",
-          "used_for": "ロール分布・Tier確認"
-        },
-        {
-          "title": "Ezreal Build with Highest Winrate – U.GG",
+          "title": "Ezreal Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/ezreal/build",
-          "used_for": "ADC pick率17.6%・S Tier確認"
+          "used_for": "ロール別 pick rate / win rate"
         },
         {
-          "title": "Ezreal stats – LeagueOfGraphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/ezreal",
-          "used_for": "ロール別分布参照"
+          "title": "Ezreal Mid Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/ezreal/mid",
+          "used_for": "Mid ロール確認"
         },
         {
-          "title": "Ezreal Build Guide 26.11 – Mobalytics",
-          "url": "https://mobalytics.gg/lol/champions/ezreal/build",
-          "used_for": "パッチ確認・補強"
+          "title": "Ezreal Support Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/ezreal/support",
+          "used_for": "Support ロール確認"
         }
       ]
     },
@@ -830,22 +878,22 @@
         "ジャングル": 71,
         "サポート": 29
       },
-      "note": "ロール別 pick rate（JG 2.0% / SUP 0.8% / Emerald+）から role share を推算。Lolalytics のデフォルトレーンがジャングルで、サポート専用ページも存在。トップレーンページの言及はあるが pick rate データなし・ノイズ扱い。",
+      "note": "pick率から算出: Jungle 2.0% / Support 0.8%（Emerald+, patch 26.11）。合計を100として換算。サポートは約29%でsubランクに合致。",
       "sources": [
         {
           "title": "Elise Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/elise/build",
-          "used_for": "ロール別 pick rate（JG 2.0% / SUP 0.8%）"
+          "used_for": "ロール別pick率（Jungle 2.0% / Support 0.8%）"
         },
         {
-          "title": "Elise Build for jungle - Lolalytics",
+          "title": "Elise Build, Runes & Counters Guide for jungle Elise - Lolalytics",
           "url": "https://lolalytics.com/lol/elise/build/",
-          "used_for": "ジャングルがデフォルトレーンであることを確認"
+          "used_for": "ジャングルがメインロールであることの確認"
         },
         {
-          "title": "Elise Build for support - Lolalytics",
-          "url": "https://lolalytics.com/lol/elise/build/?lane=support",
-          "used_for": "サポートが認識済みサブロールであることを確認"
+          "title": "Elise Support Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/elise/support",
+          "used_for": "サポートが有効なサブロールとして存在する確認"
         }
       ]
     },
@@ -862,22 +910,27 @@
         "ミッドレーン": 82,
         "トップレーン": 18
       },
-      "note": "Lolalytics はミッドレーンをデフォルト表示。METAsrc の role rate 81.8% がミッドに対応。トップは METAsrc/U.GG ともに2番手で約18%と推定（15% 閾値超のためサブ認定）。正確な role share 数値は検索結果から直接取得できなかったため推定値。",
+      "note": "METAsrc の Role Rate 81.8% をミッドレーンの share として採用。Lolalytics のデフォルト表示もミッドレーン。トップレーンも B/D Tier で有意な pick あり（推定 18%）。両ロールとも独立ページが存在し 15% 閾値を超えると判断。",
       "sources": [
         {
-          "title": "Aurora Build mid – Lolalytics",
+          "title": "Aurora Build – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/aurora",
+          "used_for": "Role Rate 81.8% 確認"
+        },
+        {
+          "title": "Aurora Build, Runes & Counters – LoLalytics (mid)",
           "url": "https://lolalytics.com/lol/aurora/build/",
-          "used_for": "ロール分布（ミッドがデフォルト）"
+          "used_for": "デフォルトレーン=ミッドレーン確認"
         },
         {
-          "title": "Aurora Stats 26.11 – METAsrc",
-          "url": "https://www.metasrc.com/lol/build/aurora/stats",
-          "used_for": "Role Rate 81.8%"
+          "title": "Aurora Build, Runes & Counters for top – LoLalytics",
+          "url": "https://lolalytics.com/lol/aurora/build/?lane=top",
+          "used_for": "トップレーン有意 pick 確認"
         },
         {
-          "title": "Aurora Build – U.GG",
-          "url": "https://u.gg/lol/champions/aurora/build",
-          "used_for": "ロール順: Mid > Top > Support > ADC > Jungle"
+          "title": "Aurora stats – LeagueOfGraphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/aurora",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -889,25 +942,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 96,
-        "ジャングル": 3
+        "トップレーン": 97,
+        "サポート": 2,
+        "ジャングル": 1
       },
-      "note": "ジャングルは METAsrc で OM（オフメタ）Tier として掲載あり（patch 26.10, 49.87% WR）。26.11 でも継続しているが role share は 15% に達しないため sub 対象外。",
+      "note": "複数ソースが一貫してトップレーンのみ掲載。他ロールの数値は読み取れなかったため定番ロール1つをmainとし、subは空とする。",
       "sources": [
         {
           "title": "Ornn Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/ornn",
-          "used_for": "ロール分布・トップ A Tier 確認"
+          "used_for": "ロール分布確認"
         },
         {
-          "title": "Ornn Jungle Build 26.10 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/ornn/jungle",
-          "used_for": "ジャングル OM Tier 確認"
+          "title": "Ornn Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/ornn/build",
+          "used_for": "ロール分布確認"
         },
         {
-          "title": "Ornn stats – League of Graphs",
+          "title": "Ornn stats - League of Legends - LeagueOfGraphs",
           "url": "https://www.leagueofgraphs.com/champions/stats/ornn",
-          "used_for": "ロール分布補強"
+          "used_for": "ロール分布確認"
         }
       ]
     },
@@ -921,25 +975,31 @@
         "ジャングル"
       ],
       "roleShares": {
-        "トップレーン": 81,
-        "ジャングル": 19
+        "トップレーン": 82,
+        "ジャングル": 16,
+        "サポート": 2
       },
-      "note": "METAsrc の Role Rate 81% をトップレーン基準と解釈。ジャングルは残り約 19% と推定。数値は検索スニペットからの推測を含む（直接のレーン別 % テーブルは取得できず）。",
+      "note": "Lolalytics のデフォルトページがトップ（S+/53%WR）。ジャングルは A- 相当で 0.3% overall pick rate。Role Rate ~81% がトップ。ジャングルは role share ~16% と推定しサブに含めた。サポートは 20 games 程度でノイズ扱い。",
       "sources": [
         {
-          "title": "Olaf Stats METAsrc 26.11",
-          "url": "https://www.metasrc.com/lol/build/olaf/stats",
-          "used_for": "ロール分布・ロールレート"
+          "title": "Olaf Build top - Lolalytics",
+          "url": "https://lolalytics.com/lol/olaf/build/",
+          "used_for": "メインロール確認・tier確認"
         },
         {
-          "title": "Olaf Build METAsrc 26.11",
-          "url": "https://www.metasrc.com/lol/build/olaf",
-          "used_for": "メインロール確認"
+          "title": "Olaf Build jungle - Lolalytics",
+          "url": "https://lolalytics.com/lol/olaf/build/?lane=jungle",
+          "used_for": "ジャングル tier確認"
         },
         {
-          "title": "Olaf stats League of Graphs",
+          "title": "Olaf stats - League of Graphs",
           "url": "https://www.leagueofgraphs.com/champions/stats/olaf",
-          "used_for": "ロール分布参考"
+          "used_for": "ロール分布参照"
+        },
+        {
+          "title": "Olaf Build - U.GG",
+          "url": "https://u.gg/lol/champions/olaf/build",
+          "used_for": "pick rate by role参照"
         }
       ]
     },
@@ -951,31 +1011,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 90,
-        "サポート": 7,
-        "トップレーン": 3
+        "ミッドレーン": 92,
+        "サポート": 5
       },
-      "note": "role share の正確な数値が検索結果から取得できず。Lolalytics/U.GG/Mobalytics いずれもミッドがデフォルト掲載。League of Graphs では直近2日で Mid 42,232 戦を確認。Supportビルドページは存在するが pick 割合が15%に達するか不明なため sub から除外。",
+      "note": "ミッドレーンが圧倒的主体。サポートはlolalytics上で「insufficient games played（マッチアップ表示最低100戦未満）」と記載されており、role shareは15%未満と判断。subなし。",
       "sources": [
         {
-          "title": "Orianna Build Guide - Mobalytics Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/orianna/build",
-          "used_for": "ロール分布・勝率確認"
-        },
-        {
-          "title": "Orianna Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/orianna/build",
-          "used_for": "ロール分布・勝率確認"
-        },
-        {
-          "title": "Orianna Build - Lolalytics",
+          "title": "Orianna Build, Runes & Counters Guide for middle Orianna",
           "url": "https://lolalytics.com/lol/orianna/build/",
-          "used_for": "メインロール確認"
+          "used_for": "ロール分布・ミッドメイン確認"
         },
         {
-          "title": "Orianna stats - League of Graphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/orianna",
-          "used_for": "Mid 試合数確認"
+          "title": "Orianna Build, Runes & Counters Guide for support Orianna",
+          "url": "https://lolalytics.com/lol/orianna/build/?lane=support",
+          "used_for": "サポート pick率確認（insufficient games）"
+        },
+        {
+          "title": "Orianna Best Build (49.0% WR) - LoL Patch 26.11 | MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champion/Orianna/build",
+          "used_for": "パッチ26.11 winrate確認"
         }
       ]
     },
@@ -985,29 +1039,27 @@
       "main": [
         "ミッドレーン"
       ],
-      "sub": [
-        "ADC"
-      ],
+      "sub": [],
       "roleShares": {
-        "ミッドレーン": 76,
-        "ADC": 24
+        "ミッドレーン": 90,
+        "トップレーン": 10
       },
-      "note": "U.GG の pick rate から逆算: Mid 1.9% / Bot 0.6% → 合計 2.5% で role share を推計。ADC は 24% で sub 閾値（15%）を超えるため sub に含める。",
+      "note": "Lolalytics データ: mid pick rate 1.9% / top 0.2%（合計比から role share 推計）。トップは約10%でサブ閾値(15%)未満のため除外。",
       "sources": [
         {
-          "title": "Aurelion Sol Build with Highest Winrate - LoL Runes, Items, and Skill Order",
-          "url": "https://u.gg/lol/champions/aurelionsol/build",
-          "used_for": "Mid pick rate 1.9% / ADC pick rate 0.6% 参照"
+          "title": "Aurelion Sol Build – METAsrc LoL 26.11",
+          "url": "https://www.metasrc.com/lol/build/aurelion-sol",
+          "used_for": "ロール分布確認"
         },
         {
-          "title": "ADC Tier List Patch 26.11 (2026) - MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list/adc",
-          "used_for": "ADC起用の確認"
+          "title": "Aurelion Sol Build – Lolalytics middle",
+          "url": "https://lolalytics.com/lol/aurelionsol/build/",
+          "used_for": "ロール分布・pick率"
         },
         {
-          "title": "Aurelion Sol Bot Build Guide - Mobalytics",
-          "url": "https://mobalytics.gg/lol/champions/aurelionsol/build/adc",
-          "used_for": "Bot lane起用の確認"
+          "title": "Aurelion Sol Top Build – Lolalytics",
+          "url": "https://lolalytics.com/lol/aurelionsol/build/?lane=top&tier=gold",
+          "used_for": "トップ pick率確認"
         }
       ]
     },
@@ -1019,26 +1071,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 96,
-        "ミッドレーン": 3,
-        "ジャングル": 1
+        "トップレーン": 90
       },
-      "note": "複数ソースでトップレーン一択と確認。他レーンへの有意な移行は確認されず。具体的な数値はサイト直接確認による推定値（Patch 26.11 時点）。",
+      "note": "複数ソース（Lolalytics/Mobalytics/U.GG）で一貫してTopのみ掲載。他ロールの有意なpick率は確認できず。Top pick rate 5.0%（Mobalytics, Emerald+）。roleSharesの数値は確認できた分のみ（LoLalytics, Mobalytics, METAsrc ともにTop専用ページのみ表示）。",
       "sources": [
         {
-          "title": "K'Sante Build - Mobalytics Patch 26.11",
+          "title": "K'Sante Build - Lolalytics",
+          "url": "https://lolalytics.com/lol/ksante/build/",
+          "used_for": "ロール分布（Top専用）"
+        },
+        {
+          "title": "K'Sante Build Guide - Mobalytics Patch 26.11",
           "url": "https://mobalytics.gg/lol/champions/ksante/build",
-          "used_for": "ロール分布・ピック率確認"
+          "used_for": "pick rate 5.0% (Top, Emerald+)"
         },
         {
-          "title": "K'Sante stats - LeagueOfGraphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/ksante",
-          "used_for": "ロール別統計"
-        },
-        {
-          "title": "Top Lane Tier List Patch 26.11 - MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list/top-lane",
-          "used_for": "トップレーン主体の確認"
+          "title": "K'Sante Build - U.GG",
+          "url": "https://u.gg/lol/champions/ksante/build",
+          "used_for": "ロール確認"
         }
       ]
     },
@@ -1050,17 +1100,21 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 99,
-        "ミッドレーン": 0,
-        "トップレーン": 0,
-        "サポート": 0
+        "ジャングル": 95,
+        "トップレーン": 4,
+        "サポート": 1
       },
-      "note": "",
+      "note": "検索結果からの厳密な数値取得はできなかったが、Lolalytics のデフォルトページがジャングル、top/support 用ページも存在するがピック率は極小。トップ・サポートは推定値。ジャングル単独メインは確実。15%閾値を超えるサブロールなし。",
       "sources": [
         {
-          "title": "LoLalytics Kha'Zix Build & Stats",
+          "title": "Kha'Zix Build, Runes & Counters for jungle - LoLalytics",
           "url": "https://lolalytics.com/lol/khazix/build/",
-          "used_for": "ロール分布（JG 99.4%）"
+          "used_for": "ロール分布（ジャングルがデフォルト）"
+        },
+        {
+          "title": "Kha'Zix stats - League of Legends - LeagueOfGraphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/khazix",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -1074,31 +1128,26 @@
         "ADC"
       ],
       "roleShares": {
-        "ジャングル": 60,
-        "ADC": 30,
+        "ジャングル": 56,
+        "ADC": 36,
         "ミッドレーン": 8
       },
-      "note": "ジャングルがデフォルト/主要ロール。ADCは35%前後でボーダーライン（Lolalytics bottom lane 35.41%）だが26.11確定値が取れないためsubに分類。Midはオフメタ。",
+      "note": "overall pick rate ベース推計: Jungle 1.4% / Bot 0.9% / Mid 0.2% (u.gg Emerald+)。role share に換算すると ADC は約 36% で 35% 閾値付近のため sub に分類。",
       "sources": [
         {
-          "title": "Karthus Build U.GG",
+          "title": "Karthus Build with Highest Winrate - LoL Runes, Items, and Skill Order",
           "url": "https://u.gg/lol/champions/karthus/build",
-          "used_for": "ロール別pick rate（jungle 1.4%, ADC 0.9%）"
+          "used_for": "ロール別 pick rate（Jungle 1.4% / Bot 0.9% / Mid 0.2%）"
         },
         {
-          "title": "Karthus Jungle Build Lolalytics",
+          "title": "Karthus Build, Runes & Counters Guide for jungle Karthus",
           "url": "https://lolalytics.com/lol/karthus/build/",
-          "used_for": "デフォルトロール確認（jungle）"
+          "used_for": "ジャングルがデフォルト表示でメインロール確認"
         },
         {
-          "title": "Karthus ADC Lolalytics",
-          "url": "https://lolalytics.com/lol/karthus/build/?lane=bottom",
-          "used_for": "ADC lane percentage 35.41%"
-        },
-        {
-          "title": "Karthus Guide Mobalytics",
-          "url": "https://mobalytics.gg/lol/champions/karthus/guide",
-          "used_for": "ロール分布補強"
+          "title": "Karthus Guide - How to Play Karthus Bot in Season S26",
+          "url": "https://mobalytics.gg/lol/champions/karthus/guide/adc",
+          "used_for": "ADC が認知されたロールであること確認"
         }
       ]
     },
@@ -1110,24 +1159,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 88
+        "ADC": 96,
+        "トップレーン": 2,
+        "ミッドレーン": 2
       },
-      "note": "patch 26.11 での具体的 role share % は検索結果から読み取れなかった。全主要サイト（Lolalytics / U.GG / METAsrc / Mobalytics / skill-capped）が ADC に分類。Support ビルドページは上位に出現せず 15% 未満と判断。ADC 88% は概算値（実測値なし）。",
+      "note": "ADC が圧倒的主体（18.1% pick rate で全チャンプ最高人気、ほぼ全プレイが Bot）。Lolalytics にトップ・ミッドのビルドページも存在するが share は推定 2〜3% 程度でノイズ水準。サブロール閾値（15%）未満のため sub なし。",
       "sources": [
         {
-          "title": "Kai'Sa Build, Runes & Counters Guide for bottom – Lolalytics",
+          "title": "Kai'Sa Build, Runes & Counters – Lolalytics",
           "url": "https://lolalytics.com/lol/kaisa/build/",
-          "used_for": "ロール分類（ADC/bottom）確認"
+          "used_for": "ロール分布（ADC メイン確認）"
+        },
+        {
+          "title": "Kai'Sa stats – League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/kaisa",
+          "used_for": "全体 pick rate 確認"
         },
         {
           "title": "Kai'Sa Build with Highest Winrate – U.GG",
           "url": "https://u.gg/lol/champions/kaisa/build",
-          "used_for": "ロール分類確認・12.5% pick rate in Emerald+"
-        },
-        {
-          "title": "Kai'Sa Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/kaisa",
-          "used_for": "patch 26.11 stats 確認"
+          "used_for": "ADC pick rate 補強"
         }
       ]
     },
@@ -1139,21 +1190,20 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 96,
-        "トップレーン": 4,
-        "ジャングル": 0
+        "ミッドレーン": 97,
+        "トップレーン": 3
       },
-      "note": "",
+      "note": "OP.GG Emerald+ データ: Mid pick率 2.9% / Top pick率 0.1%。role share 換算で Mid 約97% / Top 約3%。Top は 15% 閾値を大きく下回るためサブ対象外。",
       "sources": [
         {
-          "title": "Kassadin Build Guide - Lolalytics",
-          "url": "https://lolalytics.com/lol/kassadin/build/",
-          "used_for": "ロール分布"
+          "title": "Kassadin Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/kassadin/build",
+          "used_for": "ロール分布・pick率"
         },
         {
-          "title": "Kassadin Build 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/kassadin",
-          "used_for": "補強"
+          "title": "Kassadin Build - OP.GG",
+          "url": "https://op.gg/lol/champions/kassadin/build",
+          "used_for": "ロール別pick率補強"
         }
       ]
     },
@@ -1168,27 +1218,24 @@
       ],
       "roleShares": {
         "ミッドレーン": 72,
-        "トップレーン": 22,
-        "ADC": 3,
-        "サポート": 2,
-        "ジャングル": 1
+        "トップレーン": 28
       },
-      "note": "METAsrc/Lolalytics 両方でミッドがメイン確定。トップはD Tier として独立ページあり・22%前後と推定（15-35%帯でサブ判定）。ADC以下はノイズレベル。",
+      "note": "Lolalytics/METAsrc のレーン別ピック率（mid 1.8%、top 0.7%）から role share を推計。mid が主体で top が副次的に使用される。",
       "sources": [
+        {
+          "title": "Cassiopeia Build, Runes & Counters - LoLalytics (middle)",
+          "url": "https://lolalytics.com/lol/cassiopeia/build/",
+          "used_for": "ロール分布（ミッド）"
+        },
         {
           "title": "Cassiopeia Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/cassiopeia",
-          "used_for": "ロール分布・全体勝率"
+          "used_for": "ロール分布・ピック率"
         },
         {
-          "title": "Cassiopeia Top Lane Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/cassiopeia/top",
-          "used_for": "トップレーン存在確認"
-        },
-        {
-          "title": "Cassiopeia Build – Lolalytics",
-          "url": "https://lolalytics.com/lol/cassiopeia/build/",
-          "used_for": "role rate 71.68% 確認"
+          "title": "Cassiopeia Top Lane Counters 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/cassiopeia/top/counters",
+          "used_for": "トップレーン確認"
         }
       ]
     },
@@ -1200,23 +1247,31 @@
       ],
       "sub": [],
       "roleShares": {
-        "ミッドレーン": 85,
-        "ジャングル": 8,
-        "トップレーン": 4,
-        "ADC": 2,
-        "サポート": 1
+        "ミッドレーン": 88,
+        "トップレーン": 8,
+        "ジャングル": 2
       },
-      "note": "METAsrcのRole Rate 84.9%をミッドレーンに採用。残り15.1%はジャングル/トップ/ADC/サポートに分散。いずれも15%未満のためsub対象なし。",
+      "note": "Mid が圧倒的主体（S Tier, pick rate ~7.3%）。Top は OM Tier で推定8%前後、Jungle は D Tier でほぼ0%。いずれも15%未満のためサブロールなし。",
       "sources": [
         {
-          "title": "Katarina Build 26.11 – METAsrc LoL",
+          "title": "Katarina Build – METAsrc LoL 26.11",
           "url": "https://www.metasrc.com/lol/build/katarina",
-          "used_for": "ロール分布（Role Rate 84.9% Mid）"
+          "used_for": "ロール分布・ティア確認"
+        },
+        {
+          "title": "Katarina Top Lane Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/katarina/top",
+          "used_for": "Top lane pick rate・tier"
+        },
+        {
+          "title": "Katarina Build – Lolalytics (jungle)",
+          "url": "https://lolalytics.com/lol/katarina/build/?lane=jungle",
+          "used_for": "Jungle play rate確認"
         },
         {
           "title": "Katarina Build – U.GG",
           "url": "https://u.gg/lol/champions/katarina/build",
-          "used_for": "メインレーン確認"
+          "used_for": "pick rate補強"
         }
       ]
     },
@@ -1228,26 +1283,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 87,
-        "ジャングル": 9,
-        "ミッドレーン": 4
+        "トップレーン": 86,
+        "ジャングル": 8,
+        "ミッドレーン": 6
       },
-      "note": "正確なロールシェア数値はLolalytics直接参照では取得できず概算。Lolalytics上でジャングル専用ページが存在（C- Tier, 48.92%勝率）するが15%未満と判断しsubから除外。トップレーンが圧倒的主流（A Tier, 51.58%勝率）。",
+      "note": "Top lane が約86%と圧倒的。Jungle/Mid の合計も15%未満のためサブロールなし。",
       "sources": [
         {
-          "title": "Camille Build top - LoLalytics",
+          "title": "Camille Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/camille",
+          "used_for": "ロール分布・86.2% top lane popularity"
+        },
+        {
+          "title": "Camille Build Guide – Mobalytics Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/camille/build",
+          "used_for": "Top lane pick rate 2.7%, A tier確認"
+        },
+        {
+          "title": "Camille Build, Runes & Counters – Lolalytics",
           "url": "https://lolalytics.com/lol/camille/build/",
-          "used_for": "ロール分布・勝率"
-        },
-        {
-          "title": "Camille Build jungle - LoLalytics",
-          "url": "https://lolalytics.com/lol/camille/build/?lane=jungle",
-          "used_for": "ジャングル採用確認"
-        },
-        {
-          "title": "Top Lane Tier List Patch 26.11 - MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list/top-lane",
-          "used_for": "トップレーン確認"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -1261,26 +1316,31 @@
         "サポート"
       ],
       "roleShares": {
-        "ミッドレーン": 84,
-        "サポート": 16,
-        "トップレーン": 4
+        "ミッドレーン": 65,
+        "サポート": 25,
+        "トップレーン": 8
       },
-      "note": "Mid 4.2% / Support 0.8% pick rate (Emerald+, patch 26.11) から role share を算出。Top は lolalytics に掲載あるが pick rate 極小のため除外。Support は役割シェア約16%で15%閾値を超えるためsubに追加。",
+      "note": "正確なロール別 pick 率の数値は検索結果から直接読み取れなかったため推定値。LoLalytics に mid/support 両方の専用ページが存在し、双方 A- tier（mid 51.5% WR / support 50.94% WR）。mid がメイン、support がサブ（15〜35%圏）との判定。",
       "sources": [
         {
-          "title": "Galio Build Guide - Runes, Items & More - Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/galio/build",
-          "used_for": "Mid pick rate 4.2%"
+          "title": "Galio Build mid - Lolalytics",
+          "url": "https://lolalytics.com/lol/galio/build/",
+          "used_for": "ロール分布・ミッドレーン確認"
         },
         {
-          "title": "Galio Support Build Guide - Runes, Items & More - Patch 26.10",
-          "url": "https://mobalytics.gg/lol/champions/galio/build/support",
-          "used_for": "Support pick rate 0.8%"
+          "title": "Galio Build support - Lolalytics",
+          "url": "https://lolalytics.com/lol/galio/build/?lane=support",
+          "used_for": "サポート役割確認"
         },
         {
-          "title": "Galio Build, Runes & Counters Guide for top Galio",
-          "url": "https://lolalytics.com/lol/galio/build/?lane=top",
-          "used_for": "Top lane存在確認"
+          "title": "Galio stats - League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/galio",
+          "used_for": "ロール分布補強"
+        },
+        {
+          "title": "Galio Build 26.11 - METAsrc",
+          "url": "https://www.metasrc.com/lol/build/galio",
+          "used_for": "パッチ26.11ティア確認"
         }
       ]
     },
@@ -1292,26 +1352,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 98,
-        "サポート": 1,
-        "ミッドレーン": 1
+        "ADC": 90,
+        "サポート": 8,
+        "トップレーン": 2
       },
-      "note": "全ての統計サイトがADC/ボットレーン専用として表示。他レーンの有意な数値なし。",
+      "note": "ADCが圧倒的メインロール。Lolalytics にサポートページ（WR 36.52%）・METAsrc にトップビルドが存在するが、いずれも role share 15% 未満と推定。roleShares は推定値（明示的な分布数値を取得できず）。",
       "sources": [
+        {
+          "title": "Kalista Build bottom - Lolalytics",
+          "url": "https://lolalytics.com/lol/kalista/build/",
+          "used_for": "ロール分布・ADCメイン確認"
+        },
+        {
+          "title": "Kalista Build support - Lolalytics",
+          "url": "https://lolalytics.com/lol/kalista/build/?lane=support",
+          "used_for": "サポートロール確認"
+        },
         {
           "title": "Kalista Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/kalista/build",
-          "used_for": "ロール分布・pick率確認"
-        },
-        {
-          "title": "Kalista Build, Runes & Counters - LoLalytics",
-          "url": "https://lolalytics.com/lol/kalista/build/",
-          "used_for": "ロール別pick率"
-        },
-        {
-          "title": "Kalista Build Guide - Mobalytics Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/kalista/build",
-          "used_for": "パッチ26.11ロール確認"
+          "used_for": "ロール確認補強"
         }
       ]
     },
@@ -1321,36 +1381,26 @@
       "main": [
         "サポート"
       ],
-      "sub": [
-        "ミッドレーン"
-      ],
+      "sub": [],
       "roleShares": {
-        "サポート": 65,
-        "ミッドレーン": 22,
-        "トップレーン": 11,
-        "ADC": 2
+        "サポート": 65
       },
-      "note": "正確なrole share数値をサイトから直接読み取れず推定値。サポートはA+ティア(8.7% pick rate)で明確に最大。ミッドレーンは複数ソースで二次ロールとして確認、15%超と判断。トップレーンはOM(オフメタ)ティアで15%未満と推定。",
+      "note": "ロール分布の具体的な数値が取得できず。サポートが主ロールであることは複数ソース（Lolalytics・METAsrc・MetaBot.GG）で確認済み（A Tier、49.2%勝率）。トップレーンにも専用ビルドページあり（METAsrc・Lolalytics）。ただし15%閾値を確認できないため推測でsubを追加しない方針でsub=[]とした。",
       "sources": [
         {
-          "title": "Karma Build - Lolalytics (Support)",
+          "title": "Karma Build, Runes & Counters Guide for support Karma - Lolalytics",
           "url": "https://lolalytics.com/lol/karma/build/",
-          "used_for": "ロール順位・tier確認"
+          "used_for": "ロール分布（サポートがデフォルトロール）"
         },
         {
-          "title": "Karma Build - U.GG",
-          "url": "https://u.gg/lol/champions/karma/build",
-          "used_for": "Support pick rate 8.7%確認"
-        },
-        {
-          "title": "Karma Top Build - METAsrc",
+          "title": "Karma Top Lane Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/karma/top",
-          "used_for": "トップレーン採用確認"
+          "used_for": "トップレーン起用の存在確認"
         },
         {
-          "title": "Karma Mid Build - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/karma/mid",
-          "used_for": "ミッドレーン採用確認"
+          "title": "Karma Best Build (51.0% WR) - LoL Patch 26.11 | MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champion/Karma/build",
+          "used_for": "パッチ26.11サポートA Tier確認"
         }
       ]
     },
@@ -1362,25 +1412,30 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 93,
-        "ミッドレーン": 6,
-        "ジャングル": 1
+        "トップレーン": 95,
+        "サポート": 3,
+        "ミッドレーン": 2
       },
-      "note": "",
+      "note": "複数ソースでトップレーン圧倒的主体。Lolalytics にサポートページ存在するが15%閾値未満のコーナーケース。数値は概算（詳細%は検索結果から直接取得できず、Garen Top 7.7% pick rate等から推定）",
       "sources": [
         {
-          "title": "Lolalytics Garen Build Guide",
-          "url": "https://lolalytics.com/lol/garen/build/",
-          "used_for": "ロール分布"
-        },
-        {
-          "title": "METAsrc Garen Build 26.11",
+          "title": "Garen Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/garen",
-          "used_for": "ロール分布補強"
+          "used_for": "ロール・ティア確認"
         },
         {
-          "title": "U.GG Garen Build",
-          "url": "https://u.gg/lol/champions/garen/build",
+          "title": "Garen Best Build (51.5% WR) - MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champion/Garen/build",
+          "used_for": "pick rate・win rate確認"
+        },
+        {
+          "title": "Garen Build, Runes & Counters Guide - Lolalytics",
+          "url": "https://lolalytics.com/lol/garen/build/",
+          "used_for": "ロール分布（トップ主体確認）"
+        },
+        {
+          "title": "Garen stats - League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/garen",
           "used_for": "ロール分布補強"
         }
       ]
@@ -1395,27 +1450,27 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "トップレーン": 80,
-        "ミッドレーン": 15,
-        "ADC": 3,
-        "サポート": 1
+        "トップレーン": 75,
+        "ミッドレーン": 18,
+        "ADC": 4,
+        "サポート": 2
       },
-      "note": "patch 26.11 の正確な role share 数値はWeb検索で取得できず推定値。Lolalytics・U.GG ともにトップとミッドに専用ページあり（トップ A Tier / ミッド D Tier）。ミッドは D Tier であり 15% 付近と推定しサブに含めたが、実際には 15% 未満の可能性もある。",
+      "note": "数値は検索結果から厳密に読み取れなかったため推定値。Lolalytics がトップ・ミッド・ボトム・サポート各専用ページを持ち、Mobafire にも top/mid 両対応ガイドが存在。トップが明確なメインで、ミッドは15%前後の2番手として sub 判定。",
       "sources": [
         {
-          "title": "Gangplank Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/gangplank",
-          "used_for": "ロール別ティア確認（Top A Tier / Mid D Tier）"
-        },
-        {
-          "title": "Gangplank Build – Lolalytics (top)",
+          "title": "Gangplank Build top - Lolalytics",
           "url": "https://lolalytics.com/lol/gangplank/build/",
-          "used_for": "デフォルトページがトップ → 最多 pick ロールの確認"
+          "used_for": "メインロール確認（デフォルトページ＝top）"
         },
         {
-          "title": "Gangplank Build – U.GG",
+          "title": "Gangplank Build middle - Lolalytics",
+          "url": "https://lolalytics.com/lol/gangplank/build/?lane=middle",
+          "used_for": "ミッドレーン専用ページ存在確認"
+        },
+        {
+          "title": "Gangplank Build - U.GG",
           "url": "https://u.gg/lol/champions/gangplank/build",
-          "used_for": "ミッドページが S26 でも存在 → ミッドに一定 pick 数の確認"
+          "used_for": "ロール傾向補強"
         }
       ]
     },
@@ -1429,26 +1484,20 @@
         "ジャングル"
       ],
       "roleShares": {
-        "ミッドレーン": 85,
-        "ジャングル": 10,
-        "トップレーン": 5
+        "ミッドレーン": 66,
+        "ジャングル": 34
       },
-      "note": "Lolalytics がデフォルトでミッドを表示。ジャングルはカウンターページあり（C tier, 47.1% WR）で15%前後と推測。トップも少数存在。正確な share 数値は取得できなかったため概算値。",
+      "note": "ジャングルは約34%で35%閾値未満のためsub扱い。pick rate (mid 2.3% / jungle 1.2%) から role share を算出。",
       "sources": [
         {
-          "title": "Qiyana Build – Lolalytics (mid default)",
-          "url": "https://lolalytics.com/lol/qiyana/build/",
-          "used_for": "メインロール確認"
+          "title": "Qiyana Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/qiyana/build",
+          "used_for": "ロール別pick rate(mid 2.3% / jungle 1.2%)"
         },
         {
-          "title": "Qiyana Jungle Counters – Lolalytics",
-          "url": "https://lolalytics.com/lol/qiyana/counters/?lane=jungle",
-          "used_for": "ジャングルサブロール確認"
-        },
-        {
-          "title": "Qiyana Build 26.11 – METAsrc",
+          "title": "Qiyana Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/qiyana",
-          "used_for": "パッチ確認"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -1460,27 +1509,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 90,
-        "ADC": 7,
-        "トップレーン": 2,
-        "ミッドレーン": 1
+        "ジャングル": 95,
+        "トップレーン": 4,
+        "その他": 1
       },
-      "note": "具体的なパーセンテージはサイトから直読みできず。複数ソースからジャングルが圧倒的主流（~90%）、ADCが次点（~7%）と推定。ADCは15%未満のため sub に含めず。",
+      "note": "全ソースでジャングルが圧倒的主役。Lolalytics にトップページが存在するが鉄帯限定で role share は推定4%以下。15%閾値を満たすサブロールなし。",
       "sources": [
         {
-          "title": "Kindred Build with Highest Winrate - U.GG",
+          "title": "Kindred Build Jungle - LoLalytics",
+          "url": "https://lolalytics.com/lol/kindred/build/",
+          "used_for": "ロール分布・ジャングル主体確認"
+        },
+        {
+          "title": "Kindred Build - U.GG",
           "url": "https://u.gg/lol/champions/kindred/build",
-          "used_for": "ロール分布（ジャングル主体確認）"
+          "used_for": "ジャングル主体確認"
         },
         {
-          "title": "Kindred stats - League of Legends - League of Graphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/kindred",
-          "used_for": "ロール分布（ADCが2番目に多い確認）"
-        },
-        {
-          "title": "LoL ADC Tier List 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/tier-list/adc",
-          "used_for": "ADC pick 存在確認"
+          "title": "Kindred Build - Mobalytics Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/kindred/build",
+          "used_for": "パッチ26.11 pick rate 2.4%・ジャングル確認"
         }
       ]
     },
@@ -1488,31 +1536,32 @@
       "ja": "クイン",
       "en": "Quinn",
       "main": [
-        "ジャングル",
+        "ジャングル"
+      ],
+      "sub": [
         "トップレーン"
       ],
-      "sub": [],
       "roleShares": {
-        "ジャングル": 57,
-        "トップレーン": 41,
-        "ミッドレーン": 5
+        "ジャングル": 65,
+        "トップレーン": 25,
+        "ADC": 10
       },
-      "note": "role share は直接取得できず、SeeMeta のレーン別 pick rate（jungle 1.53% / top 1.1%）から比率換算した推定値。Lolalytics がジャングルをデフォルト表示しており jungle が primary。トップ推定 41% は 35% 閾値を超えるため両方 main に設定。",
+      "note": "Lolalytics の主ページが 'jungle Quinn' をデフォルト表示しており、SeeMeta でも Quinn Jungle ページが存在。Mobafire に Challenger Quinn Jungle Guide (26.11) あり。数値は検索結果から直接読み取れなかったため概算。トップレーンは歴史的にも主要で U.GG 等でも Top ビルドが存在するためサブ判定（推定 ~25%）。",
       "sources": [
         {
-          "title": "Quinn Jungle Tier Guide patch 26.11 | SeeMeta",
-          "url": "https://seemeta.com/en/lol/quinn/jungle",
-          "used_for": "レーン別 pick rate（jungle 1.53% / top 1.1%）"
-        },
-        {
-          "title": "Quinn Build, Runes & Counters Guide for jungle Quinn | Lolalytics",
+          "title": "Quinn Build, Runes & Counters Guide for jungle Quinn - Lolalytics",
           "url": "https://lolalytics.com/lol/quinn/build/",
-          "used_for": "デフォルトレーン確認（jungle が primary）"
+          "used_for": "ロール分布（デフォルトがジャングル表示）"
         },
         {
-          "title": "Quinn stats - League of Legends | LeagueOfGraphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/quinn",
-          "used_for": "補助確認"
+          "title": "Quinn Jungle Tier Guide with Matchups and Stats for Patch 26.11 - SeeMeta",
+          "url": "https://seemeta.com/en/lol/quinn/jungle",
+          "used_for": "ジャングルロール補強"
+        },
+        {
+          "title": "Quinn Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/quinn/build",
+          "used_for": "ロール補強"
         }
       ]
     },
@@ -1522,28 +1571,30 @@
       "main": [
         "トップレーン"
       ],
-      "sub": [],
+      "sub": [
+        "ジャングル"
+      ],
       "roleShares": {
-        "トップレーン": 85,
-        "ジャングル": 10,
-        "ミッドレーン": 5
+        "トップレーン": 78,
+        "ジャングル": 18,
+        "ミッドレーン": 4
       },
-      "note": "leagueofgraphs によりトップレーン 84.6%。残り ~15% がジャングル・ミッドに分散するが、いずれも 15% 未満のためサブロールなし。ジャングルはティアリストに掲載（WR 54.4%）されるが pick share は低い。",
+      "note": "Lolalytics にトップ・ジャングル両専用ページあり。数値は検索結果から推定（正確な % は取得不可だったが、ジャングルに専用ビルドページが存在するため 15%+ と判断）。",
       "sources": [
         {
-          "title": "Gwen stats - League of Legends (leagueofgraphs)",
-          "url": "https://www.leagueofgraphs.com/champions/stats/gwen",
-          "used_for": "ロール分布（トップ 84.6%）"
+          "title": "Gwen Build, Runes & Counters for top Gwen - LoLalytics",
+          "url": "https://lolalytics.com/lol/gwen/build/",
+          "used_for": "メインロール確認"
         },
         {
-          "title": "Gwen Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/gwen",
-          "used_for": "トップレーン確認"
+          "title": "Gwen Build, Runes & Counters Guide for jungle Gwen - LoLalytics",
+          "url": "https://lolalytics.com/lol/gwen/build/?lane=jungle",
+          "used_for": "サブロール確認"
         },
         {
-          "title": "Jungle Tier List Patch 26.11 – MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champions/tier-list/jungle",
-          "used_for": "ジャングル pick 確認"
+          "title": "Gwen Guide - How to Play Gwen Jungle in Season S26 - Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/gwen/guide/jungle",
+          "used_for": "ジャングル採用確認"
         }
       ]
     },
@@ -1551,32 +1602,31 @@
       "ja": "グラガス",
       "en": "Gragas",
       "main": [
-        "ジャングル",
         "トップレーン"
       ],
-      "sub": [],
+      "sub": [
+        "ジャングル"
+      ],
       "roleShares": {
-        "ジャングル": 50,
-        "トップレーン": 38,
-        "ミッドレーン": 10,
-        "サポート": 2
+        "トップレーン": 78,
+        "ジャングル": 22
       },
-      "note": "exact role share 数値はWebSearchで直接取得できず推定値。Top A tier（WR 50.0%、pick 2.5%）、Jungle C tier（WR 48.75%）。TopとJungleの両方で有意な pick があり、どちらもmain判定。Mid/Supportはいずれも15%未満と推定。",
+      "note": "ロール別 role share の直接数値は取得できず。Emerald+ pick rate（Top: 2.5%、Jungle: ~0.7%）から比率を概算した。Top は Lolalytics のデフォルトページかつ A tier、Jungle は B- tier で別ページあり。Jungle share は推計22%で15%閾値を超えるため sub に含めた。",
       "sources": [
         {
-          "title": "Gragas Stats & Win Rate - LoL Patch 26.11 | MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champion/Gragas/overview",
-          "used_for": "ロール別 tier・win rate"
+          "title": "Gragas Build top – Lolalytics",
+          "url": "https://lolalytics.com/lol/gragas/build/",
+          "used_for": "メインロール確認（Top がデフォルト）"
         },
         {
-          "title": "Gragas Build 26.11 – Runes, Items, Counters – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/gragas",
+          "title": "Gragas Build jungle – Lolalytics",
+          "url": "https://lolalytics.com/lol/gragas/build/?lane=jungle",
+          "used_for": "Jungle プレイ率の確認"
+        },
+        {
+          "title": "Gragas Build – U.GG",
+          "url": "https://u.gg/lol/champions/gragas/build",
           "used_for": "ロール分布補強"
-        },
-        {
-          "title": "Gragas stats - League of Legends",
-          "url": "https://www.leagueofgraphs.com/champions/stats/gragas",
-          "used_for": "ロール別統計参照"
         }
       ]
     },
@@ -1588,20 +1638,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 93,
-        "トップレーン": 7
+        "ジャングル": 87,
+        "トップレーン": 8,
+        "ミッドレーン": 5
       },
-      "note": "トップレーンは OM Tier（オフメタ）扱いで role share 約7%。15%閾値未満のためsubに含めない。",
+      "note": "Lolalytics・U.GG・METAsrc のデータからジャングルが圧倒的メイン。トップはMETAsrcでOM Tier表記（推定8%程度）、ミッドは理論値のみ。15%閾値に達するサブロールなし。",
       "sources": [
         {
-          "title": "Graves Stats 26.10 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/graves/stats",
-          "used_for": "ロール分布（Role Rate 93.1%）"
+          "title": "Graves Build – Lolalytics",
+          "url": "https://lolalytics.com/lol/graves/build/",
+          "used_for": "ロール分布（ジャングルがデフォルト表示）"
         },
         {
-          "title": "Graves Top Lane Build 26.11 – METAsrc LoL",
+          "title": "Graves Build – U.GG",
+          "url": "https://u.gg/lol/champions/graves/build",
+          "used_for": "ピック率・ウィン率確認"
+        },
+        {
+          "title": "Graves Top Lane – METAsrc",
           "url": "https://www.metasrc.com/lol/build/graves/top",
-          "used_for": "トップレーン OM Tier確認"
+          "used_for": "トップレーンOM Tier確認"
         }
       ]
     },
@@ -1613,26 +1669,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "トップレーン": 95,
-        "ジャングル": 4,
-        "ミッドレーン": 1
+        "トップレーン": 92,
+        "ミッドレーン": 6,
+        "ADC": 2
       },
-      "note": "具体的なrole share%は検索結果に数値として出なかったため推定。Lolalytics にトップ・ジャングルのビルドページが存在するが、ジャングルの勝率が41%程度と極端に低く15%閾値未満と判断。トップレーンが圧倒的主要ロール。",
+      "note": "Lolalytics/U.GGともにトップレーンが圧倒的主要ロール。ミッドレーンページも存在するが pick share は推定6%前後でサブ閾値（15%）未満。ボトムは勝率38%台でオフメタ",
       "sources": [
         {
-          "title": "Kled Build, Runes & Counters - top (Lolalytics)",
+          "title": "Kled Build, Runes & Counters Guide for top Kled - Lolalytics",
           "url": "https://lolalytics.com/lol/kled/build/",
-          "used_for": "メインロール確認・勝率"
+          "used_for": "ロール分布・メインロール確認"
         },
         {
-          "title": "Kled Build, Runes & Counters - jungle (Lolalytics)",
-          "url": "https://lolalytics.com/lol/kled/build/?lane=jungle",
-          "used_for": "ジャングルpick有無確認・勝率41%"
+          "title": "Kled Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/kled/build/",
+          "used_for": "pick率補強"
         },
         {
-          "title": "Kled Best Build - MetaBot.GG Patch 26.11",
-          "url": "https://metabot.gg/en/league/champion/Kled/build",
-          "used_for": "パッチ26.11トップレーン確認"
+          "title": "Kled Build, Runes & Counters Guide for middle Kled - Lolalytics",
+          "url": "https://lolalytics.com/lol/kled/build/?lane=middle",
+          "used_for": "ミッドレーン起用確認"
         }
       ]
     },
@@ -1645,19 +1701,25 @@
       "sub": [],
       "roleShares": {
         "ADC": 97,
-        "サポート": 2
+        "トップレーン": 2,
+        "サポート": 1
       },
-      "note": "役割分布の数値はサイト直接読み取り不可。ADC が圧倒的主体（S+ティア）。サポート Caitlyn のページは Lolalytics に存在するが勝率33.65%（参考値）・pick 率極小で15%未満と判断。sub 空。",
+      "note": "Lolalytics に top lane 専用ページ存在するが share は極めて少数。15% 閾値未満のためサブロールなし。",
       "sources": [
         {
-          "title": "METAsrc Caitlyn Stats 26.11",
-          "url": "https://www.metasrc.com/lol/build/caitlyn",
-          "used_for": "ADC主体・S+ティア確認"
+          "title": "Caitlyn Build, Runes & Counters – Lolalytics (bottom)",
+          "url": "https://lolalytics.com/lol/caitlyn/build/",
+          "used_for": "ロール分布（メインレーン確認）"
         },
         {
-          "title": "Lolalytics Caitlyn Support Build",
-          "url": "https://lolalytics.com/lol/caitlyn/build/?lane=support",
-          "used_for": "サポート pick 率・勝率確認"
+          "title": "Caitlyn Build, Runes & Counters – Lolalytics (top)",
+          "url": "https://lolalytics.com/lol/caitlyn/build/?lane=top",
+          "used_for": "トップ lane 存在確認"
+        },
+        {
+          "title": "Caitlyn Stats 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/caitlyn",
+          "used_for": "pick rate 確認"
         }
       ]
     },
@@ -1671,26 +1733,31 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "トップレーン": 75,
-        "ミッドレーン": 15,
-        "ADC": 7
+        "トップレーン": 80,
+        "ミッドレーン": 18,
+        "ADC": 2
       },
-      "note": "パッチ26.11の具体的なロール別 pick 率の数値は検索結果から直接読み取れなかった。METAsrc では Top=S tier・Mid=D tier・ADC=OM tier。LoLalytics にはトップ・ミッド・ADC・サポート・ジャングル全ての専用ページが存在するが、デフォルト（最多 pick）はトップ。ケイルのミッド pick 率は過去パッチの実績から概ね15%前後と推定しサブに含めた。ADCは7%程度と推定し15%未満のためノイズ扱い。",
+      "note": "各サイト（Lolalytics・METAsrc・U.GG）でトップがデフォルトページ（Aティア）、ミッドが独立ページあり（Cティア）。具体的なシェア数値は検索結果から直読みできなかったため、トップ約80%・ミッド約18%は複数ソースのティア比較から推定。ミッドは15%閾値付近のため sub に含めた。",
       "sources": [
         {
-          "title": "Kayle Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/kayle",
-          "used_for": "ロール tier 確認（Top=S, Mid=D, ADC=OM）"
-        },
-        {
-          "title": "Kayle Build, Runes & Counters Guide for top Kayle – LoLalytics",
+          "title": "Kayle Build, Runes & Counters for top – LoLalytics",
           "url": "https://lolalytics.com/lol/kayle/build/",
-          "used_for": "メインロール確認（Top がデフォルト）"
+          "used_for": "ロール分布・トップ確認"
         },
         {
-          "title": "Kayle Build, Runes & Counters Guide for middle Kayle – LoLalytics",
+          "title": "Kayle Mid Build – LoLalytics",
           "url": "https://lolalytics.com/lol/kayle/build/?lane=middle",
-          "used_for": "ミッドロール存在確認（49.88% WR）"
+          "used_for": "ミッドレーン存在確認"
+        },
+        {
+          "title": "Kayle Mid Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/kayle/mid",
+          "used_for": "ミッドロール補強"
+        },
+        {
+          "title": "Kayle Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/kayle/build",
+          "used_for": "ロール別勝率確認"
         }
       ]
     },
@@ -1702,26 +1769,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 97,
-        "ミッドレーン": 2,
-        "トップレーン": 1
+        "ジャングル": 90,
+        "トップレーン": 10
       },
-      "note": "全3回の検索でジャングル以外の有意なpick率データは確認できず。Lolalytics・U.GG・METAsrc・Jungler.GG・Skill-Capped すべてジャングルのみ掲載。roleSharesの数値は各サイトがジャングル専用build/tierのみ提供している点から推定。",
+      "note": "ジャングルが圧倒的メイン。トップレーン専用ビルドページが複数サイトで存在するが、具体的なrole share数値を確認できず。概算10%程度とみられ15%閾値未満のためsubなし。",
       "sources": [
         {
-          "title": "Kayn Build, Runes & Counters - Lolalytics",
+          "title": "Kayn Build Jungle – Lolalytics",
           "url": "https://lolalytics.com/lol/kayn/build/",
-          "used_for": "ロール分布確認（ジャングルのみ掲載）"
+          "used_for": "ロール分布（jungle default）"
         },
         {
-          "title": "Kayn Build Jungle Patch 26.11 - Jungler.GG",
-          "url": "https://jungler.gg/champions/kayn/",
-          "used_for": "ロール確認（ジャングル専用サイトが掲載）"
+          "title": "Kayn Top Build Guide – Mobalytics Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/kayn/build/top",
+          "used_for": "トップレーン起用確認"
         },
         {
-          "title": "Kayn Build with Highest Winrate - U.GG",
+          "title": "Kayn Build – U.GG",
           "url": "https://u.gg/lol/champions/kayn/build",
-          "used_for": "pick率・WR確認"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -1731,22 +1797,27 @@
       "main": [
         "トップレーン"
       ],
-      "sub": [
-        "ミッドレーン"
-      ],
+      "sub": [],
       "roleShares": {
-        "トップレーン": 79,
-        "ミッドレーン": 17,
-        "サポート": 3,
-        "ADC": 1,
-        "ジャングル": 0
+        "トップレーン": 85,
+        "ミッドレーン": 12
       },
-      "note": "",
+      "note": "数値は検索結果から完全取得できず推定。複数ソース（METAsrc・Lolalytics・U.GG）がトップレーンの tier list にのみ掲載。ミッドレーン pick は 15% 未満と判断しサブ除外。",
       "sources": [
         {
-          "title": "Lolalytics - Kennen Build",
+          "title": "Kennen Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/kennen",
+          "used_for": "ロール分布・ピック率"
+        },
+        {
+          "title": "Kennen Build, Runes & Counters Guide for top – Lolalytics",
           "url": "https://lolalytics.com/lol/kennen/build/",
-          "used_for": "ロール分布"
+          "used_for": "メインロール確認"
+        },
+        {
+          "title": "Kennen Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/kennen/build",
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -1760,31 +1831,26 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "ADC": 75,
-        "ミッドレーン": 20,
+        "ADC": 65,
+        "ミッドレーン": 25,
         "トップレーン": 5
       },
-      "note": "Lolalytics のデフォルト表示が bottom（ADC）。ミッドレーンも win rate 46.5% / pick rate あり。数値は検索結果から直接読み取れなかったため概算値。ADC が主軸、ミッドは 15〜25% 程度と推定。",
+      "note": "ロール別の正確な share% は取得できず概算値。ADC がデフォルト/主流（B tier、pick rate 1.6%）。Top は METAsrc で OM tier（off-meta）のため 15% 未満とみなしサブ除外。Mid は歴史的な主力レーンで現パッチでも一定の pick あり（推定 15〜30%）のためサブ判定。",
       "sources": [
         {
-          "title": "Corki Build, Runes & Counters Guide for bottom Corki – Lolalytics",
-          "url": "https://lolalytics.com/lol/corki/build/",
-          "used_for": "ロール分布（defaultがbottom）"
+          "title": "Corki Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/corki",
+          "used_for": "ロール分布・ティア確認"
         },
         {
           "title": "Corki Build with Highest Winrate – U.GG",
           "url": "https://u.gg/lol/champions/corki/build",
-          "used_for": "ロール確認"
+          "used_for": "デフォルトロール確認"
         },
         {
-          "title": "Corki ADC Build Guide – Skill Capped 26.11",
-          "url": "https://www.skill-capped.com/lol/guides/builds/corki/adc",
-          "used_for": "ADC主軸確認"
-        },
-        {
-          "title": "Corki Statystyki i Winrate – MetaBot.GG 26.11",
-          "url": "https://metabot.gg/en/league/champion/Corki/overview",
-          "used_for": "パッチ確認"
+          "title": "Corki Build – LoLalytics",
+          "url": "https://lolalytics.com/lol/corki/build/",
+          "used_for": "主力ロール確認"
         }
       ]
     },
@@ -1796,24 +1862,27 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 95
+        "ADC": 86,
+        "ミッドレーン": 8,
+        "サポート": 4,
+        "トップレーン": 2
       },
-      "note": "複数ソース（Lolalytics・U.GG・Mobalytics）ともにADC専業として掲載。AP構成向けビルドページ存在するが具体的なロール別%は読み取れず、他レーンの有意なpick率は確認できなかった。",
+      "note": "bot lane pick rate 1.8% / overall popularity 2.1%（≒86% ADC）。AP Kog'Maw としてミッド起用例もあるが15%未満のため除外。",
       "sources": [
         {
-          "title": "Kog'Maw Build, Runes & Counters – Lolalytics",
-          "url": "https://lolalytics.com/lol/kogmaw/build/",
-          "used_for": "ロール分布（ADC主体確認）"
-        },
-        {
-          "title": "Kog'Maw Build with Highest Winrate – U.GG",
+          "title": "Kog'Maw Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/kogmaw/build",
-          "used_for": "ロール分布補強"
+          "used_for": "ロール分布・pick rate"
         },
         {
-          "title": "Kog'Maw Build Guide – Patch 26.11 – Mobalytics",
-          "url": "https://mobalytics.gg/lol/champions/kogmaw/build",
-          "used_for": "勝率・pick率参照"
+          "title": "Kog'Maw Build, Runes & Counters - Lolalytics",
+          "url": "https://lolalytics.com/lol/kogmaw/build/",
+          "used_for": "ロール分布"
+        },
+        {
+          "title": "ADC Tier List Patch 26.11 - MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champions/tier-list/adc",
+          "used_for": "メインロール確認"
         }
       ]
     },
@@ -1823,35 +1892,27 @@
       "main": [
         "トップレーン"
       ],
-      "sub": [
-        "ジャングル"
-      ],
+      "sub": [],
       "roleShares": {
-        "トップレーン": 65,
-        "ジャングル": 28,
-        "ミッドレーン": 5
+        "トップレーン": 88,
+        "ジャングル": 7
       },
-      "note": "具体的な数値は検索結果から直接読み取れなかったため概算。Lolalytics・METAsrc ともにトップ／ジャングルの個別ビルドページが存在（両ロールで実践的な採用率あり）。複数ソースが「メインはトップ、ジャングルでもプレイされる」と言及。ミッドは稀な事例程度でノイズ扱い。",
+      "note": "明示的なロール分布%はページレンダリングの関係で数値取得できず。METAsrcにTop/Jungle両ページが存在するが、Top laneのみ有意な統計（pick rate 2.4%・Aティア表示）。Jungleページはラテンアメリカ地域限定で存在し、グローバルでは15%未満と推定。チャンピオン設計は「sustained-combat top laner」と明記。roleSharesは推定値。",
       "sources": [
         {
-          "title": "Zaahen Build, Runes & Counters – Lolalytics top",
-          "url": "https://lolalytics.com/lol/zaahen/build/",
-          "used_for": "ロール分布・勝率"
+          "title": "Zaahen Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/zaahen",
+          "used_for": "ロール分布・ティア確認"
         },
         {
-          "title": "Zaahen Build, Runes & Counters – Lolalytics jungle",
-          "url": "https://lolalytics.com/lol/zaahen/build/?lane=jungle",
-          "used_for": "ジャングル採用確認"
+          "title": "Zaahen Jungle Stats 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/las/build/zaahen/jungle/stats",
+          "used_for": "ジャングル起用確認"
         },
         {
-          "title": "Zaahen Jungle Build 26.11 – METAsrc",
-          "url": "https://www.metasrc.com/lol/build/zaahen/jungle",
-          "used_for": "ジャングル採用確認"
-        },
-        {
-          "title": "Is Zaahen Good in League of Legends? – U.GG",
-          "url": "https://u.gg/lol/news/is-zaahen-good-in-league-of-legends",
-          "used_for": "ロール言及確認"
+          "title": "Zaahen, a sustained-combat top laner – GosuGamers",
+          "url": "https://www.gosugamers.net/lol/news/77564-zaahen-a-sustained-combat-top-laner-who-can-revive-comes-to-league-of-legends-patch-25-23",
+          "used_for": "チャンプ設計意図確認"
         }
       ]
     },
@@ -1861,35 +1922,26 @@
       "main": [
         "トップレーン"
       ],
-      "sub": [
-        "ジャングル"
-      ],
+      "sub": [],
       "roleShares": {
-        "トップレーン": 75,
-        "ジャングル": 18,
-        "ミッドレーン": 5
+        "トップレーン": 80
       },
-      "note": "役割 share の数値はLolalytics/U.GG/METAsrc の検索結果から推計。Top がデフォルト掲載ロール、Jungle は A Tier ガイド多数で 15%+ と判断。Mid は S- Tier だが pick share は低く閾値未満と推定。",
+      "note": "Lolalytics にトップ（デフォルト）・サポート・ミッド・ジャングルの専用ページが存在。サポートも B Tier 51.51% WR で一定の play 率があるが、role share の exact 数値が取得できず 15% 閾値を確認できないため sub には含めない。トップが主役と判定。",
       "sources": [
         {
-          "title": "Sion Build top – LoLalytics",
+          "title": "Sion Build top - LoLalytics",
           "url": "https://lolalytics.com/lol/sion/build/",
-          "used_for": "メインロール確認（デフォルトがトップ）"
+          "used_for": "ロール分布（デフォルトがトップ）"
         },
         {
-          "title": "Sion Build jungle – LoLalytics",
-          "url": "https://lolalytics.com/lol/sion/build/?lane=jungle",
-          "used_for": "ジャングル viability 確認"
+          "title": "Sion Build support - LoLalytics",
+          "url": "https://lolalytics.com/lol/sion/build/?lane=support",
+          "used_for": "サポート play 率確認"
         },
         {
-          "title": "Sion Build middle – LoLalytics",
-          "url": "https://lolalytics.com/lol/sion/build/?lane=middle",
-          "used_for": "ミッドレーン share 確認"
-        },
-        {
-          "title": "METAsrc Sion Build 26.11",
-          "url": "https://www.metasrc.com/lol/build/sion",
-          "used_for": "ロール分布補強"
+          "title": "Sion stats - League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/sion",
+          "used_for": "ロール統計補強"
         }
       ]
     },
@@ -1901,25 +1953,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "サポート": 96,
-        "ミッドレーン": 4
+        "サポート": 88,
+        "ミッドレーン": 10,
+        "ADC": 2
       },
-      "note": "ロール別 pick 率の明示的な内訳は取得できなかったが、U.GG のサポート pick rate 2.6% vs ミッド 0.1%（Emerald+）から role share を推算。サポートが圧倒的主流。ミッドは 4% 程度でサブロール基準（15%）未満のためノイズ扱い。",
+      "note": "数値は直接読み取れなかったため推定値。Lolalytics のデフォルト表示がサポートで、ミッドレーンガイドは存在するが現パッチでの pick 比率は 15% 未満と判断。",
       "sources": [
         {
-          "title": "Zyra Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/zyra/build",
-          "used_for": "pick rate比較（サポート2.6% vs ミッド0.1%）"
-        },
-        {
-          "title": "Zyra Build, Runes & Counters - Lolalytics",
+          "title": "Zyra Build, Runes & Counters Guide for support Zyra",
           "url": "https://lolalytics.com/lol/zyra/build/",
-          "used_for": "メインロール確認（サポート）"
+          "used_for": "メインロール確認（サポートがデフォルト）"
         },
         {
-          "title": "Zyra stats - League of Graphs",
+          "title": "Zyra Guide - How to Play Zyra Mid in Season S26",
+          "url": "https://mobalytics.gg/lol/champions/zyra/guide/mid",
+          "used_for": "ミッドレーン起用確認"
+        },
+        {
+          "title": "Zyra stats - League of Legends",
           "url": "https://www.leagueofgraphs.com/champions/stats/zyra",
-          "used_for": "ロール分布補強"
+          "used_for": "ロール分布参照"
         }
       ]
     },
@@ -1934,30 +1987,26 @@
       ],
       "roleShares": {
         "ミッドレーン": 65,
-        "トップレーン": 28,
-        "ジャングル": 5
+        "トップレーン": 22,
+        "ジャングル": 8,
+        "サポート": 5
       },
-      "note": "Lolalytics のデフォルトレーンがミッドレーン（メイン確定）。トップレーンも専用ビルドページが存在し METAsrc/u.gg で OM Tier 表示あり。具体的な % 数値はページアクセス不可のため、ミッドが主体・トップが副次という傾向から概算値を記載。ジャングルは検索結果に登場せずノイズ扱い。",
+      "note": "各サイトの数値は直接取得できず、LoLalytics（デフォルトレーン=mid）・METAsrc・U.GG の検索結果から role share を推定。ミッドレーンが圧倒的主流、トップが明確なサブ（専用ビルドページ有・複数サイト掲載）、ジャングル・サポートは閾値未満。",
       "sources": [
         {
-          "title": "Sylas Build, Runes & Counters – middle – LoLalytics",
+          "title": "Sylas Build – LoLalytics (mid default)",
           "url": "https://lolalytics.com/lol/sylas/build/",
-          "used_for": "メインロール確認（デフォルトレーン=mid）"
+          "used_for": "メインロール確認"
         },
         {
-          "title": "Sylas Build, Runes & Counters – top – LoLalytics",
-          "url": "https://lolalytics.com/lol/sylas/build/?lane=top",
-          "used_for": "トップレーン play 率の傍証"
-        },
-        {
-          "title": "Sylas Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/sylas",
-          "used_for": "パッチ 26.11 確認"
-        },
-        {
-          "title": "Sylas Top Lane Build 26.11 – METAsrc LoL",
+          "title": "Sylas Top Lane Build 26.11 – METAsrc",
           "url": "https://www.metasrc.com/lol/build/sylas/top",
-          "used_for": "トップレーン OM Tier 確認"
+          "used_for": "トップレーン存在確認"
+        },
+        {
+          "title": "Sylas Build – U.GG",
+          "url": "https://u.gg/lol/champions/sylas/build",
+          "used_for": "ピック率・ロール確認"
         }
       ]
     },
@@ -1971,33 +2020,20 @@
         "トップレーン"
       ],
       "roleShares": {
-        "ジャングル": 70,
-        "トップレーン": 20,
-        "サポート": 7,
-        "ミッドレーン": 2,
-        "ADC": 1
+        "ジャングル": 84,
+        "トップレーン": 16
       },
-      "note": "検索結果から具体的な role share % を取得できなかったため、METAsrc ロール順（Jungle > Top > Support > Mid > ADC）とランク情報（Top: A- tier / Support: OM tier）から推定。ジャングルが主体で Top が sub 閾値(15%)を超える可能性が高く、Support は OM tier のため 15% 未満と推定。",
+      "note": "U.GG データ: JG pick rate 2.1% / Top 0.4%（計 2.5%）から role share を算出。leagueofgraphs ではジャングル 71.8% と若干差があるが、いずれもジャングルが圧倒的主ロール。トップレーンは 16% で閾値（15%）ギリギリ上。",
       "sources": [
         {
-          "title": "METAsrc Zac Build 26.11",
-          "url": "https://www.metasrc.com/lol/build/zac",
-          "used_for": "ロール順序・ランク情報"
-        },
-        {
-          "title": "METAsrc Zac Support Build 26.11",
-          "url": "https://www.metasrc.com/lol/build/zac/support",
-          "used_for": "Support OM tier 確認"
-        },
-        {
-          "title": "U.GG Zac Build",
+          "title": "Zac Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/zac/build",
-          "used_for": "Jungle 主体確認（B tier, 49.7% WR）"
+          "used_for": "ロール別 pick rate (JG 2.1% / Top 0.4%)"
         },
         {
-          "title": "Lolalytics Zac",
-          "url": "https://lolalytics.com/lol/zac/build/",
-          "used_for": "Jungle デフォルト確認"
+          "title": "Zac stats - League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/zac",
+          "used_for": "ジャングル 71.8% share 確認"
         }
       ]
     },
@@ -2009,22 +2045,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 95
+        "ADC": 95,
+        "ミッドレーン": 3,
+        "トップレーン": 2
       },
-      "note": "全検索でADC（ボットレーン）一択の記載のみ。他ロールへの有意な分布は確認されず。role shareの具体的なパーセンテージ内訳は数値取得できなかったため、ADC約95%と推定（サポート等は5%未満のノイズレベル）。",
+      "note": "全ソース一致でADCが圧倒的主戦場。トップ・ミッドのWR（40%/46%）はオフメタ少数プレイを示す。ADC role shareを直接数値で取得できなかったため定番ロールから推定（≥90%と判断）。",
       "sources": [
         {
-          "title": "Samira Best Build (49.2% WR) - LoL Patch 26.11 | MetaBot.GG",
-          "url": "https://metabot.gg/en/league/champion/Samira/build",
-          "used_for": "ロール確認（ADC）"
+          "title": "Samira Build, Runes & Counters Guide for bottom Samira - Lolalytics",
+          "url": "https://lolalytics.com/lol/samira/build/",
+          "used_for": "ロール分布（デフォルトlane=bottomが主戦場を示す）"
         },
         {
-          "title": "Samira Build 26.11 – Runes, Items, Counters – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/samira",
-          "used_for": "ロール分布補強"
+          "title": "Samira Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/samira/build",
+          "used_for": "ロール分布補強（ADC 4.9% pick rate, A tier）"
         },
         {
-          "title": "Samira stats - League of Legends",
+          "title": "Samira stats - LeagueOfGraphs",
           "url": "https://www.leagueofgraphs.com/champions/stats/samira",
           "used_for": "ロール分布補強"
         }
@@ -2038,24 +2076,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 99
+        "ADC": 95,
+        "サポート": 4
       },
-      "note": "全ソース（Lolalytics・U.GG・METAsrc・Mobalytics）でADC（ボットレーン）のみ。他ロールの有意な pick 率は確認できず。",
+      "note": "全ソースでbot/ADCのみ掲載。Lolalytics にサポートページが存在するが専用スタッツの数値は取得できず、ADC 95% 以上と推定。サポートは閾値15%未満のためsub除外。",
       "sources": [
         {
-          "title": "Xayah Build - Lolalytics",
-          "url": "https://lolalytics.com/lol/xayah/build/",
-          "used_for": "ロール分布（ボットレーン専用ページ）"
-        },
-        {
-          "title": "Xayah Build 26.11 - METAsrc",
+          "title": "Xayah Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/xayah",
-          "used_for": "ロール確認"
+          "used_for": "ロール分布（ADC主体を確認）"
         },
         {
-          "title": "Xayah Build - U.GG",
+          "title": "Xayah Build, Runes & Counters Guide for bottom Xayah – Lolalytics",
+          "url": "https://lolalytics.com/lol/xayah/build/",
+          "used_for": "ロール分布確認（bottomメイン）"
+        },
+        {
+          "title": "Xayah Build with Highest Winrate – U.GG",
           "url": "https://u.gg/lol/champions/xayah/build",
-          "used_for": "ロール確認（ADC）"
+          "used_for": "ロール分布（ADC確認）"
         }
       ]
     },
@@ -2067,25 +2106,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 92,
-        "トップレーン": 8
+        "ジャングル": 95,
+        "トップレーン": 4,
+        "ミッドレーン": 1
       },
-      "note": "METAsrcの92.4% role rateよりジャングルが圧倒的主流。トップレーンはOM Tier（オフメタ）で勝率47.01%と低く、15%未満のためsubロールには含めない。",
+      "note": "METAsrc のゲーム数（ジャングル741,670 / トップ31,890 / ミッド5,333）から role share を算出。トップは約4%でサブロール閾値（15%）未満のため除外。",
       "sources": [
         {
-          "title": "Shyvana Stats 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/shyvana/stats",
-          "used_for": "ロール分布・role rate 92.4%"
-        },
-        {
-          "title": "Shyvana Build, Runes & Counters Guide for jungle – Lolalytics",
-          "url": "https://lolalytics.com/lol/shyvana/build/",
-          "used_for": "メインロール確認"
+          "title": "Shyvana Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/shyvana",
+          "used_for": "ロール別ゲーム数・ティア"
         },
         {
           "title": "Shyvana Top Lane Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/shyvana/top",
-          "used_for": "トップレーン実績確認（OM Tier・WR47.01%）"
+          "used_for": "トップレーン pick 数"
+        },
+        {
+          "title": "Shyvana Mid Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/shyvana/mid",
+          "used_for": "ミッドレーン pick 数"
         }
       ]
     },
@@ -2097,24 +2137,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 92
+        "ADC": 97
       },
-      "note": "ADCが圧倒的主体。Lolalytics にトップレーン用ページも存在するが具体的な share 数値が取得できず、15%未満と推定してsub除外。数値確認には lolalytics.com/lol/sivir/build/ を参照。",
+      "note": "全ソースでボットレーンADC専用チャンピオンとして記載。他レーンの pick rate は有意なデータなし（15%未満）。",
       "sources": [
         {
-          "title": "Sivir Build, Runes & Counters - bottom - Lolalytics",
+          "title": "Sivir Build, Runes & Counters Guide for bottom Sivir – Lolalytics",
           "url": "https://lolalytics.com/lol/sivir/build/",
-          "used_for": "ロール分布・メインレーン確認"
+          "used_for": "ロール分布（bottom 専用として記載）"
         },
         {
-          "title": "Sivir stats - LeagueOfGraphs",
+          "title": "Sivir Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/sivir/build",
+          "used_for": "Bot lane ADC 4.2% pick rate 確認"
+        },
+        {
+          "title": "Sivir stats – League of Graphs",
           "url": "https://www.leagueofgraphs.com/champions/stats/sivir",
-          "used_for": "レーン別統計参照"
-        },
-        {
-          "title": "Sivir Build 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/sivir",
-          "used_for": "パッチ別 pick rate 確認"
+          "used_for": "ロール補強確認"
         }
       ]
     },
@@ -2128,26 +2168,30 @@
         "ミッドレーン"
       ],
       "roleShares": {
-        "トップレーン": 60,
-        "ミッドレーン": 35,
-        "ジャングル": 5
+        "トップレーン": 75,
+        "ミッドレーン": 22
       },
-      "note": "Top A Tier・Mid C Tier。ゲーム数データではMidが多いが勝率・Tier差からTopがメイン。Midのshare推定35%でサブ判定。",
+      "note": "role share の正確な数値は search snippet から読み取れず、lolalytics/u.gg の専用ページ存在・mobachampion の記述（top most played / mid highest winrate）から推計。ミッドは~22%と推定し sub 判定（15-35%閾値に収まる）。",
       "sources": [
         {
-          "title": "Jayce Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/jayce",
-          "used_for": "ロール分布・Top Tier確認"
+          "title": "Jayce Build, Runes & Counters Guide for top Jayce",
+          "url": "https://lolalytics.com/lol/jayce/build/",
+          "used_for": "トップレーン専用ページの存在確認"
         },
         {
-          "title": "Jayce Mid Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/jayce/mid",
-          "used_for": "Mid Tier・ゲーム数確認"
+          "title": "Jayce Build, Runes & Counters Guide for middle Jayce",
+          "url": "https://lolalytics.com/lol/jayce/build/?lane=middle",
+          "used_for": "ミッドレーン専用ページの存在確認"
         },
         {
-          "title": "Jayce Build with Highest Winrate – U.GG",
+          "title": "Jayce Win Rate and Stats - MOBA Champion",
+          "url": "https://www.mobachampion.com/champion/jayce/",
+          "used_for": "top most played / mid highest winrate 記述"
+        },
+        {
+          "title": "Jayce Build with Highest Winrate - U.GG",
           "url": "https://u.gg/lol/champions/jayce/build",
-          "used_for": "勝率・ロール分布補強"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -2157,24 +2201,27 @@
       "main": [
         "トップレーン"
       ],
-      "sub": [
-        "サポート"
-      ],
+      "sub": [],
       "roleShares": {
-        "トップレーン": 79,
-        "サポート": 21
+        "トップレーン": 85,
+        "サポート": 12
       },
-      "note": "METAsrc のゲーム数から算出（Top 200,871 / Support 52,585）。直接の % 表示は取得できなかったため比率換算。",
+      "note": "サポートとしても一定数プレイされるが、METAsrcでC Tier（ニッチ）表記・役割シェアは推定12%前後で15%閾値未満のためsubに含めず",
       "sources": [
         {
-          "title": "Shen Build 26.11 – METAsrc LoL",
+          "title": "Shen Build 26.11 – Runes, Items, Counters – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/shen",
-          "used_for": "ロール別ゲーム数（Top 200,871）"
+          "used_for": "ロール分布・ティア確認"
         },
         {
           "title": "Shen Support Build 26.11 – METAsrc LoL",
           "url": "https://www.metasrc.com/lol/build/shen/support",
-          "used_for": "サポートゲーム数（52,585）"
+          "used_for": "サポート役割share確認"
+        },
+        {
+          "title": "Shen Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/shen/build",
+          "used_for": "メインロール確認"
         }
       ]
     },
@@ -2182,27 +2229,31 @@
       "ja": "ジグス",
       "en": "Ziggs",
       "main": [
-        "ADC",
+        "ADC"
+      ],
+      "sub": [
         "ミッドレーン"
       ],
-      "sub": [],
       "roleShares": {
-        "ADC": 54,
-        "ミッドレーン": 37,
-        "サポート": 8,
-        "トップレーン": 2
+        "ADC": 70,
+        "ミッドレーン": 30
       },
-      "note": "ADC 54%・Mid 37%（35%超えのためco-main）。Supportは8%で15%未満のためノイズ除外。role share数値はSeeMeta 26.06データ（Bottom 0.92% / Mid 0.64% / Support 0.13% / Top 0.03%）から算出。26.11でも傾向に変化なし（METAsrc: Bot pick率1.9%で確認）。",
+      "note": "ロール別 pick rate から role share を推定。Mobalytics: ADC 1.9% / Mid 0.8%（Emerald+）。比率換算で ADC ~70% / Mid ~30%。Mid は 15-35% 範囲のためサブロール扱い。Lolalytics のデフォルト表示も Bot（ADC）。",
       "sources": [
         {
-          "title": "Ziggs All Roles Guide - SeeMeta Patch 26.06",
-          "url": "https://seemeta.com/en/lol/ziggs",
-          "used_for": "ロール別pick率（role share算出ベース）"
+          "title": "Ziggs Build - Mobalytics Patch 26.11",
+          "url": "https://mobalytics.gg/lol/champions/ziggs/build",
+          "used_for": "ADC pick rate 1.9% / Mid pick rate 0.8% 確認"
         },
         {
-          "title": "Ziggs Build 26.11 – METAsrc LoL",
+          "title": "Ziggs Build, Runes & Counters - Lolalytics",
+          "url": "https://lolalytics.com/lol/ziggs/build/",
+          "used_for": "デフォルトロールが Bot（ADC）であることを確認"
+        },
+        {
+          "title": "Ziggs Build 26.11 - METAsrc",
           "url": "https://www.metasrc.com/lol/build/ziggs",
-          "used_for": "26.11パッチでのBot pick率確認"
+          "used_for": "ロール分布補強"
         }
       ]
     },
@@ -2214,25 +2265,27 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 99,
-        "トップレーン": 1
+        "ジャングル": 88,
+        "トップレーン": 7,
+        "ミッドレーン": 3,
+        "サポート": 2
       },
-      "note": "Jungle pick rate 6.9% / Top 0.1% (Emerald+, Patch 26.11)。Top role share ~1% で15%閾値を大きく下回るため sub なし。",
+      "note": "検索結果から数値を直接読み取れず推定値。Jungle が圧倒的主要ロール（pick rate 6.9% in jungle tier list vs 2.2% overall は jungle 集中を示す）。Top Lane は METAsrc に存在するが OM Tier / 45.67% WR で niche 扱い、15% 閾値未満と判断。",
       "sources": [
         {
-          "title": "Jarvan IV Build Jungle - Lolalytics",
-          "url": "https://lolalytics.com/lol/jarvaniv/build/",
-          "used_for": "ロール分布"
+          "title": "Jarvan IV Build – u.gg",
+          "url": "https://u.gg/lol/champions/jarvaniv/build",
+          "used_for": "ロール確認"
         },
         {
-          "title": "Jarvan IV Build 26.11 - METAsrc",
-          "url": "https://www.metasrc.com/lol/build/jarvan",
-          "used_for": "ロール分布"
+          "title": "Jungle Tier List Patch 26.11 – MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champions/tier-list/jungle",
+          "used_for": "Jungle pick rate 6.9%"
         },
         {
-          "title": "Jarvan IV Build Top - Lolalytics",
-          "url": "https://lolalytics.com/lol/jarvaniv/build/?lane=top",
-          "used_for": "トップレーン pick rate 確認"
+          "title": "Jarvan IV Top Lane Build – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/jarvan/top",
+          "used_for": "Top Lane 存在確認"
         }
       ]
     },
@@ -2244,25 +2297,26 @@
       ],
       "sub": [],
       "roleShares": {
-        "ジャングル": 88,
-        "サポート": 12
+        "ジャングル": 85,
+        "サポート": 11,
+        "トップレーン": 4
       },
-      "note": "PickRate比からの推定: Jungle 4.5% vs Support 0.62%。Supportのrole shareは約12%で15%閾値未満のためsubに含めない",
+      "note": "Support pick rate（0.62% vs Jungle 4.6%）からrole shareを算出。サポートは約11%と推定され15%閾値を下回るためsubなし。",
       "sources": [
         {
-          "title": "Shaco Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/shaco/build",
-          "used_for": "ロール分布・PickRate"
+          "title": "Shaco Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/shaco",
+          "used_for": "ロール別pick rate（Jungle 4.6%）"
         },
         {
-          "title": "Shaco Build Guide - Mobalytics Patch 26.11",
-          "url": "https://mobalytics.gg/lol/champions/shaco/build",
-          "used_for": "ロール分布確認"
+          "title": "Shaco Support Stats 26.10 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/shaco/support/stats",
+          "used_for": "サポートpick rate（0.62%）参考"
         },
         {
-          "title": "Shaco Build - Lolalytics",
+          "title": "Shaco Build, Runes & Counters – LoLalytics",
           "url": "https://lolalytics.com/lol/shaco/build/",
-          "used_for": "ジャングル主力確認"
+          "used_for": "ジャングルメイン確認"
         }
       ]
     },
@@ -2276,25 +2330,25 @@
         "ジャングル"
       ],
       "roleShares": {
-        "トップレーン": 74,
-        "ジャングル": 26
+        "トップレーン": 75,
+        "ジャングル": 25
       },
-      "note": "直接のrole share数値は取得不可のため、ロール内pick率（トップ4.9% / ジャングル1.7%）から概算。比率でトップ約74%・ジャングル約26%と推定。ジャングルは15%超35%未満でsubに分類。",
+      "note": "U.GG のレーン別 pick rate から role share を推算。Top 5.0% / Jungle 1.7% の比率から Top≈75% / Jungle≈25%。Jungle は 15%以上35%未満のためサブロール判定。",
       "sources": [
         {
-          "title": "Jax Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/jax/build",
-          "used_for": "ロール別pick率（top 4.9% / jungle 1.7%）"
+          "title": "Jax Counter - U.GG Patch 26.11",
+          "url": "https://u.gg/lol/champions/jax/counter",
+          "used_for": "レーン別 pick rate (Top 5.0% / Jungle 1.7%)"
         },
         {
-          "title": "Jax Build, Runes & Counters - Lolalytics (top)",
+          "title": "Jax Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/jax",
+          "used_for": "ロール確認補強"
+        },
+        {
+          "title": "Jax Build, Runes & Counters – Lolalytics",
           "url": "https://lolalytics.com/lol/jax/build/",
-          "used_for": "トップレーン確認"
-        },
-        {
-          "title": "Jax Build, Runes & Counters - Lolalytics (jungle)",
-          "url": "https://lolalytics.com/lol/jax/build/?lane=jungle",
-          "used_for": "ジャングルロール確認"
+          "used_for": "ロール分布確認"
         }
       ]
     },
@@ -2306,20 +2360,24 @@
       ],
       "sub": [],
       "roleShares": {
-        "サポート": 99,
-        "ADC": 1
+        "サポート": 95
       },
-      "note": "Lolalytics でサポート 99.07% lane coverage を確認。他ロールは 1% 未満でノイズ扱い。",
+      "note": "具体的なレーン別 pick 率の数値は検索で直接取得できなかったが、全ソース（Lolalytics・U.GG・METAsrc・Mobalytics）がサポート一択を示す。メインロール順: Support >> Top > ADC > Mid > Jungle の記載あり。他ロールは 15% 閾値以下と判断しサブなし",
       "sources": [
         {
-          "title": "Janna Build, Runes & Counters Guide for support Janna - LoLalytics",
+          "title": "Janna Build, Runes & Counters Guide for support Janna – Lolalytics",
           "url": "https://lolalytics.com/lol/janna/build/",
-          "used_for": "ロール分布（サポート 99.07% lane coverage）"
+          "used_for": "ロール確認"
         },
         {
-          "title": "Janna Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/janna",
-          "used_for": "ロール確認（サポートのみ掲載）"
+          "title": "Janna Build with Highest Winrate – U.GG",
+          "url": "https://u.gg/lol/champions/janna/build",
+          "used_for": "ロール分布（サポートメイン確認）"
+        },
+        {
+          "title": "Janna stats – League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/janna",
+          "used_for": "ロール分布"
         }
       ]
     },
@@ -2329,30 +2387,28 @@
       "main": [
         "サポート"
       ],
-      "sub": [
-        "ミッドレーン"
-      ],
+      "sub": [],
       "roleShares": {
-        "サポート": 78,
-        "ミッドレーン": 18,
-        "トップレーン": 4
+        "サポート": 80,
+        "ミッドレーン": 12,
+        "トップレーン": 5
       },
-      "note": "詳細な数値は直接読み取れなかったが、複数ソース（U.GG・Mobalytics・Mobafire）がSupport主体・Mid二番手を一致して示す。ロール順序「Support > Mid > Top > ADC > Jungle」が確認できた。Midは2026年OTPガイドが複数存在し、15%程度の継続的なプレイが推定される。Supportが圧倒的主体。",
+      "note": "パッチ26.11時点でサポートが明確な主戦場（A tier、pick rate 2.7%@Emerald+）。トップレーンはOM Tier（オフメタ）で5%未満。ミッドレーンは歴史的に2番手だが現パッチでは15%を下回ると判断しsub外。roleSharesは実数値でなく検索結果からの推定値。",
       "sources": [
         {
-          "title": "Zilean Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/zilean/build",
-          "used_for": "ロール確認・ピック率"
+          "title": "Zilean Build Guide - Patch 26.11 | Mobalytics",
+          "url": "https://mobalytics.gg/lol/champions/zilean/build",
+          "used_for": "ロール分布・サポートA tier確認"
         },
         {
-          "title": "Zilean Guide - Mobalytics",
-          "url": "https://mobalytics.gg/lol/champions/zilean/guide",
-          "used_for": "ロール分布・メタ確認"
+          "title": "Zilean Top Lane Build 26.11 – METAsrc",
+          "url": "https://www.metasrc.com/lol/build/zilean/top",
+          "used_for": "トップレーンOM Tier確認"
         },
         {
-          "title": "Zilean Build Guides Patch 26.11 - Mobafire",
-          "url": "https://www.mobafire.com/league-of-legends/champion/zilean-17",
-          "used_for": "OTPガイド・ロール確認"
+          "title": "Zilean stats - League of Graphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/zilean",
+          "used_for": "ロール統計参照"
         }
       ]
     },
@@ -2364,19 +2420,21 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 98
+        "ADC": 98,
+        "ミッドレーン": 1,
+        "サポート": 1
       },
-      "note": "ADCでの起用がほぼ全て（98%超）。他レーンはノイズレベル。",
+      "note": "ADCに98.4%集中。他ロールは15%未満のノイズ。",
       "sources": [
         {
-          "title": "Jhin stats - League of Legends | leagueofgraphs",
+          "title": "Jhin stats - League of Legends",
           "url": "https://www.leagueofgraphs.com/champions/stats/jhin",
-          "used_for": "ロール分布（ボット98.4%）"
+          "used_for": "ロール分布（ADC 98.4%）"
         },
         {
-          "title": "Jhin Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/jhin",
-          "used_for": "ピック率・ウィンレート確認"
+          "title": "Jhin Stats & Win Rate - MetaBot.GG",
+          "url": "https://metabot.gg/en/league/champion/Jhin/overview",
+          "used_for": "ロール別ピック率補強"
         }
       ]
     },
@@ -2387,34 +2445,30 @@
         "ジャングル"
       ],
       "sub": [
-        "トップレーン"
+        "トップレーン",
+        "ミッドレーン"
       ],
       "roleShares": {
-        "ジャングル": 65,
+        "ジャングル": 58,
         "トップレーン": 25,
-        "ミッドレーン": 10
+        "ミッドレーン": 17
       },
-      "note": "roleShares は直接数値を取得できなかったため、各サイトのティア評価・デフォルトビルドページ・AP Xin Zhao流行（パッチ26.11でトップ台頭）から推定。ジャングルがS tier・デフォルトビルド、トップがA tier・独立ビルドページあり。ミッドはB tierで10%前後と推定しsub対象外。",
+      "note": "ゲーム数から推算: Jungle 722,582 / Top 306,740 / Mid 216,178。直接のshare%は取得できず比率で算出",
       "sources": [
         {
-          "title": "Xin Zhao Build – METAsrc LoL 26.11",
-          "url": "https://www.metasrc.com/lol/build/xin-zhao",
-          "used_for": "ロール別ティア・ピック率"
-        },
-        {
-          "title": "Xin Zhao Build – Lolalytics",
+          "title": "Xin Zhao Build, Runes & Counters Guide for jungle Xin Zhao",
           "url": "https://lolalytics.com/lol/xinzhao/build/",
-          "used_for": "ジャングルメインビルド確認"
+          "used_for": "メインロール確認"
         },
         {
-          "title": "Xin Zhao Top Build – Lolalytics",
-          "url": "https://lolalytics.com/lol/xinzhao/build/?lane=top",
-          "used_for": "トップレーン独立ビルド確認"
+          "title": "Xin Zhao Build 26.11 – Runes, Items, Counters – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/xin-zhao",
+          "used_for": "ロール別ゲーム数（Jungle/Top/Mid）"
         },
         {
-          "title": "LoL Patch 26.11 preview – Dotesports",
-          "url": "https://dotesports.com/league-of-legends/news/lol-patch-26-11-preview",
-          "used_for": "AP Xin Zhao流行背景確認"
+          "title": "Xin Zhao Top Lane Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/xin-zhao/top",
+          "used_for": "トップレーンゲーム数"
         }
       ]
     },
@@ -2426,26 +2480,25 @@
       ],
       "sub": [],
       "roleShares": {
-        "ADC": 97,
-        "ミッドレーン": 2,
-        "サポート": 1
+        "ADC": 95,
+        "トップレーン": 1
       },
-      "note": "ロール分布の具体的な数値はサイトから直接読み取れなかったが、複数ソースの役割順（ADC > Mid > Support > Top > Jungle）と S+ Tier ADC 評価からADC一強が明確。他ロールは15%未満と判断。",
+      "note": "複数ソースで明確にbot lane ADCがメイン。top laneビルドページは存在するが勝率40.85%と極低く、role shareはノイズ以下。数値は推定。",
       "sources": [
         {
-          "title": "Jinx Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/jinx/build",
-          "used_for": "ロール分布・role order確認"
-        },
-        {
-          "title": "Jinx Build, Runes & Counters - Lolalytics",
+          "title": "Jinx Build, Runes & Counters Guide for bottom – LoLalytics",
           "url": "https://lolalytics.com/lol/jinx/build/",
-          "used_for": "ロール分布補強"
+          "used_for": "ロール分布・メインロール確認"
         },
         {
-          "title": "Jinx ADC Build - OP.GG",
-          "url": "https://www.op.gg/champions/jinx/adc/build",
-          "used_for": "メインロール確認"
+          "title": "Jinx Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/jinx",
+          "used_for": "tier・win rate確認"
+        },
+        {
+          "title": "Jinx Build, Runes & Counters Guide for top – LoLalytics",
+          "url": "https://lolalytics.com/lol/jinx/build/?lane=top",
+          "used_for": "top lane win rate参照（40.85%、ノイズと判定）"
         }
       ]
     },
@@ -2460,7 +2513,7 @@
         "トップレーン": 94,
         "サポート": 6
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Singed Build 26.11 – METAsrc LoL",
@@ -2493,7 +2546,7 @@
         "トップレーン": 1.5,
         "ジャングル": 0
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Syndra Build, Runes & Counters Guide - LoLalytics",
@@ -2516,7 +2569,7 @@
         "ミッドレーン": 30,
         "トップレーン": 10
       },
-      "note": "Lolalytics のデフォルト表示がサポートのため サポートが最多 pick。ミッドは A-tier（52.9% WR）で二番手。トップは少数派で15%未満と推定。正確な role share 数値は検索結果から直接読み取れなかったため近似値",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Swain Build, Runes & Counters Guide for support Swain - Lolalytics",
@@ -2555,7 +2608,7 @@
         "サポート": 5,
         "ミッドレーン": 2
       },
-      "note": "patch 26.11 の具体的な role share 数値をページ本文から直接取得できなかったため、複数ソース（U.GG、METAsrc、Mobafire）のゲーム数・ビルドガイド存在有無から推計。ジャングルが圧倒的多数（U.GGでジャングル 232件 vs サポート 35件）、Mobafire に patch 26.11 向けトップビルドガイドあり → トップ sub 判定。サポートはゲーム数少なく 15% 未満と判断。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "U.GG Skarner Build",
@@ -2586,7 +2639,7 @@
         "ミッドレーン": 8,
         "トップレーン": 5
       },
-      "note": "各レーン pick 率(Bot 10.8%/Mid 1.0%/Top 0.6%)から role share を推算。ADC以外は全て15%未満でノイズ水準。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Smolder Build 26.11 – METAsrc LoL",
@@ -2614,7 +2667,7 @@
         "ADC": 0.1,
         "ジャングル": 0
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Thresh Build, Runes & Counters Guide - Lolalytics",
@@ -2635,7 +2688,7 @@
         "トップレーン": 7,
         "サポート": 4
       },
-      "note": "検索結果から具体的な role share % は読み取れなかった。Smite推奨・ジャングル一択の表記が複数ソースで一致。Top/Supportの数値は推定（いずれも15%未満とみられる）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Sejuani Build 26.11 – METAsrc LoL",
@@ -2664,7 +2717,7 @@
       "roleShares": {
         "トップレーン": 80
       },
-      "note": "3回の検索でロール別 pick 率の数値内訳（%）が読み取れなかった。SeeMeta・U.GG・METAsrc・Mobalytics いずれもトップレーンのみ S/B ティア掲載。MobaFire に「Sett Support Build Guides 2026 Patch 26.11」が存在するが、role share 15% 以上かどうか確認できないため sub には含めず。トップレーンのみ main とし sub は空配列とする（フォールバック適用）。roleShares のトップレーン 80% は推定値。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Sett Build, Runes & Counters – Lolalytics",
@@ -2702,7 +2755,7 @@
         "ジャングル": 14,
         "トップレーン": 7
       },
-      "note": "role share の正確な数値は検索で取得できず、U.GG のロール順（Mid > Jungle > Top > Support > ADC）と各サイトの専用ビルドページ有無から推定。ジャングルは15%前後のボーダーラインだが、複数ソースで二番手として一貫して言及されているため sub に含めた。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Zed Counter - U.GG Patch 26.11",
@@ -2738,7 +2791,7 @@
         "サポート": 55,
         "ADC": 45
       },
-      "note": "Support pick rate 7.5%、ADC pick rate 6.1%（Emerald+、patch 26.11）。比率から role share を推計: サポート約55% / ADC約45%。両方35%超のため両方 main 判定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Senna Build 26.11 – METAsrc LoL",
@@ -2771,7 +2824,7 @@
         "サポート": 30,
         "ADC": 5
       },
-      "note": "検索スニペットから正確な数値は読み取れず。複数ソース（U.GG・METAsrc・Mobalytics・LoG）でMid→Support→ADCの順が一貫して確認済み。サポートはMETAsrcに専用ビルドページ・Aティア記録あり（26.10時点 50.70%WR）。roleSharesは相対的証拠に基づく推定値。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Xerath Build with Highest Winrate - U.GG",
@@ -2809,7 +2862,7 @@
         "ADC": 22,
         "ミッドレーン": 10
       },
-      "note": "各サイトがデフォルトでサポートビルドを表示。ADCは69,652件の専用データが存在し複数サイトで独立追跡（OM Tier扱いだがサンプル数は有意）。ミッドは26.10時点のビルドは存在するが15%に届かないと判断。role shareの数値は各サイトの絶対件数から推算した概算値（直接パーセント表示は取得不可）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Seraphine Build – METAsrc LoL 26.11",
@@ -2843,7 +2896,7 @@
       "roleShares": {
         "ADC": 97
       },
-      "note": "全ソースで一貫してADC（ボットレーン）専用として扱われている。他ロールの有意なpick率なし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Zeri Build 26.11 – METAsrc LoL",
@@ -2868,7 +2921,7 @@
         "ミッドレーン": 88,
         "サポート": 10
       },
-      "note": "METAsrc に Zoe Support ページあり（C Tier）。ただし pick share は概算 10% 前後と推測され 15% 閾値未満のためサブロール対象外とした。数値は複数ソースからの概算（明示的な role share % は取得できず）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Zoe Build, Runes & Counters Guide for middle – Lolalytics",
@@ -2899,7 +2952,7 @@
         "トップレーン": 5,
         "ミッドレーン": 3
       },
-      "note": "複数ソースでサポートが圧倒的主役。トップ約5%・ミッド約3%はいずれも15%未満のためノイズ扱い。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Sona Build, Runes & Counters Guide for support Sona",
@@ -2930,7 +2983,7 @@
         "トップレーン": 8,
         "ミッドレーン": 4
       },
-      "note": "明確な数値が取得できなかったため概算。サポートが圧倒的主力（S Tier、pick率5.2%）。トップ・ミッドは niche 枠で15%未満と判断し sub 除外。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Soraka Build 26.11 – Runes, Items, Counters – METAsrc LoL",
@@ -2957,7 +3010,7 @@
         "ミッドレーン": 39,
         "トップレーン": 4
       },
-      "note": "直接のrole share数値は取得できず、per-lane pick rate（JG 6.8% / Mid 4.3% / Top微小）の比率から推計。Midは39%≒35%閾値超のためmainに分類。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Diana jungle build - Lolalytics",
@@ -2990,7 +3043,7 @@
         "ミッドレーン": 3,
         "ADC": 2
       },
-      "note": "LoLalyticsデフォルトURLがサポート（主ロール示唆）、METAsrcではトップが326,225ゲームとサポートに拮抗。両ロールが35%以上の主使用率と判断。数値はゲーム数比から推計。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Tahm Kench Build, Runes & Counters – LoLalytics (support)",
@@ -3019,7 +3072,7 @@
       "roleShares": {
         "トップレーン": 95
       },
-      "note": "検索結果から具体的なレーン別 share 数値は読み取れなかったが、全ソースがトップレーン専業として扱っており、ジャングル・ミッドの記載なし。トップレーン 95%超と推定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Darius Build 26.11 – METAsrc LoL",
@@ -3049,7 +3102,7 @@
         "サポート": 92,
         "トップレーン": 5
       },
-      "note": "検索結果からLolalytics/U.GGの正確なrole share数値は読み取れなかったが、サポートの勝率53.9%・トップレーンの勝率39.2%という大きな差と、デフォルトビルドがサポートであることからサポート90%超と推定。トップレーンは勝率が著しく低く15%閾値未満と判断。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Taric Build, Runes & Counters Guide for support Taric",
@@ -3075,7 +3128,7 @@
         "ミッドレーン": 57,
         "ジャングル": 38
       },
-      "note": "Lolalytics でミッドがデフォルト表示、ジャングル専用ページも存在。Mobalytics ガイドに『AP Mageの中で最もジャングルで支配的』との記述あり。ロール比率の精確な数値は取得できず推定値（mid ~57% / jg ~38%）。ジャングルが35%前後のボーダーラインのため main に含めているが不確実性あり。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Taliyah Build, Runes & Counters – middle – Lolalytics",
@@ -3107,7 +3160,7 @@
         "ジャングル": 62,
         "ミッドレーン": 33
       },
-      "note": "WebSearchから正確なrole share数値を読み取れず推定値。Jungle A Tier（pick rate 5.0% Emerald+）が主力、Mid B Tierが副次。roleSharesは推定値のため精度低め。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Talon Build with Highest Winrate - U.GG",
@@ -3139,7 +3192,7 @@
         "サポート": 6,
         "ジャングル": 2
       },
-      "note": "複数ソースがトップレーン専業を示す。U.GG・METAsrc ともにトップのみ統計ページあり。ミッドは推定値で15%未満のためsubなし。数値は検索結果からの推定（直接のrole share%表記なし）",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Cho'Gath Build 26.11 – METAsrc LoL",
@@ -3172,7 +3225,7 @@
         "ADC": 2,
         "ジャングル": 0
       },
-      "note": "トップレーン 9% はサブロール閾値15%未満のため除外。ミッドレーン一択。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Twisted Fate LoLalytics Build Patch 26.11",
@@ -3195,7 +3248,7 @@
         "サポート": 7,
         "ミッドレーン": 2
       },
-      "note": "トップレーンが圧倒的多数。他ロールは全て15%未満のためsubなし",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lolalytics - Teemo Build Stats",
@@ -3222,7 +3275,7 @@
         "ADC": 78,
         "ジャングル": 20
       },
-      "note": "パッチ26.11の正確なロール比率は検索結果から数値として直接取得できず。ADCがメインロールであることは複数ソースで確認。Mobalytics・MobaFireがTwitchジャングルをパッチ26.10/26.11で独立ロールとして追跡（専用counterページ・ビルドガイドあり）しており、role shareは15%超と推定してsubに含めた。数値はおおよその推定値。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Twitch Build bottom - Lolalytics",
@@ -3252,7 +3305,7 @@
         "トップレーン": 88,
         "ジャングル": 12
       },
-      "note": "Top lane pick rate (3.5%) vs Jungle (0.5%) in Emerald+ — ratio roughly 7:1。Jungle は 15% 閾値未満のためサブ対象外。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Dr. Mundo Build 26.11 – METAsrc LoL",
@@ -3284,7 +3337,7 @@
         "トップレーン": 70,
         "ジャングル": 30
       },
-      "note": "pick rate(top=1.4%/jungle=0.6%)からrole shareを算出。他ロールは無視できるレベル",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "METAsrc Trundle Build 26.11",
@@ -3310,7 +3363,7 @@
         "ミッドレーン": 10,
         "トップレーン": 2
       },
-      "note": "METAsrc の role rate 87.7% が ADC 一択を示す。ミッドも専用ページあり（Mobalytics/METAsrc）だが、share は推定10%前後で15%閾値を下回るため sub なし。数値は検索スニペットから読み取った概算（lolalytics.com 直アクセス不可）",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Tristana Stats 26.11 – METAsrc LoL",
@@ -3343,7 +3396,7 @@
         "ADC": 0,
         "サポート": 0
       },
-      "note": "トップレーン圧倒的主体。ミッドレーン10.9%はサブロール閾値15%未満のためノイズ扱い。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Tryndamere Build & Stats — Lolalytics",
@@ -3364,7 +3417,7 @@
         "トップレーン": 7,
         "サポート": 3
       },
-      "note": "数値は検索結果から直接読み取れず推定値。METAsrcにTop・Support個別ビルドページが存在するがいずれもOff-Meta(OM)扱い。Lolalytics/U.GGともにbottomが唯一のメイン掲載ロール。TopとSupportは15%未満と判定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Draven Build with Highest Winrate - U.GG",
@@ -3394,7 +3447,7 @@
         "トップレーン": 89,
         "ジャングル": 0
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Gnar Build 26.11 – METAsrc LoL",
@@ -3419,7 +3472,7 @@
         "トップレーン": 88,
         "ジャングル": 10
       },
-      "note": "検索結果では正確な%が取得できなかった。Lolalytics/U.GG にトップ・ジャングル両ページが存在するが、ジャングルは15%未満と推定されるためsubに含めず。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nasus Build top - Lolalytics",
@@ -3451,7 +3504,7 @@
         "ジャングル": 75,
         "ミッドレーン": 20
       },
-      "note": "ロール別 pick% の詳細スニペットが取得できなかった。Lolalytics デフォルトがジャングル（S tier / WR 50.2%）、METAsrc・Mobalytics でミッドレーンが A tier で掲載されていることから概算値を算出。正確な role share は lolalytics.com/lol/naafiri/build/ の Role 欄を要確認",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Naafiri Build, Runes & Counters Guide for jungle Naafiri – LoLalytics",
@@ -3480,7 +3533,7 @@
       "roleShares": {
         "サポート": 99
       },
-      "note": "全ソースがサポートのみ記載。他ロールでの有意な pick 率は確認できず。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nami Stats & Win Rate - LoL Patch 26.11 | MetaBot.GG",
@@ -3513,7 +3566,7 @@
         "ミッドレーン": 18,
         "トップレーン": 5
       },
-      "note": "Lolalytics のデフォルトレーンがサポート。METAsrc でサポートの role rate が約77%。ミッドレーンは Mobalytics / Lolalytics で mid ガイドあり・約18%と推定（数値は METAsrc の残り22.8% を mid/top に分配した推計値）",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Neeko Stats 26.11 – METAsrc LoL",
@@ -3542,7 +3595,7 @@
       "roleShares": {
         "ADC": 99
       },
-      "note": "検索結果ではBot/ADC以外のロール数値が得られず。Nilahは設計上ADC専用チャンピオンであり、他レーンでのpick率は測定不能レベルのため、ADC 99%として処理。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nilah Build 26.11 – METAsrc LoL",
@@ -3568,7 +3621,7 @@
         "トップレーン": 9,
         "サポート": 1
       },
-      "note": "正確なrole share数値はWebSearchから直接取得できなかった。全ソース（Lolalytics・U.GG・METAsrc）がジャングルを主要ロールとして掲載。トップレーン約9%・サポート0.1%は15%閾値未満のため除外。roleSharesは複数ソースの傍証から推定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nidalee Build, Runes & Counters Guide for jungle Nidalee – Lolalytics",
@@ -3597,7 +3650,7 @@
       "roleShares": {
         "ジャングル": 97
       },
-      "note": "ジャングル特化チャンピオン。他レーンのpick率はノイズレベル（15%未満）のため sub なし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nunu & Willump Build 26.11 – METAsrc LoL",
@@ -3625,7 +3678,7 @@
         "トップレーン": 18,
         "ジャングル": 2
       },
-      "note": "具体的な数値はスニペットから直読みできなかったため推定値。Lolalytics がデフォルトをサポートとして表示し、トップ専用ビルドページも存在することから、サポート約80%・トップ約18%と推定。トップは15%超のため sub に含めた。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nautilus Build, Runes & Counters – Lolalytics support",
@@ -3656,7 +3709,7 @@
         "ミッドレーン": 10,
         "トップレーン": 3
       },
-      "note": "複数ソースがジャングルを支配的主ロールと確認（pick rate 8.1%・Sティア）。METAsrcにNocturne Mid専用ページあり（mid pick あり）だが、スニペットからはmid role shareは~10%程度と推定され15%未満のためsubには含めない。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Nocturne Build 26.11 – METAsrc",
@@ -3688,7 +3741,7 @@
         "ミッドレーン": 1,
         "ADC": 1
       },
-      "note": "全サイトでサポートが圧倒的主流。Lolalytics にトップページが存在するが win rate 55.95%（サンプル数極少のオフメタ）。15%閾値を超えるサブロールなし。数値は検索結果から推定（直接取得できず）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Bard Build – LoLalytics Support",
@@ -3720,7 +3773,7 @@
         "ジャングル": 4,
         "ADC": 1
       },
-      "note": "検索結果から正確な%数値は取得できなかったが、全ソースがサポートを圧倒的主要ロールと確認。Lolalytics・METAsrc・U.GGともにサポートページが主体。ジャングルページは存在するがWR14%前後と低く実質ノイズ。ミッドも5-10%程度で15%未満と推定。roleSharesは複数ソースの傾向から概算値。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Pyke Build, Runes & Counters – Lolalytics (Support)",
@@ -3759,7 +3812,7 @@
         "ミッドレーン": 28,
         "サポート": 17
       },
-      "note": "Lolalytics のデフォルトページはトップ（WR 52.72%）。ミッドは U.GG のデフォルトビルドページとして存在（WR ~49%）、サポートも Lolalytics に専用ページあり（WR ~49%）。検索スニペットから exact な role share 数値は取得できなかったため、ページの優先度・WR から推定値を使用。ミッドは 35% 未満と判断し sub に分類。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Heimerdinger Build top – Lolalytics",
@@ -3799,7 +3852,7 @@
         "ジャングル": 7,
         "ADC": 4
       },
-      "note": "正確な role share 数値は検索結果から直接取得できず。METAsrc で Top ゲーム数 131,395 / 総ゲーム数 276,183 から トップ ≈ 48% を推定。Support は別途 A-tier で pick rate 3.0% (Top は 4.65%) と確認されており、比率から ~28% と推定。Lolalytics がサポートをデフォルト表示するほど存在感あり。Mid/Jungle/ADC は 15% 未満と推定。数値は全て概算。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Pantheon Stats 26.11 – METAsrc LoL",
@@ -3834,7 +3887,7 @@
         "ミッドレーン": 98,
         "トップレーン": 2
       },
-      "note": "Top 9,201 games / Mid 488,360 games（約2%）で閾値15%未満のため sub なし",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Viktor Build LoL Runes & Items Patch 26.11 Mid - METAsrc",
@@ -3858,7 +3911,7 @@
       "roleShares": {
         "トップレーン": 85
       },
-      "note": "Lolalytics にジャングルページ（https://lolalytics.com/lol/fiora/build/?lane=jungle）が存在し、ジャングル起用は確認できるが、role share の数値が読み取れず 15% 超かどうか判断不能のため sub に含めない。トップレーンが圧倒的メインロール（Mobalytics/METAsrc/U.GG 全て top 表記）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Fiora Build - U.GG",
@@ -3896,7 +3949,7 @@
         "ADC": 1,
         "サポート": 1
       },
-      "note": "正確なrole share数値はWebSearchで取得できず。ミッドレーンが圧倒的主力（S-tier, 勝率51.6-53.75%, pick率5.7%）。ジャングルの専用ページは存在するが26.10勝率46.77%でオフメタ扱いと推測、15%未満と判断。数値は概算。サブロールなしとする。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Fizz Build 26.11 – METAsrc LoL",
@@ -3931,7 +3984,7 @@
         "ジャングル": 88,
         "トップレーン": 12
       },
-      "note": "pick率ベースの概算: JG 2.1% / Top 0.3% → role share JG≒88% / Top≒12%。Top は15%未満のためサブ対象外。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Fiddlesticks Build 26.11 - METAsrc LoL",
@@ -3957,7 +4010,7 @@
         "ADC": 14,
         "サポート": 11
       },
-      "note": "ADC 14%・サポート 11% はいずれも閾値15%未満のためノイズ扱い",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Hwei Trends - OP.GG",
@@ -3976,7 +4029,7 @@
       "roleShares": {
         "ジャングル": 88
       },
-      "note": "TopとMidはMETAsrcでOM(Off-Meta)Tier。役割別人気度88.2%がジャングルで、残り12%が全ロール合計のため、Top/Midは15%未満と判定しsubには含めない。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Briar stats - League of Legends",
@@ -4004,7 +4057,7 @@
         "ADC": 1,
         "ミッドレーン": 1
       },
-      "note": "サポートが95.7%で圧倒的メイン。残り全ロール合計4.3%のためサブなし",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Braum Build 26.11 – METAsrc LoL",
@@ -4026,7 +4079,7 @@
         "ミッドレーン": 65,
         "トップレーン": 30
       },
-      "note": "ロール別の正確なshare%は検索結果から直接読み取れず推定値。ミッド: S/S+ティア・pick率5.0%（Emerald+）で支配的。トップ: Cティア・勝率48.95%と弱く二次的。METAsrcもLoLalyticsもミッドを主ロールとして掲載。トップはshare約30%と推定し sub 判定（15〜35%ライン）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "METAsrc Vladimir Top Lane Build 26.11",
@@ -4065,7 +4118,7 @@
         "ADC": 41,
         "ミッドレーン": 17
       },
-      "note": "role share はロール別 pick rate (Support 3.5% / ADC 3.4% / Mid 1.4%) の相対比から算出。パッチ26.11でADC台頭を受けてBase Armor削減ナーフ。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Brand Bot Build Guide - Patch 26.11 | Mobalytics",
@@ -4096,7 +4149,7 @@
         "ジャングル": 1,
         "ADC": 1
       },
-      "note": "SeeMeta patch 26.07 実測で202試合中200試合がサポート（99%）。ジャングル・ボット各1試合のみ（<1%）。patch 26.11でも同傾向確認（サポートpick率5.2%）。他ロールは15%閾値に遠く届かないためsubなし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Blitzcrank All Roles Guide - SeeMeta patch 26.07",
@@ -4124,7 +4177,7 @@
         "サポート": 18,
         "ADC": 5
       },
-      "note": "検索では具体的な数値が取得できなかったため概算。ミッドは26.11でSティア(51%+勝率)。Lolalytics・Mobalytics両方でサポート専用ページが存在し実プレイが十分あることを確認。ADCページも存在するが5%未満と推定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Veigar Build, Runes & Counters – middle (Lolalytics)",
@@ -4160,7 +4213,7 @@
         "トップレーン": 11,
         "ミッドレーン": 2
       },
-      "note": "全ソースがジャングルをデフォルトロールとして表示。Lolalytics・U.GG・METAsrc の URL 構造もジャングル基準。トップレーンガイドは存在するが、pick share の数値が読み取れなかったため推定値（約11%）。15%未満と判断し sub なし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Hecarim Build, Runes & Counters Guide for jungle Hecarim",
@@ -4190,7 +4243,7 @@
         "ジャングル": 92,
         "トップレーン": 5
       },
-      "note": "Jungle が圧倒的主役。Top Lane は METAsrc で OM Tier（勝率45%）でありオフメタ扱い。role share の明示数値は取得できなかったが、複数ソースが Jungle 専用として扱っており、Top は15%未満と判定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Bel'Veth Build 26.11 – METAsrc LoL",
@@ -4223,7 +4276,7 @@
         "トップレーン": 28,
         "ジャングル": 8
       },
-      "note": "Lolalytics のデフォルトページがサポートであることからサポートが最大 pick 。トップレーンも C+ Tier で有意なプレイ率あり（推定 25〜30%）。ジャングルは D- Tier で 10% 未満と判断。exact な数値は検索結果から直接読み取れなかったため推定値。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Poppy Build, Runes & Counters Guide for support Poppy - LoLalytics",
@@ -4256,7 +4309,7 @@
         "ジャングル": 28,
         "ミッドレーン": 5
       },
-      "note": "検索結果から具体的な数値の読み取りが困難。Lolalytics・METAsrc・U.GG いずれもトップレーンを主ロールとして表示。ジャングルは複数ソースに掲載あり（推定25〜30%）。推定値に基づく判定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Volibear Build, Runes & Counters Guide for top - LoLalytics",
@@ -4289,7 +4342,7 @@
         "トップレーン": 22,
         "ジャングル": 10
       },
-      "note": "精確なrole share数値は検索結果から直接読み取れず推定値。Lolalytics のデフォルトページがサポート（Bティア、53%勝率）、トップはCティア（0.4%ピック率、Emerald+）、ジャングルはDティア。トップが15%以上の可能性が高いと判断しsubに含めた。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Maokai Build, Runes & Counters (support) – Lolalytics",
@@ -4323,7 +4376,7 @@
       "roleShares": {
         "ジャングル": 85
       },
-      "note": "Jungle が約84.5%で圧倒的主力。他ロールは15%未満のためサブなし。S+ティア、勝率50.5%（Emerald+）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Master Yi stats - League of Legends",
@@ -4347,7 +4400,7 @@
       "roleShares": {
         "ミッドレーン": 85
       },
-      "note": "複数ソース（METAsrc・U.GG・Mobalytics・Lolalytics）でパッチ26.11のミッドレーン主体を確認（S+ティア・52.01%勝率）。SeeMeta にサポートページ（patch 26.10）が存在するが具体的な role share 数値が取得できず 15% 閾値の判定が不可のため除外。ミッドレーン一択と判断。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Malzahar Build 26.11 – METAsrc LoL",
@@ -4385,7 +4438,7 @@
         "ミッドレーン": 4,
         "ADC": 1
       },
-      "note": "Web検索では数値が直接読み取れず推定値。LoLalytics でトップ B+tier・ジャングル D tier・サポート D tier の格差が確認できた。U.GG の役割順は Top > Jungle > Mid > Support > ADC。ジャングル・サポートは D tier かつ pick 数が少なく 15% 未満と判定。トップレーン単独メイン。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Malphite Build – LoLalytics (top)",
@@ -4422,7 +4475,7 @@
         "ミッドレーン": 0.9,
         "トップレーン": 0.2
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lolalytics Miss Fortune Build",
@@ -4442,7 +4495,7 @@
         "サポート": 95,
         "トップレーン": 3
       },
-      "note": "正確な数値はページ取得不可だが、複数ソース（METAsrc/U.GG/Lolalytics）がサポート一択で掲載。トップはOM Tier・勝率42.45%の超オフメタ（推定3%以下）。15%閾値未満のためsubなし",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Milio Build 26.11 – METAsrc LoL",
@@ -4477,7 +4530,7 @@
         "トップレーン": 3,
         "ジャングル": 2
       },
-      "note": "具体的な role share 数値はどのソースからも直接取得できず、複数サイトのデフォルトレーン・ティアリスト掲載・専用ビルドページ有無から推定。Lolalytics/U.GG/Mobalytics はいずれも middle をデフォルト表示。サポートは全サイトで専用ビルドページあり・ティアリスト掲載あり（Lolalytics rank 81/83, WR 42.91%）。ADCも専用ページ存在するが mid・サポートより存在感が薄く 15% 閾値未満と推定。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Mel Build, Runes & Counters - LoLalytics (middle default)",
@@ -4520,7 +4573,7 @@
         "ADC": 2,
         "トップレーン": 1
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "METAsrc Morgana Build 26.11",
@@ -4539,7 +4592,7 @@
       "roleShares": {
         "トップレーン": 95
       },
-      "note": "全検索結果がトップレーン一択（S+ティア、4.8% pick率）。他レーンの具体的なshare%は取得不可だったためトップレーンのみ記録。15%超の第2ロールは確認できず。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Mordekaiser Build 26.11 – METAsrc LoL",
@@ -4567,7 +4620,7 @@
         "トップレーン": 29,
         "ADC": 1
       },
-      "note": "pick rate (mid 7.1% / top 3.0%) から role share を推算。直接の role share 数値は取得できず比率から算出",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Yasuo Build with Highest Winrate - U.GG",
@@ -4596,7 +4649,7 @@
       "roleShares": {
         "サポート": 99
       },
-      "note": "全ソースが一貫してサポートのみに言及。他レーンでの有意な pick 率は確認できず。キット設計上（味方にアタッチするメカニズム）サポート専用チャンプ。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Yuumi Build, Runes & Counters – LoLalytics",
@@ -4627,7 +4680,7 @@
         "トップレーン": 5,
         "サポート": 2
       },
-      "note": "数値は正確な集計データではなく推定値。LolalyticはデフォルトページをBot/ADCとして表示。METAsrc・Mobalytics共にADCがメイン。TopはOMティア（41.3%WR）、SupportはOMティア（38.9%WR・極少数）でいずれも15%未満と判断。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Yunara Build 26.11 – METAsrc LoL",
@@ -4665,7 +4718,7 @@
         "ミッドレーン": 35,
         "ジャングル": 3
       },
-      "note": "検索スニペットから直接の数値読み取りが困難だったため推定値。Lolalytics デフォルトページがトップ（S+ Tier）、ミッドは B+ Tier・ランク 39/101。ジャングルは試合数不足で実質ノイズ。ミッドは閾値（35%）境界付近のため sub 扱い。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Yone Build, Runes & Counters Guide for top Yone - Lolalytics",
@@ -4696,7 +4749,7 @@
         "ミッドレーン": 4,
         "ジャングル": 3
       },
-      "note": "METAsrcのゲーム数（Top:399300 / Mid:16536 / Jungle:14433）から算出。Lolalytics・METAsrcともにTopがデフォルトロール。Mid/JungleはOMティアで15%未満のため除外。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Yorick Build 26.11 – METAsrc LoL",
@@ -4726,7 +4779,7 @@
         "サポート": 0,
         "ジャングル": 0
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lolalytics - Ryze Build Guide",
@@ -4752,7 +4805,7 @@
         "トップレーン": 5,
         "ジャングル": 3
       },
-      "note": "サポートが圧倒的主流（A Tier, ~50% WR）。トップ・ジャングルはOff Meta扱いで各5%未満と推定。具体的な数値はページ内JSレンダリングで取得できなかったため推定値を使用。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Rakan Build 26.11 – METAsrc LoL (Support A Tier)",
@@ -4787,7 +4840,7 @@
         "トップレーン": 3,
         "ジャングル": 2
       },
-      "note": "正確な数値はページ内JS未取得のため推定。METAsrc のロール順 'Support > Mid Lane > ADC > Top > Jungle' と Lolalytics がデフォルトURLでサポートを主ロールとして扱っていることから判定。ミッドレーンは 33% 推定（sub 範囲: 15-35%）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lux Stats 26.11 – METAsrc LoL",
@@ -4816,7 +4869,7 @@
       "roleShares": {
         "ジャングル": 97
       },
-      "note": "全ソース（Lolalytics/U.GG/Mobalytics/LeagueOfGraphs）が一貫してジャングル専用として掲載。他レーンのpick率は15%未満のためノイズ扱い。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Rammus Build, Runes & Counters Guide for jungle Rammus - Lolalytics",
@@ -4849,7 +4902,7 @@
         "サポート": 2,
         "ADC": 0
       },
-      "note": "トップレーンが圧倒的多数(85%)。ミッドレーン8%・ジャングル5%はいずれも15%未満のためsubなし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "LoLAlytics Rumble Build",
@@ -4870,7 +4923,7 @@
         "ミッドレーン": 8,
         "トップレーン": 5
       },
-      "note": "ジャングルが圧倒的主戦場。26.12プレビューでmid寄り使用が一部注目されているが、15%未満のためsubには含めず。数値は複数ソースから推計。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lee Sin Build, Runes & Counters for jungle - LoLalytics",
@@ -4889,38 +4942,6 @@
         }
       ]
     },
-    "warwick": {
-      "ja": "ワーウィック",
-      "en": "Warwick",
-      "main": [
-        "ジャングル"
-      ],
-      "sub": [
-        "トップレーン"
-      ],
-      "roleShares": {
-        "ジャングル": 75,
-        "トップレーン": 18
-      },
-      "note": "ジャングル約74.5%はWebSearch引用値。METAsrcゲーム数ベース（JG 583,943 / TOP 58,125）だと比率は約91:9だが、他ロール含む全体母数でジャングル74.5%との記述を優先。トップshareは15-20%と推定し閾値15%以上としてsubに採用。",
-      "sources": [
-        {
-          "title": "Warwick Build 26.11 – METAsrc LoL",
-          "url": "https://www.metasrc.com/lol/build/warwick",
-          "used_for": "ゲーム数・ロール分布"
-        },
-        {
-          "title": "Warwick stats - LeagueOfGraphs",
-          "url": "https://www.leagueofgraphs.com/champions/stats/warwick",
-          "used_for": "ロール分布確認"
-        },
-        {
-          "title": "Warwick Build with Highest Winrate - U.GG",
-          "url": "https://u.gg/lol/champions/warwick/build",
-          "used_for": "ロール確認補強"
-        }
-      ]
-    },
     "riven": {
       "ja": "リヴェン",
       "en": "Riven",
@@ -4932,7 +4953,7 @@
         "トップレーン": 97,
         "ジャングル": 3
       },
-      "note": "METAsrcでトップ3.0%ピック率(Aティア)、ジャングル0.2%(Dティア)。ジャングルは15%未満のためsubなし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "METAsrc Riven Build 26.11",
@@ -4960,7 +4981,7 @@
         "サポート": 18,
         "トップレーン": 5
       },
-      "note": "検索結果から正確なロール別%は読み取れず。Lolalytics の default ビルドが middle、専用サポートカウンターページも存在することからミッドがメイン・サポートがサブと推定。数値は概算。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lissandra Build - Lolalytics (middle)",
@@ -4991,7 +5012,7 @@
         "ミッドレーン": 2,
         "トップレーン": 1
       },
-      "note": "複数ソース（U.GG・Mobalytics・skill-capped・OP.GG）でジャングルが唯一の主要ロール。ミッドレーンは2%程度でノイズ水準（15%未満）のため sub 無し。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lillia Build with Highest Winrate - U.GG",
@@ -5022,7 +5043,7 @@
         "ミッドレーン": 2,
         "サポート": 1
       },
-      "note": "",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lucian Build, Runes & Counters Guide for bottom Lucian",
@@ -5046,7 +5067,7 @@
       "roleShares": {
         "ミッドレーン": 85
       },
-      "note": "Lolalytics にミッドとサポート両方のビルドページが存在し、サポートで一定のピックあり（49.43% 勝率）。ただしロール別 share の具体的数値が取得できず、サポートが 15% 閾値を超えるか不明なため sub は空にする。ミッドレーンが支配的であることは確認済み。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "LeBlanc Build, Runes & Counters Guide for middle LeBlanc",
@@ -5079,7 +5100,7 @@
         "ミッドレーン": 3,
         "ジャングル": 1
       },
-      "note": "数値は概算。サポートが圧倒的主流（勝率51.3%・Aティア）。他ロールの勝率はADC35%・MID41%と低く、ニッチpickであることを示す。ロール順はSupport > Top > ADC > Mid > Jungleと確認。いずれも15%閾値に満たないためsubなし。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Lulu Build, Runes & Counters Guide for support Lulu – Lolalytics",
@@ -5115,7 +5136,7 @@
         "トップレーン": 3,
         "その他": 2
       },
-      "note": "サポートが圧倒的多数（95%超）。他ロールはノイズレベル",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Leona Build with Highest Winrate - U.GG",
@@ -5140,7 +5161,7 @@
         "ジャングル": 92,
         "トップレーン": 7
       },
-      "note": "トップは OM Tier（オフメタ）で 15% 未満のため sub 対象外。正確な role share は検索スニペットから読み取れなかったため、tier 区分から推算（JG: A Tier 92%, Top: OM Tier 7%）。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Rek'Sai Build 26.11 – METAsrc LoL",
@@ -5169,7 +5190,7 @@
       "roleShares": {
         "サポート": 97
       },
-      "note": "全検索結果がサポートのみ。他レーンでの有意なpick率は確認できず。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Renata Glasc Build 26.11 – METAsrc LoL",
@@ -5198,7 +5219,7 @@
       "roleShares": {
         "トップレーン": 96
       },
-      "note": "METAsrc の role rate 96.2%、複数ソースいずれも Top Lane 専任と示しており他レーンは 15% 未満",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Renekton Stats 26.11 – METAsrc LoL",
@@ -5225,7 +5246,7 @@
         "ジャングル": 4,
         "ADC": 1
       },
-      "note": "サポートが圧倒的主役。ロールヒエラルキーはサポート > トップ > ジャングル > ADC > ミッドと確認。ジャングル build は METAsrc で OM Tier（オフメタ）扱い。具体的な % は検索結果から読み取れず、上記 roleShares は概算。サポート以外はいずれも 15% 未満と判断し sub は空。",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Rell Build, Runes & Counters - LoLalytics",
@@ -5255,7 +5276,7 @@
         "ジャングル": 93,
         "トップレーン": 7
       },
-      "note": "絶対pick率: Jungle 4.0% / Top 0.3%。role share換算でTopは7%のためサブロール閾値(15%)未満",
+      "note": "preserved (judge失敗): parse/main 不正",
       "sources": [
         {
           "title": "Rengar Build Guide - Patch 26.11",
@@ -5266,6 +5287,38 @@
           "title": "METAsrc LoL Tier List 26.11",
           "url": "https://www.metasrc.com/lol/build/rengar",
           "used_for": "ロール分布順位確認"
+        }
+      ]
+    },
+    "warwick": {
+      "ja": "ワーウィック",
+      "en": "Warwick",
+      "main": [
+        "ジャングル"
+      ],
+      "sub": [
+        "トップレーン"
+      ],
+      "roleShares": {
+        "ジャングル": 75,
+        "トップレーン": 18
+      },
+      "note": "preserved (judge失敗): parse/main 不正",
+      "sources": [
+        {
+          "title": "Warwick Build 26.11 – METAsrc LoL",
+          "url": "https://www.metasrc.com/lol/build/warwick",
+          "used_for": "ゲーム数・ロール分布"
+        },
+        {
+          "title": "Warwick stats - LeagueOfGraphs",
+          "url": "https://www.leagueofgraphs.com/champions/stats/warwick",
+          "used_for": "ロール分布確認"
+        },
+        {
+          "title": "Warwick Build with Highest Winrate - U.GG",
+          "url": "https://u.gg/lol/champions/warwick/build",
+          "used_for": "ロール確認補強"
         }
       ]
     }
