@@ -213,5 +213,55 @@
     "last_reviewed": "2026-06-09",
     "review_count": 6,
     "last_status": "approved"
+  },
+  "aatrox": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "belveth": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "blitzcrank": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "garen": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "hwei": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "jax": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "leblanc": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "nocturne": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "orianna": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "ryze": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
