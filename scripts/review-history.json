@@ -1,7 +1,7 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 26,
+    "last_reviewed": "2026-06-10",
+    "review_count": 27,
     "last_status": "no_change"
   },
   "aphelios": {
@@ -10,8 +10,8 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 26,
+    "last_reviewed": "2026-06-10",
+    "review_count": 27,
     "last_status": "approved"
   },
   "annie": {
@@ -20,13 +20,13 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 26,
+    "last_reviewed": "2026-06-10",
+    "review_count": 27,
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 26,
+    "last_reviewed": "2026-06-10",
+    "review_count": 27,
     "last_status": "no_change"
   },
   "briar": {
@@ -35,18 +35,18 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
+    "last_status": "approved"
   },
   "fizz": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
     "last_status": "no_change"
   },
   "galio": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
     "last_status": "no_change"
   },
   "gragas": {
@@ -100,18 +100,18 @@
     "last_status": "no_change"
   },
   "diana": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
+    "last_status": "no_change"
   },
   "gwen": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 21,
+    "last_reviewed": "2026-06-10",
+    "review_count": 22,
     "last_status": "approved"
   },
   "heimerdinger": {
