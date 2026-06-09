@@ -1,8 +1,8 @@
 {
   "ambessa": {
-    "last_reviewed": "2026-06-05",
-    "review_count": 23,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-09",
+    "review_count": 24,
+    "last_status": "approved"
   },
   "aphelios": {
     "last_reviewed": "2026-05-17",
@@ -10,8 +10,8 @@
     "last_status": "approved"
   },
   "anivia": {
-    "last_reviewed": "2026-06-05",
-    "review_count": 23,
+    "last_reviewed": "2026-06-09",
+    "review_count": 24,
     "last_status": "approved"
   },
   "annie": {
@@ -20,13 +20,13 @@
     "last_status": "approved"
   },
   "ashe": {
-    "last_reviewed": "2026-06-05",
-    "review_count": 23,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-09",
+    "review_count": 24,
+    "last_status": "no_change"
   },
   "brand": {
-    "last_reviewed": "2026-06-05",
-    "review_count": 23,
+    "last_reviewed": "2026-06-09",
+    "review_count": 24,
     "last_status": "no_change"
   },
   "briar": {
@@ -185,33 +185,33 @@
     "last_status": "approved"
   },
   "velkoz": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
-    "last_status": "no_change"
-  },
-  "wukong": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
-    "last_status": "no_change"
-  },
-  "xayah": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
-    "last_status": "no_change"
-  },
-  "xin-zhao": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
+  "wukong": {
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
+    "last_status": "approved"
+  },
+  "xayah": {
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
+    "last_status": "approved"
+  },
+  "xin-zhao": {
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
+    "last_status": "no_change"
+  },
   "zed": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   },
   "zeri": {
-    "last_reviewed": "2026-06-04",
-    "review_count": 5,
+    "last_reviewed": "2026-06-09",
+    "review_count": 6,
     "last_status": "approved"
   }
 }
