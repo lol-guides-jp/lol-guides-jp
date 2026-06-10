@@ -70,9 +70,9 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
+    "last_status": "approved"
   },
   "naafiri": {
     "last_reviewed": "2026-06-09",
@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 7,
+    "last_reviewed": "2026-06-10",
+    "review_count": 8,
     "last_status": "no_change"
   },
   "shaco": {
@@ -95,9 +95,9 @@
     "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 7,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 8,
+    "last_status": "approved"
   },
   "diana": {
     "last_reviewed": "2026-06-10",
@@ -140,28 +140,28 @@
     "last_status": "approved"
   },
   "kassadin": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
+    "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "tahm-kench": {
@@ -170,14 +170,14 @@
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
+    "last_status": "no_change"
   },
   "vayne": {
     "last_reviewed": "2026-06-09",
