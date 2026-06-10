@@ -60,8 +60,8 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-05-24",
-    "review_count": 1,
+    "last_reviewed": "2026-06-10",
+    "review_count": 2,
     "last_status": "approved"
   },
   "kindred": {
@@ -115,29 +115,29 @@
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
     "last_status": "no_change"
   },
   "illaoi": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
+    "last_status": "no_change"
   },
   "irelia": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
     "last_status": "approved"
   },
   "kalista": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 16,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 17,
+    "last_status": "approved"
   },
   "kassadin": {
     "last_reviewed": "2026-06-09",
@@ -260,6 +260,26 @@
     "last_status": "approved"
   },
   "ryze": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "sylas": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "syndra": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "tristana": {
+    "last_reviewed": "2026-06-10",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "yuumi": {
     "last_reviewed": "2026-06-10",
     "review_count": 1,
     "last_status": "approved"
