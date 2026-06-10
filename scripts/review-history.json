@@ -25,8 +25,8 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 28,
+    "last_reviewed": "2026-06-11",
+    "review_count": 29,
     "last_status": "no_change"
   },
   "briar": {
@@ -35,8 +35,8 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 22,
+    "last_reviewed": "2026-06-11",
+    "review_count": 23,
     "last_status": "approved"
   },
   "fizz": {
@@ -100,23 +100,23 @@
     "last_status": "approved"
   },
   "diana": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 23,
+    "last_reviewed": "2026-06-11",
+    "review_count": 24,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-10",
+    "last_reviewed": "2026-06-11",
+    "review_count": 24,
+    "last_status": "no_change"
+  },
+  "gwen": {
+    "last_reviewed": "2026-06-11",
     "review_count": 23,
     "last_status": "approved"
   },
-  "gwen": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 22,
-    "last_status": "approved"
-  },
   "heimerdinger": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 17,
+    "last_reviewed": "2026-06-11",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "illaoi": {
@@ -215,23 +215,23 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 2,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-11",
+    "review_count": 3,
+    "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 2,
+    "last_reviewed": "2026-06-11",
+    "review_count": 3,
     "last_status": "approved"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 2,
+    "last_reviewed": "2026-06-11",
+    "review_count": 3,
     "last_status": "approved"
   },
   "garen": {
-    "last_reviewed": "2026-06-10",
-    "review_count": 1,
+    "last_reviewed": "2026-06-11",
+    "review_count": 2,
     "last_status": "approved"
   },
   "hwei": {
