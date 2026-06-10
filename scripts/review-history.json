@@ -26,7 +26,7 @@
   },
   "brand": {
     "last_reviewed": "2026-06-10",
-    "review_count": 27,
+    "review_count": 28,
     "last_status": "no_change"
   },
   "briar": {
@@ -101,13 +101,13 @@
   },
   "diana": {
     "last_reviewed": "2026-06-10",
-    "review_count": 22,
+    "review_count": 23,
     "last_status": "approved"
   },
   "ekko": {
     "last_reviewed": "2026-06-10",
-    "review_count": 22,
-    "last_status": "no_change"
+    "review_count": 23,
+    "last_status": "approved"
   },
   "gwen": {
     "last_reviewed": "2026-06-10",
@@ -180,13 +180,13 @@
     "last_status": "no_change"
   },
   "vayne": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "velkoz": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "wukong": {
@@ -195,14 +195,14 @@
     "last_status": "approved"
   },
   "xayah": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
     "last_status": "approved"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-09",
-    "review_count": 6,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-10",
+    "review_count": 7,
+    "last_status": "approved"
   },
   "zed": {
     "last_reviewed": "2026-06-09",
@@ -216,17 +216,17 @@
   },
   "aatrox": {
     "last_reviewed": "2026-06-10",
-    "review_count": 1,
+    "review_count": 2,
     "last_status": "approved"
   },
   "belveth": {
     "last_reviewed": "2026-06-10",
-    "review_count": 1,
+    "review_count": 2,
     "last_status": "approved"
   },
   "blitzcrank": {
     "last_reviewed": "2026-06-10",
-    "review_count": 1,
+    "review_count": 2,
     "last_status": "approved"
   },
   "garen": {
