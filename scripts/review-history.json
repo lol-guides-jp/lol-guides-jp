@@ -170,23 +170,23 @@
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
+    "last_status": "no_change"
   },
   "vayne": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
     "last_status": "approved"
   },
   "velkoz": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
     "last_status": "approved"
   },
   "wukong": {
@@ -195,14 +195,14 @@
     "last_status": "approved"
   },
   "xayah": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
+    "last_status": "approved"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 9,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-13",
+    "review_count": 10,
+    "last_status": "no_change"
   },
   "zed": {
     "last_reviewed": "2026-06-09",
@@ -265,23 +265,23 @@
     "last_status": "no_change"
   },
   "sylas": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-13",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "syndra": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 3,
+    "last_reviewed": "2026-06-13",
+    "review_count": 4,
     "last_status": "approved"
   },
   "tristana": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-13",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "yuumi": {
-    "last_reviewed": "2026-06-12",
-    "review_count": 3,
+    "last_reviewed": "2026-06-13",
+    "review_count": 4,
     "last_status": "approved"
   }
 }
