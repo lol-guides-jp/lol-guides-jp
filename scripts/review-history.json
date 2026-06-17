@@ -60,8 +60,8 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 9,
+    "last_reviewed": "2026-06-18",
+    "review_count": 10,
     "last_status": "no_change"
   },
   "kindred": {
@@ -115,33 +115,33 @@
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 30,
+    "last_reviewed": "2026-06-18",
+    "review_count": 31,
     "last_status": "approved"
   },
   "illaoi": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 24,
+    "last_reviewed": "2026-06-18",
+    "review_count": 25,
     "last_status": "approved"
   },
   "irelia": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 24,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-18",
+    "review_count": 25,
+    "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 24,
+    "last_reviewed": "2026-06-18",
+    "review_count": 25,
     "last_status": "approved"
   },
   "kalista": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 24,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-18",
+    "review_count": 25,
+    "last_status": "approved"
   },
   "kassadin": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 24,
+    "last_reviewed": "2026-06-18",
+    "review_count": 25,
     "last_status": "approved"
   },
   "leona": {
@@ -235,18 +235,18 @@
     "last_status": "approved"
   },
   "hwei": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 8,
+    "last_reviewed": "2026-06-18",
+    "review_count": 9,
     "last_status": "approved"
   },
   "jax": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 8,
+    "last_reviewed": "2026-06-18",
+    "review_count": 9,
     "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 8,
+    "last_reviewed": "2026-06-18",
+    "review_count": 9,
     "last_status": "approved"
   },
   "nocturne": {
