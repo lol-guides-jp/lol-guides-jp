@@ -70,8 +70,8 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 23,
+    "last_reviewed": "2026-06-17",
+    "review_count": 24,
     "last_status": "approved"
   },
   "naafiri": {
@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 14,
+    "last_reviewed": "2026-06-17",
+    "review_count": 15,
     "last_status": "no_change"
   },
   "shaco": {
@@ -95,9 +95,9 @@
     "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 14,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-17",
+    "review_count": 15,
+    "last_status": "approved"
   },
   "diana": {
     "last_reviewed": "2026-06-17",
@@ -145,24 +145,24 @@
     "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 23,
+    "last_reviewed": "2026-06-17",
+    "review_count": 24,
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 13,
+    "last_reviewed": "2026-06-17",
+    "review_count": 14,
     "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 13,
+    "last_reviewed": "2026-06-17",
+    "review_count": 14,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 13,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-17",
+    "review_count": 14,
+    "last_status": "approved"
   },
   "tahm-kench": {
     "last_reviewed": "2026-06-09",
@@ -250,19 +250,19 @@
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 7,
+    "last_reviewed": "2026-06-17",
+    "review_count": 8,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 7,
+    "last_reviewed": "2026-06-17",
+    "review_count": 8,
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-16",
-    "review_count": 7,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-17",
+    "review_count": 8,
+    "last_status": "approved"
   },
   "sylas": {
     "last_reviewed": "2026-06-16",
