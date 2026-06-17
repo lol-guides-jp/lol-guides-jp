@@ -25,9 +25,9 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 42,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-18",
+    "review_count": 43,
+    "last_status": "approved"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -35,9 +35,9 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 36,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-18",
+    "review_count": 37,
+    "last_status": "approved"
   },
   "fizz": {
     "last_reviewed": "2026-06-10",
@@ -100,18 +100,18 @@
     "last_status": "approved"
   },
   "diana": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 37,
+    "last_reviewed": "2026-06-18",
+    "review_count": 38,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 37,
+    "last_reviewed": "2026-06-18",
+    "review_count": 38,
     "last_status": "no_change"
   },
   "gwen": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 36,
+    "last_reviewed": "2026-06-18",
+    "review_count": 37,
     "last_status": "approved"
   },
   "heimerdinger": {
@@ -215,23 +215,23 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 21,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-18",
+    "review_count": 22,
+    "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 16,
+    "last_reviewed": "2026-06-18",
+    "review_count": 17,
     "last_status": "no_change"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 16,
+    "last_reviewed": "2026-06-18",
+    "review_count": 17,
     "last_status": "approved"
   },
   "garen": {
-    "last_reviewed": "2026-06-17",
-    "review_count": 15,
+    "last_reviewed": "2026-06-18",
+    "review_count": 16,
     "last_status": "approved"
   },
   "hwei": {
