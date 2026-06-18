@@ -25,8 +25,8 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 44,
+    "last_reviewed": "2026-06-19",
+    "review_count": 45,
     "last_status": "no_change"
   },
   "briar": {
@@ -35,8 +35,8 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 38,
+    "last_reviewed": "2026-06-19",
+    "review_count": 39,
     "last_status": "no_change"
   },
   "fizz": {
@@ -100,23 +100,23 @@
     "last_status": "no_change"
   },
   "diana": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 39,
+    "last_reviewed": "2026-06-19",
+    "review_count": 40,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 39,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-19",
+    "review_count": 40,
+    "last_status": "approved"
   },
   "gwen": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 38,
+    "last_reviewed": "2026-06-19",
+    "review_count": 39,
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 32,
+    "last_reviewed": "2026-06-19",
+    "review_count": 33,
     "last_status": "approved"
   },
   "illaoi": {
@@ -215,23 +215,23 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 23,
+    "last_reviewed": "2026-06-19",
+    "review_count": 24,
     "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 18,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-19",
+    "review_count": 19,
+    "last_status": "no_change"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 18,
+    "last_reviewed": "2026-06-19",
+    "review_count": 19,
     "last_status": "approved"
   },
   "garen": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 17,
+    "last_reviewed": "2026-06-19",
+    "review_count": 18,
     "last_status": "approved"
   },
   "hwei": {
