@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 16,
+    "last_reviewed": "2026-06-19",
+    "review_count": 17,
     "last_status": "no_change"
   },
   "shaco": {
@@ -95,9 +95,9 @@
     "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 16,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-19",
+    "review_count": 17,
+    "last_status": "approved"
   },
   "diana": {
     "last_reviewed": "2026-06-19",
@@ -145,24 +145,24 @@
     "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 25,
+    "last_reviewed": "2026-06-19",
+    "review_count": 26,
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 15,
+    "last_reviewed": "2026-06-19",
+    "review_count": 16,
     "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 15,
+    "last_reviewed": "2026-06-19",
+    "review_count": 16,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 15,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-19",
+    "review_count": 16,
+    "last_status": "approved"
   },
   "tahm-kench": {
     "last_reviewed": "2026-06-09",
@@ -250,24 +250,24 @@
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 9,
+    "last_reviewed": "2026-06-19",
+    "review_count": 10,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 9,
+    "last_reviewed": "2026-06-19",
+    "review_count": 10,
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 9,
+    "last_reviewed": "2026-06-19",
+    "review_count": 10,
     "last_status": "no_change"
   },
   "sylas": {
-    "last_reviewed": "2026-06-18",
-    "review_count": 9,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-19",
+    "review_count": 10,
+    "last_status": "approved"
   },
   "syndra": {
     "last_reviewed": "2026-06-18",
