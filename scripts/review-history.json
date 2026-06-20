@@ -26,7 +26,7 @@
   },
   "brand": {
     "last_reviewed": "2026-06-20",
-    "review_count": 47,
+    "review_count": 48,
     "last_status": "no_change"
   },
   "briar": {
@@ -36,8 +36,8 @@
   },
   "ezreal": {
     "last_reviewed": "2026-06-20",
-    "review_count": 41,
-    "last_status": "no_change"
+    "review_count": 42,
+    "last_status": "approved"
   },
   "fizz": {
     "last_reviewed": "2026-06-10",
@@ -101,13 +101,13 @@
   },
   "diana": {
     "last_reviewed": "2026-06-20",
-    "review_count": 42,
+    "review_count": 43,
     "last_status": "approved"
   },
   "ekko": {
     "last_reviewed": "2026-06-20",
-    "review_count": 42,
-    "last_status": "approved"
+    "review_count": 43,
+    "last_status": "no_change"
   },
   "gwen": {
     "last_reviewed": "2026-06-20",
@@ -115,8 +115,8 @@
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-19",
-    "review_count": 34,
+    "last_reviewed": "2026-06-20",
+    "review_count": 35,
     "last_status": "approved"
   },
   "illaoi": {
@@ -200,9 +200,9 @@
     "last_status": "no_change"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-19",
-    "review_count": 16,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-20",
+    "review_count": 17,
+    "last_status": "no_change"
   },
   "zed": {
     "last_reviewed": "2026-06-09",
@@ -216,17 +216,17 @@
   },
   "aatrox": {
     "last_reviewed": "2026-06-20",
-    "review_count": 27,
+    "review_count": 28,
     "last_status": "no_change"
   },
   "belveth": {
     "last_reviewed": "2026-06-20",
-    "review_count": 21,
+    "review_count": 22,
     "last_status": "no_change"
   },
   "blitzcrank": {
     "last_reviewed": "2026-06-20",
-    "review_count": 21,
+    "review_count": 22,
     "last_status": "approved"
   },
   "garen": {
@@ -280,8 +280,8 @@
     "last_status": "no_change"
   },
   "yuumi": {
-    "last_reviewed": "2026-06-19",
-    "review_count": 10,
+    "last_reviewed": "2026-06-20",
+    "review_count": 11,
     "last_status": "approved"
   }
 }
