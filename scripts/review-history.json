@@ -60,9 +60,9 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 14,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-23",
+    "review_count": 15,
+    "last_status": "approved"
   },
   "kindred": {
     "last_reviewed": "2026-05-24",
@@ -70,8 +70,8 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
     "last_status": "no_change"
   },
   "naafiri": {
@@ -120,28 +120,28 @@
     "last_status": "approved"
   },
   "illaoi": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
     "last_status": "approved"
   },
   "irelia": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
     "last_status": "approved"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
     "last_status": "approved"
   },
   "kalista": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
+    "last_status": "approved"
   },
   "kassadin": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 29,
+    "last_reviewed": "2026-06-23",
+    "review_count": 30,
     "last_status": "approved"
   },
   "leona": {
@@ -235,18 +235,18 @@
     "last_status": "approved"
   },
   "hwei": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
     "last_status": "approved"
   },
   "jax": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
+    "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
     "last_status": "approved"
   },
   "nocturne": {
