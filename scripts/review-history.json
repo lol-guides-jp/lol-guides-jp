@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 19,
+    "last_reviewed": "2026-06-22",
+    "review_count": 20,
     "last_status": "no_change"
   },
   "shaco": {
@@ -95,8 +95,8 @@
     "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 19,
+    "last_reviewed": "2026-06-22",
+    "review_count": 20,
     "last_status": "no_change"
   },
   "diana": {
@@ -145,23 +145,23 @@
     "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 28,
+    "last_reviewed": "2026-06-22",
+    "review_count": 29,
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 18,
+    "last_reviewed": "2026-06-22",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 18,
+    "last_reviewed": "2026-06-22",
+    "review_count": 19,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 18,
+    "last_reviewed": "2026-06-22",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "tahm-kench": {
@@ -250,23 +250,23 @@
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 12,
+    "last_reviewed": "2026-06-22",
+    "review_count": 13,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 12,
+    "last_reviewed": "2026-06-22",
+    "review_count": 13,
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 12,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-22",
+    "review_count": 13,
+    "last_status": "approved"
   },
   "sylas": {
-    "last_reviewed": "2026-06-21",
-    "review_count": 12,
+    "last_reviewed": "2026-06-22",
+    "review_count": 13,
     "last_status": "no_change"
   },
   "syndra": {
