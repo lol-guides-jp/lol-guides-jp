@@ -170,23 +170,23 @@
     "last_status": "approved"
   },
   "teemo": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
     "last_status": "approved"
   },
   "varus": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
     "last_status": "no_change"
   },
   "vayne": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
     "last_status": "approved"
   },
   "velkoz": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
     "last_status": "approved"
   },
   "wukong": {
@@ -195,13 +195,13 @@
     "last_status": "approved"
   },
   "xayah": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
+    "last_status": "approved"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 19,
+    "last_reviewed": "2026-06-23",
+    "review_count": 20,
     "last_status": "no_change"
   },
   "zed": {
@@ -216,7 +216,7 @@
   },
   "aatrox": {
     "last_reviewed": "2026-06-23",
-    "review_count": 34,
+    "review_count": 35,
     "last_status": "no_change"
   },
   "belveth": {
@@ -270,18 +270,18 @@
     "last_status": "no_change"
   },
   "syndra": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
     "last_status": "approved"
   },
   "tristana": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
     "last_status": "no_change"
   },
   "yuumi": {
-    "last_reviewed": "2026-06-22",
-    "review_count": 13,
+    "last_reviewed": "2026-06-23",
+    "review_count": 14,
     "last_status": "approved"
   }
 }
