@@ -25,9 +25,9 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 55,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-25",
+    "review_count": 56,
+    "last_status": "approved"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -35,8 +35,8 @@
     "last_status": "approved"
   },
   "ezreal": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 49,
+    "last_reviewed": "2026-06-25",
+    "review_count": 50,
     "last_status": "no_change"
   },
   "fizz": {
@@ -100,23 +100,23 @@
     "last_status": "no_change"
   },
   "diana": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 50,
+    "last_reviewed": "2026-06-25",
+    "review_count": 51,
     "last_status": "approved"
   },
   "ekko": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 50,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-25",
+    "review_count": 51,
+    "last_status": "approved"
   },
   "gwen": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 48,
+    "last_reviewed": "2026-06-25",
+    "review_count": 49,
     "last_status": "approved"
   },
   "heimerdinger": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 39,
+    "last_reviewed": "2026-06-25",
+    "review_count": 40,
     "last_status": "approved"
   },
   "illaoi": {
@@ -215,23 +215,23 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 39,
+    "last_reviewed": "2026-06-25",
+    "review_count": 40,
     "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 29,
+    "last_reviewed": "2026-06-25",
+    "review_count": 30,
     "last_status": "no_change"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 29,
+    "last_reviewed": "2026-06-25",
+    "review_count": 30,
     "last_status": "approved"
   },
   "garen": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 27,
+    "last_reviewed": "2026-06-25",
+    "review_count": 28,
     "last_status": "approved"
   },
   "hwei": {
