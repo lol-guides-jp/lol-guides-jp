@@ -80,8 +80,8 @@
     "last_status": "no_change"
   },
   "quinn": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 22,
+    "last_reviewed": "2026-06-25",
+    "review_count": 23,
     "last_status": "no_change"
   },
   "shaco": {
@@ -95,9 +95,9 @@
     "last_status": "no_change"
   },
   "smolder": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 22,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-25",
+    "review_count": 23,
+    "last_status": "approved"
   },
   "diana": {
     "last_reviewed": "2026-06-25",
@@ -145,23 +145,23 @@
     "last_status": "approved"
   },
   "leona": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 31,
+    "last_reviewed": "2026-06-25",
+    "review_count": 32,
     "last_status": "approved"
   },
   "nami": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 21,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-25",
+    "review_count": 22,
+    "last_status": "approved"
   },
   "nautilus": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 21,
+    "last_reviewed": "2026-06-25",
+    "review_count": 22,
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 21,
+    "last_reviewed": "2026-06-25",
+    "review_count": 22,
     "last_status": "no_change"
   },
   "tahm-kench": {
@@ -250,23 +250,23 @@
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 15,
+    "last_reviewed": "2026-06-25",
+    "review_count": 16,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 15,
+    "last_reviewed": "2026-06-25",
+    "review_count": 16,
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 15,
+    "last_reviewed": "2026-06-25",
+    "review_count": 16,
     "last_status": "no_change"
   },
   "sylas": {
-    "last_reviewed": "2026-06-24",
-    "review_count": 15,
+    "last_reviewed": "2026-06-25",
+    "review_count": 16,
     "last_status": "no_change"
   },
   "syndra": {
