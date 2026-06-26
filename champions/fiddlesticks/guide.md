@@ -1,4 +1,4 @@
-# Fiddlesticks（フィドルスティックス）ジャングル パッチ26.12
+# Fiddlesticks（フィドルスティックス）ジャングル パッチ26.13
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Lv6以降のウルト奇襲が全チャンピオン中トップクラスの集�
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fiddlesticks/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fiddlesticks/guide)*

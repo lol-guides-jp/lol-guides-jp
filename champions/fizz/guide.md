@@ -1,4 +1,4 @@
-# Fizz（フィズ）ミッドレーン パッチ26.12
+# Fizz（フィズ）ミッドレーン パッチ26.13
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@ Lv6以降のバースト力が凶悪な近接アサシン。Eの無敵回避で�
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fizz/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/fizz/guide)*

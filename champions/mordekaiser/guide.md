@@ -1,4 +1,4 @@
-# Mordekaiser（モルデカイザー）トップレーン パッチ26.12
+# Mordekaiser（モルデカイザー）トップレーン パッチ26.13
 
 ## 一言まとめ
 
@@ -56,4 +56,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/mordekaiser/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/mordekaiser/guide)*

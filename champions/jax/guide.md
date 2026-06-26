@@ -1,4 +1,4 @@
-# Jax（ジャックス）トップレーン パッチ26.12
+# Jax（ジャックス）トップレーン パッチ26.13
 
 ## 一言まとめ
 スプリットプッシュとタイマン性能に特化した終盤型キャリーファイター。EのカウンターストライクでAAを無効化し、後半のサイドレーン1対1では手がつけられない強さを持つ。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jax/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/jax/guide)*

@@ -1,4 +1,4 @@
-# Locke（ロック）ミッドレーン パッチ26.12
+# Locke（ロック）ミッドレーン パッチ26.13
 
 ## 一言まとめ
 近接APアサシン。Q（リチュアル・ネイル）でマークを付けてオート攻撃で起爆するバースト特化型で、R（煉獄）のHP閾値処刑により孤立した敵キャリーを瞬時に葬れる。機動力が高い反面、ハードCCに弱く、立ち回りの準備が勝敗を左右する。
@@ -48,4 +48,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/locke/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/locke/guide)*

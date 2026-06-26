@@ -1,4 +1,4 @@
-# Zoe（ゾーイ）ミッドレーン パッチ26.12
+# Zoe（ゾーイ）ミッドレーン パッチ26.13
 
 ## 一言まとめ
 長距離Qワンショットと睡眠CCで試合を動かすバーストメイジ。ピック力が非常に高く、1発当てればオブジェクトにつながる。
@@ -55,4 +55,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zoe/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/zoe/guide)*

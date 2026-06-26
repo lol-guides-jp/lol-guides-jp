@@ -1,4 +1,4 @@
-# Ashe（アッシュ）ADC パッチ26.12
+# Ashe（アッシュ）ADC パッチ26.13
 
 ## 一言まとめ
 
@@ -57,4 +57,4 @@ P（フロストショット）の永続スロー、グローバルスタンのR
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ashe/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/ashe/guide)*

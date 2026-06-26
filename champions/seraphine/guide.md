@@ -1,4 +1,4 @@
-# Seraphine（セラフィーン）サポート パッチ26.12
+# Seraphine（セラフィーン）サポート パッチ26.13
 
 ## 一言まとめ
 シールド・回復・CC・ポークを全て持つ万能エンチャンターサポート。集団戦でのウルトが試合を決める。
@@ -51,4 +51,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/seraphine/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/seraphine/guide)*

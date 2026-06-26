@@ -1,4 +1,4 @@
-# LeBlanc（ルブラン）ミッドレーン パッチ26.12
+# LeBlanc（ルブラン）ミッドレーン パッチ26.13
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ W（ディストーション）とP（鏡像）による圧倒的な機動力を
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/leblanc/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/leblanc/guide)*

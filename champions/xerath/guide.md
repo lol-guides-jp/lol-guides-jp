@@ -1,4 +1,4 @@
-# Xerath（ゼラス）ミッドレーン パッチ26.12
+# Xerath（ゼラス）ミッドレーン パッチ26.13
 
 ## 一言まとめ
 全スキルが超長射程のポーク特化メイジ。安全な距離からレーンを支配し、ウルトで他レーンにも干渉できる。
@@ -53,4 +53,4 @@
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/xerath/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/xerath/guide)*

@@ -1,4 +1,4 @@
-# Nocturne（ノクターン）ジャングル パッチ26.12
+# Nocturne（ノクターン）ジャングル パッチ26.13
 
 ## 一言まとめ
 
@@ -54,4 +54,4 @@ Lv6から始まるグローバル暗殺者。ウルトで敵全員の視界を�
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nocturne/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/nocturne/guide)*

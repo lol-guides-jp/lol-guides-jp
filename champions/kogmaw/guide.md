@@ -1,4 +1,4 @@
-# Kog'Maw（コグ＝マウ）ADC パッチ26.12
+# Kog'Maw（コグ＝マウ）ADC パッチ26.13
 
 ## 一言まとめ
 
@@ -55,4 +55,4 @@ W発動中の射程とオンヒットダメージで前衛・後衛を問わず�
 
 ---
 
-*パッチ26.12 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kogmaw/guide)*
+*パッチ26.13 対応 / 参照: [Mobalytics](https://mobalytics.gg/lol/champions/kogmaw/guide)*
