@@ -160,8 +160,8 @@
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 23,
+    "last_reviewed": "2026-06-28",
+    "review_count": 24,
     "last_status": "no_change"
   },
   "tahm-kench": {
@@ -175,9 +175,9 @@
     "last_status": "no_change"
   },
   "varus": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 23,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-28",
+    "review_count": 24,
+    "last_status": "approved"
   },
   "vayne": {
     "last_reviewed": "2026-06-26",
@@ -200,9 +200,9 @@
     "last_status": "approved"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 23,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-28",
+    "review_count": 24,
+    "last_status": "approved"
   },
   "zed": {
     "last_reviewed": "2026-06-09",
@@ -215,8 +215,8 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 45,
+    "last_reviewed": "2026-06-28",
+    "review_count": 46,
     "last_status": "no_change"
   },
   "belveth": {
@@ -260,34 +260,34 @@
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-28",
+    "review_count": 18,
+    "last_status": "approved"
   },
   "sylas": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-28",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "syndra": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-28",
+    "review_count": 18,
     "last_status": "approved"
   },
   "tristana": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-28",
+    "review_count": 18,
+    "last_status": "no_change"
   },
   "yuumi": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-28",
+    "review_count": 18,
     "last_status": "approved"
   },
   "akshan": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-28",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "aurora": {
     "last_reviewed": "2026-06-27",
