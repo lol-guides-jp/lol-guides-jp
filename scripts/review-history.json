@@ -283,5 +283,55 @@
     "last_reviewed": "2026-06-26",
     "review_count": 17,
     "last_status": "approved"
+  },
+  "akshan": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "aurora": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "bard": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "cassiopeia": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "draven": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "elise": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "gnar": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "jhin": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "kayn": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "ksante": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
   }
 }
