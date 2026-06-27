@@ -5,8 +5,8 @@
     "last_status": "no_change"
   },
   "aphelios": {
-    "last_reviewed": "2026-05-17",
-    "review_count": 1,
+    "last_reviewed": "2026-06-27",
+    "review_count": 2,
     "last_status": "approved"
   },
   "anivia": {
@@ -60,8 +60,8 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 18,
+    "last_reviewed": "2026-06-27",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "kindred": {
@@ -70,8 +70,8 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 33,
+    "last_reviewed": "2026-06-27",
+    "review_count": 34,
     "last_status": "no_change"
   },
   "naafiri": {
@@ -130,9 +130,9 @@
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 33,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-27",
+    "review_count": 34,
+    "last_status": "no_change"
   },
   "kalista": {
     "last_reviewed": "2026-06-26",
@@ -235,28 +235,28 @@
     "last_status": "approved"
   },
   "hwei": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-27",
+    "review_count": 18,
     "last_status": "approved"
   },
   "jax": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-27",
+    "review_count": 18,
     "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-27",
+    "review_count": 18,
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-27",
+    "review_count": 18,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-06-26",
-    "review_count": 17,
+    "last_reviewed": "2026-06-27",
+    "review_count": 18,
     "last_status": "approved"
   },
   "ryze": {
@@ -380,6 +380,11 @@
     "last_status": "approved"
   },
   "vex": {
+    "last_reviewed": "2026-06-27",
+    "review_count": 1,
+    "last_status": "approved"
+  },
+  "zaahen": {
     "last_reviewed": "2026-06-27",
     "review_count": 1,
     "last_status": "approved"
