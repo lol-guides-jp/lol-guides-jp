@@ -60,9 +60,9 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 19,
-    "last_status": "no_change"
+    "last_reviewed": "2026-06-28",
+    "review_count": 20,
+    "last_status": "approved"
   },
   "kindred": {
     "last_reviewed": "2026-05-24",
@@ -110,8 +110,8 @@
     "last_status": "approved"
   },
   "gwen": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 53,
+    "last_reviewed": "2026-06-28",
+    "review_count": 54,
     "last_status": "approved"
   },
   "heimerdinger": {
@@ -130,8 +130,8 @@
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 34,
+    "last_reviewed": "2026-06-28",
+    "review_count": 35,
     "last_status": "no_change"
   },
   "kalista": {
@@ -235,18 +235,18 @@
     "last_status": "approved"
   },
   "hwei": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 18,
+    "last_reviewed": "2026-06-28",
+    "review_count": 19,
     "last_status": "approved"
   },
   "jax": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 18,
+    "last_reviewed": "2026-06-28",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 18,
+    "last_reviewed": "2026-06-28",
+    "review_count": 19,
     "last_status": "approved"
   },
   "nocturne": {
@@ -315,23 +315,23 @@
     "last_status": "approved"
   },
   "gnar": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 1,
+    "last_reviewed": "2026-06-28",
+    "review_count": 2,
     "last_status": "approved"
   },
   "jhin": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 1,
+    "last_reviewed": "2026-06-28",
+    "review_count": 2,
     "last_status": "approved"
   },
   "kayn": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 1,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-28",
+    "review_count": 2,
+    "last_status": "no_change"
   },
   "ksante": {
-    "last_reviewed": "2026-06-27",
-    "review_count": 1,
+    "last_reviewed": "2026-06-28",
+    "review_count": 2,
     "last_status": "approved"
   },
   "locke": {
