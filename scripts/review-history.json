@@ -5,8 +5,8 @@
     "last_status": "no_change"
   },
   "aphelios": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 5,
+    "last_reviewed": "2026-07-01",
+    "review_count": 6,
     "last_status": "no_change"
   },
   "anivia": {
@@ -25,8 +25,8 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 62,
+    "last_reviewed": "2026-07-01",
+    "review_count": 63,
     "last_status": "no_change"
   },
   "briar": {
@@ -215,18 +215,18 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 48,
+    "last_reviewed": "2026-07-01",
+    "review_count": 49,
     "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 37,
+    "last_reviewed": "2026-07-01",
+    "review_count": 38,
     "last_status": "no_change"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 36,
+    "last_reviewed": "2026-07-01",
+    "review_count": 37,
     "last_status": "approved"
   },
   "garen": {
@@ -285,28 +285,28 @@
     "last_status": "approved"
   },
   "akshan": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 4,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-01",
+    "review_count": 5,
+    "last_status": "no_change"
   },
   "aurora": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 4,
+    "last_reviewed": "2026-07-01",
+    "review_count": 5,
     "last_status": "approved"
   },
   "bard": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 4,
+    "last_reviewed": "2026-07-01",
+    "review_count": 5,
     "last_status": "no_change"
   },
   "cassiopeia": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-01",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "draven": {
-    "last_reviewed": "2026-06-30",
-    "review_count": 3,
+    "last_reviewed": "2026-07-01",
+    "review_count": 4,
     "last_status": "approved"
   },
   "elise": {
