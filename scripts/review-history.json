@@ -6,8 +6,8 @@
   },
   "aphelios": {
     "last_reviewed": "2026-06-30",
-    "review_count": 4,
-    "last_status": "approved"
+    "review_count": 5,
+    "last_status": "no_change"
   },
   "anivia": {
     "last_reviewed": "2026-06-10",
@@ -175,8 +175,8 @@
     "last_status": "no_change"
   },
   "varus": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 24,
+    "last_reviewed": "2026-06-30",
+    "review_count": 25,
     "last_status": "approved"
   },
   "vayne": {
@@ -200,9 +200,9 @@
     "last_status": "approved"
   },
   "xin-zhao": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 24,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-30",
+    "review_count": 25,
+    "last_status": "no_change"
   },
   "zed": {
     "last_reviewed": "2026-06-09",
@@ -216,12 +216,12 @@
   },
   "aatrox": {
     "last_reviewed": "2026-06-30",
-    "review_count": 47,
+    "review_count": 48,
     "last_status": "no_change"
   },
   "belveth": {
     "last_reviewed": "2026-06-30",
-    "review_count": 36,
+    "review_count": 37,
     "last_status": "no_change"
   },
   "blitzcrank": {
@@ -275,28 +275,28 @@
     "last_status": "approved"
   },
   "tristana": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 18,
+    "last_reviewed": "2026-06-30",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "yuumi": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 18,
+    "last_reviewed": "2026-06-30",
+    "review_count": 19,
     "last_status": "approved"
   },
   "akshan": {
     "last_reviewed": "2026-06-30",
-    "review_count": 3,
+    "review_count": 4,
     "last_status": "approved"
   },
   "aurora": {
     "last_reviewed": "2026-06-30",
-    "review_count": 3,
+    "review_count": 4,
     "last_status": "approved"
   },
   "bard": {
     "last_reviewed": "2026-06-30",
-    "review_count": 3,
+    "review_count": 4,
     "last_status": "no_change"
   },
   "cassiopeia": {
