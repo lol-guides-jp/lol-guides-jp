@@ -60,9 +60,9 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 20,
-    "last_status": "approved"
+    "last_reviewed": "2026-06-30",
+    "review_count": 21,
+    "last_status": "no_change"
   },
   "kindred": {
     "last_reviewed": "2026-05-24",
@@ -130,8 +130,8 @@
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 35,
+    "last_reviewed": "2026-06-30",
+    "review_count": 36,
     "last_status": "no_change"
   },
   "kalista": {
@@ -160,8 +160,8 @@
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 24,
+    "last_reviewed": "2026-06-30",
+    "review_count": 25,
     "last_status": "no_change"
   },
   "tahm-kench": {
@@ -245,8 +245,8 @@
     "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 19,
+    "last_reviewed": "2026-06-30",
+    "review_count": 20,
     "last_status": "approved"
   },
   "nocturne": {
@@ -260,18 +260,18 @@
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 18,
+    "last_reviewed": "2026-06-30",
+    "review_count": 19,
     "last_status": "approved"
   },
   "sylas": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 18,
+    "last_reviewed": "2026-06-30",
+    "review_count": 19,
     "last_status": "no_change"
   },
   "syndra": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 18,
+    "last_reviewed": "2026-06-30",
+    "review_count": 19,
     "last_status": "approved"
   },
   "tristana": {
@@ -320,18 +320,18 @@
     "last_status": "no_change"
   },
   "jhin": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 2,
+    "last_reviewed": "2026-06-30",
+    "review_count": 3,
     "last_status": "approved"
   },
   "kayn": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 2,
+    "last_reviewed": "2026-06-30",
+    "review_count": 3,
     "last_status": "no_change"
   },
   "ksante": {
-    "last_reviewed": "2026-06-28",
-    "review_count": 2,
+    "last_reviewed": "2026-06-30",
+    "review_count": 3,
     "last_status": "approved"
   },
   "locke": {
