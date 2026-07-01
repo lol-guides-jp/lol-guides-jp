@@ -60,8 +60,8 @@
     "last_status": "approved"
   },
   "kennen": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 22,
+    "last_reviewed": "2026-07-02",
+    "review_count": 23,
     "last_status": "no_change"
   },
   "kindred": {
@@ -110,8 +110,8 @@
     "last_status": "approved"
   },
   "gwen": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 56,
+    "last_reviewed": "2026-07-02",
+    "review_count": 57,
     "last_status": "approved"
   },
   "heimerdinger": {
@@ -130,9 +130,9 @@
     "last_status": "no_change"
   },
   "kaisa": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 37,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-02",
+    "review_count": 38,
+    "last_status": "no_change"
   },
   "kalista": {
     "last_reviewed": "2026-06-26",
@@ -230,18 +230,18 @@
     "last_status": "approved"
   },
   "garen": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 35,
+    "last_reviewed": "2026-07-02",
+    "review_count": 36,
     "last_status": "approved"
   },
   "hwei": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 21,
+    "last_reviewed": "2026-07-02",
+    "review_count": 22,
     "last_status": "approved"
   },
   "jax": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 21,
+    "last_reviewed": "2026-07-02",
+    "review_count": 22,
     "last_status": "no_change"
   },
   "leblanc": {
@@ -310,23 +310,23 @@
     "last_status": "approved"
   },
   "elise": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 4,
+    "last_reviewed": "2026-07-02",
+    "review_count": 5,
     "last_status": "no_change"
   },
   "gnar": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 4,
+    "last_reviewed": "2026-07-02",
+    "review_count": 5,
     "last_status": "approved"
   },
   "jhin": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 4,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-02",
+    "review_count": 5,
+    "last_status": "no_change"
   },
   "kayn": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 4,
+    "last_reviewed": "2026-07-02",
+    "review_count": 5,
     "last_status": "approved"
   },
   "ksante": {
