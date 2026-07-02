@@ -70,8 +70,8 @@
     "last_status": "approved"
   },
   "lee-sin": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 36,
+    "last_reviewed": "2026-07-02",
+    "review_count": 37,
     "last_status": "no_change"
   },
   "naafiri": {
@@ -245,18 +245,18 @@
     "last_status": "no_change"
   },
   "leblanc": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 21,
+    "last_reviewed": "2026-07-02",
+    "review_count": 22,
     "last_status": "approved"
   },
   "nocturne": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
     "last_status": "approved"
   },
   "orianna": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
     "last_status": "approved"
   },
   "ryze": {
@@ -330,33 +330,33 @@
     "last_status": "approved"
   },
   "ksante": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 4,
+    "last_reviewed": "2026-07-02",
+    "review_count": 5,
     "last_status": "approved"
   },
   "locke": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "no_change"
   },
   "olaf": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "no_change"
   },
   "poppy": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
+    "last_status": "no_change"
   },
   "qiyana": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "approved"
   },
   "reksai": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "approved"
   },
   "renata-glasc": {
