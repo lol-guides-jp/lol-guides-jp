@@ -160,8 +160,8 @@
     "last_status": "approved"
   },
   "sion": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 26,
+    "last_reviewed": "2026-07-02",
+    "review_count": 27,
     "last_status": "no_change"
   },
   "tahm-kench": {
@@ -175,8 +175,8 @@
     "last_status": "no_change"
   },
   "varus": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 26,
+    "last_reviewed": "2026-07-02",
+    "review_count": 27,
     "last_status": "approved"
   },
   "vayne": {
@@ -260,24 +260,24 @@
     "last_status": "approved"
   },
   "ryze": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
+    "last_status": "no_change"
   },
   "sylas": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
     "last_status": "no_change"
   },
   "syndra": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
     "last_status": "approved"
   },
   "tristana": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 20,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-02",
+    "review_count": 21,
+    "last_status": "no_change"
   },
   "yuumi": {
     "last_reviewed": "2026-07-01",
@@ -360,23 +360,23 @@
     "last_status": "approved"
   },
   "renata-glasc": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "approved"
   },
   "rumble": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "approved"
   },
   "senna": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
-    "last_status": "no_change"
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
+    "last_status": "approved"
   },
   "shen": {
-    "last_reviewed": "2026-07-01",
-    "review_count": 3,
+    "last_reviewed": "2026-07-02",
+    "review_count": 4,
     "last_status": "no_change"
   },
   "vex": {
