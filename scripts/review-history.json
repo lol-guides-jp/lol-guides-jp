@@ -5,8 +5,8 @@
     "last_status": "no_change"
   },
   "aphelios": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 9,
+    "last_reviewed": "2026-07-03",
+    "review_count": 10,
     "last_status": "approved"
   },
   "anivia": {
@@ -25,9 +25,9 @@
     "last_status": "approved"
   },
   "brand": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 64,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-03",
+    "review_count": 65,
+    "last_status": "no_change"
   },
   "briar": {
     "last_reviewed": "2026-05-20",
@@ -215,18 +215,18 @@
     "last_status": "approved"
   },
   "aatrox": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 52,
+    "last_reviewed": "2026-07-03",
+    "review_count": 53,
     "last_status": "no_change"
   },
   "belveth": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 41,
+    "last_reviewed": "2026-07-03",
+    "review_count": 42,
     "last_status": "no_change"
   },
   "blitzcrank": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 38,
+    "last_reviewed": "2026-07-03",
+    "review_count": 39,
     "last_status": "approved"
   },
   "garen": {
@@ -285,28 +285,28 @@
     "last_status": "approved"
   },
   "akshan": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 8,
-    "last_status": "no_change"
+    "last_reviewed": "2026-07-03",
+    "review_count": 9,
+    "last_status": "approved"
   },
   "aurora": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 8,
+    "last_reviewed": "2026-07-03",
+    "review_count": 9,
     "last_status": "approved"
   },
   "bard": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 8,
+    "last_reviewed": "2026-07-03",
+    "review_count": 9,
     "last_status": "no_change"
   },
   "cassiopeia": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 5,
-    "last_status": "approved"
+    "last_reviewed": "2026-07-03",
+    "review_count": 6,
+    "last_status": "no_change"
   },
   "draven": {
-    "last_reviewed": "2026-07-02",
-    "review_count": 5,
+    "last_reviewed": "2026-07-03",
+    "review_count": 6,
     "last_status": "approved"
   },
   "elise": {
